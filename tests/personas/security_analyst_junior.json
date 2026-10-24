@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "target_role": {
+    "title": "Cybersecurity Analyst",
+    "level": "junior"
+  },
+  "gaps": [
+    {
+      "gap_id": "g1",
+      "item": "CompTIA Security+",
+      "category": "cert",
+      "peer_share": 70,
+      "severity": "high",
+      "user_has": null
+    },
+    {
+      "gap_id": "g2",
+      "item": "SIEM (Splunk)",
+      "category": "tool",
+      "peer_share": 60,
+      "severity": "high",
+      "user_has": null
+    },
+    {
+      "gap_id": "g3",
+      "item": "Incident response",
+      "category": "skill",
+      "peer_share": 50,
+      "severity": "medium",
+      "user_has": "Coursework only"
+    },
+    {
+      "gap_id": "g4",
+      "item": "Wireshark packet analysis",
+      "category": "tool",
+      "peer_share": 40,
+      "severity": "medium",
+      "user_has": null
+    },
+    {
+      "gap_id": "g5",
+      "item": "Python scripting",
+      "category": "skill",
+      "peer_share": 35,
+      "severity": "medium",
+      "user_has": "One intro Python class"
+    }
+  ],
+  "user_context": {
+    "hours_per_week": 12,
+    "target_date": "2027-06-01",
+    "budget_usd": 500,
+    "background": "Associate degree in cybersecurity, graduated 2026; works full time in retail; finished an online pre-security course."
+  }
+}

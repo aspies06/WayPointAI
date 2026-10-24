@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "target_role": {
+    "title": "Data Science Intern",
+    "level": "intern"
+  },
+  "gaps": [
+    {
+      "gap_id": "g1",
+      "item": "pandas data cleaning",
+      "category": "skill",
+      "peer_share": 70,
+      "severity": "high",
+      "user_has": "Used Excel for a class project"
+    },
+    {
+      "gap_id": "g2",
+      "item": "SQL",
+      "category": "skill",
+      "peer_share": 65,
+      "severity": "high",
+      "user_has": null
+    },
+    {
+      "gap_id": "g3",
+      "item": "Statistics and hypothesis testing",
+      "category": "skill",
+      "peer_share": 55,
+      "severity": "high",
+      "user_has": "Intro stats course"
+    },
+    {
+      "gap_id": "g4",
+      "item": "Tableau dashboards",
+      "category": "tool",
+      "peer_share": 35,
+      "severity": "medium",
+      "user_has": null
+    },
+    {
+      "gap_id": "g5",
+      "item": "Machine learning basics",
+      "category": "skill",
+      "peer_share": 30,
+      "severity": "medium",
+      "user_has": null
+    },
+    {
+      "gap_id": "g6",
+      "item": "A/B testing",
+      "category": "skill",
+      "peer_share": 15,
+      "severity": "low",
+      "user_has": null
+    }
+  ],
+  "user_context": {
+    "hours_per_week": 10,
+    "target_date": "2027-02-15",
+    "budget_usd": 50,
+    "background": "Third-year economics major with a data science minor; Python from two classes."
+  }
+}

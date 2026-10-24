@@ -3,3 +3,5 @@ pypdf
 torch
 torchvision
 transformers
+pydantic>=2.14,<3
+pytest>=9

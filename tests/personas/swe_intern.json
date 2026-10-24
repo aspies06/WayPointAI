@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "target_role": {
+    "title": "Software Engineering Intern",
+    "level": "internship"
+  },
+  "gaps": [
+    {
+      "gap_id": "g1",
+      "item": "Data structures and algorithms practice",
+      "category": "skill",
+      "peer_share": 80,
+      "severity": "high",
+      "user_has": "Intro DSA class in progress"
+    },
+    {
+      "gap_id": "g2",
+      "item": "Personal projects on GitHub",
+      "category": "experience",
+      "peer_share": 70,
+      "severity": "high",
+      "user_has": "Class assignments only"
+    },
+    {
+      "gap_id": "g3",
+      "item": "Git and pull requests",
+      "category": "tool",
+      "peer_share": 60,
+      "severity": "high",
+      "user_has": null
+    },
+    {
+      "gap_id": "g4",
+      "item": "Hackathon participation",
+      "category": "experience",
+      "peer_share": 35,
+      "severity": "medium",
+      "user_has": null
+    },
+    {
+      "gap_id": "g5",
+      "item": "SQL",
+      "category": "skill",
+      "peer_share": 30,
+      "severity": "medium",
+      "user_has": null
+    },
+    {
+      "gap_id": "g6",
+      "item": "System design",
+      "category": "skill",
+      "peer_share": 10,
+      "severity": "low",
+      "user_has": null
+    }
+  ],
+  "user_context": {
+    "hours_per_week": 10,
+    "target_date": "2027-01-31",
+    "budget_usd": 0,
+    "background": "Second-year CS student at a state university; Python and Java from classes; works part-time at the campus library."
+  }
+}

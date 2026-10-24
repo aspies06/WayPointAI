@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "target_role": {
+    "title": "Software Engineer",
+    "level": "mid"
+  },
+  "gaps": [
+    {
+      "gap_id": "g1",
+      "item": "System design",
+      "category": "skill",
+      "peer_share": 70,
+      "severity": "high",
+      "user_has": "Built features but never designed a system end to end"
+    },
+    {
+      "gap_id": "g2",
+      "item": "AWS",
+      "category": "tool",
+      "peer_share": 60,
+      "severity": "high",
+      "user_has": "Deployed once to Heroku"
+    },
+    {
+      "gap_id": "g3",
+      "item": "Kubernetes",
+      "category": "tool",
+      "peer_share": 35,
+      "severity": "medium",
+      "user_has": "Uses Docker locally"
+    },
+    {
+      "gap_id": "g4",
+      "item": "TypeScript",
+      "category": "skill",
+      "peer_share": 50,
+      "severity": "medium",
+      "user_has": "3 years of JavaScript"
+    },
+    {
+      "gap_id": "g5",
+      "item": "Mentoring or code review leadership",
+      "category": "experience",
+      "peer_share": 40,
+      "severity": "low",
+      "user_has": null
+    }
+  ],
+  "user_context": {
+    "hours_per_week": 6,
+    "target_date": "2027-06-30",
+    "budget_usd": 300,
+    "background": "2.5 years as a junior full-stack developer at a 40-person agency (React, Node, PostgreSQL)."
+  }
+}

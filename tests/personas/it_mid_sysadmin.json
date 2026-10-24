@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "target_role": {
+    "title": "Systems Administrator",
+    "level": "mid"
+  },
+  "gaps": [
+    {
+      "gap_id": "g1",
+      "item": "Intune / endpoint management",
+      "category": "tool",
+      "peer_share": 55,
+      "severity": "high",
+      "user_has": "Uses SCCM daily"
+    },
+    {
+      "gap_id": "g2",
+      "item": "Azure",
+      "category": "tool",
+      "peer_share": 60,
+      "severity": "high",
+      "user_has": null
+    },
+    {
+      "gap_id": "g3",
+      "item": "PowerShell automation",
+      "category": "skill",
+      "peer_share": 65,
+      "severity": "high",
+      "user_has": "Writes small one-off scripts"
+    },
+    {
+      "gap_id": "g4",
+      "item": "Linux administration",
+      "category": "skill",
+      "peer_share": 45,
+      "severity": "medium",
+      "user_has": null
+    },
+    {
+      "gap_id": "g5",
+      "item": "ITIL",
+      "category": "cert",
+      "peer_share": 30,
+      "severity": "low",
+      "user_has": null
+    },
+    {
+      "gap_id": "g6",
+      "item": "CCNA",
+      "category": "cert",
+      "peer_share": 25,
+      "severity": "low",
+      "user_has": null
+    }
+  ],
+  "user_context": {
+    "hours_per_week": 8,
+    "target_date": "2027-08-31",
+    "budget_usd": 800,
+    "background": "3 years IT support at a school district; CompTIA A+ and Network+; manages 600 Windows devices."
+  }
+}

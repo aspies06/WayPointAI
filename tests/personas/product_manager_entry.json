@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "target_role": {
+    "title": "Associate Product Manager",
+    "level": "entry"
+  },
+  "gaps": [
+    {
+      "gap_id": "g1",
+      "item": "User research and customer interviews",
+      "category": "skill",
+      "peer_share": 70,
+      "severity": "high",
+      "user_has": null
+    },
+    {
+      "gap_id": "g2",
+      "item": "Writing PRDs",
+      "category": "skill",
+      "peer_share": 65,
+      "severity": "high",
+      "user_has": "Wrote specs as a student club lead"
+    },
+    {
+      "gap_id": "g3",
+      "item": "Product analytics and success metrics",
+      "category": "skill",
+      "peer_share": 60,
+      "severity": "high",
+      "user_has": null
+    },
+    {
+      "gap_id": "g4",
+      "item": "SQL",
+      "category": "skill",
+      "peer_share": 50,
+      "severity": "medium",
+      "user_has": null
+    },
+    {
+      "gap_id": "g5",
+      "item": "A/B testing",
+      "category": "skill",
+      "peer_share": 40,
+      "severity": "medium",
+      "user_has": null
+    },
+    {
+      "gap_id": "g6",
+      "item": "Figma prototyping",
+      "category": "tool",
+      "peer_share": 35,
+      "severity": "medium",
+      "user_has": null
+    },
+    {
+      "gap_id": "g7",
+      "item": "Agile / Scrum",
+      "category": "skill",
+      "peer_share": 45,
+      "severity": "medium",
+      "user_has": null
+    }
+  ],
+  "user_context": {
+    "hours_per_week": 10,
+    "target_date": "2027-04-30",
+    "budget_usd": 150,
+    "background": "B.A. Cognitive Science, 2026; product intern at a 20-person startup for one summer; ran a campus app club."
+  }
+}

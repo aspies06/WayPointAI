@@ -1,0 +1,1752 @@
+{
+ "_note": "Concrete project templates. 'levels' and 'roles' list who a template suits (missing means everyone); the planner skips templates outside the user's level or role.",
+ "projects": [
+  {
+   "id": "P-SPLUNK-DETECTIONS",
+   "title": "Write 3 SPL detections in a home Splunk lab",
+   "matches": [
+    "splunk",
+    "spl",
+    "siem",
+    "detection"
+   ],
+   "deliverable": "GitHub repo with 3 SPL searches (brute-force logins, new admin account, suspicious PowerShell), sample logs, and a README explaining each",
+   "done_when": "Each search fires on a simulated attack and the README shows a screenshot of the alert",
+   "est_hours": 12,
+   "resource_ids": [
+    "R-SPLUNK-EDU",
+    "R-BOTSV3",
+    "R-ATOMIC-RED"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "P-SENTINEL-INVESTIGATION",
+   "title": "Investigate 2 incidents end to end in Microsoft Sentinel",
+   "matches": [
+    "sentinel",
+    "microsoft sentinel",
+    "kql",
+    "siem"
+   ],
+   "deliverable": "Two investigation write-ups (timeline, KQL queries used, verdict, recommended response) in a GitHub repo",
+   "done_when": "Both write-ups are published and each includes at least 3 KQL queries with their output",
+   "est_hours": 15,
+   "resource_ids": [
+    "R-AZURE-FREE",
+    "R-SC200-LEARN"
+   ],
+   "levels": [
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "P-KQL-HUNTS",
+   "title": "Build a 5-query KQL hunting pack",
+   "matches": [
+    "kql",
+    "kusto",
+    "threat hunting"
+   ],
+   "deliverable": "Markdown file with 5 KQL hunting queries, what each finds, and the ATT&CK technique it maps to",
+   "done_when": "All 5 queries run without errors against a lab workspace or the Kusto Detective dataset",
+   "est_hours": 8,
+   "resource_ids": [
+    "R-KUSTO-DETECTIVE",
+    "R-SC200-LEARN"
+   ],
+   "levels": [
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "P-EDR-TRIAGE",
+   "title": "Triage simulated attacks with an EDR",
+   "matches": [
+    "edr",
+    "crowdstrike",
+    "falcon",
+    "defender",
+    "endpoint detection"
+   ],
+   "deliverable": "Write-up of 3 Atomic Red Team tests showing the EDR alert, process tree, and your triage decision",
+   "done_when": "3 alerts are triaged with screenshots and a true/false-positive verdict for each",
+   "est_hours": 10,
+   "resource_ids": [
+    "R-CS-TRIAL",
+    "R-ATOMIC-RED"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "P-PHISHING-ANALYSIS",
+   "title": "Analyze 5 phishing emails",
+   "matches": [
+    "phishing",
+    "email security",
+    "email analysis"
+   ],
+   "deliverable": "Report on 5 sample phishing emails: header analysis, URL/attachment verdicts, IOCs extracted",
+   "done_when": "Report lists sender, return-path, every URL with a verdict, and a block recommendation for each email",
+   "est_hours": 6,
+   "resource_ids": [
+    "R-THM-SOC1",
+    "R-LETSDEFEND"
+   ],
+   "levels": [
+    "internship",
+    "entry"
+   ],
+   "roles": [
+    "Security Engineer",
+    "IT Support Specialist"
+   ]
+  },
+  {
+   "id": "P-ATTACK-MAPPING",
+   "title": "Map your lab detections to MITRE ATT&CK",
+   "matches": [
+    "mitre",
+    "att&ck"
+   ],
+   "deliverable": "ATT&CK Navigator layer file plus a table linking each lab detection to its technique ID",
+   "done_when": "Every detection in your lab has a technique ID and the layer file is committed to GitHub",
+   "est_hours": 4,
+   "resource_ids": [
+    "R-MITRE-ATTACK",
+    "R-ATTACK-NAVIGATOR"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "P-PCAP-ANALYSIS",
+   "title": "Solve 3 packet-capture exercises",
+   "matches": [
+    "wireshark",
+    "pcap",
+    "packet analysis",
+    "dns",
+    "tcp/ip",
+    "network traffic"
+   ],
+   "deliverable": "Write-ups for 3 malware-traffic-analysis.net exercises: infected host, malware family, IOCs",
+   "done_when": "Each write-up answers every question in the exercise and lists the Wireshark filters used",
+   "est_hours": 9,
+   "resource_ids": [
+    "R-MTA-EXERCISES",
+    "R-WIRESHARK-DOCS"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Security Engineer",
+    "IT Support Specialist"
+   ]
+  },
+  {
+   "id": "P-POWERSHELL-LOGPULL",
+   "title": "Write a PowerShell log-collection script",
+   "matches": [
+    "powershell",
+    "windows event logs",
+    "powershell scripting"
+   ],
+   "deliverable": "PowerShell script on GitHub that pulls failed-logon events (4625) from the last 24h and exports CSV",
+   "done_when": "Script runs on a Windows VM and produces a CSV; README shows sample output",
+   "est_hours": 5,
+   "resource_ids": [
+    "R-PS-LEARN"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Security Engineer",
+    "IT Support Specialist"
+   ]
+  },
+  {
+   "id": "P-PYTHON-IOC",
+   "title": "Build a Python IOC extractor",
+   "matches": [
+    "python",
+    "scripting",
+    "automation"
+   ],
+   "deliverable": "Python script that extracts IPs, domains, and hashes from a text file and checks them against a blocklist",
+   "done_when": "Script has a README, handles 3 sample inputs, and includes at least 3 unit tests",
+   "est_hours": 8,
+   "resource_ids": [
+    "R-ATBS"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "P-INCIDENT-REPORT",
+   "title": "Write a HIPAA-aware incident report",
+   "matches": [
+    "hipaa",
+    "healthcare",
+    "phi",
+    "patient data"
+   ],
+   "deliverable": "Sample incident report for a phishing-led PHI exposure: timeline, scope, HIPAA breach assessment, lessons learned",
+   "done_when": "Report covers all four HIPAA breach risk-assessment factors and is under 3 pages",
+   "est_hours": 5,
+   "resource_ids": [
+    "R-HHS-HIPAA"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Security Engineer",
+    "IT Support Specialist"
+   ]
+  },
+  {
+   "id": "P-HOME-SOC",
+   "title": "Stand up a home SOC lab",
+   "matches": [
+    "home lab",
+    "siem",
+    "ids",
+    "network security monitoring",
+    "soc experience"
+   ],
+   "deliverable": "Lab with a Windows VM, a Linux VM and Security Onion or Splunk, documented with a network diagram",
+   "done_when": "Logs from both VMs are visible in the SIEM and the diagram is in the repo",
+   "est_hours": 10,
+   "resource_ids": [
+    "R-SECURITY-ONION",
+    "R-SPLUNK-EDU"
+   ],
+   "levels": [
+    "internship",
+    "entry"
+   ],
+   "roles": [
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "P-AD-LAB",
+   "title": "Build a Windows Server Active Directory lab",
+   "matches": [
+    "active directory",
+    "group policy",
+    "gpo",
+    "windows server",
+    "domain",
+    "home lab"
+   ],
+   "deliverable": "Lab with a domain controller, 2 OUs, 10 users, 3 security groups and 2 Group Policies (password policy, drive mapping), documented in a GitHub README with screenshots",
+   "done_when": "A Windows 10/11 VM joins the domain and both GPOs apply (gpresult screenshot in the README)",
+   "est_hours": 12,
+   "resource_ids": [
+    "R-EVAL-CENTER",
+    "R-AD-DOCS"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "IT Support Specialist",
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "P-PS-PROVISION",
+   "title": "Script bulk user onboarding with PowerShell",
+   "matches": [
+    "powershell",
+    "user provisioning",
+    "onboarding",
+    "offboarding",
+    "automation"
+   ],
+   "deliverable": "PowerShell script on GitHub that creates AD users from a CSV, adds them to groups, and writes a log; plus an offboarding script that disables and moves accounts",
+   "done_when": "Running both scripts against the lab creates and then disables 10 test users with no errors, shown in the README",
+   "est_hours": 8,
+   "resource_ids": [
+    "R-PS-LEARN",
+    "R-AD-DOCS"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "IT Support Specialist"
+   ]
+  },
+  {
+   "id": "P-HELPDESK-KB",
+   "title": "Run a mock help desk in ServiceNow",
+   "matches": [
+    "servicenow",
+    "ticketing",
+    "itsm",
+    "help desk",
+    "helpdesk",
+    "it support",
+    "incident management",
+    "troubleshooting",
+    "customer service"
+   ],
+   "deliverable": "Free ServiceNow instance with 15 resolved sample tickets (password reset, printer, VPN, new hire) and 5 knowledge-base articles you wrote",
+   "done_when": "Each ticket has a category, priority, resolution notes and links to a KB article; screenshots in a portfolio page",
+   "est_hours": 8,
+   "resource_ids": [
+    "R-SERVICENOW-PDI"
+   ],
+   "levels": [
+    "internship",
+    "entry"
+   ],
+   "roles": [
+    "IT Support Specialist"
+   ]
+  },
+  {
+   "id": "P-INTUNE-ENROLL",
+   "title": "Enroll and manage a device with Intune",
+   "matches": [
+    "intune",
+    "endpoint management",
+    "mdm",
+    "device management",
+    "autopilot",
+    "md-102"
+   ],
+   "deliverable": "Write-up showing one Windows VM enrolled in Intune with a compliance policy, a configuration profile and one deployed app",
+   "done_when": "The device shows as compliant in the Intune console, with screenshots of each policy in the write-up",
+   "est_hours": 8,
+   "resource_ids": [
+    "R-MD102"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "IT Support Specialist"
+   ]
+  },
+  {
+   "id": "P-HOME-NETWORK",
+   "title": "Design and document a segmented home network",
+   "matches": [
+    "networking",
+    "vlan",
+    "subnetting",
+    "routing",
+    "switching",
+    "dns",
+    "dhcp",
+    "tcp/ip",
+    "ccna",
+    "network+"
+   ],
+   "deliverable": "Network diagram plus config notes for 3 VLANs (trusted, IoT, guest) with a subnet plan, DHCP scopes and firewall rules, in a GitHub repo",
+   "done_when": "A device on the guest VLAN can reach the internet but not the trusted VLAN, proven with ping/traceroute output in the repo",
+   "est_hours": 10,
+   "resource_ids": [
+    "R-NETACAD"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "IT Support Specialist",
+    "Security Engineer",
+    "Computer Engineer"
+   ]
+  },
+  {
+   "id": "P-LINUX-SERVER",
+   "title": "Set up and harden a Linux server",
+   "matches": [
+    "linux",
+    "bash",
+    "ssh",
+    "command line",
+    "shell",
+    "linux+",
+    "cron"
+   ],
+   "deliverable": "Ubuntu server VM with key-only SSH, a non-root sudo user, UFW firewall, unattended upgrades and a cron backup script, documented step by step",
+   "done_when": "Password SSH login is refused, the backup cron job has run at least twice, and the README lists every command used",
+   "est_hours": 8,
+   "resource_ids": [
+    "R-LINUX-JOURNEY",
+    "R-BANDIT"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "IT Support Specialist",
+    "Security Engineer",
+    "Software Engineer",
+    "Computer Engineer"
+   ]
+  },
+  {
+   "id": "P-FULLSTACK-APP",
+   "title": "Build and deploy a full-stack app",
+   "matches": [
+    "full stack",
+    "full-stack",
+    "react",
+    "node",
+    "node.js",
+    "javascript",
+    "web development",
+    "frontend",
+    "front-end",
+    "typescript"
+   ],
+   "deliverable": "Deployed web app (React front end, REST API, database) with login and full CRUD for one resource, a public URL, and a README with setup steps and screenshots",
+   "done_when": "A stranger can sign up, create, edit and delete a record on the live URL, and the repo has at least 10 meaningful commits",
+   "est_hours": 40,
+   "resource_ids": [
+    "R-FULLSTACKOPEN",
+    "R-REACT-DOCS"
+   ],
+   "levels": [
+    "internship",
+    "entry"
+   ],
+   "roles": [
+    "Software Engineer",
+    "QA Engineer"
+   ]
+  },
+  {
+   "id": "P-REST-API",
+   "title": "Build a tested REST API",
+   "matches": [
+    "rest api",
+    "rest apis",
+    "apis",
+    "backend",
+    "back-end",
+    "python",
+    "flask",
+    "fastapi",
+    "express",
+    "java",
+    "spring"
+   ],
+   "deliverable": "REST API with 5+ endpoints, input validation, a SQL database, and an OpenAPI/README describing each endpoint",
+   "done_when": "All endpoints have automated tests that pass in CI, and the README shows example requests and responses",
+   "est_hours": 20,
+   "resource_ids": [
+    "R-FULLSTACKOPEN",
+    "R-SQLBOLT"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Software Engineer",
+    "AI/ML Engineer",
+    "QA Engineer"
+   ]
+  },
+  {
+   "id": "P-TESTS-CI",
+   "title": "Add tests and CI to an existing project",
+   "matches": [
+    "unit testing",
+    "pytest",
+    "test automation",
+    "tdd",
+    "automated tests",
+    "ci/cd",
+    "ci cd",
+    "continuous integration",
+    "github actions",
+    "devops"
+   ],
+   "deliverable": "One of your existing repos with 20+ unit tests and a GitHub Actions workflow that runs them on every pull request, with a status badge in the README",
+   "done_when": "The badge is green on main and a PR that breaks a test shows a red check",
+   "est_hours": 8,
+   "resource_ids": [
+    "R-PYTEST-DOCS",
+    "R-GHA-DOCS"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Software Engineer",
+    "QA Engineer",
+    "AI/ML Engineer",
+    "Data Scientist"
+   ]
+  },
+  {
+   "id": "P-DOCKERIZE",
+   "title": "Containerize an app with Docker Compose",
+   "matches": [
+    "docker",
+    "containers",
+    "containerization",
+    "docker compose",
+    "kubernetes",
+    "k8s"
+   ],
+   "deliverable": "Dockerfile plus docker-compose.yml that runs your app and its database with one command, documented in the README",
+   "done_when": "A fresh clone runs with `docker compose up` and the app responds on localhost with no other setup",
+   "est_hours": 6,
+   "resource_ids": [
+    "R-DOCKER-START"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Software Engineer",
+    "AI/ML Engineer",
+    "Data Scientist",
+    "QA Engineer",
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "P-DSA-PRACTICE",
+   "title": "Solve a structured set of coding problems",
+   "matches": [
+    "data structures",
+    "algorithms",
+    "dsa",
+    "leetcode",
+    "coding interview",
+    "technical interview"
+   ],
+   "deliverable": "GitHub repo with solutions to 75 NeetCode problems, each with time/space complexity and a one-line note on the pattern used",
+   "done_when": "75 problems are committed across at least 8 pattern categories, and you can solve 3 random mediums in 45 minutes each",
+   "est_hours": 60,
+   "resource_ids": [
+    "R-NEETCODE"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Software Engineer",
+    "AI/ML Engineer",
+    "Data Scientist",
+    "Computer Engineer",
+    "QA Engineer"
+   ]
+  },
+  {
+   "id": "P-OPEN-SOURCE-PR",
+   "title": "Get a pull request merged into an open-source project",
+   "matches": [
+    "open source",
+    "open-source",
+    "collaboration",
+    "code review",
+    "team experience",
+    "professional experience",
+    "pull requests",
+    "github"
+   ],
+   "deliverable": "A merged pull request in a public repo with 100+ stars, linked from your resume and GitHub profile",
+   "done_when": "The PR shows as merged by a maintainer and is listed under Projects or Experience on your resume",
+   "est_hours": 12,
+   "resource_ids": [
+    "R-GOOD-FIRST-ISSUE",
+    "R-GH-SKILLS"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ]
+  },
+  {
+   "id": "P-SQL-REPORT",
+   "title": "Answer real questions with SQL",
+   "matches": [
+    "sql",
+    "databases",
+    "database",
+    "postgresql",
+    "postgres",
+    "mysql",
+    "relational databases"
+   ],
+   "deliverable": "Repo with a public dataset loaded into PostgreSQL and 10 SQL queries (joins, GROUP BY, window functions) that answer stated questions, with results",
+   "done_when": "All 10 queries run from a single script and the README shows each question, query and output table",
+   "est_hours": 8,
+   "resource_ids": [
+    "R-SQLBOLT"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Software Engineer",
+    "Data Scientist",
+    "Product Manager",
+    "QA Engineer",
+    "AI/ML Engineer"
+   ]
+  },
+  {
+   "id": "P-CLOUD-DEPLOY",
+   "title": "Deploy an app to AWS",
+   "matches": [
+    "aws",
+    "amazon web services",
+    "cloud",
+    "deployment",
+    "deploy"
+   ],
+   "deliverable": "An app of yours running on AWS (e.g. EC2 or Elastic Beanstalk with RDS), with an architecture diagram and a teardown/cost note in the README",
+   "done_when": "The app is reachable on a public URL and the README lists every AWS service used and its monthly cost",
+   "est_hours": 10,
+   "resource_ids": [
+    "R-AWS-FREE",
+    "R-AWS-SKILLBUILDER"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Software Engineer",
+    "AI/ML Engineer",
+    "Data Scientist",
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "P-SYSTEM-DESIGN-DOC",
+   "title": "Write a system design doc for one of your projects",
+   "matches": [
+    "system design",
+    "scalability",
+    "distributed systems",
+    "architecture"
+   ],
+   "deliverable": "2-4 page design doc for scaling one of your apps to 100k users: requirements, diagram, data model, bottlenecks and trade-offs",
+   "done_when": "The doc covers caching, database choice and failure handling, and a mid/senior engineer has reviewed it",
+   "est_hours": 10,
+   "resource_ids": [
+    "R-SYSDESIGN-PRIMER"
+   ],
+   "levels": [
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Software Engineer",
+    "AI/ML Engineer",
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "P-GIT-WORKFLOW",
+   "title": "Use a team Git workflow on a real project",
+   "matches": [
+    "git",
+    "version control",
+    "branching",
+    "pull requests"
+   ],
+   "deliverable": "Project repo where every change went through a feature branch and pull request with a description, including one resolved merge conflict",
+   "done_when": "At least 8 merged PRs with descriptions, and the README explains the branching workflow",
+   "est_hours": 5,
+   "resource_ids": [
+    "R-PROGIT",
+    "R-GH-SKILLS"
+   ],
+   "levels": [
+    "internship",
+    "entry"
+   ]
+  },
+  {
+   "id": "P-PORTFOLIO-PROJECT",
+   "title": "Ship one small portfolio project end to end",
+   "matches": [
+    "personal project",
+    "personal projects",
+    "portfolio",
+    "side project",
+    "side projects",
+    "github portfolio"
+   ],
+   "deliverable": "Public GitHub repo for a small app or tool you designed yourself, with a README covering the problem, how to run it, and screenshots or a demo GIF",
+   "done_when": "A classmate can clone and run it from the README alone, and it is listed under Projects on your resume with one quantified bullet",
+   "est_hours": 20,
+   "resource_ids": [
+    "R-GH-SKILLS"
+   ],
+   "levels": [
+    "internship",
+    "entry"
+   ]
+  },
+  {
+   "id": "P-HACKATHON",
+   "title": "Build and demo a project at a hackathon",
+   "matches": [
+    "hackathon",
+    "hackathons",
+    "team project",
+    "student projects"
+   ],
+   "deliverable": "Hackathon submission with a public repo, a 2-minute demo video, and a note on what you built versus your teammates",
+   "done_when": "The project is submitted and demoed before judging closes, and it is on your resume with your specific contribution",
+   "est_hours": 24,
+   "resource_ids": [
+    "R-MLH"
+   ],
+   "levels": [
+    "internship",
+    "entry"
+   ]
+  },
+  {
+   "id": "P-MENTOR-REVIEW",
+   "title": "Mentor a junior teammate through code reviews",
+   "matches": [
+    "mentoring",
+    "mentorship",
+    "code review leadership",
+    "technical leadership",
+    "leading code reviews",
+    "leadership"
+   ],
+   "deliverable": "A written review guide for your team plus 10 substantive reviews on a less experienced engineer's pull requests",
+   "done_when": "Your manager or the mentee confirms the reviews helped, and one resume bullet describes the outcome with a number",
+   "est_hours": 15,
+   "resource_ids": [
+    "R-GH-SKILLS"
+   ],
+   "levels": [
+    "mid"
+   ],
+   "roles": [
+    "Software Engineer",
+    "AI/ML Engineer",
+    "Data Scientist",
+    "QA Engineer",
+    "Security Engineer",
+    "Computer Engineer"
+   ]
+  },
+  {
+   "id": "P-TERRAFORM-STACK",
+   "title": "Provision a small cloud stack with Terraform",
+   "matches": [
+    "terraform",
+    "infrastructure as code",
+    "iac"
+   ],
+   "deliverable": "Repo with Terraform that creates a network, a compute instance and a database, with remote state and a README showing plan and apply output",
+   "done_when": "terraform apply builds the stack from scratch, terraform destroy removes it cleanly, and CI runs terraform validate",
+   "est_hours": 14,
+   "resource_ids": [
+    "R-TERRAFORM",
+    "R-AWS-FREE"
+   ],
+   "levels": [
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Software Engineer",
+    "AI/ML Engineer",
+    "Security Engineer",
+    "IT Support Specialist"
+   ]
+  },
+  {
+   "id": "P-OBSERVABILITY",
+   "title": "Add monitoring and alerting to a running service",
+   "matches": [
+    "observability",
+    "monitoring",
+    "alerting",
+    "sre",
+    "site reliability",
+    "on-call"
+   ],
+   "deliverable": "Dashboard with latency, error rate and traffic for one of your services, two alert rules, and a one-page runbook for each alert",
+   "done_when": "Each alert fires when you inject the failure it watches for, and the runbook steps resolve it",
+   "est_hours": 12,
+   "resource_ids": [
+    "R-SRE-BOOK"
+   ],
+   "levels": [
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Software Engineer",
+    "AI/ML Engineer",
+    "IT Support Specialist",
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "P-ML-MODEL",
+   "title": "Train, evaluate and write up a model on a public dataset",
+   "matches": [
+    "machine learning",
+    "ml model",
+    "scikit-learn",
+    "sklearn",
+    "supervised learning",
+    "classification",
+    "model training",
+    "model evaluation",
+    "kaggle"
+   ],
+   "deliverable": "Notebook and repo that train two models on a public dataset, compare them against a simple baseline, and explain the metric choice in the README",
+   "done_when": "The README reports the test-set score against the baseline, and someone else can rerun the notebook from a clean environment",
+   "est_hours": 15,
+   "resource_ids": [
+    "R-KAGGLE-LEARN",
+    "R-SKLEARN-DOCS"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "AI/ML Engineer",
+    "Data Scientist"
+   ]
+  },
+  {
+   "id": "P-DL-FINETUNE",
+   "title": "Fine-tune a pretrained model and publish it",
+   "matches": [
+    "deep learning",
+    "pytorch",
+    "fine-tuning",
+    "fine tuning",
+    "transformers",
+    "hugging face",
+    "nlp",
+    "computer vision",
+    "neural networks"
+   ],
+   "deliverable": "A pretrained model fine-tuned on a public dataset, published on the Hugging Face Hub with a model card covering data, metrics and limitations",
+   "done_when": "The fine-tuned model beats the base model on a held-out set and the model card shows both scores",
+   "est_hours": 20,
+   "resource_ids": [
+    "R-FASTAI",
+    "R-HF-COURSE"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "AI/ML Engineer"
+   ]
+  },
+  {
+   "id": "P-LLM-APP",
+   "title": "Build a retrieval-augmented LLM app with an eval set",
+   "matches": [
+    "llm",
+    "llms",
+    "rag",
+    "retrieval-augmented",
+    "generative ai",
+    "genai",
+    "large language models",
+    "prompt engineering",
+    "llm applications",
+    "ai agents"
+   ],
+   "deliverable": "App that answers questions over a document set using retrieval plus an LLM, with a 25-question evaluation set and a script that scores it",
+   "done_when": "The eval script runs in one command, and the README reports accuracy before and after one improvement you made",
+   "est_hours": 20,
+   "resource_ids": [
+    "R-HF-COURSE"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "AI/ML Engineer",
+    "Software Engineer"
+   ]
+  },
+  {
+   "id": "P-MODEL-SERVING",
+   "title": "Serve a model behind an API with tracking and monitoring",
+   "matches": [
+    "mlops",
+    "model deployment",
+    "model serving",
+    "ml pipelines",
+    "mlflow",
+    "experiment tracking",
+    "model monitoring"
+   ],
+   "deliverable": "Containerized API serving a trained model, with experiment runs logged in MLflow and a drift or latency dashboard",
+   "done_when": "A request to the API returns a prediction, retraining is one command, and the dashboard shows live metrics",
+   "est_hours": 18,
+   "resource_ids": [
+    "R-MLOPS-ZOOMCAMP",
+    "R-DOCKER-START"
+   ],
+   "levels": [
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "AI/ML Engineer"
+   ]
+  },
+  {
+   "id": "P-EDA-REPORT",
+   "title": "Analyze a public dataset and publish the findings",
+   "matches": [
+    "pandas",
+    "exploratory data analysis",
+    "eda",
+    "data analysis",
+    "data cleaning",
+    "data wrangling",
+    "jupyter",
+    "python for data analysis",
+    "data analytics"
+   ],
+   "deliverable": "Notebook and one-page write-up answering three specific questions about a public dataset, with cleaned data, charts and stated caveats",
+   "done_when": "Each question has a chart and a one-sentence answer, and the notebook runs top to bottom without errors",
+   "est_hours": 12,
+   "resource_ids": [
+    "R-PANDAS-DOCS",
+    "R-KAGGLE-LEARN"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Data Scientist",
+    "AI/ML Engineer",
+    "Product Manager"
+   ]
+  },
+  {
+   "id": "P-DASHBOARD",
+   "title": "Build a public dashboard that answers a business question",
+   "matches": [
+    "tableau",
+    "power bi",
+    "powerbi",
+    "data visualization",
+    "dashboards",
+    "dashboard"
+   ],
+   "deliverable": "Published dashboard on a public dataset with 3-5 views, filters, and a short note on the decision it supports",
+   "done_when": "The dashboard is public, loads in under 10 seconds, and a non-technical friend can answer the question using it",
+   "est_hours": 10,
+   "resource_ids": [
+    "R-TABLEAU-PUBLIC"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Data Scientist",
+    "Product Manager"
+   ]
+  },
+  {
+   "id": "P-STATS-MODEL",
+   "title": "Fit and interpret a regression model",
+   "matches": [
+    "statistics",
+    "statistical modeling",
+    "statistical learning",
+    "regression",
+    "linear regression",
+    "logistic regression",
+    "hypothesis testing"
+   ],
+   "deliverable": "Notebook fitting a regression on a public dataset with diagnostics, coefficient interpretation in plain language, and limitations",
+   "done_when": "Assumptions are checked with plots, and every coefficient you report has a confidence interval and a one-line meaning",
+   "est_hours": 12,
+   "resource_ids": [
+    "R-ISLP"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Data Scientist"
+   ]
+  },
+  {
+   "id": "P-AB-TEST",
+   "title": "Analyze an A/B test end to end",
+   "matches": [
+    "a/b testing",
+    "ab testing",
+    "a/b tests",
+    "experimentation",
+    "experiment design",
+    "causal inference"
+   ],
+   "deliverable": "Analysis of a public A/B test dataset: hypothesis, sample size and power check, result with confidence interval, and a ship or don't-ship recommendation",
+   "done_when": "The write-up states the minimum detectable effect, checks for sample ratio mismatch, and ends with a clear recommendation",
+   "est_hours": 10,
+   "resource_ids": [
+    "R-EXPERIMENT-BOOK",
+    "R-KHAN-STATS"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Data Scientist",
+    "Product Manager"
+   ]
+  },
+  {
+   "id": "P-APPSEC-LAB",
+   "title": "Find and fix vulnerabilities in an intentionally vulnerable app",
+   "matches": [
+    "appsec",
+    "application security",
+    "web application security",
+    "web security",
+    "owasp",
+    "secure coding",
+    "sql injection",
+    "xss",
+    "burp suite",
+    "burp"
+   ],
+   "deliverable": "Write-ups for 5 vulnerabilities you exploited in a deliberately vulnerable app (such as OWASP Juice Shop), each with the fix as a code diff",
+   "done_when": "Each write-up shows the exploit request, the root cause and a patch that stops the exploit when you retest",
+   "est_hours": 15,
+   "resource_ids": [
+    "R-PORTSWIGGER",
+    "R-OWASP-TOP10"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Security Engineer",
+    "QA Engineer"
+   ]
+  },
+  {
+   "id": "P-PENTEST-WRITEUPS",
+   "title": "Root 5 practice machines and write up each one",
+   "matches": [
+    "penetration testing",
+    "pentesting",
+    "ethical hacking",
+    "offensive security",
+    "ctf",
+    "red team"
+   ],
+   "deliverable": "Five public write-ups of retired practice machines covering enumeration, exploitation, privilege escalation and the fix",
+   "done_when": "All five boxes are rooted, and each write-up lists the remediation a defender should apply",
+   "est_hours": 25,
+   "resource_ids": [
+    "R-HTB-ACADEMY"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "P-THREAT-MODEL",
+   "title": "Write a threat model for an open-source app",
+   "matches": [
+    "threat modeling",
+    "threat model",
+    "stride"
+   ],
+   "deliverable": "Threat model with a data-flow diagram, trust boundaries, STRIDE threats ranked by risk, and mitigations for the top five",
+   "done_when": "The maintainers or a security engineer review it, and at least one mitigation is filed as an issue",
+   "est_hours": 8,
+   "resource_ids": [
+    "R-OWASP-THREAT"
+   ],
+   "levels": [
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Security Engineer",
+    "Software Engineer"
+   ]
+  },
+  {
+   "id": "P-DEVSECOPS",
+   "title": "Add security scanning to a CI pipeline",
+   "matches": [
+    "devsecops",
+    "sast",
+    "static analysis",
+    "dependency scanning",
+    "semgrep",
+    "code scanning",
+    "secure sdlc"
+   ],
+   "deliverable": "CI pipeline on one of your repos running SAST and dependency scanning, with one custom rule and a triage note for each finding",
+   "done_when": "The pipeline fails on a planted vulnerability and passes once it is fixed",
+   "est_hours": 6,
+   "resource_ids": [
+    "R-SEMGREP",
+    "R-GHA-DOCS"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Security Engineer",
+    "Software Engineer"
+   ]
+  },
+  {
+   "id": "P-CLOUD-SECURITY",
+   "title": "Audit and harden a cloud account",
+   "matches": [
+    "cloud security",
+    "aws security",
+    "iam",
+    "cloud misconfiguration",
+    "cloud hardening"
+   ],
+   "deliverable": "Audit report for a sandbox cloud account: misconfigurations found, least-privilege IAM fixes, logging enabled, and before/after evidence",
+   "done_when": "Every finding has a fix applied and verified, and cloud audit logging is on",
+   "est_hours": 10,
+   "resource_ids": [
+    "R-FLAWS",
+    "R-AWS-FREE"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "P-EMBEDDED-DRIVER",
+   "title": "Write a sensor driver for a microcontroller",
+   "matches": [
+    "embedded systems",
+    "embedded c",
+    "microcontrollers",
+    "microcontroller",
+    "firmware",
+    "i2c",
+    "spi",
+    "uart",
+    "arduino",
+    "stm32",
+    "embedded"
+   ],
+   "deliverable": "Repo with a C driver for a sensor over I2C or SPI on a microcontroller board, a wiring diagram and a demo video",
+   "done_when": "The board prints correct sensor readings, the driver has no busy-wait delays in its main loop, and the README explains the register setup",
+   "est_hours": 15,
+   "resource_ids": [
+    "R-VALVANO",
+    "R-ARDUINO-DOCS"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Computer Engineer",
+    "Hardware Engineer"
+   ]
+  },
+  {
+   "id": "P-RTOS-FIRMWARE",
+   "title": "Build a multi-task firmware project on an RTOS",
+   "matches": [
+    "rtos",
+    "freertos",
+    "real-time operating systems",
+    "real-time systems",
+    "real-time"
+   ],
+   "deliverable": "Firmware with at least three RTOS tasks, a queue between them and a timing diagram showing that deadlines are met",
+   "done_when": "A logic analyzer or trace capture confirms each task meets its deadline under load",
+   "est_hours": 20,
+   "resource_ids": [
+    "R-FREERTOS"
+   ],
+   "levels": [
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Computer Engineer"
+   ]
+  },
+  {
+   "id": "P-NAND2TETRIS-CPU",
+   "title": "Build a computer from logic gates",
+   "matches": [
+    "computer architecture",
+    "digital logic",
+    "logic design",
+    "cpu design",
+    "logic gates",
+    "nand2tetris"
+   ],
+   "deliverable": "Completed Nand to Tetris hardware projects 1-5 (gates through a working CPU) in a public repo with notes on each design",
+   "done_when": "All projects pass the course test scripts, and the CPU runs the provided test programs",
+   "est_hours": 40,
+   "resource_ids": [
+    "R-NAND2TETRIS"
+   ],
+   "levels": [
+    "internship",
+    "entry"
+   ],
+   "roles": [
+    "Computer Engineer",
+    "Hardware Engineer"
+   ]
+  },
+  {
+   "id": "P-C-SYSTEMS",
+   "title": "Write a small systems program in C",
+   "matches": [
+    "c programming",
+    "c language",
+    "pointers",
+    "memory management",
+    "systems programming",
+    "operating systems"
+   ],
+   "deliverable": "A C program such as a shell, an allocator or a key-value store, with a Makefile, tests and a clean Valgrind run",
+   "done_when": "Tests pass, and Valgrind reports no leaks or invalid reads",
+   "est_hours": 15,
+   "resource_ids": [
+    "R-BEEJ-C",
+    "R-OSTEP"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Computer Engineer",
+    "Software Engineer"
+   ]
+  },
+  {
+   "id": "P-PCB-DESIGN",
+   "title": "Design, order and bring up a small PCB",
+   "matches": [
+    "pcb design",
+    "pcb layout",
+    "schematic capture",
+    "schematics",
+    "kicad",
+    "altium"
+   ],
+   "deliverable": "Two-layer board designed in KiCad (schematic, layout, BOM), fabricated, assembled and tested, documented in a repo",
+   "done_when": "The assembled board powers up and passes your written test checklist, and the repo has the Gerbers and a bring-up log",
+   "est_hours": 25,
+   "resource_ids": [
+    "R-KICAD",
+    "R-ALL-ABOUT-CIRCUITS"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Hardware Engineer",
+    "Computer Engineer"
+   ]
+  },
+  {
+   "id": "P-FPGA-PROJECT",
+   "title": "Implement and verify a design on an FPGA",
+   "matches": [
+    "fpga",
+    "verilog",
+    "vhdl",
+    "rtl",
+    "hdl",
+    "digital design",
+    "fpga design"
+   ],
+   "deliverable": "RTL for a UART, VGA or similar module with a testbench and waveforms, running on a low-cost FPGA board",
+   "done_when": "The testbench passes in simulation and the design works on real hardware, shown in a demo video",
+   "est_hours": 20,
+   "resource_ids": [
+    "R-HDLBITS",
+    "R-NANDLAND"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Hardware Engineer",
+    "Computer Engineer"
+   ]
+  },
+  {
+   "id": "P-ANALOG-CIRCUIT",
+   "title": "Simulate, build and measure an analog circuit",
+   "matches": [
+    "analog circuits",
+    "analog design",
+    "circuit design",
+    "spice",
+    "ltspice",
+    "circuit simulation",
+    "circuit analysis",
+    "op amps"
+   ],
+   "deliverable": "Filter or amplifier circuit with hand calculations, an LTspice simulation and bench measurements compared in one report",
+   "done_when": "Measured gain and cutoff are within 10% of the simulation, or the report explains the difference",
+   "est_hours": 12,
+   "resource_ids": [
+    "R-LTSPICE",
+    "R-ALL-ABOUT-CIRCUITS"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Hardware Engineer"
+   ]
+  },
+  {
+   "id": "P-HW-DEBUG",
+   "title": "Debug a board with an oscilloscope and logic analyzer",
+   "matches": [
+    "oscilloscope",
+    "logic analyzer",
+    "lab equipment",
+    "hardware debugging",
+    "board bring-up",
+    "test equipment"
+   ],
+   "deliverable": "Lab notebook entry for diagnosing a real fault: probe points, captured waveforms, root cause and fix",
+   "done_when": "The fault is fixed and the notebook has the before and after captures",
+   "est_hours": 8,
+   "resource_ids": [
+    "R-ALL-ABOUT-CIRCUITS"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Hardware Engineer",
+    "Computer Engineer"
+   ]
+  },
+  {
+   "id": "P-HW-VERIFICATION",
+   "title": "Write a self-checking testbench",
+   "matches": [
+    "verification",
+    "testbench",
+    "systemverilog",
+    "uvm",
+    "design verification"
+   ],
+   "deliverable": "Self-checking SystemVerilog testbench with constrained-random stimulus and functional coverage for one of your RTL modules",
+   "done_when": "The testbench catches a bug you inject on purpose and reports at least 90% functional coverage",
+   "est_hours": 15,
+   "resource_ids": [
+    "R-HDLBITS"
+   ],
+   "levels": [
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Hardware Engineer",
+    "Computer Engineer"
+   ]
+  },
+  {
+   "id": "P-E2E-SUITE",
+   "title": "Write an end-to-end test suite for a web app",
+   "matches": [
+    "playwright",
+    "selenium",
+    "cypress",
+    "end-to-end testing",
+    "e2e testing",
+    "ui automation",
+    "browser automation",
+    "test automation",
+    "automated testing"
+   ],
+   "deliverable": "Repo with 15 end-to-end tests for a public demo web app using the page-object pattern, running headless in CI",
+   "done_when": "The suite passes in CI on three runs in a row with no flaky failures, and the README explains how to add a test",
+   "est_hours": 15,
+   "resource_ids": [
+    "R-PLAYWRIGHT-DOCS",
+    "R-TAU"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "QA Engineer",
+    "Software Engineer"
+   ]
+  },
+  {
+   "id": "P-API-TESTS",
+   "title": "Build an API test collection that runs in CI",
+   "matches": [
+    "api testing",
+    "api tests",
+    "postman",
+    "rest assured",
+    "contract testing"
+   ],
+   "deliverable": "API test collection covering happy paths, validation errors and auth for a public API, run from the command line in CI",
+   "done_when": "The collection runs in CI with a report, and it fails when you point it at a deliberately broken endpoint",
+   "est_hours": 8,
+   "resource_ids": [
+    "R-POSTMAN-ACADEMY"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "QA Engineer",
+    "Software Engineer"
+   ]
+  },
+  {
+   "id": "P-TEST-PLAN",
+   "title": "Write a test plan and file bug reports for a real app",
+   "matches": [
+    "test plan",
+    "test cases",
+    "manual testing",
+    "exploratory testing",
+    "bug reports",
+    "bug reporting",
+    "defect tracking",
+    "qa fundamentals"
+   ],
+   "deliverable": "Test plan for one feature of an open-source app, 20 test cases, and 3 bug reports filed with steps, expected and actual results",
+   "done_when": "At least one bug report is confirmed by the maintainers, and the test plan lists scope, risks and exit criteria",
+   "est_hours": 8,
+   "resource_ids": [
+    "R-MINISTRY-TESTING"
+   ],
+   "levels": [
+    "internship",
+    "entry"
+   ],
+   "roles": [
+    "QA Engineer"
+   ]
+  },
+  {
+   "id": "P-LOAD-TEST",
+   "title": "Load-test a service and report its limits",
+   "matches": [
+    "performance testing",
+    "load testing",
+    "stress testing",
+    "k6",
+    "jmeter"
+   ],
+   "deliverable": "Load test scripts for one of your services with a report showing throughput, p95 latency and the breaking point",
+   "done_when": "The report names the bottleneck you found and shows a rerun after one fix",
+   "est_hours": 8,
+   "resource_ids": [
+    "R-K6-DOCS"
+   ],
+   "levels": [
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "QA Engineer",
+    "Software Engineer"
+   ]
+  },
+  {
+   "id": "P-PRD",
+   "title": "Write a PRD for a feature in a product you use",
+   "matches": [
+    "prd",
+    "product requirements",
+    "product spec",
+    "requirements writing",
+    "product management",
+    "product thinking",
+    "product sense",
+    "prds",
+    "writing prds",
+    "product specs",
+    "specs"
+   ],
+   "deliverable": "Two-page PRD covering problem, target users, success metrics, scope and non-goals, with a rough wireframe",
+   "done_when": "A working PM or engineer reviews it, and you revise it based on their comments",
+   "est_hours": 8,
+   "resource_ids": [
+    "R-INSPIRED"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Product Manager"
+   ]
+  },
+  {
+   "id": "P-USER-INTERVIEWS",
+   "title": "Run 5 user interviews and synthesize the findings",
+   "matches": [
+    "user interviews",
+    "customer interviews",
+    "user research",
+    "customer discovery",
+    "product discovery"
+   ],
+   "deliverable": "Interview guide, notes from 5 interviews, and a one-page synthesis of the top problems with supporting quotes",
+   "done_when": "All 5 interviews are done with real target users, and the synthesis ends with one recommended next step",
+   "est_hours": 10,
+   "resource_ids": [
+    "R-MOM-TEST"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Product Manager"
+   ]
+  },
+  {
+   "id": "P-METRICS-PLAN",
+   "title": "Define success metrics and a dashboard for a product",
+   "matches": [
+    "product analytics",
+    "product metrics",
+    "metrics",
+    "kpis",
+    "funnels",
+    "retention",
+    "success metrics",
+    "north star metric",
+    "data-driven"
+   ],
+   "deliverable": "Metrics plan for a real product: north-star metric, input metrics, a funnel, guardrail metrics, and a mock dashboard",
+   "done_when": "Each metric has a definition precise enough to write as SQL, and the dashboard mock shows the funnel",
+   "est_hours": 8,
+   "resource_ids": [
+    "R-AMPLITUDE-ACADEMY"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Product Manager",
+    "Data Scientist"
+   ]
+  },
+  {
+   "id": "P-PROTOTYPE",
+   "title": "Prototype a feature in Figma and test it with users",
+   "matches": [
+    "figma",
+    "wireframes",
+    "wireframing",
+    "prototyping",
+    "mockups",
+    "ux",
+    "usability testing"
+   ],
+   "deliverable": "Clickable Figma prototype of one feature plus notes from 3 usability tests and the changes you made",
+   "done_when": "Three people complete the main task in the prototype, and version 2 fixes the top issue they hit",
+   "est_hours": 10,
+   "resource_ids": [
+    "R-FIGMA-HELP"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Product Manager"
+   ]
+  },
+  {
+   "id": "P-PRIORITIZATION",
+   "title": "Run a prioritization review for a real backlog",
+   "matches": [
+    "prioritization",
+    "backlog management",
+    "roadmapping",
+    "product roadmap",
+    "stakeholder management",
+    "cross-functional leadership",
+    "cross-functional"
+   ],
+   "deliverable": "Scored backlog of 15+ items using RICE or a similar framework, a quarter roadmap, and a decision memo for stakeholders",
+   "done_when": "Stakeholders sign off on the memo, or you record their objections and the changes you made",
+   "est_hours": 8,
+   "resource_ids": [
+    "R-INSPIRED"
+   ],
+   "levels": [
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Product Manager"
+   ]
+  },
+  {
+   "id": "P-PM-INTERVIEW",
+   "title": "Practice product interview cases with written answers",
+   "matches": [
+    "pm interview",
+    "product interview",
+    "product case",
+    "product design questions"
+   ],
+   "deliverable": "Written answers to 10 product design and metrics questions, each following one framework, reviewed by a peer",
+   "done_when": "A peer or mentor scores each answer, and you redo the three weakest ones",
+   "est_hours": 12,
+   "resource_ids": [
+    "R-CRACKING-PM"
+   ],
+   "levels": [
+    "internship",
+    "entry"
+   ],
+   "roles": [
+    "Product Manager"
+   ]
+  }
+ ]
+}

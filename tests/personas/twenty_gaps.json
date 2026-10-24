@@ -1,0 +1,175 @@
+{
+  "schema_version": "1.0",
+  "target_role": {
+    "title": "IT Support Specialist",
+    "level": "entry"
+  },
+  "gaps": [
+    {
+      "gap_id": "g1",
+      "item": "CompTIA A+",
+      "category": "cert",
+      "peer_share": 70,
+      "severity": "high",
+      "user_has": null
+    },
+    {
+      "gap_id": "g2",
+      "item": "CompTIA Network+",
+      "category": "cert",
+      "peer_share": 45,
+      "severity": "medium",
+      "user_has": null
+    },
+    {
+      "gap_id": "g3",
+      "item": "Active Directory",
+      "category": "tool",
+      "peer_share": 60,
+      "severity": "high",
+      "user_has": null
+    },
+    {
+      "gap_id": "g4",
+      "item": "Group Policy",
+      "category": "skill",
+      "peer_share": 40,
+      "severity": "medium",
+      "user_has": null
+    },
+    {
+      "gap_id": "g5",
+      "item": "Microsoft 365",
+      "category": "tool",
+      "peer_share": 50,
+      "severity": "high",
+      "user_has": null
+    },
+    {
+      "gap_id": "g6",
+      "item": "Intune",
+      "category": "tool",
+      "peer_share": 35,
+      "severity": "medium",
+      "user_has": null
+    },
+    {
+      "gap_id": "g7",
+      "item": "ServiceNow ticketing",
+      "category": "tool",
+      "peer_share": 55,
+      "severity": "high",
+      "user_has": null
+    },
+    {
+      "gap_id": "g8",
+      "item": "Windows troubleshooting",
+      "category": "skill",
+      "peer_share": 75,
+      "severity": "high",
+      "user_has": null
+    },
+    {
+      "gap_id": "g9",
+      "item": "macOS and Jamf",
+      "category": "tool",
+      "peer_share": 25,
+      "severity": "low",
+      "user_has": null
+    },
+    {
+      "gap_id": "g10",
+      "item": "Linux command line",
+      "category": "skill",
+      "peer_share": 35,
+      "severity": "medium",
+      "user_has": null
+    },
+    {
+      "gap_id": "g11",
+      "item": "PowerShell",
+      "category": "skill",
+      "peer_share": 30,
+      "severity": "medium",
+      "user_has": null
+    },
+    {
+      "gap_id": "g12",
+      "item": "DNS and DHCP",
+      "category": "skill",
+      "peer_share": 50,
+      "severity": "medium",
+      "user_has": null
+    },
+    {
+      "gap_id": "g13",
+      "item": "VLANs and subnetting",
+      "category": "skill",
+      "peer_share": 30,
+      "severity": "low",
+      "user_has": null
+    },
+    {
+      "gap_id": "g14",
+      "item": "Azure",
+      "category": "tool",
+      "peer_share": 30,
+      "severity": "low",
+      "user_has": null
+    },
+    {
+      "gap_id": "g15",
+      "item": "ITIL",
+      "category": "cert",
+      "peer_share": 20,
+      "severity": "low",
+      "user_has": null
+    },
+    {
+      "gap_id": "g16",
+      "item": "Customer service",
+      "category": "skill",
+      "peer_share": 65,
+      "severity": "medium",
+      "user_has": null
+    },
+    {
+      "gap_id": "g17",
+      "item": "Python scripting",
+      "category": "skill",
+      "peer_share": 15,
+      "severity": "low",
+      "user_has": null
+    },
+    {
+      "gap_id": "g18",
+      "item": "Printer and peripheral support",
+      "category": "skill",
+      "peer_share": 45,
+      "severity": "medium",
+      "user_has": null
+    },
+    {
+      "gap_id": "g19",
+      "item": "Bachelor's degree in IT",
+      "category": "education",
+      "peer_share": 40,
+      "severity": "low",
+      "user_has": null
+    },
+    {
+      "gap_id": "g20",
+      "item": "Home lab",
+      "category": "experience",
+      "peer_share": 35,
+      "severity": "medium",
+      "user_has": null
+    }
+  ],
+  "user_context": {
+    "hours_per_week": 12,
+    "target_date": "2027-06-30",
+    "budget_usd": 800,
+    "background": "Warehouse supervisor switching careers; built one gaming PC; no IT job yet."
+  }
+}

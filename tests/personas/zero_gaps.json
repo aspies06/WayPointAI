@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "target_role": {
+    "title": "Software Engineer",
+    "level": "entry"
+  },
+  "gaps": [],
+  "user_context": {
+    "hours_per_week": 5,
+    "target_date": "2027-01-15",
+    "budget_usd": 0,
+    "background": "Two SWE internships, deployed projects, strong DSA practice."
+  }
+}
