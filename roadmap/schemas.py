@@ -127,9 +127,10 @@ class Gap(BaseModel):
     severity: Severity
     user_has: Optional[str] = Field(default=None, max_length=200,
                                     description="What the user has instead, if anything")
-    basis: Literal["share", "importance", "in_demand"] = Field(
+    basis: Literal["share", "importance", "in_demand", "listings"] = Field(
         default="share", description="What peer_share measures: a share of hires (default), an O*NET "
-                                     "importance rating converted to 0-100, or an O*NET In Demand flag")
+                                     "importance rating converted to 0-100, an O*NET In Demand flag, or "
+                                     "the measured share of job listings asking for the skill")
     importance: Optional[float] = Field(default=None, ge=1, le=5, description="O*NET importance, 1-5")
 
     @field_validator("item", "user_has", mode="before")

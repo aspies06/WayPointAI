@@ -178,6 +178,8 @@ export function RoadmapView({ roadmap, gapNames }) {
         Prices are approximate and can change; check the provider's site. Skill data includes information
         from the O*NET 31.0 Database by the U.S. Department of Labor, Employment and Training Administration
         (USDOL/ETA), used under the CC BY 4.0 license. O*NET® is a trademark of USDOL/ETA.
+        {roadmap.target_role.role === "AI/ML Engineer" &&
+          " AI/ML Engineer skills: share of junior and mid-level ML engineer job listings on AI Dev Jobs (aidevboard.com) asking for each skill."}
       </p>
     </article>
   );

@@ -10,7 +10,7 @@ employer job postings for the occupation) or Hot, and how much related work expe
 and education workers report the job requires (share of respondents per category).
 skills/role_profiles.py turns this into the profiles the gap analyzer and roadmap use.
 
-No scraped job-board data is used. The raw O*NET download stays outside the repo
+Nothing is scraped. (AI/ML Engineer's skills come from scripts/build_aiml_listings.py.) The raw O*NET download stays outside the repo
 (~/waypoint-data/onet); only this summary is committed.
 """
 import argparse

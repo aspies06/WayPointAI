@@ -68,6 +68,9 @@ def _why(gap, skill: str, target: TargetRole, measured: bool) -> str:
     if gap.basis == "in_demand":
         return (f"O*NET lists {skill} as in demand for this job: often listed in employer job postings "
                 f"({gap.severity} priority).")
+    if gap.basis == "listings":
+        return (f"{gap.peer_share}% of the junior and mid-level {target.title} job listings we sampled ask for "
+                f"{skill} ({gap.severity} priority).")
     if gap.basis == "importance" and gap.importance:
         level = "very important" if gap.importance >= 4 else "important"
         return (f"People who work in this job rate {skill} as {level} ({round(gap.importance, 1):g} of 5 on O*NET) "

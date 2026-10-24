@@ -131,3 +131,30 @@ def test_level_is_no_longer_a_field(client):
     res = client.post("/api/resume/generate",
                       json={"stories": bank(IT_STORY), "role": "IT Support Specialist", "level": "entry"})
     assert res.status_code in (400, 422)  # extra fields are rejected
+
+
+# ---------- AI/ML Engineer: job listings instead of O*NET ----------
+
+def test_listing_data_keeps_only_counts_and_credits_the_source():
+    data = json.loads((ROOT / "data" / "aiml_listings.json").read_text())
+    assert set(data) == {"_note", "source", "collected", "listings", "skills"}
+    assert "aidevboard.com" in data["source"]["attribution"] and data["source"]["terms"].endswith("/terms")
+    assert data["listings"]["total"] >= 100
+    for skill in data["skills"]:
+        assert set(skill) == {"tag", "listings", "share"}  # no titles, companies, text or links
+
+
+def test_aiml_profile_uses_measured_listing_shares():
+    from skills.role_profiles import ROLE_PROFILES
+    profile = ROLE_PROFILES["AI/ML Engineer"]
+    listed = [s for s in profile["required_skills"] if s["basis"] == "listings"]
+    assert listed and all(0 < s["frequency"] <= 1 for s in listed)
+    assert {"PyTorch", "Large language models (LLMs)"} <= {s["skill"] for s in listed}
+    assert "Python" in {s["skill"] for s in profile["required_skills"]}
+    assert profile["common_education"] == ["Bachelor's Degree"]
+
+
+def test_aiml_insights_show_listing_skills_not_research_tasks(client):
+    body = client.get("/api/resume/insights", params={"role": "AI/ML Engineer"}).json()
+    assert body["people_in_role"]["tasks"] == [] and "O*NET doesn't track" in body["people_in_role"]["note"]
+    assert any("aidevboard.com" in s for s in body["sources"]) and any("O*NET" in s for s in body["sources"])

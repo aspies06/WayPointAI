@@ -1,0 +1,178 @@
+{
+ "_note": "Share of junior and mid-level ML/AI engineer job listings tagged with each skill. Built by scripts/build_aiml_listings.py; only counts are stored.",
+ "source": {
+  "name": "AI Dev Jobs public API",
+  "url": "https://aidevboard.com",
+  "terms": "https://aidevboard.com/terms",
+  "found_via": "https://github.com/emredurukn/awesome-job-boards (CC0)",
+  "attribution": "AI/ML Engineer skills: share of junior and mid-level ML engineer job listings on AI Dev Jobs (aidevboard.com) tagged with each skill, collected October 2026."
+ },
+ "collected": "2026-10-24",
+ "listings": {
+  "total": 300,
+  "junior": 135,
+  "mid": 165
+ },
+ "skills": [
+  {
+   "tag": "llm",
+   "listings": 140,
+   "share": 0.467
+  },
+  {
+   "tag": "machine-learning",
+   "listings": 122,
+   "share": 0.407
+  },
+  {
+   "tag": "pytorch",
+   "listings": 110,
+   "share": 0.367
+  },
+  {
+   "tag": "agents",
+   "listings": 110,
+   "share": 0.367
+  },
+  {
+   "tag": "fine-tuning",
+   "listings": 85,
+   "share": 0.283
+  },
+  {
+   "tag": "generative-ai",
+   "listings": 80,
+   "share": 0.267
+  },
+  {
+   "tag": "deep-learning",
+   "listings": 76,
+   "share": 0.253
+  },
+  {
+   "tag": "distributed-systems",
+   "listings": 73,
+   "share": 0.243
+  },
+  {
+   "tag": "data-pipeline",
+   "listings": 66,
+   "share": 0.22
+  },
+  {
+   "tag": "gpu",
+   "listings": 55,
+   "share": 0.183
+  },
+  {
+   "tag": "cloud",
+   "listings": 54,
+   "share": 0.18
+  },
+  {
+   "tag": "tensorflow",
+   "listings": 51,
+   "share": 0.17
+  },
+  {
+   "tag": "mlops",
+   "listings": 43,
+   "share": 0.143
+  },
+  {
+   "tag": "search",
+   "listings": 43,
+   "share": 0.143
+  },
+  {
+   "tag": "infrastructure",
+   "listings": 37,
+   "share": 0.123
+  },
+  {
+   "tag": "reinforcement-learning",
+   "listings": 33,
+   "share": 0.11
+  },
+  {
+   "tag": "computer-vision",
+   "listings": 30,
+   "share": 0.1
+  },
+  {
+   "tag": "nlp",
+   "listings": 22,
+   "share": 0.073
+  },
+  {
+   "tag": "computer-graphics",
+   "listings": 21,
+   "share": 0.07
+  },
+  {
+   "tag": "api-design",
+   "listings": 17,
+   "share": 0.057
+  },
+  {
+   "tag": "rag",
+   "listings": 16,
+   "share": 0.053
+  },
+  {
+   "tag": "code-generation",
+   "listings": 15,
+   "share": 0.05
+  },
+  {
+   "tag": "embeddings",
+   "listings": 11,
+   "share": 0.037
+  },
+  {
+   "tag": "jax",
+   "listings": 10,
+   "share": 0.033
+  },
+  {
+   "tag": "platform",
+   "listings": 9,
+   "share": 0.03
+  },
+  {
+   "tag": "inference",
+   "listings": 8,
+   "share": 0.027
+  },
+  {
+   "tag": "alignment",
+   "listings": 7,
+   "share": 0.023
+  },
+  {
+   "tag": "diffusion-models",
+   "listings": 6,
+   "share": 0.02
+  },
+  {
+   "tag": "evaluation",
+   "listings": 5,
+   "share": 0.017
+  },
+  {
+   "tag": "devops",
+   "listings": 5,
+   "share": 0.017
+  },
+  {
+   "tag": "speech",
+   "listings": 4,
+   "share": 0.013
+  },
+  {
+   "tag": "pre-training",
+   "listings": 3,
+   "share": 0.01
+  }
+ ]
+}
