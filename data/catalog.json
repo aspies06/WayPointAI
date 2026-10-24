@@ -1526,7 +1526,9 @@
     "ml pipelines",
     "mlflow",
     "experiment tracking",
-    "model monitoring"
+    "model monitoring",
+    "data pipeline",
+    "data pipelines"
    ],
    "credential": "certificate"
   },
@@ -2981,6 +2983,78 @@
     "outlook",
     "powerpoint",
     "windows"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-HF-AGENTS",
+   "name": "Hugging Face AI Agents Course",
+   "provider": "Hugging Face",
+   "url": "https://huggingface.co/learn/agents-course",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 20,
+   "level": "entry",
+   "roles": [
+    "AI/ML Engineer"
+   ],
+   "matches": [
+    "ai agent",
+    "agentic",
+    "llm agent",
+    "ai agents",
+    "agents"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-HF-DEEP-RL",
+   "name": "Hugging Face Deep Reinforcement Learning Course",
+   "provider": "Hugging Face",
+   "url": "https://huggingface.co/learn/deep-rl-course",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 30,
+   "level": "entry",
+   "roles": [
+    "AI/ML Engineer"
+   ],
+   "matches": [
+    "reinforcement learning",
+    "deep rl"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-SPINNING-UP",
+   "name": "Spinning Up in Deep RL",
+   "provider": "OpenAI",
+   "url": "https://spinningup.openai.com/",
+   "type": "reference",
+   "cost_usd": 0,
+   "hours": 15,
+   "level": "mid",
+   "roles": [
+    "AI/ML Engineer"
+   ],
+   "matches": [
+    "reinforcement learning",
+    "deep rl"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-CUDA-GUIDE",
+   "name": "NVIDIA CUDA C++ Programming Guide",
+   "provider": "NVIDIA",
+   "url": "https://docs.nvidia.com/cuda/cuda-c-programming-guide/",
+   "type": "docs",
+   "cost_usd": 0,
+   "hours": 10,
+   "level": "mid",
+   "matches": [
+    "gpu",
+    "cuda"
    ],
    "credential": null
   }

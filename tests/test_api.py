@@ -90,3 +90,31 @@ def test_the_site_may_call_it(client, origin):
 def test_other_sites_may_not(client):
     res = client.get("/api/health", headers={"Origin": "https://evil.example"})
     assert "access-control-allow-origin" not in res.headers
+
+
+# ---------- education: advice only, never assumed, never a gap ----------
+
+def test_education_is_optional_and_never_assumed(client):
+    body = post(client, roles=["Software Engineer"], skills_text="Python").json()
+    assert body["results"][0]["education"] is None
+    assert not any("degree" in name.lower() for name in body["results"][0]["gap_names"].values())
+
+
+def test_education_note_compares_without_making_a_gap(client):
+    body = post(client, roles=["Software Engineer"], skills_text="Python",
+                education_level="high_school").json()
+    result = body["results"][0]
+    assert result["education"]["meets"] is False and "isn't the only way in" in result["education"]["message"]
+    assert not any("degree" in name.lower() for name in result["gap_names"].values())
+    met = post(client, roles=["Software Engineer"], education_level="bachelor", field_of_study="CS").json()
+    assert met["results"][0]["education"]["meets"] is True and "in CS" in met["results"][0]["education"]["message"]
+
+
+def test_education_without_onet_figures_says_so(client):
+    note = post(client, roles=["Data Scientist"], education_level="master").json()["results"][0]["education"]
+    assert note["meets"] is None and "no education figures" in note["message"]
+
+
+def test_unknown_education_is_rejected(client):
+    assert post(client, education_level="wizard").status_code == 400
+    assert {e["value"] for e in client.get("/api/options").json()["education"]} >= {"bachelor", "in_progress"}

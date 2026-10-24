@@ -100,11 +100,38 @@ and the panel marks each as found or not found in the saved stories (everyday na
 "Active Directory" matches "Microsoft Active Directory"). Role data never adds claims: a
 technology appears in the draft only if a saved story says it.
 
-No scraped job-board data (such as LinkedIn postings) is used. To rebuild the data, download
+Nothing is scraped (no LinkedIn or other job-site scraping). To rebuild the O*NET data, download
 the O*NET text database to `~/waypoint-data/onet/db_31_0_text/` and run:
 
 ```bash
 python scripts/build_role_insights.py
+```
+
+### AI/ML Engineer: job listings instead of O*NET
+
+O*NET has no machine learning engineer occupation. Its closest, Computer and Information
+Research Scientists, describes research work (designing computers, PhDs common), so
+AI/ML Engineer uses a second source for its skills:
+
+- **Source:** the AI Dev Jobs public API (aidevboard.com), found through the CC0 list
+  [awesome-job-boards](https://github.com/emredurukn/awesome-job-boards). Its
+  [terms](https://aidevboard.com/terms) allow API data to be used in applications but not
+  resold as a standalone dataset, and say listing content belongs to the hiring companies.
+- **What's kept:** only how many listings carry each skill tag, and the share. No listing text,
+  titles, companies or links are stored (`data/aiml_listings.json`).
+- **Which listings:** junior and mid-level listings whose title names a machine learning or AI
+  engineering role (300 in the October 2026 sample). Industry tags such as healthcare or
+  payments are dropped, as are vague ones (platform, search, infrastructure).
+- **Core tools:** listing tags don't name languages or libraries, so Python, SQL, Git,
+  scikit-learn and pandas come from O*NET's in-demand technologies for related jobs.
+  Experience still comes from O*NET (applied only to mid-level targets), and education is its
+  most common level, a bachelor's degree.
+
+The roadmap shows these shares as real percentages ("47% of the junior and mid-level AI/ML
+Engineer job listings we sampled ask for LLMs") and credits the source. To refresh:
+
+```bash
+python scripts/build_aiml_listings.py
 ```
 
 ## Configuration and tests

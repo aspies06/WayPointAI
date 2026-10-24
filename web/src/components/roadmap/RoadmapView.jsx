@@ -15,7 +15,7 @@ const OPTIONAL_SECTIONS = [
   },
 ];
 
-export function RoadmapView({ roadmap, gapNames }) {
+export function RoadmapView({ roadmap, gapNames, education }) {
   const [showOptional, setShowOptional] = useState(false);
   const kept = new Set(roadmap.optional.flatMap((s) => s.gap_ids));
   if (roadmap.experience) kept.add(roadmap.experience.gap_id); // shown at the top instead
@@ -69,6 +69,13 @@ export function RoadmapView({ roadmap, gapNames }) {
         <aside className="experience" aria-label="Most important">
           <strong>Most important</strong>
           <p>{roadmap.experience.message}</p>
+        </aside>
+      )}
+
+      {education && (
+        <aside className="experience education" aria-label="Education">
+          <strong>Education</strong>
+          <p>{education.message}</p>
         </aside>
       )}
 
@@ -178,6 +185,8 @@ export function RoadmapView({ roadmap, gapNames }) {
         Prices are approximate and can change; check the provider's site. Skill data includes information
         from the O*NET 31.0 Database by the U.S. Department of Labor, Employment and Training Administration
         (USDOL/ETA), used under the CC BY 4.0 license. O*NET® is a trademark of USDOL/ETA.
+        {roadmap.target_role.role === "AI/ML Engineer" &&
+          " AI/ML Engineer skills: share of junior and mid-level ML engineer job listings on AI Dev Jobs (aidevboard.com) asking for each skill."}
       </p>
     </article>
   );

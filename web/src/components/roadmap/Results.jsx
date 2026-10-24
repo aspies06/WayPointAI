@@ -30,7 +30,7 @@ export function Results({ result }) {
           ))}
         </div>
       )}
-      <RoadmapView key={current.role} roadmap={current.roadmap} gapNames={current.gap_names} />
+      <RoadmapView key={current.role} roadmap={current.roadmap} gapNames={current.gap_names} education={current.education} />
     </section>
   );
 }

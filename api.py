@@ -33,6 +33,7 @@ from skills.career_pipeline import (
     extract_resume_text,
     gap_list_for_role,
 )
+from skills import education
 from skills.gap_analyzer import analyze_gap
 from roadmap import generate_roadmap, intake
 from roadmap.schemas import ROLES
@@ -69,6 +70,7 @@ def options() -> dict:
     return {
         "roles": list(ROLES),
         "levels": [{"label": label, "value": value} for label, value in LEVELS.items()],
+        "education": [{"label": label, "value": value} for value, label in education.LABELS.items()],
         "workloads": [{"value": key, "hours": hours, "label": label}
                       for key, (hours, label) in intake.WORKLOADS.items()],
         "questions": intake.QUESTIONS,
@@ -99,6 +101,8 @@ def roadmaps(
     experience_years: Annotated[float, Form(ge=0, le=50)] = 0,
     background: Annotated[str, Form()] = "",
     skills_text: Annotated[str, Form()] = "",
+    education_level: Annotated[str, Form()] = "",
+    field_of_study: Annotated[str, Form(max_length=100)] = "",
     resume: Annotated[Optional[UploadFile], File()] = None,
 ) -> dict:
     """One roadmap per selected role. The time answers are required: we ask, never guess."""
@@ -107,6 +111,8 @@ def roadmaps(
         raise _bad_request("Choose at least one of the listed roles.")
     if level not in LEVELS.values():
         raise _bad_request("Choose an experience level from the list.")
+    if education_level and education_level not in education.CHOICES:
+        raise _bad_request("Choose your education from the list, or leave it blank.")
     try:
         ctx = intake.answers_to_context(
             {"hours_per_week": hours_per_week, "start_date": start_date,
@@ -134,6 +140,8 @@ def roadmaps(
             "role": role,
             "gap_names": {g["gap_id"]: g["item"] for g in gap_list["gaps"]},
             "roadmap": generate_roadmap(gap_list).model_dump(mode="json"),
+            # Advice only: education never becomes a gap, and no degree is assumed.
+            "education": education.advice(role, education_level, field_of_study),
         })
     return {"starting_from_scratch": not resume_text, "results": results}
 

@@ -13,6 +13,8 @@ def _d(d: date) -> str:
 
 DISCLAIMER = ("*{kind} guidance. It can make mistakes, so check dates, prices and requirements "
               "with each provider before you rely on them.*")
+LISTINGS_CREDIT = ("*AI/ML Engineer skills: share of junior and mid-level ML engineer job listings on AI Dev "
+                   "Jobs (aidevboard.com) asking for each skill.*")
 CREDIT = ("*Prices are approximate and can change. Skill data includes information from the O*NET 31.0 "
           "Database by the U.S. Department of Labor, Employment and Training Administration (USDOL/ETA), "
           "used under the CC BY 4.0 license. O*NET® is a trademark of USDOL/ETA.*")
@@ -119,4 +121,6 @@ def to_markdown(roadmap: Roadmap, gap_names: dict[str, str] | None = None,
     parts = [DISCLAIMER.format(kind=kind), "", timeline_markdown(roadmap, gap_names)]
     if include_optional and (extra := optional_markdown(roadmap, gap_names)):
         parts += ["---", "## Optional", "", extra]
+    if roadmap.target_role.role == "AI/ML Engineer":  # its skills come from job listings, not O*NET
+        parts += ["", LISTINGS_CREDIT]
     return "\n".join(parts + ["", CREDIT])

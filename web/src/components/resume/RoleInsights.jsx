@@ -1,4 +1,5 @@
-/** What people in a role do and the technologies in demand for it, from O*NET, with the source.
+/** What people in a role do and the technologies in demand for it, from O*NET (job listings for
+ *  AI/ML Engineer, which O*NET doesn't track), with the sources.
  *  After a draft is built, each technology also shows whether the saved stories mention it. */
 export function RoleInsights({ insights }) {
   const { people_in_role: people, in_demand_technologies: technologies } = insights;
@@ -9,17 +10,20 @@ export function RoleInsights({ insights }) {
       <div className="insight-column">
         <h3>What people in this job do</h3>
         <p className="hint">
-          Tasks rated most important by people who work as {people.occupation}
-          {people.match === "approximate" ? " (the closest occupation O*NET tracks)" : ""}.
+          {people.note || <>Tasks rated most important by people who work as {people.occupation}
+            {people.match === "approximate" ? " (the closest occupation O*NET tracks)" : ""}.</>}
         </p>
-        <ul className="insight-tasks">
-          {people.tasks.map((task) => <li key={task}>{task}</li>)}
-        </ul>
+        {people.tasks.length > 0 && (
+          <ul className="insight-tasks">
+            {people.tasks.map((task) => <li key={task}>{task}</li>)}
+          </ul>
+        )}
       </div>
       <div className="insight-column">
         <h3>Technologies in demand</h3>
         <p className="hint">
-          Technologies O*NET flags as in demand for this occupation: often listed in employer job postings.
+          {insights.technologies_note ||
+            "Technologies O*NET flags as in demand for this occupation: often listed in employer job postings."}
         </p>
         {technologies.length ? (
           <ul className="insight-skills">

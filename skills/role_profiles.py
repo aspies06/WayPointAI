@@ -16,6 +16,12 @@ scripts/build_role_insights.py). Nothing here is hand-estimated:
   applied to mid-level and senior targets (see skills/career_pipeline.py).
 - common_education: education levels at least 20% of workers report the job requires.
 
+AI/ML Engineer is the exception: O*NET has no machine learning engineer occupation (its closest,
+Computer and Information Research Scientists, is a research job). Its required skills are the
+share of junior and mid-level ML engineer job listings asking for each skill (basis "listings",
+measured; see scripts/build_aiml_listings.py) plus the core tools O*NET flags as in demand for
+its ML-adjacent jobs. Experience still comes from O*NET, and education is its most common level.
+
 O*NET measures importance and demand, not the share of hires who have a skill, so each skill
 records its `basis` and the roadmap words it accordingly. `frequency` only orders skills:
 in-demand technologies that are also Hot 0.7, other in-demand technologies 0.5, rated skills
@@ -31,7 +37,7 @@ Usage
 
 from __future__ import annotations
 
-from skills.role_insights import _data, match_terms
+from skills.role_insights import CORE_TOOLS, LISTING_ROLE, _data, listing_skills, match_terms
 
 MIN_IMPORTANCE = 3.75
 MIN_EDUCATION_SHARE = 0.2
@@ -59,7 +65,26 @@ def _median_experience(categories: list[dict]) -> float:
     return 0.0
 
 
+def _listing_required(onet: dict) -> list[dict]:
+    """AI/ML Engineer: the share of junior and mid-level ML engineer listings asking for each skill
+    (measured), then O*NET's core tools for ML-adjacent jobs."""
+    hot = {t["name"]: t["hot"] for t in onet["technologies"]}
+    listed = [{"skill": s["name"], "frequency": s["share"], "basis": "listings", "aliases": s["terms"]}
+              for s in listing_skills()]
+    core = [{"skill": display_name(name), "frequency": 0.7 if hot[name] else 0.5, "basis": "in_demand",
+             "aliases": match_terms(name)} for name in CORE_TOOLS if name in hot]
+    return core + listed
+
+
 def _profile(role: str, onet: dict) -> dict:
+    if role == LISTING_ROLE and listing_skills():
+        top_education = max(onet["education"], key=lambda e: e["share"])["level"]
+        return {**_onet_profile(role, onet), "required_skills": _listing_required(onet),
+                "common_education": [top_education], "skills_source": "listings"}
+    return _onet_profile(role, onet)
+
+
+def _onet_profile(role: str, onet: dict) -> dict:
     required = [{
         "skill": display_name(t["name"]),
         "frequency": 0.7 if t["hot"] else 0.5,

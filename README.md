@@ -59,6 +59,10 @@ for the roadmap input format.
 
 See [web/README.md](web/README.md) for how the front end is organized.
 
+**Education is optional and never assumed.** If you share it, each roadmap adds a short note
+comparing it with what people in that job report (O*NET's education figures). It's advice
+only: education never becomes a gap or a requirement (`skills/education.py`).
+
 ## Resume builder and story bank
 
 Open **Resume builder** in the web app to save experience once and reuse it for
@@ -95,7 +99,10 @@ page's privacy notice lists exactly what is and isn't stored.
 Pick a **target role** to see what people in that job do (tasks rated by people who
 hold it) and the technologies in demand for it. The role helps rank your stories and
 shows which of those technologies your stories cover; it never adds claims. Source:
-O*NET 31.0 by USDOL/ETA (CC BY 4.0). No scraped job-board data is used. Details in
+O*NET 31.0 by USDOL/ETA (CC BY 4.0). O*NET has no machine learning engineer occupation, so
+AI/ML Engineer skills come from junior and mid-level ML engineer listings on AI Dev Jobs
+(aidevboard.com), read through its public API under its terms; only skill counts are stored.
+Nothing is scraped. Details in
 [docs/resume_builder.md](docs/resume_builder.md#role-insights-from-onet).
 
 ## Roadmap module
