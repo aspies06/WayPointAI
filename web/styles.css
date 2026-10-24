@@ -72,9 +72,19 @@ ul.plain li + li { margin-top: 0.35rem; }
 /* header and footer */
 .site-header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 28px 0 22px; margin-bottom: 24px; }
 .site-header h1 { font-size: 1.75rem; letter-spacing: -0.01em; }
-.brand { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-.brand-logo { flex: none; width: 150px; height: auto; }
-@media (max-width: 480px) { .brand-logo { width: 110px; } }
+/* The logo sits behind the title: 85% of its width under the name, the last 15% hanging past it.
+   Under the name it's faint so the title reads cleanly; the part hanging past it is at full strength. */
+.brand { margin: 22px 0 26px; }
+.brand-name { position: relative; display: inline-block; isolation: isolate; }
+.brand-logo {
+  position: absolute; z-index: -1; left: 0; top: 50%;
+  width: calc(100% / 0.85); height: auto; transform: translateY(-50%); pointer-events: none;
+  --behind: 0.35;
+  -webkit-mask-image: linear-gradient(to right, rgb(0 0 0 / var(--behind)) 0 75%, #000 79%);
+  mask-image: linear-gradient(to right, rgb(0 0 0 / var(--behind)) 0 75%, #000 79%);
+}
+@media (prefers-color-scheme: dark) { .brand-logo { --behind: 0.45; } }
+.brand-text { text-shadow: 0 0 2px var(--surface); }
 .tagline { margin: 0; color: var(--muted); max-width: 680px; }
 .site-footer { padding: 32px 16px 48px; font-size: 0.875rem; }
 
