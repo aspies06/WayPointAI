@@ -1,7 +1,7 @@
 pypdf
 torch
 torchvision
-transformers
+transformers>=4.51  # Qwen3, the resume writer, needs 4.51 or newer
 pydantic>=2.14,<3
 pytest>=9
 # API for the React front end (web/) and the gap analysis endpoints
