@@ -1,20 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 140" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 425 140" role="img" aria-labelledby="title desc">
   <title id="title">Hired arrow logo</title>
   <desc id="desc">An outlined, feathered arrow lightly piercing a tilted paper marked Hired.</desc>
-
+  <!-- The team's logo with a longer shaft (+125 units) for the site header: the feathers sit left of
+       the title, the head and page right of it, and only the shaft passes behind the name. -->
   <!-- Dark mode: the near-black outlines switch to a light color so they stay visible. -->
   <style>@media (prefers-color-scheme: dark) { [stroke="#11120f"] { stroke: #e7ebf0; } }</style>
 
-  <g transform="rotate(7 238 70)">
-    <path d="M238 18h44l14 14v90h-58V18Z" fill="#fff" stroke="#11120f" stroke-width="3" stroke-linejoin="round"/>
-    <path d="M282 18v14h14" fill="none" stroke="#11120f" stroke-width="3"/>
-    <text x="267" y="49" fill="#d62828" font-family="Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="1.2" text-anchor="middle">HIRED</text>
-    <path d="M247 59h39m-39 45h39m-39 8h31" fill="none" stroke="#11120f" stroke-width="2" opacity=".24"/>
+  <g transform="translate(125 0)">
+    <g transform="rotate(7 238 70)">
+      <path d="M238 18h44l14 14v90h-58V18Z" fill="#fff" stroke="#11120f" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M282 18v14h14" fill="none" stroke="#11120f" stroke-width="3"/>
+      <text x="267" y="49" fill="#d62828" font-family="Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="1.2" text-anchor="middle">HIRED</text>
+      <path d="M247 59h39m-39 45h39m-39 8h31" fill="none" stroke="#11120f" stroke-width="2" opacity=".24"/>
+    </g>
   </g>
 
   <g fill="none" stroke="#11120f" stroke-linejoin="round">
-    <path d="M43 67h176v6H43Z" stroke-width="3"/>
-    <path d="m241 70-33-16 9 13h-16v6h16l-9 13 33-16Z" fill="#fff" stroke-width="3"/>
+    <path d="M43 67h301v6H43Z" stroke-width="3"/>
+    <path transform="translate(125 0)" d="m241 70-33-16 9 13h-16v6h16l-9 13 33-16Z" fill="#fff" stroke-width="3"/>
     <path d="m50 66-12-14C27 48 14 46 2 48c7 7 14 13 22 18h26Zm0 8L38 88c-11 4-24 6-36 4 7-7 14-13 22-18h26Z" stroke-width="4"/>
     <path d="m38 62-9-9m1 12L19 51m2 13L9 50m29 28-9 9m1-12L19 89m2-13L9 90" stroke-width="3" stroke-linecap="round"/>
   </g>

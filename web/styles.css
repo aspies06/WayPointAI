@@ -72,16 +72,19 @@ ul.plain li + li { margin-top: 0.35rem; }
 /* header and footer */
 .site-header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 28px 0 22px; margin-bottom: 24px; }
 .site-header h1 { font-size: 1.75rem; letter-spacing: -0.01em; }
-/* The logo sits behind the title: 85% of its width under the name, the last 15% hanging past it.
-   Under the name it's faint so the title reads cleanly; the part hanging past it is at full strength. */
-.brand { margin: 22px 0 26px; }
+/* The logo runs behind the title: the feathers sit left of the name, the head and "Hired" page
+   right of it, and only the shaft passes behind the letters. Sizes come from the title's own width:
+   in the logo's 425-unit drawing, the name spans units 60-316 (feathers end at 50, head starts at 326).
+   The shaft is faint under the name so the title reads cleanly; the ends are at full strength. */
+.brand { margin: 22px 0 26px; padding-left: 1.3em; }
 .brand-name { position: relative; display: inline-block; isolation: isolate; }
 .brand-logo {
-  position: absolute; z-index: -1; left: 0; top: 50%;
-  width: calc(100% / 0.85); height: auto; transform: translateY(-50%); pointer-events: none;
+  position: absolute; z-index: -1; top: 50%;
+  left: calc(-100% * 60 / 256); width: calc(100% * 425 / 256);
+  height: auto; transform: translateY(-50%); pointer-events: none;
   --behind: 0.35;
-  -webkit-mask-image: linear-gradient(to right, rgb(0 0 0 / var(--behind)) 0 75%, #000 79%);
-  mask-image: linear-gradient(to right, rgb(0 0 0 / var(--behind)) 0 75%, #000 79%);
+  -webkit-mask-image: linear-gradient(to right, #000 0 13%, rgb(0 0 0 / var(--behind)) 15.5% 73%, #000 75.5%);
+  mask-image: linear-gradient(to right, #000 0 13%, rgb(0 0 0 / var(--behind)) 15.5% 73%, #000 75.5%);
 }
 @media (prefers-color-scheme: dark) { .brand-logo { --behind: 0.45; } }
 .brand-text { text-shadow: 0 0 2px var(--surface); }
