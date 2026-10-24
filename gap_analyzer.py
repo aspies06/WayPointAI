@@ -220,6 +220,13 @@ _HIGH_THRESHOLD = 60
 _MEDIUM_THRESHOLD = 30
 
 
+def _format_years(years: float) -> str:
+    """1.0 -> "1 year", 2.0 -> "2 years", 1.5 -> "1.5 years" (no trailing ".0")."""
+    years = float(years)
+    number = int(years) if years.is_integer() else years
+    return f"{number} year" if number == 1 else f"{number} years"
+
+
 def _severity(peer_share: int) -> str:
     if peer_share >= _HIGH_THRESHOLD:
         return "high"
@@ -301,12 +308,12 @@ def build_gap_list(
     if experience_gap > 0:
         gaps.append({
             "gap_id": f"g{gap_id}",
-            "item": f"{experience_gap} more years of experience",
+            "item": f"{_format_years(experience_gap).replace(' ', ' more ', 1)} of experience",
             "category": "experience",
             "peer_share": 100,   # experience is always expected
             "severity": "high" if experience_gap >= 1.0 else "medium",
             "user_has": (
-                f"{resume.get('experience_years', 0.0)} years"
+                _format_years(resume.get("experience_years", 0.0))
                 if resume else None
             ),
         })

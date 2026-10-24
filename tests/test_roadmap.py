@@ -569,3 +569,137 @@ def test_works_with_the_gap_analyzer_for_every_role():
         r = generate.generate_roadmap(gl, TODAY, model=fake_model(exc=RuntimeError("offline")))
         uncovered = [d for d in r.deferred if d.reason.startswith("No curated")]
         assert r.steps and len(uncovered) <= len(gl["gaps"]) / 4, (role, uncovered)
+
+
+# ---------- honest numbers and wording ----------
+
+@pytest.mark.parametrize("path", PERSONAS, ids=lambda p: p.stem)
+def test_estimated_shares_are_said_in_words(path):
+    gl = GapList.model_validate_json(path.read_text())  # personas use estimates, like role_profiles.py
+    plan = build_plan(gl, TODAY)
+    for s in [*plan.steps, *plan.optional]:
+        assert "%" not in s.why, s.why
+        assert s.why.split()[0] in ("Most", "Some", "Not"), s.why
+
+
+def test_measured_shares_keep_their_percentage():
+    gl = load("swe_new_grad")
+    gl.peer_share_measured = True
+    first = build_plan(gl, TODAY).steps[0]
+    assert first.why.startswith(f"{gl.gaps[1].peer_share}% of")
+
+
+@pytest.mark.parametrize("share, words", [(90, "Most"), (65, "Most"), (64, "Some"), (40, "Some"), (39, "Not many")])
+def test_share_words_thresholds(share, words):
+    from roadmap.planner import share_words
+    assert share_words(share, measured=False) == words
+
+
+def test_skills_no_hire_has_are_left_out():
+    gl = load("swe_new_grad")
+    gl.gaps[0].peer_share = 0
+    plan = build_plan(gl, TODAY)
+    gone = gl.gaps[0].gap_id
+    assert gone not in {g for s in [*plan.steps, *plan.optional] for g in s.gap_ids}
+    assert gone not in {d.gap_id for d in plan.deferred}
+    assert check(plan, gl, TODAY)[0] == []
+
+
+@pytest.mark.parametrize("years, text", [(1.0, "1 year"), (2.0, "2 years"), (1.5, "1.5 years"), (0.5, "0.5 years")])
+def test_whole_years_have_no_decimal(years, text):
+    from roadmap.planner import years_text
+    assert years_text(years) == text
+
+
+def _with_experience_gap(level, years="1"):
+    gl = load("it_intern").model_dump(mode="json")
+    gl["target_role"] = {"title": "IT Support Specialist", "level": level, "role": "IT Support Specialist"}
+    gl["gaps"].append({"gap_id": "gx", "item": f"{years} more year of experience", "category": "experience",
+                       "peer_share": 100, "severity": "high", "user_has": "0 years"})
+    return GapList.model_validate(gl)
+
+
+def test_work_experience_is_said_directly_not_scheduled():
+    gl = _with_experience_gap("entry")
+    plan = build_plan(gl, TODAY)
+    assert plan.experience and plan.experience.gap_id == "gx" and plan.experience.years == 1
+    msg = plan.experience.message
+    assert "about 1 more year of work experience" in msg and "help desk" in msg
+    assert "gx" not in {g for s in [*plan.steps, *plan.optional] for g in s.gap_ids}
+    assert check(plan, gl, TODAY)[0] == []
+
+
+def test_mid_level_experience_points_to_a_junior_job():
+    plan = build_plan(_with_experience_gap("mid", "2"), TODAY)
+    assert "about 2 more years of work experience" in plan.experience.message
+    assert "a junior IT Support Specialist job" in plan.experience.message
+
+
+def test_internships_dont_ask_for_experience():
+    plan = build_plan(_with_experience_gap("internship"), TODAY)
+    assert plan.experience.message.startswith("Internships don't expect work experience")
+
+
+def test_experience_note_is_on_top_not_in_not_covered():
+    r = generate.generate_roadmap(_with_experience_gap("entry"), TODAY, model=fake_model(exc=RuntimeError("offline")))
+    md = render.to_markdown(r)
+    assert md.index("Most important") < md.index("### Timeline")
+    assert "gx" not in {d.gap_id for d in render._uncovered(r)}
+
+
+def test_gap_analyzer_years_have_no_decimal():
+    gap_analyzer = pytest.importorskip("gap_analyzer")
+    profiles = pytest.importorskip("role_profiles").ROLE_PROFILES
+    import re
+    for years in (0, 0.5, 1):
+        resume = {"skills": ["Python"], "experience_years": years}
+        for role, profile in profiles.items():
+            gl = gap_analyzer.build_gap_list(gap_analyzer.analyze_gap(resume, profile),
+                                             {"title": role, "level": "entry", "role": role},
+                                             {"hours_per_week": 8, "target_date": "2027-06-01"}, resume)
+            r = generate.generate_roadmap(gl, TODAY, model=fake_model(exc=RuntimeError("offline")))
+            text = render.to_markdown(r, {g["gap_id"]: g["item"] for g in gl["gaps"]})
+            assert not re.search(r"\b\d+\.0\b", text), role
+            assert not re.search(r"\b\d+% of [\w/ ]+ hires\b", text), role  # estimates are said in words
+
+
+# ---------- local model: timeout and device choice ----------
+
+def fake_torch(cuda_free=None, mps_free=None):
+    """Stands in for torch: cuda_free / mps_free are free bytes, or None if that GPU is absent."""
+    from types import SimpleNamespace as NS
+    return NS(
+        cuda=NS(is_available=lambda: cuda_free is not None, mem_get_info=lambda: (cuda_free, 24e9)),
+        backends=NS(mps=NS(is_available=lambda: mps_free is not None)),
+        mps=NS(recommended_max_memory=lambda: mps_free, driver_allocated_memory=lambda: 0),
+    )
+
+
+GB = 1_000_000_000
+
+
+def test_timeout_defaults_to_two_minutes():
+    import importlib
+    import os
+    if "ROADMAP_TIMEOUT_S" not in os.environ:
+        assert importlib.reload(local_model).TIMEOUT_S == 120
+
+
+@pytest.mark.parametrize("torch_, requested, device", [
+    (fake_torch(), "auto", "cpu"),                       # no GPU at all
+    (fake_torch(mps_free=8 * GB), "auto", "mps"),        # Apple GPU with room
+    (fake_torch(cuda_free=8 * GB), "auto", "cuda"),      # NVIDIA GPU with room
+    (fake_torch(cuda_free=1 * GB), "auto", "cpu"),       # not enough free GPU memory
+    (fake_torch(mps_free=8 * GB), "cpu", "cpu"),         # user forced the CPU
+    (fake_torch(mps_free=8 * GB), "cuda", "cpu"),        # asked for CUDA on a Mac
+    (fake_torch(cuda_free=8 * GB), "cuda", "cuda"),
+])
+def test_device_choice(torch_, requested, device):
+    chosen, reason = local_model.choose_device(torch_, weight_bytes=1 * GB, requested=requested)
+    assert chosen == device and reason
+
+
+def test_gpu_needs_room_for_more_than_the_weights():
+    just_the_weights = fake_torch(cuda_free=1 * GB)
+    assert local_model.choose_device(just_the_weights, 1 * GB, "auto")[0] == "cpu"
+    assert local_model.choose_device(fake_torch(cuda_free=2 * GB), 1 * GB, "auto")[0] == "cuda"

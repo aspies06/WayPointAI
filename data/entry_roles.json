@@ -1,0 +1,14 @@
+{
+ "_note": "The usual first job that builds experience toward each role. Used when the gap is years of work experience, which a study plan can't close.",
+ "roles": {
+  "Software Engineer": "a junior software developer job or a software engineering internship",
+  "AI/ML Engineer": "a junior data scientist, data analyst or software engineer job, or a machine learning internship",
+  "Data Scientist": "a data analyst or junior data scientist job",
+  "Security Engineer": "a SOC analyst (Tier 1), IT support or junior security analyst job",
+  "Computer Engineer": "an embedded or firmware internship, or a hardware test technician job",
+  "IT Support Specialist": "a help desk or IT support technician job",
+  "Hardware Engineer": "a hardware test technician job or a hardware engineering internship",
+  "QA Engineer": "a QA tester or manual QA analyst job",
+  "Product Manager": "an associate product manager, product analyst or business analyst job"
+ }
+}

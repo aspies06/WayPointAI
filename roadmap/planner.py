@@ -23,8 +23,8 @@ from typing import Optional
 
 from . import catalog
 from .guardrails import available_hours, start_date
-from .schemas import (PRIORITY_FROM_SEVERITY, SEV_RANK, Deferred, GapList, RoadmapDraft, Step, Suggestion,
-                      TargetRole)
+from .schemas import (PRIORITY_FROM_SEVERITY, SEV_RANK, Deferred, ExperienceAdvice, GapList, RoadmapDraft,
+                      Step, Suggestion, TargetRole)
 
 SEV_ORDER = SEV_RANK
 DEFAULT_CERT_HOURS = 30
@@ -33,6 +33,8 @@ EXAM_HOURS = 3        # booking and sitting an exam once you've studied
 MIN_PART_HOURS = 4    # a shortened step smaller than this isn't worth starting
 TIERS = ("must_do", "should_do", "nice_to_have")
 LEARNING_TYPES = ("course", "lab", "reference", "cert")
+# Years of work experience: real time on a job, not something a study plan can schedule.
+EXPERIENCE_RE = re.compile(r"\byears? of (?:\w+ )?experience\b|\b(?:work|professional|industry|relevant) experience\b", re.I)
 
 
 def _phase(hours_before: int, hours_per_week: int) -> str:
@@ -47,6 +49,40 @@ def _phase(hours_before: int, hours_per_week: int) -> str:
 def _on_day(start: date, hours: int, hours_per_week: int) -> date:
     """The date `hours` of work is done, working steadily at hours_per_week from `start`."""
     return start + timedelta(days=math.ceil(hours * 7 / hours_per_week))
+
+
+def share_words(peer_share: int, measured: bool) -> str:
+    """How common a gap is. A percentage only when it comes from real hiring data; an estimate shown
+    as "72%" looks more precise than it is, so estimates are said in words."""
+    if measured:
+        return f"{peer_share}% of"
+    if peer_share >= 65:
+        return "Most"
+    if peer_share >= 40:
+        return "Some"
+    return "Not many"
+
+
+def years_text(years: float) -> str:
+    """1.0 -> "1 year", 2.0 -> "2 years", 1.5 -> "1.5 years"."""
+    n = int(years) if float(years).is_integer() else round(years, 1)
+    return f"{n} year" if n == 1 else f"{n} years"
+
+
+def _experience_advice(gap, target: TargetRole) -> ExperienceAdvice:
+    match = re.search(r"\d+(?:\.\d+)?", gap.item)
+    years = float(match.group()) if match else None
+    if target.level == "internship":
+        message = ("Internships don't expect work experience, so this plan focuses on the skills and "
+                   "projects that get you hired.")
+    else:
+        first_job = (f"a junior {target.title} job" if target.level in ("mid", "senior") else
+                     catalog.entry_roles().get(target.role or "", "an entry-level job in this field"))
+        need = "about " + years_text(years).replace(" ", " more ", 1) + " of" if years else "more"
+        message = (f"Most {target.title} roles want {need} work experience, and studying can't replace that. "
+                   f"The most direct way to get it is {first_job}. The steps below make you a stronger "
+                   "candidate for it.")
+    return ExperienceAdvice(gap_id=gap.gap_id, years=years, message=message)
 
 
 def _clean(text: str) -> str:
@@ -78,11 +114,12 @@ def _learn_step(r: dict, skill: str, **common) -> Step:
                 resource_ids=[r["id"]], est_hours=r["hours"] or DEFAULT_COURSE_HOURS)
 
 
-def _step_for(gap, target: TargetRole) -> Optional[Step]:
+def _step_for(gap, target: TargetRole, measured: bool = False) -> Optional[Step]:
     skill = _clean(gap.item)
     common = dict(step_id="S0", priority=PRIORITY_FROM_SEVERITY[gap.severity], phase="first_30_days",
                   gap_ids=[gap.gap_id], depends_on=[],
-                  why=f"{gap.peer_share}% of {target.title} hires have {skill} ({gap.severity} priority).")
+                  why=f"{share_words(gap.peer_share, measured)} {target.title} hires have {skill} "
+                      f"({gap.severity} priority).")
     res = catalog.resources_for(gap.item, target.level, target.role)
     proj = catalog.projects_for(gap.item, target.level, target.role)
 
@@ -162,10 +199,12 @@ def _suggestions(step: Step, gap, target: TargetRole, budget_left: Optional[int]
 
 def build_plan(gap_list: GapList, today: Optional[date] = None) -> RoadmapDraft:
     role, ctx = gap_list.target_role, gap_list.user_context
-    if not gap_list.gaps:
+    # Something no hire has isn't something to work on: leave it out entirely.
+    gaps = sorted((g for g in gap_list.gaps if g.peer_share > 0),
+                  key=lambda g: (SEV_ORDER[g.severity], -g.peer_share))
+    if not gaps:
         return RoadmapDraft(summary=f"You already match what most {role.title} hires have. No gaps to close.",
                             steps=[], deferred=[])
-    gaps = sorted(gap_list.gaps, key=lambda g: (SEV_ORDER[g.severity], -g.peer_share))
     gap_by_id = {g.gap_id: g for g in gaps}
     budget = ctx.budget_usd
     res = catalog.resources()
@@ -176,8 +215,14 @@ def build_plan(gap_list: GapList, today: Optional[date] = None) -> RoadmapDraft:
     # 1. one step per gap; gaps sharing a project template share the step
     candidates: list[Step] = []
     by_project: dict[str, Step] = {}
+    experience: Optional[ExperienceAdvice] = None
     for gap in gaps:
-        step = _step_for(gap, role)
+        if gap.category == "experience" and EXPERIENCE_RE.search(gap.item):
+            advice = _experience_advice(gap, role)
+            experience = experience or advice
+            deferred.append(Deferred(gap_id=gap.gap_id, reason=advice.message))
+            continue
+        step = _step_for(gap, role, gap_list.peer_share_measured)
         if step is None:
             deferred.append(Deferred(gap_id=gap.gap_id, reason=(
                 "No curated resource or project for this gap yet; ask a mentor or add one to the catalog.")))
@@ -274,4 +319,5 @@ def build_plan(gap_list: GapList, today: Optional[date] = None) -> RoadmapDraft:
         summary += " Big priorities were shortened to fit your time rather than dropped."
     if optional:
         summary += f" {len(optional)} optional item(s) are kept aside in case you get more time or budget."
-    return RoadmapDraft(summary=summary, steps=timeline, deferred=deferred, optional=optional)
+    return RoadmapDraft(summary=summary, steps=timeline, deferred=deferred, optional=optional,
+                        experience=experience)

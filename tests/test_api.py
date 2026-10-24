@@ -1,184 +1,87 @@
-"""
-tests/test_api.py
------------------
-Integration tests for the FastAPI layer (Component 3, Person B).
-
-Run:
-    pytest tests/test_api.py -v
-"""
-
-from __future__ import annotations
-
+"""The API behind the React front end (api.py)."""
 import pytest
-from fastapi.testclient import TestClient
 
-from api.main import app
-from api.mock_data import MOCK_REQUESTS, MOCK_ROLE
-from role_profiles import ROLE_PROFILES
+pytest.importorskip("fastapi")
+from fastapi.testclient import TestClient  # noqa: E402
 
-client = TestClient(app)
+import api  # noqa: E402
 
-
-# ---------------------------------------------------------------------------
-# /health
-# ---------------------------------------------------------------------------
+LIVE_SERVER = "http://127.0.0.1:5500"
+TIME = {"hours_per_week": "steady", "target_date": "05-31-2027", "start_date": "11-02-2026"}
 
 
-def test_health():
-    resp = client.get("/health")
-    assert resp.status_code == 200
-    assert resp.json() == {"status": "ok"}
+@pytest.fixture(autouse=True)
+def no_model(monkeypatch):
+    monkeypatch.setenv("ROADMAP_AI", "0")
 
 
-# ---------------------------------------------------------------------------
-# GET /roles
-# ---------------------------------------------------------------------------
+@pytest.fixture
+def client():
+    return TestClient(api.app)
 
 
-def test_roles_returns_all_roles():
-    resp = client.get("/roles")
-    assert resp.status_code == 200
-    data = resp.json()
-    assert "roles" in data
-    returned_names = {r["role"] for r in data["roles"]}
-    assert returned_names == set(ROLE_PROFILES.keys())
+def post(client, files=None, **fields):
+    data = {"roles": ["Data Scientist"], **TIME, **fields}
+    return client.post("/api/roadmaps", data=data, files=files)
 
 
-def test_roles_profile_shape():
-    resp = client.get("/roles")
-    for role in resp.json()["roles"]:
-        assert "role" in role
-        assert "required_skills" in role
-        assert "preferred_skills" in role
-        assert "avg_years_experience" in role
-        assert isinstance(role["required_skills"], list)
-        for skill_entry in role["required_skills"]:
-            assert "skill" in skill_entry
-            assert "frequency" in skill_entry
+def test_options_drive_the_form(client):
+    body = client.get("/api/options").json()
+    assert len(body["roles"]) == 9 and body["date_format"] == "MM-DD-YYYY"
+    assert {w["value"] for w in body["workloads"]} >= {"light", "steady"}
+    assert any(q["id"] == "target_date" and q["required"] for q in body["questions"])
 
 
-# ---------------------------------------------------------------------------
-# POST /analyze — happy paths via role name
-# ---------------------------------------------------------------------------
+def test_roadmap_from_typed_skills(client):
+    res = post(client, skills_text="Python, SQL")
+    assert res.status_code == 200, res.text
+    body = res.json()
+    result = body["results"][0]
+    assert not body["starting_from_scratch"] and result["role"] == "Data Scientist"
+    roadmap = result["roadmap"]
+    assert roadmap["steps"] and roadmap["start_date"] == "2026-11-02" and roadmap["target_date"] == "2027-05-31"
+    assert all(s["resources"] for s in roadmap["steps"] if s["resource_ids"])  # links resolved
+    assert set(result["gap_names"]) == {g for s in roadmap["steps"] for g in s["gap_ids"]} | \
+        {g for s in roadmap["optional"] for g in s["gap_ids"]} | {d["gap_id"] for d in roadmap["deferred"]}
 
 
-@pytest.mark.parametrize("fixture", MOCK_REQUESTS, ids=[f["_name"] for f in MOCK_REQUESTS])
-def test_analyze_role_name(fixture):
-    payload = {k: v for k, v in fixture.items() if not k.startswith("_")}
-    resp = client.post("/analyze", json=payload)
-    assert resp.status_code == 200, resp.text
-    data = resp.json()
-
-    assert "match_score" in data
-    assert 0 <= data["match_score"] <= 100
-    assert isinstance(data["skills_present"], list)
-    assert isinstance(data["skills_missing"], list)
-    assert isinstance(data["experience_gap"], (float, int))
-    assert data["experience_gap"] >= 0
-    assert isinstance(data["weak_areas"], list)
-
-    for s in data["skills_missing"]:
-        assert "skill" in s
-        assert "priority" in s
-        assert "frequency" in s
+def test_nothing_given_means_starting_from_scratch(client):
+    body = post(client).json()
+    assert body["starting_from_scratch"] and body["results"][0]["roadmap"]["steps"]
 
 
-def test_analyze_score_improves_with_more_skills():
-    """A resume with more matching skills should score higher."""
-    strong_resp = client.post("/analyze", json={"resume": MOCK_REQUESTS[0]["resume"], "role": "Data Scientist"})
-    weak_resp = client.post("/analyze", json={"resume": MOCK_REQUESTS[1]["resume"], "role": "Data Scientist"})
-    assert strong_resp.json()["match_score"] > weak_resp.json()["match_score"]
+def test_resume_upload(client):
+    res = post(client, files={"resume": ("resume.txt", b"Skills: Python, Pandas, SQL", "text/plain")})
+    assert res.status_code == 200 and not res.json()["starting_from_scratch"]
 
 
-def test_analyze_no_skills_scores_zero():
-    """A resume with no skills should score 0."""
-    payload = {
-        "resume": {"skills": [], "experience_years": 0.0},
-        "role": "Data Scientist",
-    }
-    resp = client.post("/analyze", json=payload)
-    assert resp.status_code == 200
-    assert resp.json()["match_score"] == 0
+def test_bad_resume_is_a_readable_error(client):
+    res = post(client, files={"resume": ("resume.docx", b"...", "application/octet-stream")})
+    assert res.status_code == 400 and "PDF or UTF-8 text" in res.json()["detail"]
 
 
-# ---------------------------------------------------------------------------
-# POST /analyze — custom role_profile path
-# ---------------------------------------------------------------------------
+def test_one_roadmap_per_role(client):
+    res = post(client, roles=["Data Scientist", "QA Engineer", "Data Scientist"])
+    assert [r["role"] for r in res.json()["results"]] == ["Data Scientist", "QA Engineer"]
 
 
-def test_analyze_custom_role_profile():
-    resp = client.post("/analyze", json=MOCK_ROLE)
-    assert resp.status_code == 200
-    data = resp.json()
-    assert 0 <= data["match_score"] <= 100
-    # Candidate has Python and Tableau, missing SQL and dbt
-    present = [s.lower() for s in data["skills_present"]]
-    assert "python" in present
+@pytest.mark.parametrize("fields, message", [
+    ({"target_date": ""}, "Please answer"),
+    ({"target_date": "31-05-2027"}, "MM-DD-YYYY"),
+    ({"hours_per_week": "lots"}, "number of hours"),
+    ({"budget_usd": "a lot"}, "dollar amount"),
+    ({"roles": ["Astronaut"]}, "listed roles"),
+    ({"level": "wizard"}, "experience level"),
+    ({"roles": []}, "listed roles"),
+    ({"experience_years": "-3"}, "Please check: experience years"),
+])
+def test_bad_answers_get_a_clear_message(client, fields, message):
+    res = post(client, **fields)
+    assert res.status_code == 400 and message in res.json()["detail"], res.text
 
 
-def test_analyze_role_profile_takes_precedence():
-    """When both role and role_profile are given, role_profile wins."""
-    payload = {**MOCK_ROLE, "role": "Data Scientist"}
-    resp = client.post("/analyze", json=payload)
-    assert resp.status_code == 200
-    # The custom role has 3 required + 2 preferred skills, not the DS profile
-    # so skills_missing should reference SQL / dbt, not DS-specific skills
-    missing_names = [s["skill"] for s in resp.json()["skills_missing"]]
-    assert any(s in missing_names for s in ["SQL", "dbt"])
-
-
-# ---------------------------------------------------------------------------
-# POST /analyze — error cases
-# ---------------------------------------------------------------------------
-
-
-def test_analyze_missing_both_role_and_profile():
-    payload = {"resume": {"skills": ["Python"], "experience_years": 1.0}}
-    resp = client.post("/analyze", json=payload)
-    assert resp.status_code == 400
-
-
-def test_analyze_unknown_role():
-    payload = {"resume": {"skills": ["Python"], "experience_years": 1.0}, "role": "Astronaut"}
-    resp = client.post("/analyze", json=payload)
-    assert resp.status_code == 404
-    assert "Astronaut" in resp.json()["detail"]
-
-
-def test_analyze_missing_resume():
-    resp = client.post("/analyze", json={"role": "Data Scientist"})
-    assert resp.status_code == 422  # Pydantic validation error
-
-
-def test_analyze_invalid_frequency():
-    """Frequencies outside 0–1 should be rejected by Pydantic."""
-    payload = {
-        "resume": {"skills": ["Python"], "experience_years": 1.0},
-        "role_profile": {
-            "role": "Test Role",
-            "required_skills": [{"skill": "Python", "frequency": 1.5}],  # invalid
-            "avg_years_experience": 1.0,
-        },
-    }
-    resp = client.post("/analyze", json=payload)
-    assert resp.status_code == 422
-
-
-# ---------------------------------------------------------------------------
-# Priority ordering
-# ---------------------------------------------------------------------------
-
-
-def test_missing_skills_sorted_by_priority():
-    resp = client.post("/analyze", json={"resume": {"skills": [], "experience_years": 0.0}, "role": "Data Scientist"})
-    assert resp.status_code == 200
-    missing = resp.json()["skills_missing"]
-    priorities = [s["priority"] for s in missing]
-    assert priorities == sorted(priorities)
-
-
-def test_missing_skills_sorted_by_frequency_desc():
-    resp = client.post("/analyze", json={"resume": {"skills": [], "experience_years": 0.0}, "role": "Data Scientist"})
-    missing = resp.json()["skills_missing"]
-    freqs = [s["frequency"] for s in missing]
-    assert freqs == sorted(freqs, reverse=True)
+def test_only_live_server_may_call_it(client):
+    ok = client.get("/api/health", headers={"Origin": LIVE_SERVER})
+    other = client.get("/api/health", headers={"Origin": "https://evil.example"})
+    assert ok.headers.get("access-control-allow-origin") == LIVE_SERVER
+    assert "access-control-allow-origin" not in other.headers

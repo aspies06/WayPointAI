@@ -4,26 +4,38 @@ for the role and experience level a user is targeting.
 
 ## Run the web interface
 
-The Gradio interface accepts a PDF or UTF-8 text resume and one or more target
-tech roles. It matches resume text against the selected role profiles in
-`role_profiles.py`, uses `gap_analyzer.py` to calculate skill gaps, and generates
-a role-specific roadmap using the curated catalog and planner in `roadmap/`.
-Resume matching is deterministic and based on explicit mentions of profile
-skills; it is not a general-purpose resume parser.
+The interface is a React app in `web/` that talks to a small Python API
+(`api.py`). It accepts a PDF or UTF-8 text resume (or typed skills, or
+neither) and one or more target tech roles, asks how much time and money the
+user has, and shows one roadmap per role: the most important work first, a
+dated timeline, source links, and optional items behind a button.
 
-Roadmap preferences include experience level, years of relevant experience,
-weekly study time, target timeline, budget, and optional background context.
-See [docs/gap_list_spec.md](docs/gap_list_spec.md) for the roadmap input format.
+Under the hood, `career_pipeline.py` matches resume text against the role
+profiles in `role_profiles.py`, `gap_analyzer.py` calculates the skill gaps,
+and `roadmap/` builds the roadmap from the curated catalog. Resume matching is
+deterministic and based on explicit mentions of profile skills; it is not a
+general-purpose resume parser. See [docs/gap_list_spec.md](docs/gap_list_spec.md)
+for the roadmap input format.
 
-Install dependencies and start the app:
+1. Install the Python dependencies and start the API (it listens on this computer only):
 
-```bash
-python -m pip install -r requirements.txt
-python app.py
-```
+   ```bash
+   python -m pip install -r requirements.txt
+   python api.py            # http://127.0.0.1:8000, interactive docs at /docs
+   ```
 
-To skip optional model-generated tips and use the rule-based roadmap, set
-`ROADMAP_AI=0` before starting the app.
+   To skip the optional model-generated tips and use the rule-based roadmap, set
+   `ROADMAP_AI=0` before starting it.
+
+2. Open the folder in VS Code and click **Go Live** (Live Server extension).
+   `.vscode/settings.json` points Live Server at `web/` on port 5500, so the app
+   opens at http://127.0.0.1:5500 and reloads whenever you save a file.
+
+There's no build step and nothing to install for the front end. See
+[web/README.md](web/README.md) for how it's organized.
+
+The older Gradio interface (`python app.py`) still works while the team
+switches over.
 
 ## Roadmap module
 

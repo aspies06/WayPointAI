@@ -65,7 +65,8 @@ lists what to ask. It never guesses.
 | `gap_id` | string, ≤40 chars | Unique within the list. The roadmap refers to gaps by this ID. |
 | `item` | string, ≤120 chars | Short name of the missing thing: "Security+", "React", "Active Directory". Matched against the resource catalog, so plain names work best. |
 | `category` | `cert` \| `skill` \| `tool` \| `experience` \| `education` | |
-| `peer_share` | integer 0–100 | Percent of people in the role who have it. |
+| `peer_share` | integer 0–100 | Percent of people in the role who have it. `0` means no one does, so the gap is left out of the roadmap entirely. |
+| `peer_share_measured` | boolean, top level, default `false` | Set `true` **only** when `peer_share` comes from real hiring data. Otherwise the roadmap doesn't show the number; it says **Most** (65% or more), **Some** (40–64%) or **Not many** (under 40%), because an estimate shown as "72%" looks more precise than it is. Today's `role_profiles.py` values are estimates, so leave this `false` until Component 1's real data arrives. |
 | `severity` | `high` \| `medium` \| `low` | Suggested rule: high if peer_share ≥ 60 or the job post requires it, medium if 30–59, low otherwise. |
 | `user_has` | string or null, ≤200 chars | What the user has instead, if anything. |
 | `user_context` | object, or omitted | Omitted means "not asked yet": `generate_roadmap()` raises `AvailabilityNeeded`. |
@@ -111,7 +112,7 @@ dates, deliverable, source links and any "Worth considering" notes.
       "phase": "first_30_days",
       "type": "project",
       "gap_ids": ["g1"],
-      "why": "80% of Software Engineering Intern hires have Data structures and algorithms practice (high priority).",
+      "why": "Most Software Engineering Intern hires have Data structures and algorithms practice (high priority).",
       "deliverable": "...",
       "done_when": "...",
       "resource_ids": ["R-NEETCODE"],
@@ -142,6 +143,8 @@ dates, deliverable, source links and any "Worth considering" notes.
 - Every input gap appears in at least one step's `gap_ids` or in `deferred`.
 - `cost_usd` on a step is the new spending it needs. A resource that an earlier step already bought counts as $0. Timeline steps add up to no more than `budget_usd`.
 - `benefit`: what finishing the step earns: `certification` (a real exam), `certificate` (a certificate of completion the provider issues), `portfolio` (a project you can show), or `knowledge` (no certificate exists, so the value is the skill itself). Show it as a label.
+- `experience`: set when a gap is years of work experience (category `experience`, e.g. "1 more year of experience"). Experience can't be studied, so it's never a timeline step: `experience.message` says it directly ("Most IT Support Specialist roles want about 1 more year of work experience... The most direct way to get it is a help desk or IT support technician job."). Show it above the timeline. For internships it says experience isn't expected. The first job for each role is listed in `data/entry_roles.json`. The gap is also in `deferred` with the same message.
+- Years are written without a trailing `.0` ("1 year", "2 years", "1.5 years").
 - `shortened_from` / `scope_note`: when must-do work doesn't fit, big steps are cut to fit (title ends "(part 1)") and keep their place at the front. `shortened_from` is the full hours, and the rest is an optional item ending "(part 2)". `scope_note` explains this, or why a cert step became exam prep. Show it when present.
 - `suggestions`: "Worth considering" notes, at most two per step, each with `kind` (`credential`, `cheaper` or `faster`), `reason` and a `resource` link. They may go over the budget on purpose.
 - `optional`: everything that isn't on the user's timeline, for the UI to show behind a button. Each item is a full step (deliverable, links, cost, hours) with no dates, IDs `O1`, `O2`, ... `optional_because` is `time` (doesn't fit, or the part 2 of a shortened step) or `budget` (over what the user chose to spend, including an exam whose prep is on the timeline). Gaps that are only in optional items are also in `deferred`, with a reason naming the item. Gaps with nothing in the catalog appear only in `deferred`, and the optional section lists them as "Not covered yet".
