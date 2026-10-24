@@ -113,7 +113,7 @@ body::before {
 /* Dark mode keeps the logo's dark outlines; a soft light glow traces them so they stay visible. */
 :root[data-theme="dark"] .brand-logo {
   --behind: 0.45;
-  filter: drop-shadow(0 0 1px rgb(231 235 240 / 0.95)) drop-shadow(0 0 3px rgb(231 235 240 / 0.6));
+  filter: drop-shadow(0 0 1px rgb(231 235 240 / 0.64)) drop-shadow(0 0 3px rgb(231 235 240 / 0.4));
 }
 .brand-text { text-shadow: 0 0 2px var(--surface); }
 .tagline { margin: 0 auto; color: var(--muted); max-width: 680px; text-align: center; }
