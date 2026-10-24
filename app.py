@@ -140,6 +140,7 @@ def render_roadmap(gap_list: dict) -> str:
 
 def generate_career_roadmaps(
     uploaded_file: str | None,
+    skills_text: str | None,
     roles: list[str] | None,
     level_label: str,
     experience_years: float,
@@ -148,18 +149,27 @@ def generate_career_roadmaps(
     budget_usd: int,
     background: str,
 ) -> str:
-    if not uploaded_file:
-        raise gr.Error("Please upload your resume.")
     if not roles:
         raise gr.Error("Select at least one tech role.")
 
-    file_path = Path(uploaded_file)
-    content = file_path.read_bytes()
-    if len(content) > MAX_UPLOAD_BYTES:
-        raise gr.Error("The uploaded file must be 10 MB or smaller.")
-    resume_text = extract_resume_text(file_path.name, content)
+    resume_text = ""
+    if uploaded_file:
+        file_path = Path(uploaded_file)
+        content = file_path.read_bytes()
+        if len(content) > MAX_UPLOAD_BYTES:
+            raise gr.Error("The uploaded file must be 10 MB or smaller.")
+        resume_text = extract_resume_text(file_path.name, content)
+
+    # Typed skills work with or without a resume; they're matched the same way.
+    typed_skills = (skills_text or "").strip()
+    resume_text = f"{resume_text}\n{typed_skills}".strip()[:MAX_RESUME_CHARACTERS]
 
     sections = []
+    if not resume_text:
+        sections.append(
+            "> **Note:** No resume or skills were given, so these roadmaps "
+            "assume you're starting from scratch."
+        )
     for role in roles:
         role_profile = ROLE_PROFILES[role]
         resume = {
@@ -176,7 +186,7 @@ def generate_career_roadmaps(
             "hours_per_week": hours_per_week,
             "target_date": (date.today() + timedelta(days=timeline_days)).isoformat(),
             "budget_usd": budget_usd,
-            "background": background[:600],
+            "background": (background or "")[:600],  # Gradio sends None for an empty box
         }
         gap_list = build_gap_list(
             gap_result,
@@ -192,15 +202,15 @@ def generate_career_roadmaps(
 with gr.Blocks(title="WayPointAI Career Roadmap") as demo:
     gr.Markdown("# WayPointAI Career Roadmap")
     gr.Markdown(
-        "Upload a resume and select one or more tech roles. WayPointAI checks for "
-        "skills mentioned in your resume, compares them with each role profile, "
+        "Upload a resume (or type your skills) and select one or more tech roles. "
+        "WayPointAI checks for the skills you have, compares them with each role profile, "
         "and builds a roadmap from the curated catalog. Resume text is processed "
         "locally and is not sent to an inference service."
     )
 
     with gr.Row():
         resume_file = gr.File(
-            label="Resume (PDF or UTF-8 text)",
+            label="Resume (PDF or UTF-8 text, optional)",
             file_types=[".pdf", ".txt"],
             type="filepath",
         )
@@ -209,6 +219,13 @@ with gr.Blocks(title="WayPointAI Career Roadmap") as demo:
             multiselect=True,
             label="Tech roles you are interested in",
         )
+
+    skills_text = gr.Textbox(
+        label="No resume? Enter your skills instead (optional)",
+        placeholder="For example: Python, SQL, Git, Excel. Leave blank to start from scratch.",
+        lines=2,
+        max_lines=4,
+    )
 
     with gr.Accordion("Roadmap preferences", open=False):
         level = gr.Dropdown(
@@ -255,6 +272,7 @@ with gr.Blocks(title="WayPointAI Career Roadmap") as demo:
         fn=generate_career_roadmaps,
         inputs=[
             resume_file,
+            skills_text,
             roles,
             level,
             experience_years,
