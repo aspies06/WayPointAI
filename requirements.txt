@@ -3,9 +3,15 @@ torch
 torchvision
 transformers>=4.51  # Qwen3, the resume writer, needs 4.51 or newer
 pydantic>=2.14,<3
-pytest>=9
+
 # API for the React front end (web/) and the gap analysis endpoints
 fastapi>=0.111,<1
 uvicorn[standard]>=0.29
 python-multipart
+
+# Optional standalone roadmap demo UI
+streamlit>=1.37
+
+# Test dependencies
+pytest>=9
 httpx>=0.27  # FastAPI's TestClient needs it
