@@ -5,3 +5,7 @@ torchvision
 transformers
 pydantic>=2.14,<3
 pytest>=9
+# API for the React front end (web/)
+fastapi
+uvicorn
+python-multipart

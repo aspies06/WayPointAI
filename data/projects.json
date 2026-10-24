@@ -1787,30 +1787,6 @@
     "Security Engineer",
     "IT Support Specialist"
    ]
-  },
-  {
-   "id": "P-REAL-EXPERIENCE",
-   "title": "Get real-world experience on a real team",
-   "matches": [
-    "years of experience",
-    "more years of experience",
-    "work experience",
-    "industry experience",
-    "relevant experience",
-    "internship experience"
-   ],
-   "deliverable": "An internship, part-time job, freelance project, research role or sustained open-source contribution, listed on your resume with dates, your role and one measurable result",
-   "done_when": "You've been at it for at least 8 weeks and can describe the team, your responsibilities and the result in an interview",
-   "est_hours": 80,
-   "resource_ids": [
-    "R-GOOD-FIRST-ISSUE",
-    "R-MEETUP"
-   ],
-   "levels": [
-    "internship",
-    "entry",
-    "mid"
-   ]
   }
  ]
 }
