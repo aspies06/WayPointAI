@@ -661,3 +661,45 @@ def test_gap_analyzer_years_have_no_decimal():
             text = render.to_markdown(r, {g["gap_id"]: g["item"] for g in gl["gaps"]})
             assert not re.search(r"\b\d+\.0\b", text), role
             assert not re.search(r"\b\d+% of [\w/ ]+ hires\b", text), role  # estimates are said in words
+
+
+# ---------- local model: timeout and device choice ----------
+
+def fake_torch(cuda_free=None, mps_free=None):
+    """Stands in for torch: cuda_free / mps_free are free bytes, or None if that GPU is absent."""
+    from types import SimpleNamespace as NS
+    return NS(
+        cuda=NS(is_available=lambda: cuda_free is not None, mem_get_info=lambda: (cuda_free, 24e9)),
+        backends=NS(mps=NS(is_available=lambda: mps_free is not None)),
+        mps=NS(recommended_max_memory=lambda: mps_free, driver_allocated_memory=lambda: 0),
+    )
+
+
+GB = 1_000_000_000
+
+
+def test_timeout_defaults_to_two_minutes():
+    import importlib
+    import os
+    if "ROADMAP_TIMEOUT_S" not in os.environ:
+        assert importlib.reload(local_model).TIMEOUT_S == 120
+
+
+@pytest.mark.parametrize("torch_, requested, device", [
+    (fake_torch(), "auto", "cpu"),                       # no GPU at all
+    (fake_torch(mps_free=8 * GB), "auto", "mps"),        # Apple GPU with room
+    (fake_torch(cuda_free=8 * GB), "auto", "cuda"),      # NVIDIA GPU with room
+    (fake_torch(cuda_free=1 * GB), "auto", "cpu"),       # not enough free GPU memory
+    (fake_torch(mps_free=8 * GB), "cpu", "cpu"),         # user forced the CPU
+    (fake_torch(mps_free=8 * GB), "cuda", "cpu"),        # asked for CUDA on a Mac
+    (fake_torch(cuda_free=8 * GB), "cuda", "cuda"),
+])
+def test_device_choice(torch_, requested, device):
+    chosen, reason = local_model.choose_device(torch_, weight_bytes=1 * GB, requested=requested)
+    assert chosen == device and reason
+
+
+def test_gpu_needs_room_for_more_than_the_weights():
+    just_the_weights = fake_torch(cuda_free=1 * GB)
+    assert local_model.choose_device(just_the_weights, 1 * GB, "auto")[0] == "cpu"
+    assert local_model.choose_device(fake_torch(cuda_free=2 * GB), 1 * GB, "auto")[0] == "cuda"

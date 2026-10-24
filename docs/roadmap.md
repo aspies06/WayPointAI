@@ -39,7 +39,7 @@ ROADMAP_AI=0 .venv/bin/python -m roadmap tests/personas/swe_intern.json --ask   
 |---|---|---|
 | Demo mode (`ROADMAP_DEMO=1`) | Saved roadmaps from `demo/`, no model | Personalized roadmap |
 | Cache | Same gap list already personalized today | Personalized roadmap |
-| Local model (45s timeout) | Normal path; each tip must pass the line checks | Personalized roadmap |
+| Local model (120s timeout, GPU if it has room) | Normal path; each tip must pass the line checks | Personalized roadmap |
 | Basic roadmap | Model off, busy, slow, failed, or every tip rejected | Basic roadmap |
 
 Guardrails (`roadmap/guardrails.py`) run on every roadmap. They fail it if:
@@ -79,6 +79,11 @@ Text in the gap list is treated as data. The model's tips may not contain links,
 - Model calls run on `ROADMAP_MODEL_WORKERS` threads (default 1). When every worker is busy, a request gets the basic roadmap immediately instead of waiting in a queue.
 - See **Privacy** below for how cached roadmaps are handled.
 - All options are listed in `.env.example`.
+
+## The tip model
+
+- **Timeout:** 120 seconds (`ROADMAP_TIMEOUT_S`). The first run also downloads the model (about 315 seconds on our test machine), so call `local_model.warm_up()` at app start, or the first user's request will time out.
+- **Device:** `ROADMAP_DEVICE=auto` (default) runs on the GPU (NVIDIA via CUDA, or Apple via Metal) when it has free memory for the model plus working room (1.5x the weights); otherwise the CPU. Set `cpu`, `cuda` or `mps` to choose. If moving to the GPU fails, it stays on the CPU. The log says which device was chosen and why. On an Apple M5, one roadmap took 4.7 s on the GPU and 8.5 s on the CPU.
 
 ## Privacy
 
