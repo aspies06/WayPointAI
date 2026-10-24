@@ -95,7 +95,7 @@ def match_skills(
         if canonical in resume_set:
             present.append(canonical)
         else:
-            missing.append({"skill": entry["skill"], "frequency": entry["frequency"]})
+            missing.append(dict(entry))  # keeps where the skill came from (basis, importance)
 
     return present, missing
 
@@ -116,7 +116,7 @@ def rank_missing_skills(missing: list[dict]) -> list[dict]:
     """
     sorted_skills = sorted(missing, key=lambda x: x["frequency"], reverse=True)
     return [
-        {"skill": entry["skill"], "priority": i + 1, "frequency": entry["frequency"]}
+        {**entry, "priority": i + 1}
         for i, entry in enumerate(sorted_skills)
     ]
 
@@ -300,6 +300,9 @@ def build_gap_list(
             "peer_share": peer_share,
             "severity": _severity(peer_share),
             "user_has": user_has,
+            # How the roadmap should describe it: O*NET importance ratings and in-demand flags
+            # aren't shares of hires, so they're worded differently.
+            **{key: entry[key] for key in ("basis", "importance") if key in entry},
         })
         gap_id += 1
 

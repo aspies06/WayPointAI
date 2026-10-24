@@ -1,12 +1,25 @@
 """
 role_profiles.py
 ----------------
-Stub role profiles for the 9 tech roles supported by WayPointAI.
+Role profiles for the 9 tech roles supported by WayPointAI, built from O*NET 31.0
+(U.S. Department of Labor, Employment and Training Administration; CC BY 4.0).
 
-These are stand-ins until Component 1 (data engineering) delivers real
-profiles built from O*NET and Kaggle job postings.  Frequencies are
-reasonable approximations based on common job posting patterns — replace
-them wholesale once the real data arrives.
+Each profile comes from the closest O*NET occupation (see data/role_insights.json, built by
+scripts/build_role_insights.py). Nothing here is hand-estimated:
+
+- required_skills: technologies O*NET flags as In Demand for the occupation (often listed
+  in employer job postings), named the way resumes name them ("AWS", "SQL").
+- preferred_skills: transferable skills rated 3.75 or higher in importance (1-5) by people
+  who hold the job, e.g. Programming.
+- avg_years_experience: the median related work experience workers report (lower bound of
+  the median O*NET category). O*NET covers workers at all career stages, so this is only
+  applied to mid-level and senior targets (see career_pipeline.py).
+- common_education: education levels at least 20% of workers report the job requires.
+
+O*NET measures importance and demand, not the share of hires who have a skill, so each skill
+records its `basis` and the roadmap words it accordingly. `frequency` only orders skills:
+in-demand technologies that are also Hot 0.7, other in-demand technologies 0.5, rated skills
+(importance - 1) / 4 (O*NET's standard 0-100 conversion, as a fraction).
 
 Usage
 -----
@@ -18,216 +31,56 @@ Usage
 
 from __future__ import annotations
 
-ROLE_PROFILES: dict[str, dict] = {
-    "Software Engineer": {
-        "role": "Software Engineer",
-        "required_skills": [
-            {"skill": "Python",                     "frequency": 0.85},
-            {"skill": "Data Structures & Algorithms","frequency": 0.82},
-            {"skill": "Git",                         "frequency": 0.80},
-            {"skill": "SQL",                         "frequency": 0.72},
-            {"skill": "System Design",               "frequency": 0.68},
-            {"skill": "Java",                        "frequency": 0.60},
-            {"skill": "REST APIs",                   "frequency": 0.65},
-            {"skill": "Linux",                       "frequency": 0.55},
-        ],
-        "preferred_skills": [
-            {"skill": "Docker",                      "frequency": 0.48},
-            {"skill": "Kubernetes",                  "frequency": 0.38},
-            {"skill": "AWS",                         "frequency": 0.45},
-            {"skill": "TypeScript",                  "frequency": 0.40},
-            {"skill": "React",                       "frequency": 0.38},
-            {"skill": "CI/CD",                       "frequency": 0.42},
-        ],
-        "avg_years_experience": 2.0,
-        "common_education": ["Computer Science", "Software Engineering", "Electrical Engineering"],
-    },
+from role_insights import _data, match_terms
 
-    "AI/ML Engineer": {
-        "role": "AI/ML Engineer",
-        "required_skills": [
-            {"skill": "Python",                      "frequency": 0.95},
-            {"skill": "Machine Learning",            "frequency": 0.92},
-            {"skill": "Deep Learning",               "frequency": 0.80},
-            {"skill": "PyTorch",                     "frequency": 0.72},
-            {"skill": "TensorFlow",                  "frequency": 0.68},
-            {"skill": "SQL",                         "frequency": 0.65},
-            {"skill": "Data Structures & Algorithms","frequency": 0.60},
-            {"skill": "Git",                         "frequency": 0.75},
-        ],
-        "preferred_skills": [
-            {"skill": "MLflow",                      "frequency": 0.42},
-            {"skill": "Hugging Face Transformers",   "frequency": 0.45},
-            {"skill": "AWS",                         "frequency": 0.40},
-            {"skill": "Docker",                      "frequency": 0.38},
-            {"skill": "Scikit-learn",                "frequency": 0.55},
-            {"skill": "Natural Language Processing", "frequency": 0.48},
-            {"skill": "Computer Vision",             "frequency": 0.40},
-        ],
-        "avg_years_experience": 2.5,
-        "common_education": ["Computer Science", "Mathematics", "Statistics", "Electrical Engineering"],
-    },
+MIN_IMPORTANCE = 3.75
+MIN_EDUCATION_SHARE = 0.2
+# Lower bound in years of each O*NET Related Work Experience category.
+EXPERIENCE_YEARS = {1: 0, 2: 0, 3: 1 / 12, 4: 0.25, 5: 0.5, 6: 1, 7: 2, 8: 4, 9: 6, 10: 8, 11: 10}
+KEEP_VENDOR = {"Office", "Project", "Teams"}  # too generic without "Microsoft"
 
-    "Data Scientist": {
-        "role": "Data Scientist",
-        "required_skills": [
-            {"skill": "Python",                      "frequency": 0.93},
-            {"skill": "SQL",                         "frequency": 0.88},
-            {"skill": "Machine Learning",            "frequency": 0.82},
-            {"skill": "Statistics",                  "frequency": 0.80},
-            {"skill": "Data Visualization",          "frequency": 0.72},
-            {"skill": "Pandas",                      "frequency": 0.75},
-            {"skill": "Scikit-learn",                "frequency": 0.68},
-        ],
-        "preferred_skills": [
-            {"skill": "R",                           "frequency": 0.45},
-            {"skill": "Tableau",                     "frequency": 0.42},
-            {"skill": "Spark",                       "frequency": 0.38},
-            {"skill": "TensorFlow",                  "frequency": 0.35},
-            {"skill": "AWS",                         "frequency": 0.38},
-            {"skill": "A/B Testing",                 "frequency": 0.40},
-            {"skill": "Deep Learning",               "frequency": 0.35},
-        ],
-        "avg_years_experience": 3.0,
-        "common_education": ["Computer Science", "Statistics", "Mathematics", "Economics"],
-    },
 
-    "Security Engineer": {
-        "role": "Security Engineer",
-        "required_skills": [
-            {"skill": "Network Security",            "frequency": 0.85},
-            {"skill": "Linux",                       "frequency": 0.82},
-            {"skill": "Python",                      "frequency": 0.72},
-            {"skill": "Penetration Testing",         "frequency": 0.68},
-            {"skill": "SIEM",                        "frequency": 0.65},
-            {"skill": "Incident Response",           "frequency": 0.70},
-            {"skill": "Firewalls",                   "frequency": 0.75},
-        ],
-        "preferred_skills": [
-            {"skill": "Security+",                   "frequency": 0.55},
-            {"skill": "CEH",                         "frequency": 0.38},
-            {"skill": "CISSP",                       "frequency": 0.32},
-            {"skill": "AWS",                         "frequency": 0.40},
-            {"skill": "Scripting",                   "frequency": 0.48},
-            {"skill": "Wireshark",                   "frequency": 0.45},
-            {"skill": "Vulnerability Assessment",    "frequency": 0.52},
-        ],
-        "avg_years_experience": 3.0,
-        "common_education": ["Computer Science", "Cybersecurity", "Information Technology"],
-    },
+def display_name(name: str) -> str:
+    """The name a resume would use: "Structured query language SQL" -> "SQL",
+    "Microsoft Active Directory" -> "Active Directory"."""
+    terms = match_terms(name)
+    if len(terms) == 1:
+        return name
+    short = terms[1]
+    return name.removesuffix(" software") if short in KEEP_VENDOR else short
 
-    "Computer Engineer": {
-        "role": "Computer Engineer",
-        "required_skills": [
-            {"skill": "C",                           "frequency": 0.82},
-            {"skill": "C++",                         "frequency": 0.80},
-            {"skill": "Embedded Systems",            "frequency": 0.78},
-            {"skill": "Digital Logic Design",        "frequency": 0.72},
-            {"skill": "Microcontrollers",            "frequency": 0.68},
-            {"skill": "Python",                      "frequency": 0.60},
-            {"skill": "VHDL/Verilog",               "frequency": 0.55},
-        ],
-        "preferred_skills": [
-            {"skill": "FPGA",                        "frequency": 0.42},
-            {"skill": "RTOS",                        "frequency": 0.40},
-            {"skill": "PCB Design",                  "frequency": 0.38},
-            {"skill": "Assembly",                    "frequency": 0.35},
-            {"skill": "Linux",                       "frequency": 0.45},
-            {"skill": "Git",                         "frequency": 0.50},
-        ],
-        "avg_years_experience": 2.0,
-        "common_education": ["Computer Engineering", "Electrical Engineering", "Computer Science"],
-    },
 
-    "IT Support Specialist": {
-        "role": "IT Support Specialist",
-        "required_skills": [
-            {"skill": "Windows Administration",      "frequency": 0.88},
-            {"skill": "Active Directory",            "frequency": 0.80},
-            {"skill": "Networking",                  "frequency": 0.78},
-            {"skill": "Troubleshooting",             "frequency": 0.90},
-            {"skill": "Help Desk",                   "frequency": 0.82},
-            {"skill": "Microsoft 365",               "frequency": 0.75},
-        ],
-        "preferred_skills": [
-            {"skill": "CompTIA A+",                  "frequency": 0.58},
-            {"skill": "Linux",                       "frequency": 0.42},
-            {"skill": "Scripting",                   "frequency": 0.38},
-            {"skill": "ITIL",                        "frequency": 0.35},
-            {"skill": "Azure",                       "frequency": 0.40},
-            {"skill": "VPN",                         "frequency": 0.45},
-            {"skill": "Ticketing Systems",           "frequency": 0.55},
-        ],
-        "avg_years_experience": 1.0,
-        "common_education": ["Information Technology", "Computer Science", "Computer Engineering"],
-    },
+def _median_experience(categories: list[dict]) -> float:
+    total = 0.0
+    for category in sorted(categories, key=lambda c: c["category"]):
+        total += category["share"]
+        if total >= 0.5:
+            return float(EXPERIENCE_YEARS[category["category"]])
+    return 0.0
 
-    "Hardware Engineer": {
-        "role": "Hardware Engineer",
-        "required_skills": [
-            {"skill": "PCB Design",                  "frequency": 0.85},
-            {"skill": "Circuit Analysis",            "frequency": 0.82},
-            {"skill": "Altium Designer",             "frequency": 0.72},
-            {"skill": "Embedded Systems",            "frequency": 0.70},
-            {"skill": "Signal Integrity",            "frequency": 0.65},
-            {"skill": "C",                           "frequency": 0.60},
-            {"skill": "Oscilloscope",                "frequency": 0.68},
-        ],
-        "preferred_skills": [
-            {"skill": "FPGA",                        "frequency": 0.45},
-            {"skill": "VHDL/Verilog",               "frequency": 0.42},
-            {"skill": "Python",                      "frequency": 0.38},
-            {"skill": "SPICE Simulation",            "frequency": 0.40},
-            {"skill": "Thermal Analysis",            "frequency": 0.35},
-            {"skill": "DFM",                         "frequency": 0.32},
-        ],
-        "avg_years_experience": 2.5,
-        "common_education": ["Electrical Engineering", "Computer Engineering"],
-    },
 
-    "QA Engineer": {
-        "role": "QA Engineer",
-        "required_skills": [
-            {"skill": "Manual Testing",              "frequency": 0.88},
-            {"skill": "Test Case Design",            "frequency": 0.85},
-            {"skill": "Bug Tracking",                "frequency": 0.82},
-            {"skill": "Selenium",                    "frequency": 0.72},
-            {"skill": "Python",                      "frequency": 0.65},
-            {"skill": "SQL",                         "frequency": 0.62},
-            {"skill": "API Testing",                 "frequency": 0.68},
-        ],
-        "preferred_skills": [
-            {"skill": "Cypress",                     "frequency": 0.42},
-            {"skill": "JIRA",                        "frequency": 0.55},
-            {"skill": "CI/CD",                       "frequency": 0.40},
-            {"skill": "Performance Testing",         "frequency": 0.38},
-            {"skill": "Java",                        "frequency": 0.40},
-            {"skill": "Agile",                       "frequency": 0.50},
-        ],
-        "avg_years_experience": 1.5,
-        "common_education": ["Computer Science", "Software Engineering", "Information Technology"],
-    },
+def _profile(role: str, onet: dict) -> dict:
+    required = [{
+        "skill": display_name(t["name"]),
+        "frequency": 0.7 if t["hot"] else 0.5,
+        "basis": "in_demand",
+        "aliases": match_terms(t["name"]),
+    } for t in onet["technologies"] if t["in_demand"]]
+    preferred = [{
+        "skill": s["name"],
+        "frequency": round((s["importance"] - 1) / 4, 3),
+        "basis": "importance",
+        "importance": s["importance"],
+    } for s in onet["skills"] if s["importance"] >= MIN_IMPORTANCE]
+    return {
+        "role": role,
+        "onet_occupation": onet["title"],
+        "onet_code": onet["code"],
+        "required_skills": required,
+        "preferred_skills": preferred,
+        "avg_years_experience": _median_experience(onet["experience"]),
+        "common_education": [e["level"] for e in onet["education"] if e["share"] >= MIN_EDUCATION_SHARE],
+    }
 
-    "Product Manager": {
-        "role": "Product Manager",
-        "required_skills": [
-            {"skill": "Product Roadmapping",         "frequency": 0.88},
-            {"skill": "User Research",               "frequency": 0.82},
-            {"skill": "Agile",                       "frequency": 0.85},
-            {"skill": "Stakeholder Management",      "frequency": 0.80},
-            {"skill": "Data Analysis",               "frequency": 0.75},
-            {"skill": "SQL",                         "frequency": 0.62},
-            {"skill": "A/B Testing",                 "frequency": 0.60},
-        ],
-        "preferred_skills": [
-            {"skill": "Figma",                       "frequency": 0.48},
-            {"skill": "JIRA",                        "frequency": 0.52},
-            {"skill": "Python",                      "frequency": 0.35},
-            {"skill": "Google Analytics",            "frequency": 0.42},
-            {"skill": "Tableau",                     "frequency": 0.38},
-            {"skill": "OKRs",                        "frequency": 0.45},
-        ],
-        "avg_years_experience": 3.0,
-        "common_education": ["Computer Science", "Business", "Engineering", "Economics"],
-    },
-}
+
+ROLE_PROFILES: dict[str, dict] = {role: _profile(role, entry["onet"]) for role, entry in _data()["roles"].items()}

@@ -1,4 +1,5 @@
-/* WayPointAI: one stylesheet, colors as tokens, light and dark from the system setting. */
+/* WayPointAI: one stylesheet, colors as tokens. data-theme on <html> picks light or dark: it follows
+   the system setting unless the visitor chooses one (see src/theme.js and the script in index.html). */
 :root {
   --bg: #f6f7f9;
   --surface: #ffffff;
@@ -6,7 +7,7 @@
   --text: #17202b;
   --muted: #5b6676;
   --border: #d9dee6;
-  --accent: #1f6feb;
+  --accent: #1a5fd0;
   --accent-text: #ffffff;
   --accent-soft: #e6effd;
   --must: #b42318;
@@ -26,32 +27,30 @@
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0f141a;
-    --surface: #171d25;
-    --surface-2: #1f2731;
-    --text: #e7ebf0;
-    --muted: #9aa5b4;
-    --border: #2c3643;
-    --accent: #4c8dff;
-    --accent-text: #0b1220;
-    --accent-soft: #19283f;
-    --must: #ff8a80;
-    --must-soft: #3a1e1e;
-    --should: #ffc266;
-    --should-soft: #3a2d16;
-    --nice: #8cb8e8;
-    --nice-soft: #1b2a3b;
-    --good: #5fd27a;
-    --warn: #ffb35c;
-    --info-soft: #172538;
-    --warn-soft: #33270f;
-    --error-soft: #3a1e1e;
-    --shadow: none;
-    --photo-veil: rgb(15 20 26 / 0.62);
-    color-scheme: dark;
-  }
+:root[data-theme="dark"] {
+  --bg: #0f141a;
+  --surface: #171d25;
+  --surface-2: #1f2731;
+  --text: #e7ebf0;
+  --muted: #9aa5b4;
+  --border: #2c3643;
+  --accent: #4c8dff;
+  --accent-text: #0b1220;
+  --accent-soft: #19283f;
+  --must: #ff8a80;
+  --must-soft: #3a1e1e;
+  --should: #ffc266;
+  --should-soft: #3a2d16;
+  --nice: #8cb8e8;
+  --nice-soft: #1b2a3b;
+  --good: #5fd27a;
+  --warn: #ffb35c;
+  --info-soft: #172538;
+  --warn-soft: #33270f;
+  --error-soft: #3a1e1e;
+  --shadow: none;
+  --photo-veil: rgb(15 20 26 / 0.62);
+  color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -81,7 +80,10 @@ ul.plain li + li { margin-top: 0.35rem; }
 body::before {
   content: ""; position: fixed; inset: 0; z-index: -1;
   background: linear-gradient(var(--photo-veil), var(--photo-veil)),
-              url("/assets/flowers.jpg") 70% center / cover no-repeat, var(--bg);
+              url("/assets/flowers.jpg") 63% 38% / cover no-repeat, var(--bg);
+  /* Zoomed in on the tulips and vase, shifted down a little. At 1.65x the photo overhangs the
+     top of the screen by about a quarter of its height, so the 8vh shift never shows an edge. */
+  transform: translateY(8vh) scale(1.65); transform-origin: 63% 38%;
 }
 
 .site-header {
@@ -108,7 +110,11 @@ body::before {
   -webkit-mask-image: linear-gradient(to right, #000 0 13%, rgb(0 0 0 / var(--behind)) 15.5% 73%, #000 75.5%);
   mask-image: linear-gradient(to right, #000 0 13%, rgb(0 0 0 / var(--behind)) 15.5% 73%, #000 75.5%);
 }
-@media (prefers-color-scheme: dark) { .brand-logo { --behind: 0.45; } }
+/* Dark mode keeps the logo's dark outlines; a soft light glow traces them so they stay visible. */
+:root[data-theme="dark"] .brand-logo {
+  --behind: 0.45;
+  filter: drop-shadow(0 0 1px rgb(231 235 240 / 0.64)) drop-shadow(0 0 3px rgb(231 235 240 / 0.4));
+}
 .brand-text { text-shadow: 0 0 2px var(--surface); }
 .tagline { margin: 0 auto; color: var(--muted); max-width: 680px; text-align: center; }
 .site-footer {
@@ -247,7 +253,10 @@ button.secondary { background: var(--surface); color: var(--accent); border: 1px
 
 /* Saved experiences and resume drafts */
 [hidden] { display: none !important; }
-.workspace-tabs { margin-bottom: 24px; }
+.workspace-tabs {
+  margin-bottom: 24px; padding: 0 8px; border-radius: var(--radius) var(--radius) 0 0;
+  background: var(--glass); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); /* readable over the photo */
+}
 .resume-builder { overflow-wrap: anywhere; }
 .story-intro { padding: 28px; background: linear-gradient(120deg, var(--accent-soft), var(--surface)); }
 .eyebrow { display: block; color: var(--accent); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-bottom: 10px; }
@@ -289,12 +298,30 @@ button:disabled { opacity: 0.6; cursor: default; }
 .status-message { color: var(--good); font-size: 0.9rem; }
 .status-message:empty { margin: 0; }
 .resume-result { scroll-margin-top: 16px; }
-.resume-preview { white-space: pre-wrap; overflow-wrap: anywhere; font: 0.925rem/1.7 system-ui, sans-serif; border: 1px solid var(--border); border-radius: 8px; background: var(--surface-2); padding: 24px; margin: 20px 0; }
+.resume-preview { white-space: pre-wrap; overflow-wrap: anywhere; font: 0.925rem/1.7 inherit; border: 1px solid var(--border); border-radius: 8px; background: var(--surface-2); padding: 24px; margin: 20px 0; }
 .match-note { font-size: 0.85rem; color: var(--muted); margin: 18px 0 0; }
 .bullet-sources { padding: 14px 0; border-top: 1px solid var(--border); }
 .bullet-sources h3 { font-size: 1rem; }
 .bullet-sources p { font-size: 0.85rem; margin-bottom: 8px; }
 .story-access { margin-top: 24px; }
+.delete-bank { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); }
+
+/* Role insights from O*NET: what people in the job do, and technologies in demand */
+.role-insights { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 28px; margin-top: 8px; }
+.insight-column h3 { font-size: 1rem; margin-bottom: 4px; }
+.insight-column .hint { margin: 0 0 10px; }
+.insight-tasks { margin: 0; padding-left: 1.1rem; font-size: 0.9rem; }
+.insight-tasks li + li { margin-top: 6px; }
+.insight-skills { list-style: none; margin: 0; padding: 0; font-size: 0.9rem; }
+.insight-skills li { display: grid; grid-template-columns: 1fr; gap: 2px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+.role-picker { max-width: 360px; }
+.insight-skills .mark { font-size: 0.75rem; font-weight: 600; }
+.insight-skills .found .mark { color: var(--good); }
+.insight-skills .missing .mark { color: var(--muted); }
+.disclaimer { font-size: 0.85rem; color: var(--muted); border-left: 3px solid var(--warn-soft); padding: 4px 10px; margin: 0 0 14px; }
+.credit { font-size: 0.75rem; color: var(--muted); margin: 24px 0 0; }
+.insight-sources { grid-column: 1 / -1; font-size: 0.75rem; color: var(--muted); margin: 0; }
+@media (max-width: 720px) { .role-insights { grid-template-columns: 1fr; } }
 .story-access form { margin-top: 20px; max-width: 600px; }
 @media (max-width: 560px) {
   .story-intro { padding: 20px; }
@@ -304,3 +331,25 @@ button:disabled { opacity: 0.6; cursor: default; }
   .story-interview, .resume-preview { padding: 16px; }
   .workspace-tabs .tab { padding: 10px; }
 }
+
+/* story bank gate, privacy notice, slogan */
+.bank-gate { margin-top: 12px; max-width: 640px; }
+.bank-gate h3 { margin: 0 0 6px; }
+.check { display: flex; gap: 10px; align-items: flex-start; margin: 4px 0 16px; font-size: 0.9rem; }
+.check input { width: auto; margin-top: 3px; flex: none; }
+.check span { flex: 1; min-width: 0; }
+.privacy-notice { margin-top: 24px; }
+.privacy-notice > summary { color: var(--accent); cursor: pointer; font-weight: 600; }
+.privacy-notice h3 { font-size: 1rem; margin: 18px 0 6px; }
+.privacy-notice ul { margin: 0; padding-left: 20px; }
+.privacy-notice li { margin: 4px 0; font-size: 0.9rem; }
+.site-footer .slogan { font-weight: 600; color: var(--text); margin: 0 0 4px; }
+.site-footer p { margin: 0 0 4px; }
+
+/* theme switch */
+.site-header .wrap { position: relative; }
+.theme-switch { position: absolute; top: -18px; right: 16px; display: flex; gap: 0; padding: 1px;
+  border: 1px solid var(--border); border-radius: 999px; background: var(--surface); font-size: 0.6rem; line-height: 1.3; }
+.theme-switch button { border: 0; background: none; color: var(--muted); padding: 1px 5px; border-radius: 999px; cursor: pointer; font: inherit; }
+.theme-switch button[aria-pressed="true"] { background: var(--accent); color: var(--accent-text); }
+@media (max-width: 600px) { .theme-switch { position: static; width: max-content; margin: -12px auto 12px; } }

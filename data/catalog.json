@@ -39,7 +39,9 @@
     "network+",
     "network plus",
     "a+",
-    "comptia a+"
+    "comptia a+",
+    "windows",
+    "firewall"
    ],
    "credential": null
   },
@@ -56,7 +58,8 @@
     "network+",
     "network plus",
     "tcp/ip",
-    "networking"
+    "networking",
+    "firewall"
    ],
    "roles": [
     "IT Support Specialist",
@@ -442,7 +445,8 @@
    "matches": [
     "python",
     "scripting",
-    "python scripting"
+    "python scripting",
+    "programming"
    ],
    "credential": null
   },
@@ -515,7 +519,9 @@
    "level": "entry",
    "matches": [
     "a+",
-    "comptia a+"
+    "comptia a+",
+    "windows",
+    "ios"
    ],
    "roles": [
     "IT Support Specialist"
@@ -806,7 +812,8 @@
    "matches": [
     "jamf",
     "macos",
-    "apple device management"
+    "apple device management",
+    "ios"
    ],
    "roles": [
     "IT Support Specialist"
@@ -857,7 +864,9 @@
     "full stack",
     "full-stack",
     "backend",
-    "back-end"
+    "back-end",
+    "api",
+    "restful api"
    ],
    "credential": "certificate"
   },
@@ -877,7 +886,8 @@
     "python",
     "sql",
     "web development",
-    "responsive design"
+    "responsive design",
+    "programming"
    ],
    "credential": "certificate"
   },
@@ -897,7 +907,8 @@
     "data structures",
     "algorithms",
     "cs degree",
-    "computer science degree"
+    "computer science degree",
+    "programming"
    ],
    "credential": "certificate"
   },
@@ -2232,7 +2243,9 @@
     "postman",
     "api testing",
     "api tests",
-    "contract testing"
+    "contract testing",
+    "api",
+    "restful api"
    ],
    "credential": null
   },
@@ -2621,6 +2634,353 @@
     "greenbone",
     "vulnerability scanning",
     "vulnerability assessment"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-CSHARP-TOUR",
+   "name": "Microsoft Learn: A tour of C#",
+   "provider": "Microsoft",
+   "url": "https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 10,
+   "level": "entry",
+   "matches": [
+    "c#",
+    ".net"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-GO-TOUR",
+   "name": "A Tour of Go",
+   "provider": "The Go Authors",
+   "url": "https://go.dev/tour/",
+   "type": "docs",
+   "cost_usd": 0,
+   "hours": 8,
+   "level": "entry",
+   "matches": [
+    "go",
+    "golang"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-JENKINS-TUT",
+   "name": "Jenkins tutorials",
+   "provider": "Jenkins project",
+   "url": "https://www.jenkins.io/doc/tutorials/",
+   "type": "docs",
+   "cost_usd": 0,
+   "hours": 6,
+   "level": "entry",
+   "matches": [
+    "jenkins"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-KAFKA-QS",
+   "name": "Apache Kafka Quickstart",
+   "provider": "Apache Software Foundation",
+   "url": "https://kafka.apache.org/quickstart",
+   "type": "docs",
+   "cost_usd": 0,
+   "hours": 4,
+   "level": "entry",
+   "matches": [
+    "kafka"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-HADOOP-SETUP",
+   "name": "Hadoop single-node setup guide",
+   "provider": "Apache Software Foundation",
+   "url": "https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html",
+   "type": "docs",
+   "cost_usd": 0,
+   "hours": 4,
+   "level": "entry",
+   "matches": [
+    "hadoop"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-ANGULAR-TUT",
+   "name": "Angular tutorials",
+   "provider": "Google (Angular team)",
+   "url": "https://angular.dev/tutorials",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 10,
+   "level": "entry",
+   "matches": [
+    "angular"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-ANSIBLE-START",
+   "name": "Getting started with Ansible",
+   "provider": "Red Hat (Ansible)",
+   "url": "https://docs.ansible.com/ansible/latest/getting_started/index.html",
+   "type": "docs",
+   "cost_usd": 0,
+   "hours": 5,
+   "level": "entry",
+   "matches": [
+    "ansible"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-PROMETHEUS-START",
+   "name": "Prometheus getting started",
+   "provider": "Prometheus project",
+   "url": "https://prometheus.io/docs/prometheus/latest/getting_started/",
+   "type": "docs",
+   "cost_usd": 0,
+   "hours": 3,
+   "level": "entry",
+   "matches": [
+    "prometheus"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-SCALA-TOUR",
+   "name": "Tour of Scala",
+   "provider": "Scala Center",
+   "url": "https://docs.scala-lang.org/tour/tour-of-scala.html",
+   "type": "docs",
+   "cost_usd": 0,
+   "hours": 8,
+   "level": "entry",
+   "matches": [
+    "scala"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-SNOWFLAKE-TUT",
+   "name": "Snowflake tutorials",
+   "provider": "Snowflake",
+   "url": "https://docs.snowflake.com/en/learn-tutorials",
+   "type": "docs",
+   "cost_usd": 0,
+   "hours": 5,
+   "level": "entry",
+   "matches": [
+    "snowflake"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-LANGCHAIN-TUT",
+   "name": "LangChain tutorials",
+   "provider": "LangChain",
+   "url": "https://python.langchain.com/docs/tutorials/",
+   "type": "docs",
+   "cost_usd": 0,
+   "hours": 6,
+   "level": "entry",
+   "matches": [
+    "langchain"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-MATLAB-ONRAMP",
+   "name": "MATLAB Onramp (free self-paced course)",
+   "provider": "MathWorks",
+   "url": "https://matlabacademy.mathworks.com/details/matlab-onramp/gettingstarted",
+   "type": "docs",
+   "cost_usd": 0,
+   "hours": 2,
+   "level": "entry",
+   "matches": [
+    "matlab"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-PERLINTRO",
+   "name": "perlintro: a brief introduction to Perl",
+   "provider": "Perl documentation",
+   "url": "https://perldoc.perl.org/perlintro",
+   "type": "docs",
+   "cost_usd": 0,
+   "hours": 3,
+   "level": "entry",
+   "matches": [
+    "perl"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-SAP-LEARNING",
+   "name": "SAP Learning (free learning journeys)",
+   "provider": "SAP",
+   "url": "https://learning.sap.com/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 10,
+   "level": "entry",
+   "matches": [
+    "sap"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-SAS-ODA",
+   "name": "SAS OnDemand for Academics (free SAS software and tutorials)",
+   "provider": "SAS",
+   "url": "https://www.sas.com/en_us/software/on-demand-for-academics.html",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 10,
+   "level": "entry",
+   "matches": [
+    "sas"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-SPRING-GUIDES",
+   "name": "Spring guides",
+   "provider": "Broadcom (Spring)",
+   "url": "https://spring.io/guides",
+   "type": "docs",
+   "cost_usd": 0,
+   "hours": 8,
+   "level": "entry",
+   "matches": [
+    "spring boot",
+    "spring framework",
+    "spring"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-REST-ASSURED",
+   "name": "REST Assured documentation",
+   "provider": "REST Assured project",
+   "url": "https://rest-assured.io/",
+   "type": "docs",
+   "cost_usd": 0,
+   "hours": 4,
+   "level": "entry",
+   "matches": [
+    "rest assured"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-TESTNG-DOCS",
+   "name": "TestNG documentation",
+   "provider": "TestNG project",
+   "url": "https://testng.org/",
+   "type": "docs",
+   "cost_usd": 0,
+   "hours": 4,
+   "level": "entry",
+   "matches": [
+    "testng"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-CONFLUENCE-GUIDES",
+   "name": "Confluence guides",
+   "provider": "Atlassian",
+   "url": "https://www.atlassian.com/software/confluence/resources/guides",
+   "type": "docs",
+   "cost_usd": 0,
+   "hours": 3,
+   "level": "entry",
+   "matches": [
+    "confluence"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-MONGODB-U",
+   "name": "MongoDB University (free courses)",
+   "provider": "MongoDB",
+   "url": "https://learn.mongodb.com/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 10,
+   "level": "entry",
+   "matches": [
+    "nosql",
+    "mongodb"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-NUMPY-BEGIN",
+   "name": "NumPy: the absolute basics for beginners",
+   "provider": "NumPy project",
+   "url": "https://numpy.org/doc/stable/user/absolute_beginners.html",
+   "type": "docs",
+   "cost_usd": 0,
+   "hours": 3,
+   "level": "entry",
+   "matches": [
+    "numpy"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-TCL-TUT",
+   "name": "Tcl tutorial",
+   "provider": "Tcl Developer Xchange",
+   "url": "https://www.tcl-lang.org/man/tcl8.6/tutorial/tcltutorial.html",
+   "type": "docs",
+   "cost_usd": 0,
+   "hours": 5,
+   "level": "entry",
+   "matches": [
+    "tcl",
+    "tool command language"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-ENTRA-SSO",
+   "name": "Microsoft Learn: What is single sign-on?",
+   "provider": "Microsoft",
+   "url": "https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/what-is-single-sign-on",
+   "type": "docs",
+   "cost_usd": 0,
+   "hours": 1,
+   "level": "entry",
+   "matches": [
+    "sso",
+    "single sign-on"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-LEARNFREE",
+   "name": "GCFGlobal / LearnFree tutorials (Office, Outlook, PowerPoint, Windows)",
+   "provider": "GCFGlobal",
+   "url": "https://www.learnfree.org/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 10,
+   "level": "entry",
+   "matches": [
+    "microsoft office",
+    "office",
+    "outlook",
+    "powerpoint",
+    "windows"
    ],
    "credential": null
   }

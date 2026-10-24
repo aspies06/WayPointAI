@@ -1,0 +1,2529 @@
+{
+ "schema_version": "1.0",
+ "generated_at": "2026-10-24T11:21:46+00:00",
+ "sources": {
+  "onet": {
+   "name": "O*NET 31.0 Database (August 2026)",
+   "publisher": "U.S. Department of Labor, Employment and Training Administration",
+   "url": "https://www.onetcenter.org/database.html",
+   "license": "CC BY 4.0",
+   "attribution": "This includes information from the O*NET 31.0 Database by the U.S. Department of Labor, Employment and Training Administration (USDOL/ETA). Used under the CC BY 4.0 license. O*NET® is a trademark of USDOL/ETA.",
+   "note": "Task importance comes from surveys of people who work in each occupation."
+  }
+ },
+ "roles": {
+  "Software Engineer": {
+   "onet": {
+    "code": "15-1252.00",
+    "title": "Software Developers",
+    "match": "close",
+    "tasks": [
+     {
+      "task": "Analyze user needs and software requirements to determine feasibility of design within time and cost constraints.",
+      "importance": 4.08,
+      "source": "Incumbent"
+     },
+     {
+      "task": "Develop or direct software system testing or validation procedures, programming, or documentation.",
+      "importance": 3.9,
+      "source": "Incumbent"
+     },
+     {
+      "task": "Confer with systems analysts, engineers, programmers and others to design systems and to obtain information on project limitations and capabilities, performance requirements and interfaces.",
+      "importance": 3.75,
+      "source": "Incumbent"
+     },
+     {
+      "task": "Modify existing software to correct errors, adapt it to new hardware, or upgrade interfaces and improve performance.",
+      "importance": 3.74,
+      "source": "Incumbent"
+     },
+     {
+      "task": "Prepare reports or correspondence concerning project specifications, activities, or status.",
+      "importance": 3.68,
+      "source": "Incumbent"
+     },
+     {
+      "task": "Analyze information to determine, recommend, and plan installation of a new system or modification of an existing system.",
+      "importance": 3.61,
+      "source": "Incumbent"
+     },
+     {
+      "task": "Store, retrieve, and manipulate data for analysis of system capabilities and requirements.",
+      "importance": 3.59,
+      "source": "Incumbent"
+     },
+     {
+      "task": "Design, develop and modify software systems, using scientific analysis and mathematical models to predict and measure outcomes and consequences of design.",
+      "importance": 3.56,
+      "source": "Incumbent"
+     }
+    ],
+    "technologies": [
+     {
+      "name": "Amazon Web Services AWS software",
+      "category": "Data base user interface and query software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Apache Kafka",
+      "category": "Development environment software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Atlassian JIRA",
+      "category": "Content workflow software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "C",
+      "category": "Development environment software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "C#",
+      "category": "Object or component oriented development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "C++",
+      "category": "Object or component oriented development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Cascading style sheets CSS",
+      "category": "Web platform development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Docker",
+      "category": "Application server software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Git",
+      "category": "File versioning software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "GitHub",
+      "category": "Application server software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Go",
+      "category": "Development environment software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Google Angular",
+      "category": "Web platform development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Hypertext markup language HTML",
+      "category": "Web platform development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "IBM Terraform",
+      "category": "Configuration management software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "JavaScript",
+      "category": "Web platform development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Jenkins CI",
+      "category": "Enterprise application integration software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Kubernetes",
+      "category": "Application server software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Linux",
+      "category": "Operating system software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Microsoft Azure software",
+      "category": "Development environment software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Node.js",
+      "category": "Web platform development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "NoSQL",
+      "category": "Data base management system software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Oracle Java",
+      "category": "Object or component oriented development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "PostgreSQL",
+      "category": "Object oriented data base management software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Python",
+      "category": "Object or component oriented development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "React",
+      "category": "Web platform development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Spring Boot",
+      "category": "Application server software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Spring Framework",
+      "category": "Web platform development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Structured query language SQL",
+      "category": "Data base user interface and query software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "TypeScript",
+      "category": "Object or component oriented development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "RESTful API",
+      "category": "Web platform development software",
+      "in_demand": true,
+      "hot": false
+     }
+    ],
+    "skills": [
+     {
+      "name": "Programming",
+      "importance": 4.0
+     },
+     {
+      "name": "Judgment and Decision Making",
+      "importance": 3.62
+     },
+     {
+      "name": "Systems Analysis",
+      "importance": 3.5
+     },
+     {
+      "name": "Complex Problem Solving",
+      "importance": 3.38
+     },
+     {
+      "name": "Technology Design",
+      "importance": 3.38
+     },
+     {
+      "name": "Systems Evaluation",
+      "importance": 3.38
+     },
+     {
+      "name": "Operations Analysis",
+      "importance": 3.25
+     },
+     {
+      "name": "Time Management",
+      "importance": 3.12
+     },
+     {
+      "name": "Coordination",
+      "importance": 3.0
+     },
+     {
+      "name": "Social Perceptiveness",
+      "importance": 2.88
+     }
+    ],
+    "experience": [
+     {
+      "category": 1,
+      "description": "None",
+      "share": 0.0442
+     },
+     {
+      "category": 2,
+      "description": "Up to and including 1 month",
+      "share": 0.0
+     },
+     {
+      "category": 3,
+      "description": "Over 1 month, up to and including 3 months",
+      "share": 0.0
+     },
+     {
+      "category": 4,
+      "description": "Over 3 months, up to and including 6 months",
+      "share": 0.0
+     },
+     {
+      "category": 5,
+      "description": "Over 6 months, up to and including 1 year",
+      "share": 0.0
+     },
+     {
+      "category": 6,
+      "description": "Over 1 year, up to and including 2 years",
+      "share": 0.1113
+     },
+     {
+      "category": 7,
+      "description": "Over 2 years, up to and including 4 years",
+      "share": 0.0713
+     },
+     {
+      "category": 8,
+      "description": "Over 4 years, up to and including 6 years",
+      "share": 0.1504
+     },
+     {
+      "category": 9,
+      "description": "Over 6 years, up to and including 8 years",
+      "share": 0.4391
+     },
+     {
+      "category": 10,
+      "description": "Over 8 years, up to and including 10 years",
+      "share": 0.0782
+     },
+     {
+      "category": 11,
+      "description": "Over 10 years",
+      "share": 0.1055
+     }
+    ],
+    "education": [
+     {
+      "level": "Bachelor's Degree",
+      "share": 0.848
+     },
+     {
+      "level": "Associate's Degree or other 2-year degree",
+      "share": 0.0507
+     },
+     {
+      "level": "Master's Degree",
+      "share": 0.0452
+     },
+     {
+      "level": "High School Diploma or the equivalent (such as a GED)",
+      "share": 0.0313
+     },
+     {
+      "level": "Post-Secondary Certificate",
+      "share": 0.0167
+     },
+     {
+      "level": "Post-Baccalaureate Certificate",
+      "share": 0.0081
+     }
+    ]
+   }
+  },
+  "AI/ML Engineer": {
+   "onet": {
+    "code": "15-1221.00",
+    "title": "Computer and Information Research Scientists",
+    "match": "approximate",
+    "tasks": [
+     {
+      "task": "Analyze problems to develop solutions involving computer hardware and software.",
+      "importance": 4.24,
+      "source": "Incumbent"
+     },
+     {
+      "task": "Apply theoretical expertise and innovation to create or apply new technology, such as adapting principles for applying computers to new uses.",
+      "importance": 3.89,
+      "source": "Incumbent"
+     },
+     {
+      "task": "Assign or schedule tasks to meet work priorities and goals.",
+      "importance": 3.76,
+      "source": "Incumbent"
+     },
+     {
+      "task": "Meet with managers, vendors, and others to solicit cooperation and resolve problems.",
+      "importance": 3.64,
+      "source": "Incumbent"
+     },
+     {
+      "task": "Design computers and the software that runs them.",
+      "importance": 3.63,
+      "source": "Incumbent"
+     },
+     {
+      "task": "Conduct logical analyses of business, scientific, engineering, and other technical problems, formulating mathematical models of problems for solution by computers.",
+      "importance": 3.61,
+      "source": "Incumbent"
+     },
+     {
+      "task": "Evaluate project plans and proposals to assess feasibility issues.",
+      "importance": 3.46,
+      "source": "Incumbent"
+     },
+     {
+      "task": "Participate in multidisciplinary projects in areas such as virtual reality, human-computer interaction, or robotics.",
+      "importance": 3.37,
+      "source": "Incumbent"
+     }
+    ],
+    "technologies": [
+     {
+      "name": "Amazon Web Services AWS software",
+      "category": "Data base user interface and query software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Ansible software",
+      "category": "Expert system software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Apache Hadoop",
+      "category": "Data base management system software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Apache Kafka",
+      "category": "Development environment software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Apache Spark",
+      "category": "Business intelligence and data analysis software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Bash",
+      "category": "Operating system software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "C",
+      "category": "Development environment software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "C++",
+      "category": "Object or component oriented development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Docker",
+      "category": "Application server software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Git",
+      "category": "File versioning software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "GitHub",
+      "category": "Application server software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Go",
+      "category": "Development environment software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Grafana Labs Grafana Cloud",
+      "category": "Graphical user interface development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "IBM Terraform",
+      "category": "Configuration management software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "JavaScript",
+      "category": "Web platform development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Jenkins CI",
+      "category": "Enterprise application integration software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Kubernetes",
+      "category": "Application server software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Linux",
+      "category": "Operating system software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Microsoft Azure software",
+      "category": "Development environment software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Oracle Java",
+      "category": "Object or component oriented development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Prometheus",
+      "category": "Data base user interface and query software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Python",
+      "category": "Object or component oriented development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "PyTorch",
+      "category": "Data base user interface and query software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "R",
+      "category": "Object or component oriented development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Scala",
+      "category": "Object or component oriented development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Snowflake",
+      "category": "Data mining software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Structured query language SQL",
+      "category": "Data base user interface and query software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "TensorFlow",
+      "category": "Analytical or scientific software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Amazon Web Services AWS SageMaker",
+      "category": "Cloud-based management software",
+      "in_demand": true,
+      "hot": false
+     },
+     {
+      "name": "Hugging Face",
+      "category": "Development environment software",
+      "in_demand": true,
+      "hot": false
+     },
+     {
+      "name": "LangChain",
+      "category": "Object or component oriented development software",
+      "in_demand": true,
+      "hot": false
+     },
+     {
+      "name": "pandas",
+      "category": "Data base user interface and query software",
+      "in_demand": true,
+      "hot": false
+     },
+     {
+      "name": "Scikit-learn",
+      "category": "Development environment software",
+      "in_demand": true,
+      "hot": false
+     },
+     {
+      "name": "Vector database software",
+      "category": "Data base management system software",
+      "in_demand": true,
+      "hot": false
+     }
+    ],
+    "skills": [
+     {
+      "name": "Complex Problem Solving",
+      "importance": 4.0
+     },
+     {
+      "name": "Judgment and Decision Making",
+      "importance": 4.0
+     },
+     {
+      "name": "Systems Analysis",
+      "importance": 3.75
+     },
+     {
+      "name": "Programming",
+      "importance": 3.62
+     },
+     {
+      "name": "Systems Evaluation",
+      "importance": 3.62
+     },
+     {
+      "name": "Time Management",
+      "importance": 3.38
+     },
+     {
+      "name": "Operations Analysis",
+      "importance": 3.12
+     },
+     {
+      "name": "Technology Design",
+      "importance": 3.12
+     },
+     {
+      "name": "Social Perceptiveness",
+      "importance": 3.0
+     },
+     {
+      "name": "Coordination",
+      "importance": 3.0
+     }
+    ],
+    "experience": [
+     {
+      "category": 1,
+      "description": "None",
+      "share": 0.139
+     },
+     {
+      "category": 2,
+      "description": "Up to and including 1 month",
+      "share": 0.0
+     },
+     {
+      "category": 3,
+      "description": "Over 1 month, up to and including 3 months",
+      "share": 0.0
+     },
+     {
+      "category": 4,
+      "description": "Over 3 months, up to and including 6 months",
+      "share": 0.0
+     },
+     {
+      "category": 5,
+      "description": "Over 6 months, up to and including 1 year",
+      "share": 0.0
+     },
+     {
+      "category": 6,
+      "description": "Over 1 year, up to and including 2 years",
+      "share": 0.0283
+     },
+     {
+      "category": 7,
+      "description": "Over 2 years, up to and including 4 years",
+      "share": 0.4376
+     },
+     {
+      "category": 8,
+      "description": "Over 4 years, up to and including 6 years",
+      "share": 0.2107
+     },
+     {
+      "category": 9,
+      "description": "Over 6 years, up to and including 8 years",
+      "share": 0.0454
+     },
+     {
+      "category": 10,
+      "description": "Over 8 years, up to and including 10 years",
+      "share": 0.0
+     },
+     {
+      "category": 11,
+      "description": "Over 10 years",
+      "share": 0.139
+     }
+    ],
+    "education": [
+     {
+      "level": "Bachelor's Degree",
+      "share": 0.3622
+     },
+     {
+      "level": "Doctoral Degree",
+      "share": 0.2842
+     },
+     {
+      "level": "Master's Degree",
+      "share": 0.1993
+     },
+     {
+      "level": "Some College Courses",
+      "share": 0.0835
+     },
+     {
+      "level": "Post-Doctoral Training",
+      "share": 0.045
+     },
+     {
+      "level": "First Professional Degree - awarded for completion of a program that: requires at least 2 years of college work before entrance into the program, includes a total of at least 6 academic years of work to complete, and provides all remaining academic requirements to begin practice in a profession.",
+      "share": 0.0258
+     }
+    ]
+   }
+  },
+  "Data Scientist": {
+   "onet": {
+    "code": "15-2051.00",
+    "title": "Data Scientists",
+    "match": "close",
+    "tasks": [
+     {
+      "task": "Analyze, manipulate, or process large sets of data using statistical software.",
+      "importance": 4.33,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Create graphs, charts, or other visualizations to convey the results of data analysis using specialized software.",
+      "importance": 4.33,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Test, validate, and reformulate models to ensure accurate prediction of outcomes of interest.",
+      "importance": 4.25,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Deliver oral or written presentations of the results of mathematical modeling and data analysis to management or other end users.",
+      "importance": 4.21,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Recommend data-driven solutions to key stakeholders.",
+      "importance": 4.17,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Identify business problems or management objectives that can be addressed through data analysis.",
+      "importance": 4.13,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Compare models using statistical performance metrics, such as loss functions or proportion of explained variance.",
+      "importance": 4.04,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Clean and manipulate raw data using statistical software.",
+      "importance": 4.04,
+      "source": "Occupational Expert"
+     }
+    ],
+    "technologies": [
+     {
+      "name": "Amazon Web Services AWS software",
+      "category": "Data base user interface and query software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Apache Hadoop",
+      "category": "Data base management system software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Apache Spark",
+      "category": "Business intelligence and data analysis software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "C++",
+      "category": "Object or component oriented development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Git",
+      "category": "File versioning software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Microsoft Azure software",
+      "category": "Development environment software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Microsoft Excel",
+      "category": "Spreadsheet software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Microsoft Power BI",
+      "category": "Business intelligence and data analysis software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Microsoft PowerPoint",
+      "category": "Presentation software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Python",
+      "category": "Object or component oriented development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "PyTorch",
+      "category": "Data base user interface and query software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "R",
+      "category": "Object or component oriented development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "SAS",
+      "category": "Analytical or scientific software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Snowflake",
+      "category": "Data mining software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Structured query language SQL",
+      "category": "Data base user interface and query software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Tableau",
+      "category": "Business intelligence and data analysis software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "TensorFlow",
+      "category": "Analytical or scientific software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "The MathWorks MATLAB",
+      "category": "Analytical or scientific software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "NumPy",
+      "category": "Data base user interface and query software",
+      "in_demand": true,
+      "hot": false
+     },
+     {
+      "name": "pandas",
+      "category": "Data base user interface and query software",
+      "in_demand": true,
+      "hot": false
+     },
+     {
+      "name": "Scikit-learn",
+      "category": "Development environment software",
+      "in_demand": true,
+      "hot": false
+     }
+    ],
+    "skills": [
+     {
+      "name": "Complex Problem Solving",
+      "importance": 3.75
+     },
+     {
+      "name": "Programming",
+      "importance": 3.75
+     },
+     {
+      "name": "Judgment and Decision Making",
+      "importance": 3.38
+     },
+     {
+      "name": "Time Management",
+      "importance": 3.0
+     },
+     {
+      "name": "Social Perceptiveness",
+      "importance": 2.88
+     },
+     {
+      "name": "Coordination",
+      "importance": 2.88
+     },
+     {
+      "name": "Persuasion",
+      "importance": 2.75
+     },
+     {
+      "name": "Instructing",
+      "importance": 2.75
+     },
+     {
+      "name": "Systems Analysis",
+      "importance": 2.75
+     },
+     {
+      "name": "Systems Evaluation",
+      "importance": 2.75
+     }
+    ],
+    "experience": [
+     {
+      "category": 1,
+      "description": "None",
+      "share": 0.28
+     },
+     {
+      "category": 2,
+      "description": "Up to and including 1 month",
+      "share": 0.0
+     },
+     {
+      "category": 3,
+      "description": "Over 1 month, up to and including 3 months",
+      "share": 0.0
+     },
+     {
+      "category": 4,
+      "description": "Over 3 months, up to and including 6 months",
+      "share": 0.12
+     },
+     {
+      "category": 5,
+      "description": "Over 6 months, up to and including 1 year",
+      "share": 0.16
+     },
+     {
+      "category": 6,
+      "description": "Over 1 year, up to and including 2 years",
+      "share": 0.16
+     },
+     {
+      "category": 7,
+      "description": "Over 2 years, up to and including 4 years",
+      "share": 0.16
+     },
+     {
+      "category": 8,
+      "description": "Over 4 years, up to and including 6 years",
+      "share": 0.12
+     },
+     {
+      "category": 9,
+      "description": "Over 6 years, up to and including 8 years",
+      "share": 0.0
+     },
+     {
+      "category": 10,
+      "description": "Over 8 years, up to and including 10 years",
+      "share": 0.0
+     },
+     {
+      "category": 11,
+      "description": "Over 10 years",
+      "share": 0.0
+     }
+    ],
+    "education": []
+   }
+  },
+  "Security Engineer": {
+   "onet": {
+    "code": "15-1299.05",
+    "title": "Information Security Engineers",
+    "match": "close",
+    "tasks": [
+     {
+      "task": "Identify security system weaknesses, using penetration tests.",
+      "importance": 4.56,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Coordinate monitoring of networks or systems for security breaches or intrusions.",
+      "importance": 4.42,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Assess the quality of security controls, using performance indicators.",
+      "importance": 4.41,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Train staff on, and oversee the use of, information security standards, policies, and best practices.",
+      "importance": 4.28,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Scan networks, using vulnerability assessment tools to identify vulnerabilities.",
+      "importance": 4.28,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Develop response and recovery strategies for security breaches.",
+      "importance": 4.25,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Conduct investigations of information security breaches to identify vulnerabilities and evaluate the damage.",
+      "importance": 4.22,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Develop or install software, such as firewalls and data encryption programs, to protect sensitive information.",
+      "importance": 4.11,
+      "source": "Occupational Expert"
+     }
+    ],
+    "technologies": [
+     {
+      "name": "Amazon Web Services AWS software",
+      "category": "Data base user interface and query software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Bash",
+      "category": "Operating system software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "IBM Terraform",
+      "category": "Configuration management software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Kubernetes",
+      "category": "Application server software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Linux",
+      "category": "Operating system software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Microsoft Active Directory",
+      "category": "Internet directory services software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Microsoft Azure software",
+      "category": "Development environment software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Microsoft PowerShell",
+      "category": "Development environment software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Oracle Java",
+      "category": "Object or component oriented development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Python",
+      "category": "Object or component oriented development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Splunk Enterprise",
+      "category": "Enterprise system management software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Firewall software",
+      "category": "Network security and virtual private network VPN equipment software",
+      "in_demand": true,
+      "hot": false
+     },
+     {
+      "name": "Single sign-on SSO",
+      "category": "Authentication server software",
+      "in_demand": true,
+      "hot": false
+     }
+    ],
+    "skills": [
+     {
+      "name": "Quality Control Analysis",
+      "importance": 3.38
+     },
+     {
+      "name": "Systems Analysis",
+      "importance": 3.38
+     },
+     {
+      "name": "Systems Evaluation",
+      "importance": 3.38
+     },
+     {
+      "name": "Complex Problem Solving",
+      "importance": 3.25
+     },
+     {
+      "name": "Judgment and Decision Making",
+      "importance": 3.25
+     },
+     {
+      "name": "Instructing",
+      "importance": 3.12
+     },
+     {
+      "name": "Programming",
+      "importance": 3.12
+     },
+     {
+      "name": "Operations Monitoring",
+      "importance": 3.12
+     },
+     {
+      "name": "Social Perceptiveness",
+      "importance": 3.0
+     },
+     {
+      "name": "Coordination",
+      "importance": 3.0
+     }
+    ],
+    "experience": [
+     {
+      "category": 1,
+      "description": "None",
+      "share": 0.1053
+     },
+     {
+      "category": 2,
+      "description": "Up to and including 1 month",
+      "share": 0.0
+     },
+     {
+      "category": 3,
+      "description": "Over 1 month, up to and including 3 months",
+      "share": 0.0
+     },
+     {
+      "category": 4,
+      "description": "Over 3 months, up to and including 6 months",
+      "share": 0.0
+     },
+     {
+      "category": 5,
+      "description": "Over 6 months, up to and including 1 year",
+      "share": 0.0526
+     },
+     {
+      "category": 6,
+      "description": "Over 1 year, up to and including 2 years",
+      "share": 0.1053
+     },
+     {
+      "category": 7,
+      "description": "Over 2 years, up to and including 4 years",
+      "share": 0.1579
+     },
+     {
+      "category": 8,
+      "description": "Over 4 years, up to and including 6 years",
+      "share": 0.4211
+     },
+     {
+      "category": 9,
+      "description": "Over 6 years, up to and including 8 years",
+      "share": 0.0
+     },
+     {
+      "category": 10,
+      "description": "Over 8 years, up to and including 10 years",
+      "share": 0.1053
+     },
+     {
+      "category": 11,
+      "description": "Over 10 years",
+      "share": 0.0526
+     }
+    ],
+    "education": [
+     {
+      "level": "Bachelor's Degree",
+      "share": 0.4737
+     },
+     {
+      "level": "Post-Secondary Certificate",
+      "share": 0.1579
+     },
+     {
+      "level": "Some College Courses",
+      "share": 0.1053
+     },
+     {
+      "level": "Associate's Degree or other 2-year degree",
+      "share": 0.1053
+     },
+     {
+      "level": "Less than a High School Diploma",
+      "share": 0.0526
+     },
+     {
+      "level": "High School Diploma or the equivalent (such as a GED)",
+      "share": 0.0526
+     },
+     {
+      "level": "Post-Master's Certificate",
+      "share": 0.0526
+     }
+    ]
+   }
+  },
+  "Computer Engineer": {
+   "onet": {
+    "code": "17-2061.00",
+    "title": "Computer Hardware Engineers",
+    "match": "approximate",
+    "tasks": [
+     {
+      "task": "Update knowledge and skills to keep up with rapid advancements in computer technology.",
+      "importance": 4.31,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Design and develop computer hardware and support peripherals, including central processing units (CPUs), support logic, microprocessors, custom integrated circuits, and printers and disk drives.",
+      "importance": 4.18,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Confer with engineering staff and consult specifications to evaluate interface between hardware and software and operational and performance requirements of overall system.",
+      "importance": 4.14,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Build, test, and modify product prototypes, using working models or theoretical models constructed with computer simulation.",
+      "importance": 4.07,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Write detailed functional specifications that document the hardware development process and support hardware introduction.",
+      "importance": 4.0,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Test and verify hardware and support peripherals to ensure that they meet specifications and requirements, by recording and analyzing test data.",
+      "importance": 3.9,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Direct technicians, engineering designers or other technical support personnel as needed.",
+      "importance": 3.74,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Provide technical support to designers, marketing and sales departments, suppliers, engineers and other team members throughout the product development and implementation process.",
+      "importance": 3.71,
+      "source": "Occupational Expert"
+     }
+    ],
+    "technologies": [
+     {
+      "name": "C",
+      "category": "Development environment software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "C++",
+      "category": "Object or component oriented development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Linux",
+      "category": "Operating system software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Perl",
+      "category": "Object or component oriented development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Python",
+      "category": "Object or component oriented development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "The MathWorks MATLAB",
+      "category": "Analytical or scientific software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Magellan Firmware",
+      "category": "Operating system software",
+      "in_demand": true,
+      "hot": false
+     },
+     {
+      "name": "PCI Express PCIe",
+      "category": "Data base user interface and query software",
+      "in_demand": true,
+      "hot": false
+     },
+     {
+      "name": "Simulation program with integrated circuit emphasis SPICE",
+      "category": "Analytical or scientific software",
+      "in_demand": true,
+      "hot": false
+     },
+     {
+      "name": "SystemVerilog",
+      "category": "Development environment software",
+      "in_demand": true,
+      "hot": false
+     },
+     {
+      "name": "Tool command language Tcl",
+      "category": "Development environment software",
+      "in_demand": true,
+      "hot": false
+     },
+     {
+      "name": "Verilog",
+      "category": "Development environment software",
+      "in_demand": true,
+      "hot": false
+     },
+     {
+      "name": "Very high speed integrated circuit VHSIC hardware description language VHDL simulation software",
+      "category": "Analytical or scientific software",
+      "in_demand": true,
+      "hot": false
+     }
+    ],
+    "skills": [
+     {
+      "name": "Complex Problem Solving",
+      "importance": 3.88
+     },
+     {
+      "name": "Judgment and Decision Making",
+      "importance": 3.62
+     },
+     {
+      "name": "Operations Analysis",
+      "importance": 3.38
+     },
+     {
+      "name": "Systems Analysis",
+      "importance": 3.38
+     },
+     {
+      "name": "Systems Evaluation",
+      "importance": 3.38
+     },
+     {
+      "name": "Coordination",
+      "importance": 3.12
+     },
+     {
+      "name": "Time Management",
+      "importance": 3.12
+     },
+     {
+      "name": "Instructing",
+      "importance": 3.0
+     },
+     {
+      "name": "Operations Monitoring",
+      "importance": 3.0
+     },
+     {
+      "name": "Quality Control Analysis",
+      "importance": 2.88
+     }
+    ],
+    "experience": [
+     {
+      "category": 1,
+      "description": "None",
+      "share": 0.1034
+     },
+     {
+      "category": 2,
+      "description": "Up to and including 1 month",
+      "share": 0.0
+     },
+     {
+      "category": 3,
+      "description": "Over 1 month, up to and including 3 months",
+      "share": 0.069
+     },
+     {
+      "category": 4,
+      "description": "Over 3 months, up to and including 6 months",
+      "share": 0.0
+     },
+     {
+      "category": 5,
+      "description": "Over 6 months, up to and including 1 year",
+      "share": 0.0345
+     },
+     {
+      "category": 6,
+      "description": "Over 1 year, up to and including 2 years",
+      "share": 0.2759
+     },
+     {
+      "category": 7,
+      "description": "Over 2 years, up to and including 4 years",
+      "share": 0.2414
+     },
+     {
+      "category": 8,
+      "description": "Over 4 years, up to and including 6 years",
+      "share": 0.0345
+     },
+     {
+      "category": 9,
+      "description": "Over 6 years, up to and including 8 years",
+      "share": 0.1034
+     },
+     {
+      "category": 10,
+      "description": "Over 8 years, up to and including 10 years",
+      "share": 0.0345
+     },
+     {
+      "category": 11,
+      "description": "Over 10 years",
+      "share": 0.1034
+     }
+    ],
+    "education": [
+     {
+      "level": "Bachelor's Degree",
+      "share": 0.4828
+     },
+     {
+      "level": "Master's Degree",
+      "share": 0.3448
+     },
+     {
+      "level": "Some College Courses",
+      "share": 0.069
+     },
+     {
+      "level": "Doctoral Degree",
+      "share": 0.069
+     },
+     {
+      "level": "First Professional Degree - awarded for completion of a program that: requires at least 2 years of college work before entrance into the program, includes a total of at least 6 academic years of work to complete, and provides all remaining academic requirements to begin practice in a profession.",
+      "share": 0.0345
+     }
+    ]
+   }
+  },
+  "IT Support Specialist": {
+   "onet": {
+    "code": "15-1232.00",
+    "title": "Computer User Support Specialists",
+    "match": "close",
+    "tasks": [
+     {
+      "task": "Oversee the daily performance of computer systems.",
+      "importance": 3.99,
+      "source": "Incumbent"
+     },
+     {
+      "task": "Set up equipment for employee use, performing or ensuring proper installation of cables, operating systems, or appropriate software.",
+      "importance": 3.94,
+      "source": "Incumbent"
+     },
+     {
+      "task": "Read technical manuals, confer with users, or conduct computer diagnostics to investigate and resolve problems or to provide technical assistance and support.",
+      "importance": 3.94,
+      "source": "Incumbent"
+     },
+     {
+      "task": "Answer user inquiries regarding computer software or hardware operation to resolve problems.",
+      "importance": 3.79,
+      "source": "Incumbent"
+     },
+     {
+      "task": "Install and perform minor repairs to hardware, software, or peripheral equipment, following design or installation specifications.",
+      "importance": 3.77,
+      "source": "Incumbent"
+     },
+     {
+      "task": "Confer with staff, users, and management to establish requirements for new systems or modifications.",
+      "importance": 3.71,
+      "source": "Incumbent"
+     },
+     {
+      "task": "Enter commands and observe system functioning to verify correct operations and detect errors.",
+      "importance": 3.57,
+      "source": "Incumbent"
+     },
+     {
+      "task": "Maintain records of daily data communication transactions, problems and remedial actions taken, or installation activities.",
+      "importance": 3.47,
+      "source": "Incumbent"
+     }
+    ],
+    "technologies": [
+     {
+      "name": "Apple iOS",
+      "category": "Operating system software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Apple macOS",
+      "category": "Operating system software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Linux",
+      "category": "Operating system software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Microsoft Active Directory",
+      "category": "Internet directory services software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Microsoft Azure software",
+      "category": "Development environment software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Microsoft Excel",
+      "category": "Spreadsheet software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Microsoft Office software",
+      "category": "Office suite software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Microsoft Outlook",
+      "category": "Electronic mail software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Microsoft Windows",
+      "category": "Operating system software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "ServiceNow",
+      "category": "Data base user interface and query software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Structured query language SQL",
+      "category": "Data base user interface and query software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Firewall software",
+      "category": "Network security and virtual private network VPN equipment software",
+      "in_demand": true,
+      "hot": false
+     }
+    ],
+    "skills": [
+     {
+      "name": "Complex Problem Solving",
+      "importance": 3.62
+     },
+     {
+      "name": "Judgment and Decision Making",
+      "importance": 3.25
+     },
+     {
+      "name": "Social Perceptiveness",
+      "importance": 3.12
+     },
+     {
+      "name": "Service Orientation",
+      "importance": 3.12
+     },
+     {
+      "name": "Instructing",
+      "importance": 3.0
+     },
+     {
+      "name": "Operations Monitoring",
+      "importance": 3.0
+     },
+     {
+      "name": "Troubleshooting",
+      "importance": 3.0
+     },
+     {
+      "name": "Systems Analysis",
+      "importance": 3.0
+     },
+     {
+      "name": "Time Management",
+      "importance": 3.0
+     },
+     {
+      "name": "Coordination",
+      "importance": 2.88
+     }
+    ],
+    "experience": [
+     {
+      "category": 1,
+      "description": "None",
+      "share": 0.0032
+     },
+     {
+      "category": 2,
+      "description": "Up to and including 1 month",
+      "share": 0.0
+     },
+     {
+      "category": 3,
+      "description": "Over 1 month, up to and including 3 months",
+      "share": 0.0
+     },
+     {
+      "category": 4,
+      "description": "Over 3 months, up to and including 6 months",
+      "share": 0.0
+     },
+     {
+      "category": 5,
+      "description": "Over 6 months, up to and including 1 year",
+      "share": 0.3212
+     },
+     {
+      "category": 6,
+      "description": "Over 1 year, up to and including 2 years",
+      "share": 0.02
+     },
+     {
+      "category": 7,
+      "description": "Over 2 years, up to and including 4 years",
+      "share": 0.5113
+     },
+     {
+      "category": 8,
+      "description": "Over 4 years, up to and including 6 years",
+      "share": 0.1352
+     },
+     {
+      "category": 9,
+      "description": "Over 6 years, up to and including 8 years",
+      "share": 0.0091
+     },
+     {
+      "category": 10,
+      "description": "Over 8 years, up to and including 10 years",
+      "share": 0.0
+     },
+     {
+      "category": 11,
+      "description": "Over 10 years",
+      "share": 0.0
+     }
+    ],
+    "education": [
+     {
+      "level": "Bachelor's Degree",
+      "share": 0.4732
+     },
+     {
+      "level": "Post-Secondary Certificate",
+      "share": 0.3233
+     },
+     {
+      "level": "Associate's Degree or other 2-year degree",
+      "share": 0.1374
+     },
+     {
+      "level": "First Professional Degree - awarded for completion of a program that: requires at least 2 years of college work before entrance into the program, includes a total of at least 6 academic years of work to complete, and provides all remaining academic requirements to begin practice in a profession.",
+      "share": 0.0405
+     },
+     {
+      "level": "Some College Courses",
+      "share": 0.0192
+     },
+     {
+      "level": "High School Diploma or the equivalent (such as a GED)",
+      "share": 0.0032
+     },
+     {
+      "level": "Master's Degree",
+      "share": 0.0032
+     }
+    ]
+   }
+  },
+  "Hardware Engineer": {
+   "onet": {
+    "code": "17-2072.00",
+    "title": "Electronics Engineers, Except Computer",
+    "match": "approximate",
+    "tasks": [
+     {
+      "task": "Design electronic components, software, products, or systems for commercial, industrial, medical, military, or scientific applications.",
+      "importance": 4.07,
+      "source": "Incumbent"
+     },
+     {
+      "task": "Operate computer-assisted engineering or design software or equipment to perform electronics engineering tasks.",
+      "importance": 4.05,
+      "source": "Incumbent"
+     },
+     {
+      "task": "Evaluate project work to ensure effectiveness, technical adequacy, or compatibility in the resolution of complex electronics engineering problems.",
+      "importance": 3.96,
+      "source": "Incumbent"
+     },
+     {
+      "task": "Direct or coordinate activities concerned with manufacture, construction, installation, maintenance, operation, or modification of electronic equipment, products, or systems.",
+      "importance": 3.8,
+      "source": "Incumbent"
+     },
+     {
+      "task": "Confer with engineers, customers, vendors, or others to discuss existing or potential electronics engineering projects or products.",
+      "importance": 3.73,
+      "source": "Incumbent"
+     },
+     {
+      "task": "Provide technical support or instruction to staff or customers regarding electronics equipment standards.",
+      "importance": 3.69,
+      "source": "Incumbent"
+     },
+     {
+      "task": "Recommend repair or design modifications of electronics components or systems, based on factors such as environment, service, cost, or system capabilities.",
+      "importance": 3.63,
+      "source": "Incumbent"
+     },
+     {
+      "task": "Prepare documentation containing information such as confidential descriptions or specifications of proprietary hardware or software, product development or introduction schedules, product costs, or information about product performance weaknesses.",
+      "importance": 3.6,
+      "source": "Incumbent"
+     }
+    ],
+    "technologies": [
+     {
+      "name": "Microsoft Excel",
+      "category": "Spreadsheet software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Microsoft Office software",
+      "category": "Office suite software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Python",
+      "category": "Object or component oriented development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "The MathWorks MATLAB",
+      "category": "Analytical or scientific software",
+      "in_demand": true,
+      "hot": true
+     }
+    ],
+    "skills": [
+     {
+      "name": "Complex Problem Solving",
+      "importance": 4.0
+     },
+     {
+      "name": "Judgment and Decision Making",
+      "importance": 3.75
+     },
+     {
+      "name": "Systems Analysis",
+      "importance": 3.75
+     },
+     {
+      "name": "Systems Evaluation",
+      "importance": 3.38
+     },
+     {
+      "name": "Operations Analysis",
+      "importance": 3.25
+     },
+     {
+      "name": "Quality Control Analysis",
+      "importance": 3.12
+     },
+     {
+      "name": "Coordination",
+      "importance": 3.0
+     },
+     {
+      "name": "Instructing",
+      "importance": 3.0
+     },
+     {
+      "name": "Technology Design",
+      "importance": 3.0
+     },
+     {
+      "name": "Operations Monitoring",
+      "importance": 3.0
+     }
+    ],
+    "experience": [
+     {
+      "category": 1,
+      "description": "None",
+      "share": 0.1105
+     },
+     {
+      "category": 2,
+      "description": "Up to and including 1 month",
+      "share": 0.0
+     },
+     {
+      "category": 3,
+      "description": "Over 1 month, up to and including 3 months",
+      "share": 0.0
+     },
+     {
+      "category": 4,
+      "description": "Over 3 months, up to and including 6 months",
+      "share": 0.0834
+     },
+     {
+      "category": 5,
+      "description": "Over 6 months, up to and including 1 year",
+      "share": 0.0
+     },
+     {
+      "category": 6,
+      "description": "Over 1 year, up to and including 2 years",
+      "share": 0.1322
+     },
+     {
+      "category": 7,
+      "description": "Over 2 years, up to and including 4 years",
+      "share": 0.1164
+     },
+     {
+      "category": 8,
+      "description": "Over 4 years, up to and including 6 years",
+      "share": 0.3382
+     },
+     {
+      "category": 9,
+      "description": "Over 6 years, up to and including 8 years",
+      "share": 0.0
+     },
+     {
+      "category": 10,
+      "description": "Over 8 years, up to and including 10 years",
+      "share": 0.0
+     },
+     {
+      "category": 11,
+      "description": "Over 10 years",
+      "share": 0.2194
+     }
+    ],
+    "education": [
+     {
+      "level": "Bachelor's Degree",
+      "share": 0.833
+     },
+     {
+      "level": "Associate's Degree or other 2-year degree",
+      "share": 0.1381
+     },
+     {
+      "level": "Master's Degree",
+      "share": 0.0289
+     }
+    ]
+   }
+  },
+  "QA Engineer": {
+   "onet": {
+    "code": "15-1253.00",
+    "title": "Software Quality Assurance Analysts and Testers",
+    "match": "close",
+    "tasks": [
+     {
+      "task": "Identify, analyze, and document problems with program function, output, online screen, or content.",
+      "importance": 4.7,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Document software defects, using a bug tracking system, and report defects to software developers.",
+      "importance": 4.68,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Develop testing programs that address areas such as database impacts, software scenarios, regression testing, negative testing, error or bug retests, or usability.",
+      "importance": 4.52,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Design test plans, scenarios, scripts, or procedures.",
+      "importance": 4.35,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Document test procedures to ensure replicability and compliance with standards.",
+      "importance": 4.3,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Provide feedback and recommendations to developers on software usability and functionality.",
+      "importance": 4.27,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Install, maintain, or use software testing programs.",
+      "importance": 4.26,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Test system modifications to prepare for implementation.",
+      "importance": 4.21,
+      "source": "Occupational Expert"
+     }
+    ],
+    "technologies": [
+     {
+      "name": "Amazon Web Services AWS software",
+      "category": "Data base user interface and query software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Atlassian JIRA",
+      "category": "Project management software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "C#",
+      "category": "Object or component oriented development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "C++",
+      "category": "Object or component oriented development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Git",
+      "category": "File versioning software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "GitHub",
+      "category": "Application server software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "JavaScript",
+      "category": "Web platform development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Jenkins CI",
+      "category": "Enterprise application integration software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Linux",
+      "category": "Operating system software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Microsoft Azure software",
+      "category": "Development environment software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Microsoft Excel",
+      "category": "Spreadsheet software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Microsoft Office software",
+      "category": "Office suite software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Oracle Java",
+      "category": "Object or component oriented development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Python",
+      "category": "Object or component oriented development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Selenium",
+      "category": "Program testing software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Structured query language SQL",
+      "category": "Data base user interface and query software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Apache JMeter",
+      "category": "Object or component oriented development software",
+      "in_demand": true,
+      "hot": false
+     },
+     {
+      "name": "Appium",
+      "category": "Program testing software",
+      "in_demand": true,
+      "hot": false
+     },
+     {
+      "name": "Microsoft Azure DevOps Services",
+      "category": "Development environment software",
+      "in_demand": true,
+      "hot": false
+     },
+     {
+      "name": "Microsoft Playwright",
+      "category": "Program testing software",
+      "in_demand": true,
+      "hot": false
+     },
+     {
+      "name": "Postman",
+      "category": "Operating system software",
+      "in_demand": true,
+      "hot": false
+     },
+     {
+      "name": "REST Assured",
+      "category": "Program testing software",
+      "in_demand": true,
+      "hot": false
+     },
+     {
+      "name": "RESTful API",
+      "category": "Web platform development software",
+      "in_demand": true,
+      "hot": false
+     },
+     {
+      "name": "TestNG",
+      "category": "Program testing software",
+      "in_demand": true,
+      "hot": false
+     }
+    ],
+    "skills": [
+     {
+      "name": "Programming",
+      "importance": 3.62
+     },
+     {
+      "name": "Complex Problem Solving",
+      "importance": 3.38
+     },
+     {
+      "name": "Quality Control Analysis",
+      "importance": 3.38
+     },
+     {
+      "name": "Systems Evaluation",
+      "importance": 3.25
+     },
+     {
+      "name": "Operations Analysis",
+      "importance": 3.12
+     },
+     {
+      "name": "Judgment and Decision Making",
+      "importance": 3.12
+     },
+     {
+      "name": "Systems Analysis",
+      "importance": 3.12
+     },
+     {
+      "name": "Coordination",
+      "importance": 3.0
+     },
+     {
+      "name": "Operations Monitoring",
+      "importance": 3.0
+     },
+     {
+      "name": "Time Management",
+      "importance": 3.0
+     }
+    ],
+    "experience": [
+     {
+      "category": 1,
+      "description": "None",
+      "share": 0.0882
+     },
+     {
+      "category": 2,
+      "description": "Up to and including 1 month",
+      "share": 0.0
+     },
+     {
+      "category": 3,
+      "description": "Over 1 month, up to and including 3 months",
+      "share": 0.0
+     },
+     {
+      "category": 4,
+      "description": "Over 3 months, up to and including 6 months",
+      "share": 0.0294
+     },
+     {
+      "category": 5,
+      "description": "Over 6 months, up to and including 1 year",
+      "share": 0.2941
+     },
+     {
+      "category": 6,
+      "description": "Over 1 year, up to and including 2 years",
+      "share": 0.2647
+     },
+     {
+      "category": 7,
+      "description": "Over 2 years, up to and including 4 years",
+      "share": 0.2353
+     },
+     {
+      "category": 8,
+      "description": "Over 4 years, up to and including 6 years",
+      "share": 0.0588
+     },
+     {
+      "category": 9,
+      "description": "Over 6 years, up to and including 8 years",
+      "share": 0.0294
+     },
+     {
+      "category": 10,
+      "description": "Over 8 years, up to and including 10 years",
+      "share": 0.0
+     },
+     {
+      "category": 11,
+      "description": "Over 10 years",
+      "share": 0.0
+     }
+    ],
+    "education": [
+     {
+      "level": "Bachelor's Degree",
+      "share": 0.5
+     },
+     {
+      "level": "Associate's Degree or other 2-year degree",
+      "share": 0.2647
+     },
+     {
+      "level": "Post-Secondary Certificate",
+      "share": 0.0882
+     },
+     {
+      "level": "Some College Courses",
+      "share": 0.0882
+     },
+     {
+      "level": "High School Diploma or the equivalent (such as a GED)",
+      "share": 0.0294
+     },
+     {
+      "level": "Master's Degree",
+      "share": 0.0294
+     }
+    ]
+   }
+  },
+  "Product Manager": {
+   "onet": {
+    "code": "15-1299.09",
+    "title": "Information Technology Project Managers",
+    "match": "approximate",
+    "tasks": [
+     {
+      "task": "Manage project execution to ensure adherence to budget, schedule, and scope.",
+      "importance": 4.48,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Confer with project personnel to identify and resolve problems.",
+      "importance": 4.38,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Monitor or track project milestones and deliverables.",
+      "importance": 4.29,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Submit project deliverables, ensuring adherence to quality standards.",
+      "importance": 4.25,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Assess current or future customer needs and priorities by communicating directly with customers, conducting surveys, or other methods.",
+      "importance": 4.2,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Initiate, review, or approve modifications to project plans.",
+      "importance": 4.2,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Schedule and facilitate meetings related to information technology projects.",
+      "importance": 4.16,
+      "source": "Occupational Expert"
+     },
+     {
+      "task": "Direct or coordinate activities of project personnel.",
+      "importance": 4.1,
+      "source": "Occupational Expert"
+     }
+    ],
+    "technologies": [
+     {
+      "name": "Amazon Web Services AWS software",
+      "category": "Data base user interface and query software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Atlassian Confluence",
+      "category": "Project management software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Atlassian JIRA",
+      "category": "Project management software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Microsoft Azure software",
+      "category": "Development environment software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Microsoft Excel",
+      "category": "Spreadsheet software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Microsoft Office software",
+      "category": "Office suite software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Microsoft PowerPoint",
+      "category": "Presentation software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "SAP software",
+      "category": "Enterprise resource planning ERP software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "ServiceNow",
+      "category": "Data base user interface and query software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Structured query language SQL",
+      "category": "Data base user interface and query software",
+      "in_demand": true,
+      "hot": true
+     }
+    ],
+    "skills": [
+     {
+      "name": "Coordination",
+      "importance": 4.0
+     },
+     {
+      "name": "Time Management",
+      "importance": 4.0
+     },
+     {
+      "name": "Management of Personnel Resources",
+      "importance": 3.88
+     },
+     {
+      "name": "Systems Analysis",
+      "importance": 3.75
+     },
+     {
+      "name": "Judgment and Decision Making",
+      "importance": 3.62
+     },
+     {
+      "name": "Systems Evaluation",
+      "importance": 3.5
+     },
+     {
+      "name": "Social Perceptiveness",
+      "importance": 3.38
+     },
+     {
+      "name": "Negotiation",
+      "importance": 3.38
+     },
+     {
+      "name": "Complex Problem Solving",
+      "importance": 3.38
+     },
+     {
+      "name": "Service Orientation",
+      "importance": 3.25
+     }
+    ],
+    "experience": [
+     {
+      "category": 1,
+      "description": "None",
+      "share": 0.0
+     },
+     {
+      "category": 2,
+      "description": "Up to and including 1 month",
+      "share": 0.0
+     },
+     {
+      "category": 3,
+      "description": "Over 1 month, up to and including 3 months",
+      "share": 0.0
+     },
+     {
+      "category": 4,
+      "description": "Over 3 months, up to and including 6 months",
+      "share": 0.0
+     },
+     {
+      "category": 5,
+      "description": "Over 6 months, up to and including 1 year",
+      "share": 0.0476
+     },
+     {
+      "category": 6,
+      "description": "Over 1 year, up to and including 2 years",
+      "share": 0.1429
+     },
+     {
+      "category": 7,
+      "description": "Over 2 years, up to and including 4 years",
+      "share": 0.381
+     },
+     {
+      "category": 8,
+      "description": "Over 4 years, up to and including 6 years",
+      "share": 0.2857
+     },
+     {
+      "category": 9,
+      "description": "Over 6 years, up to and including 8 years",
+      "share": 0.0476
+     },
+     {
+      "category": 10,
+      "description": "Over 8 years, up to and including 10 years",
+      "share": 0.0952
+     },
+     {
+      "category": 11,
+      "description": "Over 10 years",
+      "share": 0.0
+     }
+    ],
+    "education": [
+     {
+      "level": "Bachelor's Degree",
+      "share": 0.381
+     },
+     {
+      "level": "Associate's Degree or other 2-year degree",
+      "share": 0.2381
+     },
+     {
+      "level": "Post-Baccalaureate Certificate",
+      "share": 0.1905
+     },
+     {
+      "level": "Post-Secondary Certificate",
+      "share": 0.0952
+     },
+     {
+      "level": "Master's Degree",
+      "share": 0.0952
+     }
+    ]
+   }
+  }
+ }
+}

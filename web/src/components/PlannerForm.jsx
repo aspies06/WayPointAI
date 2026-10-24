@@ -119,7 +119,7 @@ export function PlannerForm({ options, onSubmit, submitting, error }) {
         </div>
       </section>
 
-      <section className="card card-accent">
+      <section className="card">
         <h2>
           Your time <span className="required-note">We ask this first so the plan fits your life</span>
         </h2>

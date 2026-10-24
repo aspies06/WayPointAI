@@ -63,6 +63,18 @@ def share_words(peer_share: int, measured: bool) -> str:
     return "Not many"
 
 
+def _why(gap, skill: str, target: TargetRole, measured: bool) -> str:
+    """Why a step matters, in words that match what the data actually measures."""
+    if gap.basis == "in_demand":
+        return (f"O*NET lists {skill} as in demand for this job: often listed in employer job postings "
+                f"({gap.severity} priority).")
+    if gap.basis == "importance" and gap.importance:
+        level = "very important" if gap.importance >= 4 else "important"
+        return (f"People who work in this job rate {skill} as {level} ({round(gap.importance, 1):g} of 5 on O*NET) "
+                f"({gap.severity} priority).")
+    return f"{share_words(gap.peer_share, measured)} {target.title} hires have {skill} ({gap.severity} priority)."
+
+
 def years_text(years: float) -> str:
     """1.0 -> "1 year", 2.0 -> "2 years", 1.5 -> "1.5 years"."""
     n = int(years) if float(years).is_integer() else round(years, 1)
@@ -79,9 +91,9 @@ def _experience_advice(gap, target: TargetRole) -> ExperienceAdvice:
         first_job = (f"a junior {target.title} job" if target.level in ("mid", "senior") else
                      catalog.entry_roles().get(target.role or "", "an entry-level job in this field"))
         need = "about " + years_text(years).replace(" ", " more ", 1) + " of" if years else "more"
-        message = (f"Most {target.title} roles want {need} work experience, and studying can't replace that. "
-                   f"The most direct way to get it is {first_job}. The steps below make you a stronger "
-                   "candidate for it.")
+        message = (f"People in {target.title} jobs typically report {need} related work experience than you "
+                   f"have now (O*NET), and studying can't replace that. The most direct way to get it is "
+                   f"{first_job}. The steps below make you a stronger candidate for it.")
     return ExperienceAdvice(gap_id=gap.gap_id, years=years, message=message)
 
 
@@ -118,8 +130,7 @@ def _step_for(gap, target: TargetRole, measured: bool = False) -> Optional[Step]
     skill = _clean(gap.item)
     common = dict(step_id="S0", priority=PRIORITY_FROM_SEVERITY[gap.severity], phase="first_30_days",
                   gap_ids=[gap.gap_id], depends_on=[],
-                  why=f"{share_words(gap.peer_share, measured)} {target.title} hires have {skill} "
-                      f"({gap.severity} priority).")
+                  why=_why(gap, skill, target, measured))
     res = catalog.resources_for(gap.item, target.level, target.role)
     proj = catalog.projects_for(gap.item, target.level, target.role)
 
@@ -169,6 +180,12 @@ def _water_fill(hours: list[int], available: int) -> int:
     return max(hours, default=0)
 
 
+def _free_alternative(gap_item: str, target: TargetRole, exclude=()) -> Optional[dict]:
+    """A free course or guide for the same skill (CS50, Professor Messer), if the catalog has one."""
+    return next((r for r in catalog.resources_for(gap_item, target.level, target.role)
+                 if r["cost_usd"] == 0 and r["type"] in (*LEARNING_TYPES, "docs") and r["id"] not in exclude), None)
+
+
 def _suggestions(step: Step, gap, target: TargetRole, budget_left: Optional[int]) -> list[Suggestion]:
     """At most two things worth considering. Budget is never a reason to hide a good option."""
     res = catalog.resources_for(gap.item, target.level, target.role)
@@ -179,9 +196,10 @@ def _suggestions(step: Step, gap, target: TargetRole, budget_left: Optional[int]
         cert = next((r for r in res if r.get("credential") == "certification" and r["id"] not in have), None)
         if cert:
             over = budget_left is not None and cert["cost_usd"] > budget_left
+            free = _free_alternative(gap.item, target, have) if over else None
             out.append(Suggestion(kind="credential", resource_id=cert["id"], reason=(
                 f"Turn this into a certification employers filter on: {cert['name']} (about ${cert['cost_usd']})."
-                + (" It's over your budget, but a recognized certification can be worth stretching for." if over
+                + ((" It's over your budget." + (f" Free alternative: {free['name']}." if free else "")) if over
                    else " It fits your budget."))))
     if step.cost_usd > 0:
         free = next((r for r in res if r["cost_usd"] == 0 and r["type"] in LEARNING_TYPES and r["id"] not in have), None)
@@ -223,7 +241,12 @@ def build_plan(gap_list: GapList, today: Optional[date] = None) -> RoadmapDraft:
             deferred.append(Deferred(gap_id=gap.gap_id, reason=advice.message))
             continue
         step = _step_for(gap, role, gap_list.peer_share_measured)
-        if step is None:
+        if step is None and gap.basis == "importance":
+            # O*NET's general skills (Time Management, Systems Analysis) grow with practice, not one course.
+            deferred.append(Deferred(gap_id=gap.gap_id, reason=(
+                f"{gap.item} is a general skill people in this job rate as important (O*NET). It grows "
+                "through the projects and work in this plan rather than a single course.")))
+        elif step is None:
             deferred.append(Deferred(gap_id=gap.gap_id, reason=(
                 "No curated resource or project for this gap yet; ask a mentor or add one to the catalog.")))
         elif step.project_id in by_project:
@@ -259,7 +282,9 @@ def build_plan(gap_list: GapList, today: Optional[date] = None) -> RoadmapDraft:
             exam_step.optional_because = "budget"
             optional.append(exam_step)  # its gap is covered by the prep step on the timeline
         else:
-            set_aside(step, "budget", f"Costs about ${cost(new)}, which goes over your ${budget} budget.")
+            free = _free_alternative(gap_by_id[step.gap_ids[0]].item, role, step.resource_ids)
+            set_aside(step, "budget", f"Costs about ${cost(new)}, which is over your ${budget} budget."
+                      + (f" Free alternative: {free['name']} ({free['url']})." if free else ""))
 
     # 3. time, tier by tier: the first tier that doesn't fit is shortened, later tiers wait
     left = available_hours(gap_list, today)

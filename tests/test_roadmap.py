@@ -624,14 +624,14 @@ def test_work_experience_is_said_directly_not_scheduled():
     plan = build_plan(gl, TODAY)
     assert plan.experience and plan.experience.gap_id == "gx" and plan.experience.years == 1
     msg = plan.experience.message
-    assert "about 1 more year of work experience" in msg and "help desk" in msg
+    assert "about 1 more year of related work experience" in msg and "help desk" in msg
     assert "gx" not in {g for s in [*plan.steps, *plan.optional] for g in s.gap_ids}
     assert check(plan, gl, TODAY)[0] == []
 
 
 def test_mid_level_experience_points_to_a_junior_job():
     plan = build_plan(_with_experience_gap("mid", "2"), TODAY)
-    assert "about 2 more years of work experience" in plan.experience.message
+    assert "about 2 more years of related work experience" in plan.experience.message
     assert "a junior IT Support Specialist job" in plan.experience.message
 
 
@@ -658,7 +658,7 @@ def test_gap_analyzer_years_have_no_decimal():
                                              {"title": role, "level": "entry", "role": role},
                                              {"hours_per_week": 8, "target_date": "2027-06-01"}, resume)
             r = generate.generate_roadmap(gl, TODAY, model=fake_model(exc=RuntimeError("offline")))
-            text = render.to_markdown(r, {g["gap_id"]: g["item"] for g in gl["gaps"]})
+            text = render.to_markdown(r, {g["gap_id"]: g["item"] for g in gl["gaps"]}).replace(render.CREDIT, "")
             assert not re.search(r"\b\d+\.0\b", text), role
             assert not re.search(r"\b\d+% of [\w/ ]+ hires\b", text), role  # estimates are said in words
 
@@ -703,3 +703,24 @@ def test_gpu_needs_room_for_more_than_the_weights():
     just_the_weights = fake_torch(cuda_free=1 * GB)
     assert local_model.choose_device(just_the_weights, 1 * GB, "auto")[0] == "cpu"
     assert local_model.choose_device(fake_torch(cuda_free=2 * GB), 1 * GB, "auto")[0] == "cuda"
+
+
+# ---------- disclaimers, credit and budget wording ----------
+
+def test_output_says_it_can_make_mistakes_and_credits_onet():
+    text = render.to_markdown(generate.generate_roadmap(load("swe_new_grad"), TODAY, model=fake_model(exc=RuntimeError("offline"))))
+    assert text.startswith("*") and "can make mistakes" in text.splitlines()[0]
+    assert "O*NET 31.0" in text and "CC BY 4.0" in text and "approximate" in text
+
+
+def test_over_budget_wording_offers_a_free_alternative_without_pushing():
+    gap_analyzer = pytest.importorskip("gap_analyzer")
+    profile = pytest.importorskip("role_profiles").ROLE_PROFILES["IT Support Specialist"]
+    resume = {"skills": ["Python"], "experience_years": 0}
+    gl = gap_analyzer.build_gap_list(gap_analyzer.analyze_gap(resume, profile),
+                                     {"title": "IT Support Specialist", "level": "entry", "role": "IT Support Specialist"},
+                                     {"hours_per_week": 10, "target_date": "2027-06-01", "budget_usd": 0}, resume)
+    plan = build_plan(GapList.model_validate(gl), TODAY)
+    reasons = [x.reason for s in plan.steps for x in s.suggestions] + [d.reason for d in plan.deferred]
+    assert not any("stretch" in r or "worth it" in r for r in reasons)
+    assert any("over your budget. Free alternative: Professor Messer" in r for r in reasons)

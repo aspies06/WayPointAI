@@ -16,6 +16,7 @@ from typing import Any
 from roadmap.local_model import generate_with_timeout, hf_generate, ModelBusy
 from resume_wording import basic_bullets, follow_up_questions, heading, terminology
 from role_profiles import ROLE_PROFILES
+import role_insights
 
 
 FIELDS = ("context", "problem", "actions", "tools", "outcome")
@@ -263,15 +264,42 @@ def _enabled() -> bool:
         "0", "false", "off", "no"}
 
 
+def _role_view(insights: dict, stories: list[dict]) -> dict:
+    """Role insights with each in-demand technology marked as found in the saved stories or not."""
+    bank = "\n".join(_story_text(story) for story in stories)
+    view = json.loads(json.dumps(insights))
+    for tech in view["in_demand_technologies"]:
+        tech["in_your_stories"] = any(_contains(bank, term) for term in tech["terms"])
+    return view
+
+
 def generate_resume(stories: list[dict], job_description: str = "", profile: dict | None = None,
-                    max_stories: int = 5) -> dict[str, Any]:
-    """Select relevant saved stories, then assemble evidence-backed resume bullets."""
+                    max_stories: int = 5, role: str | None = None) -> dict[str, Any]:
+    """Select relevant saved stories, then assemble evidence-backed resume bullets.
+
+    A target role adds the technologies O*NET lists as in demand for it to the ranking, so the
+    most relevant stories come first. It never adds claims: only facts in the saved stories are
+    written, and technologies not found are reported back to the user."""
     if not stories:
         raise ValueError("Save at least one story before generating a resume.")
     profile = profile or {}
     job_description = job_description.strip()
+    insights = role_insights.for_role(role) if role else None
     requested = [term for term in _vocabulary(stories) if _contains(job_description, term)]
-    selected = _rank(stories, job_description, requested)[:max(1, min(max_stories, 10))]
+    ranking = list(requested)
+    if insights:  # role technologies only affect which stories come first; the role panel reports them
+        seen = {term.casefold() for term in ranking}
+        for tech in insights["in_demand_technologies"]:
+            for term in tech["terms"]:
+                if term.casefold() not in seen:
+                    seen.add(term.casefold())
+                    ranking.append(term)
+    selected = _rank(stories, job_description, ranking)[:max(1, min(max_stories, 10))]
+    # With no job description, the role tells the writer what to emphasize. Still not evidence.
+    model_brief = job_description or (
+        f"Target role: {role}. Technologies often listed for it: "
+        + ", ".join(t["terms"][1] if len(t["terms"]) > 1 else t["name"]
+                    for t in insights["in_demand_technologies"][:10]) if insights else "")
     plans = {story["id"]: basic_bullets(story) for story in selected}
     mode = "basic"
     fallback_reason = "ai_disabled"
@@ -280,7 +308,7 @@ def generate_resume(stories: list[dict], job_description: str = "", profile: dic
         try:
             # Bound the prompt rather than silently allowing token truncation to
             # remove evidence. The edited path still includes contributions and outcomes.
-            messages = _model_messages(selected, job_description)
+            messages = _model_messages(selected, model_brief)
             if sum(len(message["content"]) for message in messages) > 22000:
                 raise ValueError("Story selection is too large for the local model")
             model_id = os.getenv("RESUME_MODEL_ID", "Qwen/Qwen3-0.6B").strip() or "Qwen/Qwen3-0.6B"
@@ -336,4 +364,5 @@ def generate_resume(stories: list[dict], job_description: str = "", profile: dic
         "text": "\n".join(lines), "sections": sections, "mode": mode, "notice": notice,
         "matched_terms": matched, "unmatched_terms": unmatched,
         "fallback_reason": fallback_reason, "follow_up_questions": follow_up_questions(selected),
+        "role_insights": _role_view(insights, stories) if insights else None,
     }

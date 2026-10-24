@@ -17,7 +17,7 @@ export function StepCard({ step, gapNames }) {
         <div className="meta">
           <span>{when}</span>
           <span>about {step.est_hours} hours</span>
-          <span>{formatCost(step.cost_usd)}</span>
+          <span>{step.cost_usd ? "about " : ""}{formatCost(step.cost_usd)}</span>
           <span className={"badge badge-" + step.benefit}>{BENEFIT_LABELS[step.benefit]}</span>
         </div>
       </header>
@@ -53,7 +53,7 @@ export function StepCard({ step, gapNames }) {
                 </a>
                 <span className="muted">
                   {" "}
-                  · {r.provider} · {formatCost(r.cost_usd)}
+                  · {r.provider} · {r.cost_usd ? "about " : ""}{formatCost(r.cost_usd)}
                 </span>
               </li>
             ))}

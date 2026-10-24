@@ -4,14 +4,29 @@ import { PlannerForm } from "./PlannerForm.jsx";
 import { Results } from "./Results.jsx";
 import { Brand } from "./Brand.jsx";
 import { ResumeBuilder } from "./ResumeBuilder.jsx";
+import { PrivacyNotice } from "./PrivacyNotice.jsx";
+import { ThemeSwitch } from "./ThemeSwitch.jsx";
+import { applyTheme, onSystemThemeChange, saveTheme, savedTheme } from "../theme.js";
 
 export function App() {
+  const [view, setView] = useState("roadmap");
+  const [themeChoice, setThemeChoice] = useState(savedTheme);
+
+  useEffect(() => {
+    applyTheme(themeChoice);
+    if (themeChoice !== "system") return undefined;
+    return onSystemThemeChange(() => applyTheme("system"));
+  }, [themeChoice]);
+
+  function chooseTheme(choice) {
+    saveTheme(choice);
+    setThemeChoice(choice);
+  }
   const [options, setOptions] = useState(null);
   const [loadError, setLoadError] = useState("");
   const [result, setResult] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
-  const [view, setView] = useState("roadmap");
 
   useEffect(() => {
     getOptions().then(setOptions, (error) => setLoadError(error.message));
@@ -36,11 +51,11 @@ export function App() {
     <>
       <header className="site-header">
         <div className="wrap">
+          <ThemeSwitch choice={themeChoice} onChange={chooseTheme} />
           <Brand />
           <p className="tagline">
-            Tell us where you are, where you want to go, and how much time you have. You'll get a
-            roadmap with your most important work first, dates you can keep, and links to every
-            resource.
+            Plan your next career step, capture the experience you already have, and build a
+            resume that tells your story.
           </p>
         </div>
       </header>
@@ -77,11 +92,18 @@ export function App() {
           {result && <Results result={result} />}
         </div>
         <div hidden={view !== "resume"}>
-          <ResumeBuilder />
+          <ResumeBuilder roles={options?.roles || []} />
         </div>
       </main>
+      <div className="wrap">
+        <PrivacyNotice />
+      </div>
       <footer className="site-footer wrap muted">
-        Your resume is read on this computer and isn't stored.
+        <p className="slogan">Stored locally, never in the cloud.</p>
+        <p>
+          Uploaded resumes aren't stored. Stories you save stay encrypted in this browser on your device.{" "}
+          <a href="#privacy">What's stored</a>
+        </p>
       </footer>
     </>
   );

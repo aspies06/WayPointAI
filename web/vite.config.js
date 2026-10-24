@@ -8,4 +8,6 @@ export default defineConfig({
   plugins: [react()],
   server: { host: "127.0.0.1", port: 5173, strictPort: true },
   preview: { host: "127.0.0.1", port: 4173, strictPort: true },
+  // React and its dependencies are MIT-licensed; their notices ship with the built site.
+  build: { license: { fileName: "third-party-licenses.md" } },
 });

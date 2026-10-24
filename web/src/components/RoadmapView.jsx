@@ -11,7 +11,7 @@ const OPTIONAL_SECTIONS = [
   {
     because: "budget",
     title: "If you can spend more",
-    intro: "These go over what you wanted to spend. Some may still be worth it; see the notes.",
+    intro: "These are over your budget. Where the catalog has one, a free alternative is listed.",
   },
 ];
 
@@ -26,6 +26,10 @@ export function RoadmapView({ roadmap, gapNames }) {
 
   return (
     <article className="roadmap">
+      <p className="disclaimer" role="note">
+        {roadmap.source === "basic" ? "Automatically generated" : "AI-generated"} guidance. It can make
+        mistakes, so check dates, prices and requirements with each provider before you rely on them.
+      </p>
       <header className="roadmap-head">
         <div>
           <h2>Your {roadmap.target_role.title} roadmap</h2>
@@ -56,8 +60,8 @@ export function RoadmapView({ roadmap, gapNames }) {
           <dd>{roadmap.total_hours} hours</dd>
         </div>
         <div>
-          <dt>Cost</dt>
-          <dd>{formatCost(spent)}</dd>
+          <dt>Approximate cost</dt>
+          <dd>{spent ? "about " : ""}{formatCost(spent)}</dd>
         </div>
       </dl>
 
@@ -169,6 +173,12 @@ export function RoadmapView({ roadmap, gapNames }) {
           )}
         </section>
       )}
+
+      <p className="credit">
+        Prices are approximate and can change; check the provider's site. Skill data includes information
+        from the O*NET 31.0 Database by the U.S. Department of Labor, Employment and Training Administration
+        (USDOL/ETA), used under the CC BY 4.0 license. O*NET® is a trademark of USDOL/ETA.
+      </p>
     </article>
   );
 }

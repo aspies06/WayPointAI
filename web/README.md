@@ -32,15 +32,16 @@ vite.config.js                dev server and preview ports
 public/                       copied as-is: logo.svg (tab icon), brand-logo.svg, assets/flowers.jpg
 src/main.jsx                  mounts <App />
 src/styles.css                all styles; colors are tokens with light and dark values
-src/api.js                    calls to api.py: getOptions(), getRoadmaps(form), the /api/resume calls
+src/api.js                    calls to api.py: getOptions(), getRoadmaps(form)
 src/config.js                 API address
 src/format.js                 dates, money, labels, MM-DD-YYYY input mask
 src/components/
   App.jsx                     loads options, submits the form, holds results
   Brand.jsx                   title with the logo behind it
   PlannerForm.jsx             the questions (time first, never guessed)
-  Results.jsx                 one tab per role
   ResumeBuilder.jsx           five-question story bank, review, editing, and resume drafts
+  RoleInsights.jsx            what people in a role do and what employers ask for, with sources
+  Results.jsx                 one tab per role
   RoadmapView.jsx             summary, timeline, steps by priority, optional items button
   StepCard.jsx                one step: why, deliverable, done when, sources, suggestions
 ```
@@ -51,6 +52,8 @@ src/components/
 - Roles, levels, workloads and questions come from `GET /api/options`, so they stay in sync with Python.
 - `node_modules/` and `dist/` are not committed; `package-lock.json` is, so everyone gets the same versions.
 - Image credits and licenses: `public/assets/CREDITS.md`.
-- Resume builder uses `/api/resume` and keeps a story bank access key in browser storage,
-  scoped to the API address. Stories are saved by the API in SQLite; clearing browser storage
-  loses the key. See [the resume builder notes](../docs/resume_builder.md).
+- The resume builder's story bank lives only in this browser, encrypted
+  (`src/storyVault.js`); `/api/resume` keeps nothing. See
+  [the resume builder notes](../docs/resume_builder.md).
+- `?api=` only accepts this computer's addresses (127.0.0.1, localhost, [::1]), so a shared
+  link can't point the page at another server and send it someone's stories.
