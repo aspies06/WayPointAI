@@ -7,6 +7,8 @@ const EMPTY = {
   roles: [],
   level: "entry",
   experienceYears: "",
+  education: "",
+  fieldOfStudy: "",
   workload: "",
   customHours: "",
   startDate: "",
@@ -73,6 +75,37 @@ export function PlannerForm({ options, onSubmit, submitting, error }) {
             ></textarea>
           </label>
         </div>
+        <div className="grid two">
+          <label className="field">
+            <span className="label">
+              Your education <span className="muted">(optional)</span>
+            </span>
+            <select value={form.education} onChange={set("education")}>
+              <option value="">Prefer not to say</option>
+              {options.education.map((e) => (
+                <option key={e.value} value={e.value}>
+                  {e.label}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="field">
+            <span className="label">
+              Field of study <span className="muted">(optional)</span>
+            </span>
+            <input
+              maxLength="100"
+              placeholder="For example: Computer Science"
+              value={form.fieldOfStudy}
+              onChange={set("fieldOfStudy")}
+              disabled={!form.education}
+            />
+          </label>
+        </div>
+        <p className="hint">
+          Used only to compare with what people in each job report. No degree is assumed, and it never counts
+          against you.
+        </p>
       </section>
 
       <section className="card">

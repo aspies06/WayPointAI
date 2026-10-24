@@ -59,6 +59,10 @@ for the roadmap input format.
 
 See [web/README.md](web/README.md) for how the front end is organized.
 
+**Education is optional and never assumed.** If you share it, each roadmap adds a short note
+comparing it with what people in that job report (O*NET's education figures). It's advice
+only: education never becomes a gap or a requirement (`skills/education.py`).
+
 ## Resume builder and story bank
 
 Open **Resume builder** in the web app to save experience once and reuse it for

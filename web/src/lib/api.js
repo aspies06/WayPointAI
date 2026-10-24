@@ -35,6 +35,8 @@ export function getRoadmaps(form) {
   data.append("budget_usd", form.budget);
   data.append("background", form.background);
   data.append("skills_text", form.skills);
+  data.append("education_level", form.education);
+  data.append("field_of_study", form.education ? form.fieldOfStudy : "");
   if (form.resume) data.append("resume", form.resume);
   return call("/api/roadmaps", { method: "POST", body: data });
 }

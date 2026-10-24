@@ -15,7 +15,7 @@ const OPTIONAL_SECTIONS = [
   },
 ];
 
-export function RoadmapView({ roadmap, gapNames }) {
+export function RoadmapView({ roadmap, gapNames, education }) {
   const [showOptional, setShowOptional] = useState(false);
   const kept = new Set(roadmap.optional.flatMap((s) => s.gap_ids));
   if (roadmap.experience) kept.add(roadmap.experience.gap_id); // shown at the top instead
@@ -69,6 +69,13 @@ export function RoadmapView({ roadmap, gapNames }) {
         <aside className="experience" aria-label="Most important">
           <strong>Most important</strong>
           <p>{roadmap.experience.message}</p>
+        </aside>
+      )}
+
+      {education && (
+        <aside className="experience education" aria-label="Education">
+          <strong>Education</strong>
+          <p>{education.message}</p>
         </aside>
       )}
 

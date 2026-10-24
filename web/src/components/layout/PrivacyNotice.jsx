@@ -21,7 +21,7 @@ export function PrivacyNotice() {
       <ul>
         <li>Your passphrase. The key made from it is held in memory only while your story bank is open.</li>
         <li>Resumes you upload for a roadmap, and skills you type in. They're read in memory to build your roadmap.</li>
-        <li>Your roadmap answers (roles, hours, dates, budget) and the roadmap itself.</li>
+        <li>Your roadmap answers (roles, education, hours, dates, budget) and the roadmap itself.</li>
         <li>Resume details (name, contact, headline, education) and job descriptions you paste.</li>
         <li>Generated resume drafts, unless you copy or download them yourself.</li>
       </ul>
