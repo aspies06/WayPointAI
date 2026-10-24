@@ -8,8 +8,8 @@ export function PrivacyNotice() {
       <ul>
         <li>
           <strong>Your story bank</strong>, only if you start one: your answers to the story questions, the organization
-          and dates you add, the story summary, and when each story was saved or edited. It's encrypted (AES-256-GCM, with
-          a key made from your passphrase) and kept in this browser's storage on this device. It stays until you delete
+          and dates you add, the story summary, and when each story was saved or edited. It's encrypted with your
+          passphrase and kept in this browser's storage on this device. It stays until you delete
           it, delete a story, or clear this site's browser data.
         </li>
         <li>

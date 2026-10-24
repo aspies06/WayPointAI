@@ -82,6 +82,7 @@ body::before {
   content: ""; position: fixed; inset: 0; z-index: -1;
   background: linear-gradient(var(--photo-veil), var(--photo-veil)),
               url("/assets/flowers.jpg") 70% center / cover no-repeat, var(--bg);
+  transform: scale(1.12); transform-origin: 70% center; /* zoomed in slightly on the tulips */
 }
 
 .site-header {
