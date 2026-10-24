@@ -72,17 +72,16 @@ ul.plain li + li { margin-top: 0.35rem; }
 /* header and footer */
 .site-header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 28px 0 22px; margin-bottom: 24px; }
 .site-header h1 { font-size: 1.75rem; letter-spacing: -0.01em; }
-/* The logo arrow runs behind the title at low opacity; the text stays on top and fully readable. */
-.brand { position: relative; display: inline-block; padding: 4px 34px 6px 6px; isolation: isolate; }
+/* The logo (two staggered arrows) runs behind the title at low opacity; the text stays on top. */
+.brand { position: relative; display: inline-block; padding: 6px 44px 6px 6px; isolation: isolate; }
 .brand-text { position: relative; z-index: 1; }
 .brand-arrow {
-  position: absolute; z-index: 0; left: -4px; top: 50%; transform: translateY(-50%);
-  width: calc(100% + 8px); height: auto; overflow: visible; pointer-events: none;
-  color: var(--accent); opacity: 0.28;
+  position: absolute; z-index: 0; left: -6px; top: 50%; transform: translateY(-50%);
+  width: calc(100% + 12px); height: auto; overflow: visible; pointer-events: none;
+  fill: var(--accent); opacity: 0.35;
 }
-.brand-arrow path { fill: none; stroke: currentColor; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
-.brand-arrow circle { fill: currentColor; }
-@media (prefers-color-scheme: dark) { .brand-arrow { opacity: 0.38; } }
+.brand-arrow .back { opacity: 0.45; }
+@media (prefers-color-scheme: dark) { .brand-arrow { opacity: 0.5; } }
 .tagline { margin: 0; color: var(--muted); max-width: 680px; }
 .site-footer { padding: 32px 16px 48px; font-size: 0.875rem; }
 
