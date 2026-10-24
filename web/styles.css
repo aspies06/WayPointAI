@@ -218,3 +218,63 @@ button.secondary { background: var(--surface); color: var(--accent); border: 1px
 
 .optional-toggle { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border); }
 .optional { margin-top: 8px; }
+
+/* Saved experiences and resume drafts */
+[hidden] { display: none !important; }
+.workspace-tabs { margin-bottom: 24px; }
+.resume-builder { overflow-wrap: anywhere; }
+.story-intro { padding: 28px; background: linear-gradient(120deg, var(--accent-soft), var(--surface)); }
+.eyebrow { display: block; color: var(--accent); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-bottom: 10px; }
+.story-intro h2 { font-size: 1.6rem; max-width: 650px; }
+.story-intro p { max-width: 720px; }
+.story-flow { display: flex; flex-wrap: wrap; list-style: none; gap: 12px 24px; padding: 0; margin: 24px 0 0; font-size: 0.85rem; font-weight: 600; }
+.story-flow li { display: flex; align-items: center; gap: 8px; }
+.story-flow li span { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--surface); border: 1px solid var(--border); flex: 0 0 auto; }
+.section-heading { display: flex; gap: 16px; align-items: flex-start; justify-content: space-between; margin-bottom: 8px; }
+.section-heading p { margin: 6px 0 0; }
+.section-heading > button { flex: 0 0 auto; }
+.story-empty { text-align: center; padding: 22px 16px 10px; max-width: 600px; margin: 0 auto; }
+.story-empty h3 { font-size: 1.05rem; }
+.story-empty p { margin-bottom: 8px; }
+.story-interview { border: 1px solid var(--accent); border-radius: var(--radius); padding: 22px; margin: 20px 0; background: var(--surface); scroll-margin-top: 16px; }
+.interview-progress { display: flex; gap: 8px 16px; justify-content: space-between; flex-wrap: wrap; color: var(--muted); font-size: 0.8rem; }
+.story-interview progress { width: 100%; height: 5px; accent-color: var(--accent); margin: 10px 0 22px; }
+.question-title { font-size: 1.2rem; line-height: 1.4; font-weight: 650; }
+.resume-fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
+.resume-fieldset:disabled { opacity: 0.65; }
+.actions.compact { margin: 12px 0 0; gap: 10px 18px; }
+.text-button { color: var(--accent); background: transparent; border: 0; font: inherit; font-size: 0.9rem; font-weight: 600; padding: 6px 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.text-button.danger { color: var(--must); }
+button:disabled { opacity: 0.6; cursor: default; }
+.story-details { margin: 16px 0; }
+.story-details summary, .story-access > summary { color: var(--accent); cursor: pointer; font-weight: 600; font-size: 0.925rem; }
+.story-details[open] > summary { margin-bottom: 16px; }
+.story-list { display: grid; gap: 16px; }
+.saved-story { border-top: 1px solid var(--border); padding-top: 18px; margin-top: 8px; }
+.saved-story h3 { font-size: 1rem; white-space: pre-wrap; }
+.saved-story .meta { margin: 5px 0; }
+.saved-story .alert { margin-top: 12px; }
+.saved-story .alert p { margin: 0; }
+.story-narrative { white-space: pre-wrap; font-size: 0.925rem; line-height: 1.7; }
+.story-evidence { margin: 0; font-size: 0.85rem; }
+.story-evidence > div { margin: 8px 0; border-left: 3px solid var(--border); padding-left: 12px; }
+.story-evidence dt { font-weight: 600; color: var(--muted); }
+.story-evidence dd { margin: 2px 0 0; white-space: pre-wrap; }
+.status-message { color: var(--good); font-size: 0.9rem; }
+.status-message:empty { margin: 0; }
+.resume-result { scroll-margin-top: 16px; }
+.resume-preview { white-space: pre-wrap; overflow-wrap: anywhere; font: 0.925rem/1.7 system-ui, sans-serif; border: 1px solid var(--border); border-radius: 8px; background: var(--surface-2); padding: 24px; margin: 20px 0; }
+.match-note { font-size: 0.85rem; color: var(--muted); margin: 18px 0 0; }
+.bullet-sources { padding: 14px 0; border-top: 1px solid var(--border); }
+.bullet-sources h3 { font-size: 1rem; }
+.bullet-sources p { font-size: 0.85rem; margin-bottom: 8px; }
+.story-access { margin-top: 24px; }
+.story-access form { margin-top: 20px; max-width: 600px; }
+@media (max-width: 560px) {
+  .story-intro { padding: 20px; }
+  .story-intro h2 { font-size: 1.35rem; }
+  .story-flow { flex-direction: column; }
+  .section-heading { flex-direction: column; }
+  .story-interview, .resume-preview { padding: 16px; }
+  .workspace-tabs .tab { padding: 10px; }
+}

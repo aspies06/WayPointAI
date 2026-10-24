@@ -4,8 +4,9 @@
 
 Then open web/index.html with VS Code's Live Server (port 5500). The API only
 listens on this computer, and only the Live Server origins may call it; set
-WAYPOINT_ALLOWED_ORIGINS (comma-separated) to allow others. Resumes are read in
-memory and never stored. Set ROADMAP_AI=0 to skip the model's personal tips.
+WAYPOINT_ALLOWED_ORIGINS (comma-separated) to allow others. Uploaded resumes are
+read in memory. Experience stories are saved separately in the local story bank.
+Set ROADMAP_AI=0 to skip the model's personal tips and resume assistance.
 """
 import os
 from typing import Annotated, Optional
@@ -25,13 +26,23 @@ from career_pipeline import (
 )
 from roadmap import generate_roadmap, intake
 from roadmap.schemas import ROLES
+from resume_api import router as resume_router
 
 ALLOWED_ORIGINS = os.getenv(
     "WAYPOINT_ALLOWED_ORIGINS", "http://127.0.0.1:5500,http://localhost:5500").split(",")
 
 app = FastAPI(title="WayPointAI API", version="1.0")
 app.add_middleware(CORSMiddleware, allow_origins=ALLOWED_ORIGINS,
-                   allow_methods=["GET", "POST"], allow_headers=["*"])
+                   allow_methods=["GET", "POST", "PUT", "DELETE"], allow_headers=["*"])
+app.include_router(resume_router)
+
+
+@app.middleware("http")
+async def private_story_responses(request: Request, call_next):
+    response = await call_next(request)
+    if request.url.path.startswith("/api/resume/"):
+        response.headers["Cache-Control"] = "no-store"
+    return response
 
 
 @app.get("/api/health")

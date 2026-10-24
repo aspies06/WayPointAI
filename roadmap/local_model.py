@@ -107,11 +107,13 @@ def loaded_device() -> Optional[str]:
     return _load_once(MODEL_ID)[2] if _load_once.cache_info().currsize else None
 
 
-def hf_generate(messages: list[dict], max_new_tokens: int = MAX_NEW_TOKENS) -> str:
+def hf_generate(messages: list[dict], max_new_tokens: int = MAX_NEW_TOKENS,
+                *, model_id: str = MODEL_ID, enable_thinking: bool | None = None) -> str:
     import torch
 
-    tokenizer, model, device = _load(MODEL_ID)
-    prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+    tokenizer, model, device = _load(model_id)
+    template_options = {} if enable_thinking is None else {"enable_thinking": enable_thinking}
+    prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True, **template_options)
     if tokenizer.bos_token:
         prompt = prompt.removeprefix(tokenizer.bos_token)
     inputs = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=8192).to(device)

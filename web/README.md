@@ -25,6 +25,7 @@ src/format.js              dates, money, labels, MM-DD-YYYY input mask
 src/components/
   App.js                   loads options, submits the form, holds results
   PlannerForm.js           the questions (time first, never guessed)
+  ResumeBuilder.js         five-question story bank, review, editing, and resume drafts
   Results.js               one tab per role
   RoadmapView.js           summary, timeline, steps by priority, optional items button
   StepCard.js              one step: why, deliverable, done when, sources, suggestions
@@ -57,3 +58,7 @@ and lists still need a `key`.
   they stay in sync with the Python side.
 - Moving to a build tool later (for example Vite) only means renaming files to
   `.jsx` and swapping the `html` templates for JSX; the component structure stays.
+- Resume builder uses `/api/resume` and retains a bank access key in browser
+  storage, scoped to the API URL. Experience stories are persisted by the API in
+  SQLite; clearing browser storage loses the key. See
+  [the resume builder notes](../docs/resume_builder.md).
