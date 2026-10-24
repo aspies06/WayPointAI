@@ -35,27 +35,52 @@ deterministic and based on explicit mentions of profile skills; it is not a
 general-purpose resume parser. See [docs/gap_list_spec.md](docs/gap_list_spec.md)
 for the roadmap input format.
 
-1. Install the Python dependencies and start the API (it listens on this computer only):
+1. From the repository root, create and activate a Python virtual environment, install
+   the dependencies, then start the API:
 
-   ```bash
+   ```powershell
+   python -m venv .venv
+   .\.venv\Scripts\Activate.ps1
    python -m pip install -r requirements.txt
-   python api.py            # http://127.0.0.1:8000, interactive docs at /docs
+   python api.py
    ```
 
-   To skip the optional model-generated tips and use the rule-based roadmap, set
-   `ROADMAP_AI=0` before starting it.
+   The API listens at `http://127.0.0.1:8000`; interactive API docs are at
+   `http://127.0.0.1:8000/docs`. Run `api.py` from the repository root so Python
+   can import the `skills`, `roadmap`, and `resume` packages. Do not run
+   `resume/api.py` directly; it defines the resume routes and is loaded by the
+   root API.
 
-2. Start the site (React + Vite; needs [Node.js](https://nodejs.org) LTS). In a second terminal:
+2. Install [Node.js LTS](https://nodejs.org). In a second terminal, start the
+   React + Vite site:
 
-   ```bash
+   ```powershell
    cd web
-   npm install              # first time only
-   npm run dev              # http://127.0.0.1:5173, updates instantly as you edit
+   npm install
+   npm run dev
    ```
 
-   For an optimized build, run `npm run build` (output in `web/dist/`). Preview it with
-   `npm run preview`, or open the repo in VS Code and click **Go Live**:
-   `.vscode/settings.json` points Live Server at `web/dist/`.
+   Open the local URL printed by Vite (normally `http://127.0.0.1:5173`). Keep
+   both the API and frontend terminals running. On later runs, activate the
+   virtual environment, run `python api.py` from the repository root, and run
+   `npm run dev` from `web/`. Repeat `npm install` only when web dependencies change.
+
+   To build and preview the production frontend, run `npm run build` and
+   `npm run preview` from `web/`.
+
+The local Hugging Face models are optional. When enabled, their weights are
+downloaded on first use and can take additional disk space and time. To run
+without model assistance in PowerShell, set `ROADMAP_AI=0` before starting the
+API:
+
+```powershell
+$env:ROADMAP_AI = "0"
+python api.py
+```
+
+This uses the rule-based roadmap and the edited resume-draft fallback. For the
+standalone roadmap demo, run `streamlit run scripts/demo_app.py` from the
+repository root.
 
 See [web/README.md](web/README.md) for how the front end is organized.
 
