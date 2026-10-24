@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "target_role": {
+    "title": "Security Engineer",
+    "level": "mid"
+  },
+  "gaps": [
+    {
+      "gap_id": "g1",
+      "item": "Application security (OWASP Top 10)",
+      "category": "skill",
+      "peer_share": 70,
+      "severity": "high",
+      "user_has": "Fixed a few XSS bugs at work"
+    },
+    {
+      "gap_id": "g2",
+      "item": "Threat modeling",
+      "category": "skill",
+      "peer_share": 55,
+      "severity": "high",
+      "user_has": null
+    },
+    {
+      "gap_id": "g3",
+      "item": "AWS cloud security / IAM",
+      "category": "skill",
+      "peer_share": 60,
+      "severity": "high",
+      "user_has": "Uses AWS daily, no security focus"
+    },
+    {
+      "gap_id": "g4",
+      "item": "SAST and dependency scanning in CI",
+      "category": "tool",
+      "peer_share": 45,
+      "severity": "medium",
+      "user_has": null
+    },
+    {
+      "gap_id": "g5",
+      "item": "Infrastructure as code (Terraform)",
+      "category": "tool",
+      "peer_share": 35,
+      "severity": "medium",
+      "user_has": null
+    },
+    {
+      "gap_id": "g6",
+      "item": "Penetration testing",
+      "category": "skill",
+      "peer_share": 25,
+      "severity": "low",
+      "user_has": null
+    }
+  ],
+  "user_context": {
+    "hours_per_week": 6,
+    "target_date": "2027-09-30",
+    "budget_usd": 400,
+    "background": "3 years as a backend engineer (Python, Django) at a fintech; volunteers on the security champions group."
+  }
+}

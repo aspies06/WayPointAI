@@ -23,3 +23,7 @@ streamlit run app.py
 
 The app analyzes up to 18,000 characters of extracted resume text per request.
 Scanned PDFs without selectable text are not supported.
+
+## Roadmap module
+
+`roadmap/` turns a gap list (what a user is missing compared with people in their target role) into a scheduled, concrete roadmap for internship, junior and mid-level candidates in all nine roles. See [docs/roadmap.md](docs/roadmap.md) for setup and design, and [docs/gap_list_spec.md](docs/gap_list_spec.md) for the input and output format.

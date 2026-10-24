@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0",
+  "target_role": {
+    "title": "Software Engineer",
+    "level": "entry"
+  },
+  "gaps": [
+    {
+      "gap_id": "g1",
+      "item": "Deployed full-stack project",
+      "category": "experience",
+      "peer_share": 68,
+      "severity": "high",
+      "user_has": null
+    },
+    {
+      "gap_id": "g2",
+      "item": "Data structures and algorithms practice",
+      "category": "skill",
+      "peer_share": 75,
+      "severity": "high",
+      "user_has": null
+    },
+    {
+      "gap_id": "g3",
+      "item": "React",
+      "category": "tool",
+      "peer_share": 55,
+      "severity": "high",
+      "user_has": null
+    },
+    {
+      "gap_id": "g4",
+      "item": "SQL",
+      "category": "skill",
+      "peer_share": 60,
+      "severity": "medium",
+      "user_has": null
+    },
+    {
+      "gap_id": "g5",
+      "item": "Git and pull requests",
+      "category": "tool",
+      "peer_share": 70,
+      "severity": "high",
+      "user_has": null
+    },
+    {
+      "gap_id": "g6",
+      "item": "Unit testing",
+      "category": "skill",
+      "peer_share": 55,
+      "severity": "medium",
+      "user_has": null
+    },
+    {
+      "gap_id": "g7",
+      "item": "Docker",
+      "category": "tool",
+      "peer_share": 45,
+      "severity": "medium",
+      "user_has": null
+    },
+    {
+      "gap_id": "g8",
+      "item": "AWS",
+      "category": "tool",
+      "peer_share": 40,
+      "severity": "low",
+      "user_has": null
+    },
+    {
+      "gap_id": "g9",
+      "item": "TypeScript",
+      "category": "skill",
+      "peer_share": 45,
+      "severity": "low",
+      "user_has": null
+    },
+    {
+      "gap_id": "g10",
+      "item": "System design",
+      "category": "skill",
+      "peer_share": 20,
+      "severity": "low",
+      "user_has": null
+    }
+  ],
+  "user_context": {
+    "hours_per_week": 5,
+    "target_date": "2026-11-20",
+    "budget_usd": 50,
+    "background": "Bootcamp started last month; HTML and CSS only."
+  }
+}

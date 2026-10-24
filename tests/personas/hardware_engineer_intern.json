@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "target_role": {
+    "title": "Hardware Engineering Intern",
+    "level": "internship"
+  },
+  "gaps": [
+    {
+      "gap_id": "g1",
+      "item": "Circuit analysis",
+      "category": "skill",
+      "peer_share": 70,
+      "severity": "high",
+      "user_has": "Circuits I and II coursework"
+    },
+    {
+      "gap_id": "g2",
+      "item": "PCB design (KiCad or Altium)",
+      "category": "tool",
+      "peer_share": 60,
+      "severity": "high",
+      "user_has": null
+    },
+    {
+      "gap_id": "g3",
+      "item": "Oscilloscope and lab equipment",
+      "category": "skill",
+      "peer_share": 55,
+      "severity": "high",
+      "user_has": "Used in lab sections"
+    },
+    {
+      "gap_id": "g4",
+      "item": "Verilog",
+      "category": "skill",
+      "peer_share": 35,
+      "severity": "medium",
+      "user_has": null
+    },
+    {
+      "gap_id": "g5",
+      "item": "SPICE circuit simulation",
+      "category": "tool",
+      "peer_share": 30,
+      "severity": "medium",
+      "user_has": null
+    },
+    {
+      "gap_id": "g6",
+      "item": "Python scripting for test automation",
+      "category": "skill",
+      "peer_share": 20,
+      "severity": "low",
+      "user_has": null
+    }
+  ],
+  "user_context": {
+    "hours_per_week": 8,
+    "target_date": "2027-01-15",
+    "budget_usd": 100,
+    "background": "Second-year electrical engineering student; robotics club member who has soldered kits but not designed a board."
+  }
+}

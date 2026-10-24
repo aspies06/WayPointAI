@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "target_role": {
+    "title": "QA Engineer",
+    "level": "mid"
+  },
+  "gaps": [
+    {
+      "gap_id": "g1",
+      "item": "Test automation with Playwright or Cypress",
+      "category": "tool",
+      "peer_share": 70,
+      "severity": "high",
+      "user_has": "Selenium scripts, mostly manual testing"
+    },
+    {
+      "gap_id": "g2",
+      "item": "API testing",
+      "category": "skill",
+      "peer_share": 60,
+      "severity": "high",
+      "user_has": "Uses Postman by hand"
+    },
+    {
+      "gap_id": "g3",
+      "item": "CI/CD pipelines",
+      "category": "tool",
+      "peer_share": 50,
+      "severity": "medium",
+      "user_has": null
+    },
+    {
+      "gap_id": "g4",
+      "item": "Performance and load testing",
+      "category": "skill",
+      "peer_share": 40,
+      "severity": "medium",
+      "user_has": null
+    },
+    {
+      "gap_id": "g5",
+      "item": "SQL",
+      "category": "skill",
+      "peer_share": 45,
+      "severity": "medium",
+      "user_has": null
+    },
+    {
+      "gap_id": "g6",
+      "item": "Mentoring junior testers",
+      "category": "experience",
+      "peer_share": 30,
+      "severity": "low",
+      "user_has": null
+    }
+  ],
+  "user_context": {
+    "hours_per_week": 6,
+    "target_date": "2027-07-31",
+    "budget_usd": 300,
+    "background": "4 years of manual QA at an e-commerce company; ISTQB Foundation; wrote a small Selenium suite."
+  }
+}

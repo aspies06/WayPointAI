@@ -1,0 +1,2286 @@
+{
+ "_note": "Curated resources for internship, entry (junior) and mid-level roles: Software Engineer, AI/ML Engineer, Data Scientist, Security Engineer, Computer Engineer, IT Support Specialist, Hardware Engineer, QA Engineer, Product Manager. Only these IDs may be cited. 'level' is who a resource suits best; 'roles' (optional) marks role-specific resources, which are preferred for those roles. Costs and hours are approximate as of Oct 2026. All links were checked on 2026-10-23.",
+ "resources": [
+  {
+   "id": "R-SECPLUS",
+   "name": "CompTIA Security+ (SY0-701) exam",
+   "provider": "CompTIA",
+   "url": "https://www.comptia.org/en-us/certifications/security/",
+   "type": "cert",
+   "cost_usd": 425,
+   "hours": 0,
+   "level": "entry",
+   "matches": [
+    "security+",
+    "security plus",
+    "sec+",
+    "comptia security"
+   ],
+   "roles": [
+    "Security Engineer",
+    "IT Support Specialist"
+   ]
+  },
+  {
+   "id": "R-MESSER",
+   "name": "Professor Messer CompTIA courses (free videos)",
+   "provider": "Professor Messer",
+   "url": "https://www.professormesser.com/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 30,
+   "level": "entry",
+   "matches": [
+    "security+",
+    "security plus",
+    "sec+",
+    "comptia security",
+    "network+",
+    "network plus",
+    "a+",
+    "comptia a+"
+   ]
+  },
+  {
+   "id": "R-NETPLUS",
+   "name": "CompTIA Network+ exam",
+   "provider": "CompTIA",
+   "url": "https://www.comptia.org/en-us/certifications/network/",
+   "type": "cert",
+   "cost_usd": 390,
+   "hours": 0,
+   "level": "entry",
+   "matches": [
+    "network+",
+    "network plus",
+    "tcp/ip",
+    "networking"
+   ],
+   "roles": [
+    "IT Support Specialist",
+    "Security Engineer",
+    "Computer Engineer"
+   ]
+  },
+  {
+   "id": "R-CYSA",
+   "name": "CompTIA CySA+ exam",
+   "provider": "CompTIA",
+   "url": "https://www.comptia.org/en-us/certifications/cybersecurity-analyst/",
+   "type": "cert",
+   "cost_usd": 425,
+   "hours": 0,
+   "level": "mid",
+   "matches": [
+    "cysa+",
+    "cysa",
+    "second blue-team cert",
+    "blue team cert"
+   ],
+   "roles": [
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "R-BTL1",
+   "name": "Blue Team Level 1 (BTL1)",
+   "provider": "Centri (formerly Security Blue Team)",
+   "url": "https://www.centri.org/",
+   "type": "cert",
+   "cost_usd": 500,
+   "hours": 60,
+   "level": "entry",
+   "matches": [
+    "btl1",
+    "blue team level 1",
+    "second blue-team cert",
+    "blue team cert"
+   ],
+   "roles": [
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "R-THM-SOC1",
+   "name": "TryHackMe SOC Level 1 path",
+   "provider": "TryHackMe",
+   "url": "https://tryhackme.com/path/outline/soclevel1",
+   "type": "lab",
+   "cost_usd": 14,
+   "hours": 60,
+   "level": "entry",
+   "matches": [
+    "siem",
+    "alert triage",
+    "triage",
+    "phishing",
+    "soc",
+    "incident response",
+    "security operations"
+   ],
+   "roles": [
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "R-THM-SOC2",
+   "name": "TryHackMe SOC Level 2 path",
+   "provider": "TryHackMe",
+   "url": "https://tryhackme.com/path/outline/soclevel2",
+   "type": "lab",
+   "cost_usd": 14,
+   "hours": 80,
+   "level": "mid",
+   "matches": [
+    "threat hunting",
+    "detection engineering",
+    "malware analysis"
+   ],
+   "roles": [
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "R-SPLUNK-EDU",
+   "name": "Splunk free training courses",
+   "provider": "Splunk",
+   "url": "https://education.splunk.com/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 8,
+   "level": "entry",
+   "matches": [
+    "splunk",
+    "spl",
+    "siem"
+   ],
+   "roles": [
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "R-BOTSV3",
+   "name": "Boss of the SOC v3 dataset",
+   "provider": "Splunk (GitHub)",
+   "url": "https://github.com/splunk/botsv3",
+   "type": "lab",
+   "cost_usd": 0,
+   "hours": 10,
+   "level": "entry",
+   "matches": [
+    "splunk",
+    "spl",
+    "siem",
+    "alert triage",
+    "triage",
+    "incident response"
+   ],
+   "roles": [
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "R-SC200-LEARN",
+   "name": "Microsoft Learn: Security Operations Analyst (SC-200) path",
+   "provider": "Microsoft",
+   "url": "https://learn.microsoft.com/en-us/credentials/certifications/security-operations-analyst/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 25,
+   "level": "entry",
+   "matches": [
+    "sentinel",
+    "microsoft sentinel",
+    "defender",
+    "kql",
+    "siem",
+    "edr"
+   ],
+   "roles": [
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "R-AZURE-FREE",
+   "name": "Azure free account (for a Sentinel workspace)",
+   "provider": "Microsoft",
+   "url": "https://azure.microsoft.com/free/",
+   "type": "tool",
+   "cost_usd": 0,
+   "hours": 1,
+   "level": "entry",
+   "matches": [
+    "sentinel",
+    "microsoft sentinel",
+    "azure",
+    "entra id",
+    "azure ad"
+   ]
+  },
+  {
+   "id": "R-KUSTO-DETECTIVE",
+   "name": "Kusto Detective Agency (KQL challenges)",
+   "provider": "Microsoft",
+   "url": "https://detective.kusto.io/",
+   "type": "lab",
+   "cost_usd": 0,
+   "hours": 10,
+   "level": "entry",
+   "matches": [
+    "kql",
+    "kusto"
+   ],
+   "roles": [
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "R-CS-TRIAL",
+   "name": "CrowdStrike Falcon free trial",
+   "provider": "CrowdStrike",
+   "url": "https://www.crowdstrike.com/en-us/products/trials/try-falcon/",
+   "type": "tool",
+   "cost_usd": 0,
+   "hours": 2,
+   "level": "entry",
+   "matches": [
+    "crowdstrike",
+    "falcon",
+    "edr",
+    "endpoint detection"
+   ],
+   "roles": [
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "R-LETSDEFEND",
+   "name": "LetsDefend SOC analyst simulator",
+   "provider": "LetsDefend",
+   "url": "https://letsdefend.io/",
+   "type": "lab",
+   "cost_usd": 0,
+   "hours": 20,
+   "level": "entry",
+   "matches": [
+    "alert triage",
+    "triage",
+    "siem",
+    "edr",
+    "soc",
+    "incident response",
+    "phishing"
+   ],
+   "roles": [
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "R-CYBERDEFENDERS",
+   "name": "CyberDefenders blue team labs",
+   "provider": "CyberDefenders",
+   "url": "https://cyberdefenders.org/",
+   "type": "lab",
+   "cost_usd": 0,
+   "hours": 15,
+   "level": "entry",
+   "matches": [
+    "incident response",
+    "forensics",
+    "pcap",
+    "wireshark",
+    "log analysis"
+   ],
+   "roles": [
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "R-MITRE-ATTACK",
+   "name": "MITRE ATT&CK knowledge base",
+   "provider": "MITRE",
+   "url": "https://attack.mitre.org/",
+   "type": "reference",
+   "cost_usd": 0,
+   "hours": 4,
+   "level": "entry",
+   "matches": [
+    "mitre",
+    "att&ck",
+    "attack framework"
+   ],
+   "roles": [
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "R-ATTACK-NAVIGATOR",
+   "name": "ATT&CK Navigator",
+   "provider": "MITRE",
+   "url": "https://mitre-attack.github.io/attack-navigator/",
+   "type": "tool",
+   "cost_usd": 0,
+   "hours": 1,
+   "level": "entry",
+   "matches": [
+    "mitre",
+    "att&ck"
+   ],
+   "roles": [
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "R-ATOMIC-RED",
+   "name": "Atomic Red Team test library",
+   "provider": "Red Canary (GitHub)",
+   "url": "https://github.com/redcanaryco/atomic-red-team",
+   "type": "tool",
+   "cost_usd": 0,
+   "hours": 4,
+   "level": "entry",
+   "matches": [
+    "mitre",
+    "att&ck",
+    "detection",
+    "edr",
+    "simulated attacks"
+   ],
+   "roles": [
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "R-HHS-HIPAA",
+   "name": "HHS HIPAA Security Rule guidance",
+   "provider": "U.S. HHS",
+   "url": "https://www.hhs.gov/hipaa/for-professionals/security/index.html",
+   "type": "reference",
+   "cost_usd": 0,
+   "hours": 3,
+   "level": "entry",
+   "matches": [
+    "hipaa",
+    "healthcare",
+    "phi",
+    "patient data"
+   ],
+   "roles": [
+    "Security Engineer",
+    "IT Support Specialist",
+    "Product Manager",
+    "Data Scientist"
+   ]
+  },
+  {
+   "id": "R-MTA-EXERCISES",
+   "name": "Malware-Traffic-Analysis.net training exercises",
+   "provider": "malware-traffic-analysis.net",
+   "url": "https://www.malware-traffic-analysis.net/training-exercises.html",
+   "type": "lab",
+   "cost_usd": 0,
+   "hours": 10,
+   "level": "entry",
+   "matches": [
+    "wireshark",
+    "pcap",
+    "packet analysis",
+    "dns",
+    "tcp/ip",
+    "network traffic"
+   ],
+   "roles": [
+    "Security Engineer",
+    "IT Support Specialist"
+   ]
+  },
+  {
+   "id": "R-WIRESHARK-DOCS",
+   "name": "Wireshark User's Guide",
+   "provider": "Wireshark Foundation",
+   "url": "https://www.wireshark.org/docs/",
+   "type": "reference",
+   "cost_usd": 0,
+   "hours": 4,
+   "level": "entry",
+   "matches": [
+    "wireshark",
+    "pcap",
+    "packet analysis"
+   ]
+  },
+  {
+   "id": "R-ATBS",
+   "name": "Automate the Boring Stuff with Python (free online)",
+   "provider": "Al Sweigart",
+   "url": "https://automatetheboringstuff.com/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 20,
+   "level": "entry",
+   "matches": [
+    "python",
+    "scripting",
+    "python scripting"
+   ]
+  },
+  {
+   "id": "R-PS-LEARN",
+   "name": "Microsoft Learn: PowerShell 101",
+   "provider": "Microsoft",
+   "url": "https://learn.microsoft.com/en-us/powershell/scripting/learn/ps101/00-introduction",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 8,
+   "level": "entry",
+   "matches": [
+    "powershell",
+    "powershell scripting"
+   ],
+   "roles": [
+    "IT Support Specialist",
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "R-SECURITY-ONION",
+   "name": "Security Onion (free SOC platform)",
+   "provider": "Security Onion Solutions",
+   "url": "https://securityonionsolutions.com/",
+   "type": "tool",
+   "cost_usd": 0,
+   "hours": 6,
+   "level": "entry",
+   "matches": [
+    "siem",
+    "ids",
+    "home lab",
+    "network security monitoring"
+   ],
+   "roles": [
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "R-BSIDES",
+   "name": "BSides local security conferences",
+   "provider": "Security BSides",
+   "url": "https://bsides.org/",
+   "type": "community",
+   "cost_usd": 20,
+   "hours": 8,
+   "level": "entry",
+   "matches": [
+    "networking",
+    "referral",
+    "soc experience"
+   ],
+   "roles": [
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "R-APLUS",
+   "name": "CompTIA A+ (Core 1 + Core 2 exams)",
+   "provider": "CompTIA",
+   "url": "https://www.comptia.org/certifications/a",
+   "type": "cert",
+   "cost_usd": 510,
+   "hours": 0,
+   "level": "entry",
+   "matches": [
+    "a+",
+    "comptia a+"
+   ],
+   "roles": [
+    "IT Support Specialist"
+   ]
+  },
+  {
+   "id": "R-GOOGLE-IT",
+   "name": "Google IT Support Professional Certificate",
+   "provider": "Coursera",
+   "url": "https://www.coursera.org/professional-certificates/google-it-support",
+   "type": "course",
+   "cost_usd": 49,
+   "hours": 80,
+   "level": "entry",
+   "matches": [
+    "it support",
+    "help desk",
+    "helpdesk",
+    "troubleshooting",
+    "it fundamentals",
+    "customer service"
+   ],
+   "roles": [
+    "IT Support Specialist"
+   ]
+  },
+  {
+   "id": "R-MS900",
+   "name": "Microsoft 365 Fundamentals (MS-900)",
+   "provider": "Microsoft",
+   "url": "https://learn.microsoft.com/en-us/credentials/certifications/microsoft-365-fundamentals/",
+   "type": "cert",
+   "cost_usd": 99,
+   "hours": 15,
+   "level": "entry",
+   "matches": [
+    "microsoft 365",
+    "office 365",
+    "m365",
+    "o365",
+    "ms-900",
+    "exchange online"
+   ],
+   "roles": [
+    "IT Support Specialist"
+   ]
+  },
+  {
+   "id": "R-AZ900",
+   "name": "Azure Fundamentals (AZ-900)",
+   "provider": "Microsoft",
+   "url": "https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/",
+   "type": "cert",
+   "cost_usd": 99,
+   "hours": 15,
+   "level": "entry",
+   "matches": [
+    "azure",
+    "az-900",
+    "cloud fundamentals",
+    "cloud"
+   ]
+  },
+  {
+   "id": "R-MD102",
+   "name": "Microsoft 365 Endpoint Administrator (MD-102) learning path",
+   "provider": "Microsoft",
+   "url": "https://learn.microsoft.com/en-us/credentials/certifications/modern-desktop/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 30,
+   "level": "mid",
+   "matches": [
+    "intune",
+    "endpoint management",
+    "md-102",
+    "mdm",
+    "device management",
+    "sccm",
+    "autopilot"
+   ],
+   "roles": [
+    "IT Support Specialist"
+   ]
+  },
+  {
+   "id": "R-NETACAD",
+   "name": "Cisco Networking Academy free courses",
+   "provider": "Cisco",
+   "url": "https://www.netacad.com/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 30,
+   "level": "entry",
+   "matches": [
+    "ccna",
+    "networking",
+    "cisco",
+    "routing",
+    "switching",
+    "tcp/ip",
+    "subnetting",
+    "vlan",
+    "dns",
+    "dhcp"
+   ],
+   "roles": [
+    "IT Support Specialist",
+    "Security Engineer",
+    "Computer Engineer"
+   ]
+  },
+  {
+   "id": "R-CCNA",
+   "name": "Cisco CCNA exam",
+   "provider": "Cisco",
+   "url": "https://www.cisco.com/site/us/en/learn/training-certifications/certifications/enterprise/ccna/index.html",
+   "type": "cert",
+   "cost_usd": 300,
+   "hours": 0,
+   "level": "mid",
+   "matches": [
+    "ccna",
+    "cisco"
+   ],
+   "roles": [
+    "IT Support Specialist",
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "R-ITIL",
+   "name": "ITIL 4 Foundation",
+   "provider": "PeopleCert / Axelos",
+   "url": "https://www.axelos.com/certifications/itil-service-management",
+   "type": "cert",
+   "cost_usd": 400,
+   "hours": 20,
+   "level": "mid",
+   "matches": [
+    "itil",
+    "itsm",
+    "service management",
+    "change management",
+    "incident management"
+   ],
+   "roles": [
+    "IT Support Specialist"
+   ]
+  },
+  {
+   "id": "R-SERVICENOW-PDI",
+   "name": "ServiceNow Developer Program (free personal instance)",
+   "provider": "ServiceNow",
+   "url": "https://developer.servicenow.com/",
+   "type": "tool",
+   "cost_usd": 0,
+   "hours": 4,
+   "level": "entry",
+   "matches": [
+    "servicenow",
+    "ticketing",
+    "itsm",
+    "jira service management"
+   ],
+   "roles": [
+    "IT Support Specialist"
+   ]
+  },
+  {
+   "id": "R-AD-DOCS",
+   "name": "Microsoft Learn: Active Directory Domain Services",
+   "provider": "Microsoft",
+   "url": "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-overview",
+   "type": "reference",
+   "cost_usd": 0,
+   "hours": 6,
+   "level": "entry",
+   "matches": [
+    "active directory",
+    "ad ds",
+    "group policy",
+    "gpo",
+    "windows server",
+    "domain"
+   ],
+   "roles": [
+    "IT Support Specialist",
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "R-EVAL-CENTER",
+   "name": "Microsoft Evaluation Center (free Windows Server trial)",
+   "provider": "Microsoft",
+   "url": "https://www.microsoft.com/en-us/evalcenter",
+   "type": "tool",
+   "cost_usd": 0,
+   "hours": 2,
+   "level": "entry",
+   "matches": [
+    "windows server",
+    "active directory",
+    "group policy",
+    "gpo",
+    "home lab"
+   ],
+   "roles": [
+    "IT Support Specialist",
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "R-LINUX-JOURNEY",
+   "name": "Linux Journey",
+   "provider": "LabEx",
+   "url": "https://labex.io/linuxjourney",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 15,
+   "level": "entry",
+   "matches": [
+    "linux",
+    "bash",
+    "command line",
+    "shell"
+   ]
+  },
+  {
+   "id": "R-BANDIT",
+   "name": "OverTheWire Bandit (Linux command-line wargame)",
+   "provider": "OverTheWire",
+   "url": "https://overthewire.org/wargames/bandit/",
+   "type": "lab",
+   "cost_usd": 0,
+   "hours": 10,
+   "level": "entry",
+   "matches": [
+    "linux",
+    "bash",
+    "command line",
+    "shell",
+    "ssh"
+   ]
+  },
+  {
+   "id": "R-LINUX-PLUS",
+   "name": "CompTIA Linux+",
+   "provider": "CompTIA",
+   "url": "https://www.comptia.org/en-us/certifications/linux/",
+   "type": "cert",
+   "cost_usd": 370,
+   "hours": 0,
+   "level": "mid",
+   "matches": [
+    "linux+",
+    "linux plus"
+   ],
+   "roles": [
+    "IT Support Specialist",
+    "Security Engineer",
+    "Computer Engineer"
+   ]
+  },
+  {
+   "id": "R-JAMF-TRAINING",
+   "name": "Jamf training catalog (free Jamf 100 course)",
+   "provider": "Jamf",
+   "url": "https://trainingcatalog.jamf.com/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 6,
+   "level": "entry",
+   "matches": [
+    "jamf",
+    "macos",
+    "apple device management"
+   ],
+   "roles": [
+    "IT Support Specialist"
+   ]
+  },
+  {
+   "id": "R-ODIN",
+   "name": "The Odin Project (full-stack curriculum)",
+   "provider": "The Odin Project",
+   "url": "https://www.theodinproject.com/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 200,
+   "level": "entry",
+   "matches": [
+    "javascript",
+    "html",
+    "css",
+    "node",
+    "node.js",
+    "web development",
+    "full stack",
+    "full-stack",
+    "frontend",
+    "front-end"
+   ]
+  },
+  {
+   "id": "R-FULLSTACKOPEN",
+   "name": "Full Stack Open",
+   "provider": "University of Helsinki",
+   "url": "https://fullstackopen.com/en/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 120,
+   "level": "entry",
+   "matches": [
+    "react",
+    "node",
+    "node.js",
+    "rest api",
+    "rest apis",
+    "apis",
+    "graphql",
+    "typescript",
+    "full stack",
+    "full-stack",
+    "backend",
+    "back-end"
+   ]
+  },
+  {
+   "id": "R-FCC",
+   "name": "freeCodeCamp curriculum",
+   "provider": "freeCodeCamp",
+   "url": "https://www.freecodecamp.org/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 60,
+   "level": "entry",
+   "matches": [
+    "javascript",
+    "html",
+    "css",
+    "python",
+    "sql",
+    "web development",
+    "responsive design"
+   ]
+  },
+  {
+   "id": "R-CS50",
+   "name": "Harvard CS50x",
+   "provider": "Harvard (edX)",
+   "url": "https://cs50.harvard.edu/x/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 100,
+   "level": "entry",
+   "matches": [
+    "computer science",
+    "cs fundamentals",
+    "c programming",
+    "data structures",
+    "algorithms",
+    "cs degree",
+    "computer science degree"
+   ]
+  },
+  {
+   "id": "R-NEETCODE",
+   "name": "NeetCode 150 roadmap",
+   "provider": "NeetCode",
+   "url": "https://neetcode.io/",
+   "type": "lab",
+   "cost_usd": 0,
+   "hours": 60,
+   "level": "entry",
+   "matches": [
+    "data structures",
+    "algorithms",
+    "dsa",
+    "leetcode",
+    "coding interview",
+    "technical interview"
+   ]
+  },
+  {
+   "id": "R-PROGIT",
+   "name": "Pro Git book (free)",
+   "provider": "git-scm.com",
+   "url": "https://git-scm.com/book/en/v2",
+   "type": "reference",
+   "cost_usd": 0,
+   "hours": 8,
+   "level": "entry",
+   "matches": [
+    "git",
+    "version control",
+    "branching",
+    "pull requests"
+   ]
+  },
+  {
+   "id": "R-GH-SKILLS",
+   "name": "GitHub Skills courses",
+   "provider": "GitHub",
+   "url": "https://skills.github.com/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 6,
+   "level": "entry",
+   "matches": [
+    "github",
+    "git",
+    "pull requests",
+    "github actions",
+    "code review"
+   ]
+  },
+  {
+   "id": "R-GHA-DOCS",
+   "name": "GitHub Actions documentation",
+   "provider": "GitHub",
+   "url": "https://docs.github.com/en/actions",
+   "type": "reference",
+   "cost_usd": 0,
+   "hours": 6,
+   "level": "entry",
+   "matches": [
+    "ci/cd",
+    "ci cd",
+    "continuous integration",
+    "github actions",
+    "devops",
+    "pipelines"
+   ]
+  },
+  {
+   "id": "R-DOCKER-START",
+   "name": "Docker Get Started guide",
+   "provider": "Docker",
+   "url": "https://docs.docker.com/get-started/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 8,
+   "level": "entry",
+   "matches": [
+    "docker",
+    "containers",
+    "containerization",
+    "docker compose"
+   ]
+  },
+  {
+   "id": "R-K8S-BASICS",
+   "name": "Kubernetes Basics tutorial",
+   "provider": "Kubernetes",
+   "url": "https://kubernetes.io/docs/tutorials/kubernetes-basics/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 8,
+   "level": "mid",
+   "matches": [
+    "kubernetes",
+    "k8s",
+    "container orchestration"
+   ]
+  },
+  {
+   "id": "R-AWS-CCP",
+   "name": "AWS Certified Cloud Practitioner",
+   "provider": "Amazon Web Services",
+   "url": "https://aws.amazon.com/certification/certified-cloud-practitioner/",
+   "type": "cert",
+   "cost_usd": 100,
+   "hours": 0,
+   "level": "entry",
+   "matches": [
+    "aws",
+    "amazon web services",
+    "cloud practitioner",
+    "cloud"
+   ]
+  },
+  {
+   "id": "R-AWS-SKILLBUILDER",
+   "name": "AWS Skill Builder (free digital courses)",
+   "provider": "Amazon Web Services",
+   "url": "https://skillbuilder.aws/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 15,
+   "level": "entry",
+   "matches": [
+    "aws",
+    "amazon web services",
+    "cloud practitioner",
+    "cloud",
+    "solutions architect"
+   ]
+  },
+  {
+   "id": "R-AWS-FREE",
+   "name": "AWS Free Tier account",
+   "provider": "Amazon Web Services",
+   "url": "https://aws.amazon.com/free/",
+   "type": "tool",
+   "cost_usd": 0,
+   "hours": 1,
+   "level": "entry",
+   "matches": [
+    "aws",
+    "amazon web services",
+    "cloud",
+    "deployment",
+    "deploy"
+   ]
+  },
+  {
+   "id": "R-SQLBOLT",
+   "name": "SQLBolt interactive SQL lessons",
+   "provider": "SQLBolt",
+   "url": "https://sqlbolt.com/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 5,
+   "level": "entry",
+   "matches": [
+    "sql",
+    "databases",
+    "database",
+    "postgresql",
+    "postgres",
+    "mysql",
+    "relational databases"
+   ]
+  },
+  {
+   "id": "R-REACT-DOCS",
+   "name": "React official tutorial",
+   "provider": "Meta",
+   "url": "https://react.dev/learn",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 15,
+   "level": "entry",
+   "matches": [
+    "react",
+    "react.js",
+    "frontend",
+    "front-end"
+   ]
+  },
+  {
+   "id": "R-TS-HANDBOOK",
+   "name": "TypeScript Handbook",
+   "provider": "Microsoft",
+   "url": "https://www.typescriptlang.org/docs/handbook/intro.html",
+   "type": "reference",
+   "cost_usd": 0,
+   "hours": 10,
+   "level": "entry",
+   "matches": [
+    "typescript"
+   ]
+  },
+  {
+   "id": "R-MOOC-JAVA",
+   "name": "Java Programming MOOC",
+   "provider": "University of Helsinki",
+   "url": "https://java-programming.mooc.fi/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 100,
+   "level": "entry",
+   "matches": [
+    "java",
+    "object-oriented programming",
+    "oop"
+   ]
+  },
+  {
+   "id": "R-MISSING-SEMESTER",
+   "name": "The Missing Semester of Your CS Education",
+   "provider": "MIT",
+   "url": "https://missing.csail.mit.edu/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 12,
+   "level": "entry",
+   "matches": [
+    "command line",
+    "shell",
+    "bash",
+    "git",
+    "debugging",
+    "vim",
+    "developer tools"
+   ]
+  },
+  {
+   "id": "R-PYTEST-DOCS",
+   "name": "pytest documentation",
+   "provider": "pytest",
+   "url": "https://docs.pytest.org/",
+   "type": "reference",
+   "cost_usd": 0,
+   "hours": 4,
+   "level": "entry",
+   "matches": [
+    "unit testing",
+    "pytest",
+    "test automation",
+    "tdd",
+    "automated tests"
+   ]
+  },
+  {
+   "id": "R-SYSDESIGN-PRIMER",
+   "name": "System Design Primer",
+   "provider": "donnemartin (GitHub)",
+   "url": "https://github.com/donnemartin/system-design-primer",
+   "type": "reference",
+   "cost_usd": 0,
+   "hours": 25,
+   "level": "mid",
+   "matches": [
+    "system design",
+    "scalability",
+    "distributed systems",
+    "architecture"
+   ]
+  },
+  {
+   "id": "R-GOOD-FIRST-ISSUE",
+   "name": "Good First Issue (open-source starter issues)",
+   "provider": "goodfirstissue.dev",
+   "url": "https://goodfirstissue.dev/",
+   "type": "community",
+   "cost_usd": 0,
+   "hours": 2,
+   "level": "entry",
+   "matches": [
+    "open source",
+    "open-source",
+    "collaboration",
+    "code review",
+    "team experience",
+    "professional experience"
+   ]
+  },
+  {
+   "id": "R-SCRUM-GUIDE",
+   "name": "The Scrum Guide",
+   "provider": "scrumguides.org",
+   "url": "https://scrumguides.org/",
+   "type": "reference",
+   "cost_usd": 0,
+   "hours": 2,
+   "level": "entry",
+   "matches": [
+    "agile",
+    "scrum",
+    "sprint",
+    "kanban"
+   ]
+  },
+  {
+   "id": "R-MEETUP",
+   "name": "Local tech meetups",
+   "provider": "Meetup",
+   "url": "https://www.meetup.com/",
+   "type": "community",
+   "cost_usd": 0,
+   "hours": 6,
+   "level": "entry",
+   "matches": [
+    "networking",
+    "referral",
+    "referrals",
+    "mentorship"
+   ]
+  },
+  {
+   "id": "R-MLH",
+   "name": "Major League Hacking (MLH) student hackathons",
+   "provider": "MLH",
+   "url": "https://www.mlh.com/",
+   "type": "community",
+   "cost_usd": 0,
+   "hours": 24,
+   "level": "internship",
+   "matches": [
+    "hackathon",
+    "hackathons",
+    "student projects",
+    "team project"
+   ]
+  },
+  {
+   "id": "R-AZ104",
+   "name": "Microsoft Azure Administrator (AZ-104) exam",
+   "provider": "Microsoft",
+   "url": "https://learn.microsoft.com/en-us/credentials/certifications/azure-administrator/",
+   "type": "cert",
+   "cost_usd": 165,
+   "hours": 0,
+   "level": "mid",
+   "matches": [
+    "az-104",
+    "azure administrator",
+    "azure administration",
+    "azure admin"
+   ],
+   "roles": [
+    "IT Support Specialist",
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "R-AZ104-LEARN",
+   "name": "Microsoft Learn: AZ-104 Azure Administrator path",
+   "provider": "Microsoft",
+   "url": "https://learn.microsoft.com/en-us/training/courses/az-104t00",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 40,
+   "level": "mid",
+   "matches": [
+    "az-104",
+    "azure administrator",
+    "azure administration",
+    "azure admin",
+    "azure"
+   ],
+   "roles": [
+    "IT Support Specialist",
+    "Security Engineer"
+   ]
+  },
+  {
+   "id": "R-AWS-SAA",
+   "name": "AWS Certified Solutions Architect - Associate",
+   "provider": "AWS",
+   "url": "https://aws.amazon.com/certification/certified-solutions-architect-associate/",
+   "type": "cert",
+   "cost_usd": 150,
+   "hours": 0,
+   "level": "mid",
+   "matches": [
+    "solutions architect",
+    "aws solutions architect",
+    "saa-c03",
+    "aws associate"
+   ]
+  },
+  {
+   "id": "R-TERRAFORM",
+   "name": "HashiCorp Terraform tutorials",
+   "provider": "HashiCorp",
+   "url": "https://developer.hashicorp.com/terraform/tutorials",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 12,
+   "level": "mid",
+   "matches": [
+    "terraform",
+    "infrastructure as code",
+    "iac"
+   ]
+  },
+  {
+   "id": "R-SRE-BOOK",
+   "name": "Google Site Reliability Engineering book (free online)",
+   "provider": "Google",
+   "url": "https://sre.google/books/",
+   "type": "reference",
+   "cost_usd": 0,
+   "hours": 20,
+   "level": "mid",
+   "matches": [
+    "sre",
+    "site reliability",
+    "observability",
+    "monitoring",
+    "on-call",
+    "incident management"
+   ]
+  },
+  {
+   "id": "R-DDIA",
+   "name": "Designing Data-Intensive Applications (book)",
+   "provider": "O'Reilly",
+   "url": "https://dataintensive.net/",
+   "type": "reference",
+   "cost_usd": 60,
+   "hours": 30,
+   "level": "mid",
+   "matches": [
+    "distributed systems",
+    "data-intensive",
+    "database internals",
+    "scalability",
+    "system design"
+   ]
+  },
+  {
+   "id": "R-KAGGLE-LEARN",
+   "name": "Kaggle Learn micro-courses",
+   "provider": "Kaggle",
+   "url": "https://www.kaggle.com/learn",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 20,
+   "level": "internship",
+   "roles": [
+    "AI/ML Engineer",
+    "Data Scientist"
+   ],
+   "matches": [
+    "kaggle",
+    "feature engineering",
+    "intro to machine learning",
+    "machine learning basics"
+   ]
+  },
+  {
+   "id": "R-ML-SPEC",
+   "name": "Machine Learning Specialization (Stanford / DeepLearning.AI)",
+   "provider": "Coursera",
+   "url": "https://www.coursera.org/specializations/machine-learning-introduction",
+   "type": "course",
+   "cost_usd": 49,
+   "hours": 60,
+   "level": "entry",
+   "roles": [
+    "AI/ML Engineer",
+    "Data Scientist"
+   ],
+   "matches": [
+    "machine learning",
+    "ml fundamentals",
+    "supervised learning",
+    "classification",
+    "neural networks"
+   ]
+  },
+  {
+   "id": "R-SKLEARN-DOCS",
+   "name": "scikit-learn getting started and tutorials",
+   "provider": "scikit-learn",
+   "url": "https://scikit-learn.org/stable/getting_started.html",
+   "type": "reference",
+   "cost_usd": 0,
+   "hours": 8,
+   "level": "entry",
+   "roles": [
+    "AI/ML Engineer",
+    "Data Scientist"
+   ],
+   "matches": [
+    "scikit-learn",
+    "sklearn",
+    "model evaluation",
+    "cross-validation"
+   ]
+  },
+  {
+   "id": "R-FASTAI",
+   "name": "Practical Deep Learning for Coders (fast.ai)",
+   "provider": "fast.ai",
+   "url": "https://course.fast.ai/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 40,
+   "level": "entry",
+   "roles": [
+    "AI/ML Engineer"
+   ],
+   "matches": [
+    "deep learning",
+    "neural networks",
+    "fastai",
+    "computer vision"
+   ]
+  },
+  {
+   "id": "R-PYTORCH-TUT",
+   "name": "PyTorch tutorials",
+   "provider": "PyTorch",
+   "url": "https://docs.pytorch.org/tutorials/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 15,
+   "level": "entry",
+   "roles": [
+    "AI/ML Engineer"
+   ],
+   "matches": [
+    "pytorch",
+    "torch",
+    "deep learning",
+    "tensors"
+   ]
+  },
+  {
+   "id": "R-HF-COURSE",
+   "name": "Hugging Face courses (LLMs, NLP, fine-tuning)",
+   "provider": "Hugging Face",
+   "url": "https://huggingface.co/learn",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 20,
+   "level": "entry",
+   "roles": [
+    "AI/ML Engineer"
+   ],
+   "matches": [
+    "hugging face",
+    "transformers",
+    "llm",
+    "llms",
+    "nlp",
+    "fine-tuning",
+    "fine tuning",
+    "large language models",
+    "rag",
+    "generative ai"
+   ]
+  },
+  {
+   "id": "R-MLOPS-ZOOMCAMP",
+   "name": "MLOps Zoomcamp",
+   "provider": "DataTalks.Club",
+   "url": "https://github.com/DataTalksClub/mlops-zoomcamp",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 60,
+   "level": "mid",
+   "roles": [
+    "AI/ML Engineer"
+   ],
+   "matches": [
+    "mlops",
+    "model deployment",
+    "model serving",
+    "ml pipelines",
+    "mlflow",
+    "experiment tracking",
+    "model monitoring"
+   ]
+  },
+  {
+   "id": "R-MML-BOOK",
+   "name": "Mathematics for Machine Learning (free book)",
+   "provider": "Deisenroth, Faisal, Ong",
+   "url": "https://mml-book.github.io/",
+   "type": "reference",
+   "cost_usd": 0,
+   "hours": 40,
+   "level": "entry",
+   "roles": [
+    "AI/ML Engineer",
+    "Data Scientist"
+   ],
+   "matches": [
+    "linear algebra",
+    "calculus",
+    "math for machine learning",
+    "math for ml",
+    "probability"
+   ]
+  },
+  {
+   "id": "R-KHAN-STATS",
+   "name": "Khan Academy Statistics and Probability",
+   "provider": "Khan Academy",
+   "url": "https://www.khanacademy.org/math/statistics-probability",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 30,
+   "level": "internship",
+   "roles": [
+    "Data Scientist",
+    "AI/ML Engineer",
+    "Product Manager"
+   ],
+   "matches": [
+    "statistics",
+    "probability",
+    "intro statistics",
+    "hypothesis testing"
+   ]
+  },
+  {
+   "id": "R-ISLP",
+   "name": "An Introduction to Statistical Learning, with Python (free book)",
+   "provider": "James, Witten, Hastie, Tibshirani",
+   "url": "https://www.statlearning.com/",
+   "type": "reference",
+   "cost_usd": 0,
+   "hours": 50,
+   "level": "entry",
+   "roles": [
+    "Data Scientist",
+    "AI/ML Engineer"
+   ],
+   "matches": [
+    "statistics",
+    "statistical modeling",
+    "statistical learning",
+    "regression",
+    "linear regression",
+    "logistic regression"
+   ]
+  },
+  {
+   "id": "R-PANDAS-DOCS",
+   "name": "pandas getting started tutorials",
+   "provider": "pandas",
+   "url": "https://pandas.pydata.org/docs/getting_started/index.html",
+   "type": "reference",
+   "cost_usd": 0,
+   "hours": 6,
+   "level": "internship",
+   "roles": [
+    "Data Scientist",
+    "AI/ML Engineer"
+   ],
+   "matches": [
+    "pandas",
+    "dataframes",
+    "data wrangling",
+    "data cleaning",
+    "python for data analysis"
+   ]
+  },
+  {
+   "id": "R-SELECT-STAR",
+   "name": "Select Star SQL (interactive analytical SQL)",
+   "provider": "Select Star SQL",
+   "url": "https://selectstarsql.com/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 8,
+   "level": "entry",
+   "roles": [
+    "Data Scientist",
+    "Product Manager"
+   ],
+   "matches": [
+    "sql for data analysis",
+    "analytical sql",
+    "sql"
+   ]
+  },
+  {
+   "id": "R-GOOGLE-DA",
+   "name": "Google Data Analytics Professional Certificate",
+   "provider": "Coursera",
+   "url": "https://www.coursera.org/professional-certificates/google-data-analytics",
+   "type": "course",
+   "cost_usd": 49,
+   "hours": 100,
+   "level": "internship",
+   "roles": [
+    "Data Scientist",
+    "Product Manager"
+   ],
+   "matches": [
+    "data analytics",
+    "data analysis",
+    "spreadsheets",
+    "excel",
+    "google sheets"
+   ]
+  },
+  {
+   "id": "R-TABLEAU-PUBLIC",
+   "name": "Tableau Public (free) and its training videos",
+   "provider": "Tableau",
+   "url": "https://public.tableau.com/",
+   "type": "tool",
+   "cost_usd": 0,
+   "hours": 6,
+   "level": "entry",
+   "roles": [
+    "Data Scientist",
+    "Product Manager"
+   ],
+   "matches": [
+    "tableau",
+    "data visualization",
+    "dashboards",
+    "dashboard"
+   ]
+  },
+  {
+   "id": "R-POWERBI-LEARN",
+   "name": "Microsoft Learn: Power BI training",
+   "provider": "Microsoft",
+   "url": "https://learn.microsoft.com/en-us/training/powerplatform/power-bi",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 15,
+   "level": "entry",
+   "roles": [
+    "Data Scientist",
+    "Product Manager"
+   ],
+   "matches": [
+    "power bi",
+    "powerbi",
+    "data visualization",
+    "dashboards",
+    "dashboard"
+   ]
+  },
+  {
+   "id": "R-EXPERIMENT-BOOK",
+   "name": "Trustworthy Online Controlled Experiments (book)",
+   "provider": "Kohavi, Tang, Xu",
+   "url": "https://experimentguide.com/",
+   "type": "reference",
+   "cost_usd": 40,
+   "hours": 20,
+   "level": "mid",
+   "roles": [
+    "Data Scientist",
+    "Product Manager"
+   ],
+   "matches": [
+    "a/b testing",
+    "ab testing",
+    "a/b tests",
+    "experimentation",
+    "experiment design",
+    "causal inference"
+   ]
+  },
+  {
+   "id": "R-OWASP-TOP10",
+   "name": "OWASP Top 10",
+   "provider": "OWASP",
+   "url": "https://owasp.org/projects/top-ten",
+   "type": "reference",
+   "cost_usd": 0,
+   "hours": 4,
+   "level": "entry",
+   "roles": [
+    "Security Engineer",
+    "Software Engineer",
+    "QA Engineer"
+   ],
+   "matches": [
+    "owasp",
+    "web application security",
+    "secure coding",
+    "application security",
+    "appsec"
+   ]
+  },
+  {
+   "id": "R-PORTSWIGGER",
+   "name": "PortSwigger Web Security Academy",
+   "provider": "PortSwigger",
+   "url": "https://portswigger.net/web-security",
+   "type": "lab",
+   "cost_usd": 0,
+   "hours": 60,
+   "level": "entry",
+   "roles": [
+    "Security Engineer",
+    "QA Engineer"
+   ],
+   "matches": [
+    "web security",
+    "web application security",
+    "burp suite",
+    "burp",
+    "sql injection",
+    "xss",
+    "appsec",
+    "application security"
+   ]
+  },
+  {
+   "id": "R-HTB-ACADEMY",
+   "name": "Hack The Box Academy",
+   "provider": "Hack The Box",
+   "url": "https://academy.hackthebox.com/",
+   "type": "lab",
+   "cost_usd": 20,
+   "hours": 60,
+   "level": "entry",
+   "roles": [
+    "Security Engineer"
+   ],
+   "matches": [
+    "penetration testing",
+    "pentesting",
+    "ethical hacking",
+    "offensive security",
+    "ctf",
+    "red team"
+   ]
+  },
+  {
+   "id": "R-OWASP-THREAT",
+   "name": "OWASP Threat Modeling Cheat Sheet",
+   "provider": "OWASP",
+   "url": "https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html",
+   "type": "reference",
+   "cost_usd": 0,
+   "hours": 3,
+   "level": "mid",
+   "roles": [
+    "Security Engineer",
+    "Software Engineer"
+   ],
+   "matches": [
+    "threat modeling",
+    "threat model",
+    "stride"
+   ]
+  },
+  {
+   "id": "R-SEMGREP",
+   "name": "Semgrep (free) and its docs",
+   "provider": "Semgrep",
+   "url": "https://docs.semgrep.dev/",
+   "type": "tool",
+   "cost_usd": 0,
+   "hours": 4,
+   "level": "entry",
+   "roles": [
+    "Security Engineer",
+    "Software Engineer"
+   ],
+   "matches": [
+    "sast",
+    "static analysis",
+    "semgrep",
+    "code scanning",
+    "devsecops",
+    "dependency scanning"
+   ]
+  },
+  {
+   "id": "R-FLAWS",
+   "name": "flAWS and flAWS2 cloud security challenges",
+   "provider": "Scott Piper",
+   "url": "http://flaws.cloud/",
+   "type": "lab",
+   "cost_usd": 0,
+   "hours": 8,
+   "level": "entry",
+   "roles": [
+    "Security Engineer"
+   ],
+   "matches": [
+    "cloud security",
+    "aws security",
+    "iam",
+    "cloud misconfiguration"
+   ]
+  },
+  {
+   "id": "R-AWS-SECURITY",
+   "name": "AWS Certified Security - Specialty",
+   "provider": "AWS",
+   "url": "https://aws.amazon.com/certification/certified-security-specialty/",
+   "type": "cert",
+   "cost_usd": 300,
+   "hours": 0,
+   "level": "mid",
+   "roles": [
+    "Security Engineer"
+   ],
+   "matches": [
+    "aws security specialty",
+    "aws security certification",
+    "cloud security certification"
+   ]
+  },
+  {
+   "id": "R-NAND2TETRIS",
+   "name": "From Nand to Tetris",
+   "provider": "nand2tetris.org",
+   "url": "https://www.nand2tetris.org/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 80,
+   "level": "entry",
+   "roles": [
+    "Computer Engineer",
+    "Hardware Engineer"
+   ],
+   "matches": [
+    "computer architecture",
+    "digital logic",
+    "logic design",
+    "cpu design",
+    "nand2tetris",
+    "logic gates"
+   ]
+  },
+  {
+   "id": "R-VALVANO",
+   "name": "Embedded Systems: Introduction to ARM Cortex-M (free e-book, UT Austin)",
+   "provider": "Jonathan Valvano",
+   "url": "https://users.ece.utexas.edu/~valvano/Volume1/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 60,
+   "level": "entry",
+   "roles": [
+    "Computer Engineer",
+    "Hardware Engineer"
+   ],
+   "matches": [
+    "embedded systems",
+    "embedded c",
+    "microcontrollers",
+    "microcontroller",
+    "arm cortex-m",
+    "firmware",
+    "embedded"
+   ]
+  },
+  {
+   "id": "R-ARDUINO-DOCS",
+   "name": "Arduino documentation and tutorials",
+   "provider": "Arduino",
+   "url": "https://docs.arduino.cc/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 8,
+   "level": "internship",
+   "roles": [
+    "Computer Engineer",
+    "Hardware Engineer"
+   ],
+   "matches": [
+    "arduino",
+    "microcontrollers",
+    "microcontroller",
+    "sensors",
+    "electronics basics"
+   ]
+  },
+  {
+   "id": "R-FREERTOS",
+   "name": "FreeRTOS documentation and kernel guide",
+   "provider": "FreeRTOS",
+   "url": "https://www.freertos.org/",
+   "type": "reference",
+   "cost_usd": 0,
+   "hours": 15,
+   "level": "mid",
+   "roles": [
+    "Computer Engineer"
+   ],
+   "matches": [
+    "rtos",
+    "freertos",
+    "real-time operating systems",
+    "real-time systems"
+   ]
+  },
+  {
+   "id": "R-OSTEP",
+   "name": "Operating Systems: Three Easy Pieces (free book)",
+   "provider": "Arpaci-Dusseau",
+   "url": "https://pages.cs.wisc.edu/~remzi/OSTEP/",
+   "type": "reference",
+   "cost_usd": 0,
+   "hours": 40,
+   "level": "entry",
+   "roles": [
+    "Computer Engineer",
+    "Software Engineer"
+   ],
+   "matches": [
+    "operating systems",
+    "os internals",
+    "concurrency",
+    "memory management",
+    "virtual memory"
+   ]
+  },
+  {
+   "id": "R-BEEJ-C",
+   "name": "Beej's Guide to C Programming (free)",
+   "provider": "Brian Hall",
+   "url": "https://beej.us/guide/bgc/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 20,
+   "level": "internship",
+   "roles": [
+    "Computer Engineer",
+    "Software Engineer",
+    "Hardware Engineer"
+   ],
+   "matches": [
+    "c programming",
+    "c language",
+    "pointers",
+    "systems programming"
+   ]
+  },
+  {
+   "id": "R-ALL-ABOUT-CIRCUITS",
+   "name": "All About Circuits textbook (free)",
+   "provider": "All About Circuits",
+   "url": "https://www.allaboutcircuits.com/textbook/",
+   "type": "reference",
+   "cost_usd": 0,
+   "hours": 30,
+   "level": "internship",
+   "roles": [
+    "Hardware Engineer",
+    "Computer Engineer"
+   ],
+   "matches": [
+    "circuit analysis",
+    "circuits",
+    "electronics",
+    "electrical fundamentals",
+    "ohm's law",
+    "electronics basics"
+   ]
+  },
+  {
+   "id": "R-AOE",
+   "name": "The Art of Electronics, 3rd edition (book)",
+   "provider": "Horowitz & Hill",
+   "url": "https://artofelectronics.net/",
+   "type": "reference",
+   "cost_usd": 100,
+   "hours": 60,
+   "level": "mid",
+   "roles": [
+    "Hardware Engineer"
+   ],
+   "matches": [
+    "analog circuits",
+    "analog design",
+    "circuit design",
+    "power electronics"
+   ]
+  },
+  {
+   "id": "R-KICAD",
+   "name": "KiCad EDA (free) and Getting Started guide",
+   "provider": "KiCad",
+   "url": "https://docs.kicad.org/",
+   "type": "tool",
+   "cost_usd": 0,
+   "hours": 10,
+   "level": "entry",
+   "roles": [
+    "Hardware Engineer",
+    "Computer Engineer"
+   ],
+   "matches": [
+    "kicad",
+    "pcb design",
+    "pcb layout",
+    "schematic capture",
+    "schematics"
+   ]
+  },
+  {
+   "id": "R-LTSPICE",
+   "name": "LTspice circuit simulator (free)",
+   "provider": "Analog Devices",
+   "url": "https://www.analog.com/en/resources/design-tools-and-calculators/ltspice-simulator.html",
+   "type": "tool",
+   "cost_usd": 0,
+   "hours": 4,
+   "level": "entry",
+   "roles": [
+    "Hardware Engineer"
+   ],
+   "matches": [
+    "spice",
+    "ltspice",
+    "circuit simulation"
+   ]
+  },
+  {
+   "id": "R-HDLBITS",
+   "name": "HDLBits (Verilog practice problems)",
+   "provider": "HDLBits",
+   "url": "https://hdlbits.01xz.net/",
+   "type": "lab",
+   "cost_usd": 0,
+   "hours": 20,
+   "level": "entry",
+   "roles": [
+    "Hardware Engineer",
+    "Computer Engineer"
+   ],
+   "matches": [
+    "verilog",
+    "hdl",
+    "rtl",
+    "digital design",
+    "systemverilog"
+   ]
+  },
+  {
+   "id": "R-NANDLAND",
+   "name": "Nandland FPGA tutorials",
+   "provider": "Nandland",
+   "url": "https://nandland.com/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 15,
+   "level": "entry",
+   "roles": [
+    "Hardware Engineer",
+    "Computer Engineer"
+   ],
+   "matches": [
+    "fpga",
+    "vhdl",
+    "verilog",
+    "fpga design"
+   ]
+  },
+  {
+   "id": "R-ISTQB-FL",
+   "name": "ISTQB Certified Tester Foundation Level (CTFL)",
+   "provider": "ISTQB",
+   "url": "https://www.istqb.org/certifications/certified-tester-foundation-level",
+   "type": "cert",
+   "cost_usd": 250,
+   "hours": 0,
+   "level": "entry",
+   "roles": [
+    "QA Engineer"
+   ],
+   "matches": [
+    "istqb",
+    "ctfl",
+    "testing certification",
+    "qa certification"
+   ]
+  },
+  {
+   "id": "R-TAU",
+   "name": "Test Automation University (free courses)",
+   "provider": "Applitools",
+   "url": "https://testautomationu.applitools.com/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 20,
+   "level": "entry",
+   "roles": [
+    "QA Engineer"
+   ],
+   "matches": [
+    "test automation",
+    "automated testing",
+    "cypress",
+    "appium",
+    "test frameworks",
+    "mobile testing"
+   ]
+  },
+  {
+   "id": "R-PLAYWRIGHT-DOCS",
+   "name": "Playwright documentation",
+   "provider": "Microsoft",
+   "url": "https://playwright.dev/docs/intro",
+   "type": "reference",
+   "cost_usd": 0,
+   "hours": 8,
+   "level": "entry",
+   "roles": [
+    "QA Engineer",
+    "Software Engineer"
+   ],
+   "matches": [
+    "playwright",
+    "end-to-end testing",
+    "e2e testing",
+    "ui automation",
+    "browser automation"
+   ]
+  },
+  {
+   "id": "R-SELENIUM-DOCS",
+   "name": "Selenium documentation",
+   "provider": "Selenium",
+   "url": "https://www.selenium.dev/documentation/",
+   "type": "reference",
+   "cost_usd": 0,
+   "hours": 8,
+   "level": "entry",
+   "roles": [
+    "QA Engineer"
+   ],
+   "matches": [
+    "selenium",
+    "webdriver",
+    "ui automation",
+    "browser automation"
+   ]
+  },
+  {
+   "id": "R-POSTMAN-ACADEMY",
+   "name": "Postman Academy (API testing)",
+   "provider": "Postman",
+   "url": "https://academy.postman.com/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 6,
+   "level": "entry",
+   "roles": [
+    "QA Engineer",
+    "Software Engineer"
+   ],
+   "matches": [
+    "postman",
+    "api testing",
+    "api tests",
+    "contract testing"
+   ]
+  },
+  {
+   "id": "R-K6-DOCS",
+   "name": "Grafana k6 load testing docs",
+   "provider": "Grafana Labs",
+   "url": "https://grafana.com/docs/k6/latest/",
+   "type": "reference",
+   "cost_usd": 0,
+   "hours": 6,
+   "level": "mid",
+   "roles": [
+    "QA Engineer",
+    "Software Engineer"
+   ],
+   "matches": [
+    "performance testing",
+    "load testing",
+    "k6",
+    "jmeter",
+    "stress testing"
+   ]
+  },
+  {
+   "id": "R-MINISTRY-TESTING",
+   "name": "Ministry of Testing community",
+   "provider": "Ministry of Testing",
+   "url": "https://www.ministryoftesting.com/",
+   "type": "community",
+   "cost_usd": 0,
+   "hours": 6,
+   "level": "entry",
+   "roles": [
+    "QA Engineer"
+   ],
+   "matches": [
+    "exploratory testing",
+    "manual testing",
+    "testing community",
+    "test cases"
+   ]
+  },
+  {
+   "id": "R-INSPIRED",
+   "name": "Inspired: How to Create Tech Products Customers Love (book)",
+   "provider": "SVPG",
+   "url": "https://www.svpg.com/books/",
+   "type": "reference",
+   "cost_usd": 25,
+   "hours": 10,
+   "level": "entry",
+   "roles": [
+    "Product Manager"
+   ],
+   "matches": [
+    "product management",
+    "product discovery",
+    "product sense",
+    "product strategy",
+    "product thinking"
+   ]
+  },
+  {
+   "id": "R-MOM-TEST",
+   "name": "The Mom Test (book)",
+   "provider": "Rob Fitzpatrick",
+   "url": "https://www.momtestbook.com/",
+   "type": "reference",
+   "cost_usd": 15,
+   "hours": 5,
+   "level": "entry",
+   "roles": [
+    "Product Manager"
+   ],
+   "matches": [
+    "user interviews",
+    "customer interviews",
+    "user research",
+    "customer discovery"
+   ]
+  },
+  {
+   "id": "R-AMPLITUDE-ACADEMY",
+   "name": "Amplitude Academy (product analytics)",
+   "provider": "Amplitude",
+   "url": "https://academy.amplitude.com/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 6,
+   "level": "entry",
+   "roles": [
+    "Product Manager",
+    "Data Scientist"
+   ],
+   "matches": [
+    "product analytics",
+    "product metrics",
+    "metrics",
+    "kpis",
+    "funnels",
+    "retention",
+    "success metrics"
+   ]
+  },
+  {
+   "id": "R-FIGMA-HELP",
+   "name": "Figma Learn and Help Center",
+   "provider": "Figma",
+   "url": "https://help.figma.com/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 6,
+   "level": "internship",
+   "roles": [
+    "Product Manager"
+   ],
+   "matches": [
+    "figma",
+    "wireframes",
+    "wireframing",
+    "prototyping",
+    "mockups",
+    "ux"
+   ]
+  },
+  {
+   "id": "R-PSPO",
+   "name": "Professional Scrum Product Owner I (PSPO I)",
+   "provider": "Scrum.org",
+   "url": "https://www.scrum.org/assessments/professional-scrum-product-owner-i-certification",
+   "type": "cert",
+   "cost_usd": 200,
+   "hours": 0,
+   "level": "mid",
+   "roles": [
+    "Product Manager"
+   ],
+   "matches": [
+    "pspo",
+    "product owner certification",
+    "scrum product owner"
+   ]
+  },
+  {
+   "id": "R-CRACKING-PM",
+   "name": "Cracking the PM Interview (book)",
+   "provider": "McDowell & Bavaro",
+   "url": "https://www.crackingthepminterview.com/",
+   "type": "reference",
+   "cost_usd": 25,
+   "hours": 10,
+   "level": "internship",
+   "roles": [
+    "Product Manager"
+   ],
+   "matches": [
+    "pm interview",
+    "product interview",
+    "product case",
+    "product sense"
+   ]
+  }
+ ]
+}

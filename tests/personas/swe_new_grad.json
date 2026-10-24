@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "target_role": {
+    "title": "Software Engineer",
+    "level": "entry"
+  },
+  "gaps": [
+    {
+      "gap_id": "g1",
+      "item": "Deployed full-stack project",
+      "category": "experience",
+      "peer_share": 68,
+      "severity": "high",
+      "user_has": "Class projects only, none deployed"
+    },
+    {
+      "gap_id": "g2",
+      "item": "Data structures and algorithms practice",
+      "category": "skill",
+      "peer_share": 75,
+      "severity": "high",
+      "user_has": "Took a DSA course, no interview practice"
+    },
+    {
+      "gap_id": "g3",
+      "item": "Unit testing",
+      "category": "skill",
+      "peer_share": 55,
+      "severity": "medium",
+      "user_has": null
+    },
+    {
+      "gap_id": "g4",
+      "item": "CI/CD with GitHub Actions",
+      "category": "tool",
+      "peer_share": 40,
+      "severity": "medium",
+      "user_has": null
+    },
+    {
+      "gap_id": "g5",
+      "item": "Docker",
+      "category": "tool",
+      "peer_share": 45,
+      "severity": "medium",
+      "user_has": null
+    },
+    {
+      "gap_id": "g6",
+      "item": "SQL",
+      "category": "skill",
+      "peer_share": 60,
+      "severity": "medium",
+      "user_has": "Used SQLite once in a class"
+    },
+    {
+      "gap_id": "g7",
+      "item": "Open source contribution",
+      "category": "experience",
+      "peer_share": 25,
+      "severity": "low",
+      "user_has": null
+    }
+  ],
+  "user_context": {
+    "hours_per_week": 15,
+    "target_date": "2027-05-15",
+    "budget_usd": 100,
+    "background": "B.S. Computer Science, graduating May 2027. Java and Python from coursework; one summer IT help desk job."
+  }
+}

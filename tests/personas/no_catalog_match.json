@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "target_role": {
+    "title": "Software Engineer",
+    "level": "mid"
+  },
+  "gaps": [
+    {
+      "gap_id": "g1",
+      "item": "COBOL",
+      "category": "skill",
+      "peer_share": 40,
+      "severity": "high",
+      "user_has": null
+    },
+    {
+      "gap_id": "g2",
+      "item": "Mainframe z/OS",
+      "category": "tool",
+      "peer_share": 35,
+      "severity": "medium",
+      "user_has": null
+    },
+    {
+      "gap_id": "g3",
+      "item": "SQL",
+      "category": "skill",
+      "peer_share": 60,
+      "severity": "medium",
+      "user_has": null
+    }
+  ],
+  "user_context": {
+    "hours_per_week": 8,
+    "target_date": "2027-04-01",
+    "budget_usd": 200,
+    "background": "Java developer, 3 years, moving to a bank's core systems team."
+  }
+}
