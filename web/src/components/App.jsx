@@ -5,9 +5,24 @@ import { Results } from "./Results.jsx";
 import { Brand } from "./Brand.jsx";
 import { ResumeBuilder } from "./ResumeBuilder.jsx";
 import { PrivacyNotice } from "./PrivacyNotice.jsx";
+import { ThemeSwitch } from "./ThemeSwitch.jsx";
+import { applyTheme, onSystemThemeChange, saveTheme, savedTheme } from "../theme.js";
 
 export function App() {
   const [view, setView] = useState("roadmap");
+  const [themeChoice, setThemeChoice] = useState(savedTheme);
+  const [theme, setTheme] = useState(() => applyTheme(savedTheme()));
+
+  useEffect(() => {
+    setTheme(applyTheme(themeChoice));
+    if (themeChoice !== "system") return undefined;
+    return onSystemThemeChange(() => setTheme(applyTheme("system")));
+  }, [themeChoice]);
+
+  function chooseTheme(choice) {
+    saveTheme(choice);
+    setThemeChoice(choice);
+  }
   const [options, setOptions] = useState(null);
   const [loadError, setLoadError] = useState("");
   const [result, setResult] = useState(null);
@@ -37,7 +52,8 @@ export function App() {
     <>
       <header className="site-header">
         <div className="wrap">
-          <Brand />
+          <ThemeSwitch choice={themeChoice} onChange={chooseTheme} />
+          <Brand theme={theme} />
           <p className="tagline">
             Plan your next career step, capture the experience you already have, and build a
             resume that tells your story.

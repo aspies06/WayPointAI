@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>WayPointAI — Roadmaps & Resumes</title>
     <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+    <script>
+      // Apply the saved light/dark choice before the page draws (same rules as src/theme.js).
+      (function () {
+        var choice = "system";
+        try { choice = localStorage.getItem("waypoint-theme") || "system"; } catch (e) {}
+        var dark = choice === "dark" || (choice !== "light" && matchMedia("(prefers-color-scheme: dark)").matches);
+        document.documentElement.dataset.theme = dark ? "dark" : "light";
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -4,7 +4,6 @@
   <!-- The team's logo with a longer shaft (+125 units) for the site header: the feathers sit left of
        the title, the head and page right of it, and only the shaft passes behind the name. -->
   <!-- Dark mode: the near-black outlines switch to a light color so they stay visible. -->
-  <style>@media (prefers-color-scheme: dark) { [stroke="#11120f"] { stroke: #e7ebf0; } }</style>
 
   <g transform="translate(125 0)">
     <g transform="rotate(7 238 70)">
