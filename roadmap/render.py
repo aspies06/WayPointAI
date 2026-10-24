@@ -45,6 +45,8 @@ def optional_count(roadmap: Roadmap) -> int:
 def _uncovered(roadmap: Roadmap):
     """Deferred gaps with no optional item behind them (nothing in the catalog yet)."""
     kept = {g for s in roadmap.optional for g in s.gap_ids}
+    if roadmap.experience:
+        kept.add(roadmap.experience.gap_id)  # shown at the top instead
     return [d for d in roadmap.deferred if d.gap_id not in kept]
 
 
@@ -58,6 +60,8 @@ def timeline_markdown(roadmap: Roadmap, gap_names: dict[str, str] | None = None)
            f"Planned work ({r.total_hours} hours) finishes **{_d(r.finish_date)}**, "
            + (f"ahead of your {_d(r.target_date)} target." if fits else
               f"after your {_d(r.target_date)} target."), ""]
+    if r.experience:
+        out += [f"> **Most important:** {r.experience.message}", ""]
 
     if r.steps:
         out += ["### Timeline", "", "| Step | Priority | Dates | Hours |", "|---|---|---|---|"]

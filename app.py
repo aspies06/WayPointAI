@@ -29,6 +29,8 @@ def render_roadmap(gap_list: dict) -> str:
             f"| **Available:** {roadmap.available_hours} hours"
         ),
     ]
+    if roadmap.experience:
+        sections.append(f"> **Most important:** {roadmap.experience.message}")
     sections.extend(f"> **Note:** {warning}" for warning in roadmap.warnings)
 
     if roadmap.steps:
@@ -62,12 +64,14 @@ def render_roadmap(gap_list: dict) -> str:
     else:
         sections.append("No roadmap steps are needed for this role.")
 
-    if roadmap.deferred:
+    shown_above = roadmap.experience.gap_id if roadmap.experience else None
+    deferred = [item for item in roadmap.deferred if item.gap_id != shown_above]
+    if deferred:
         sections.append("### Deferred gaps")
         sections.append(
             "\n".join(
                 f"- **{gaps[item.gap_id]['item']}:** {item.reason}"
-                for item in roadmap.deferred
+                for item in deferred
             )
         )
     return "\n\n".join(sections)

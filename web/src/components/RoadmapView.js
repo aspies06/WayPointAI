@@ -19,6 +19,7 @@ const OPTIONAL_SECTIONS = [
 export function RoadmapView({ roadmap, gapNames }) {
   const [showOptional, setShowOptional] = useState(false);
   const kept = new Set(roadmap.optional.flatMap((s) => s.gap_ids));
+  if (roadmap.experience) kept.add(roadmap.experience.gap_id); // shown at the top instead
   const uncovered = roadmap.deferred.filter((d) => !kept.has(d.gap_id));
   const optionalCount = roadmap.optional.length + uncovered.length;
   const onTime = roadmap.finish_date <= roadmap.target_date; // ISO dates compare as strings
@@ -45,6 +46,12 @@ export function RoadmapView({ roadmap, gapNames }) {
         <div><dt>Planned work</dt><dd>${roadmap.total_hours} hours</dd></div>
         <div><dt>Cost</dt><dd>${formatCost(spent)}</dd></div>
       </dl>
+
+      ${roadmap.experience &&
+      html`<aside className="experience" aria-label="Most important">
+        <strong>Most important</strong>
+        <p>${roadmap.experience.message}</p>
+      </aside>`}
 
       ${roadmap.warnings.map((w) => html`<p key=${w} className="alert alert-warn">${w}</p>`)}
 

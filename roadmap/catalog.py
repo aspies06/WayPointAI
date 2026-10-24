@@ -32,6 +32,12 @@ def _forms(gap_item: str) -> tuple[str, str]:
     return item, _norm(gap_item.replace("/", " "))
 
 
+@lru_cache
+def entry_roles() -> dict[str, str]:
+    """Role -> the usual first job that builds experience toward it."""
+    return json.loads((DATA_DIR / "entry_roles.json").read_text())["roles"]
+
+
 def _specificity(entry: dict, gap_item: str) -> int:
     """Length of the longest alias found in the gap text; 0 means no match."""
     forms = _forms(gap_item)

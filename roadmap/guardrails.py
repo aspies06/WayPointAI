@@ -107,6 +107,8 @@ def check(draft: RoadmapDraft, gap_list: GapList,
         deferred.add(d.gap_id)
 
     for gid, g in gaps.items():
+        if g.peer_share == 0:
+            continue  # no hire has it, so it's deliberately left out
         if gid not in covered and gid not in deferred:
             errors.append(f"Gap '{gid}' ({g.severity}) is neither covered nor deferred.")
 

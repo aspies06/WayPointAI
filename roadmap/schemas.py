@@ -122,7 +122,8 @@ class Gap(BaseModel):
     gap_id: str = Field(max_length=40)
     item: str = Field(max_length=120)
     category: Category
-    peer_share: int = Field(ge=0, le=100, description="Percent of people in the role who have it")
+    peer_share: int = Field(ge=0, le=100, description="Percent of people in the role who have it. 0 means "
+                            "no one does, so the gap is left out of the roadmap")
     severity: Severity
     user_has: Optional[str] = Field(default=None, max_length=200,
                                     description="What the user has instead, if anything")
@@ -159,6 +160,9 @@ class GapList(BaseModel):
     schema_version: str = SCHEMA_VERSION
     target_role: TargetRole
     gaps: list[Gap] = Field(max_length=40)
+    peer_share_measured: bool = Field(
+        default=False, description="True only when peer_share comes from real hiring data. Otherwise the "
+                                   "roadmap says 'most', 'some' or 'not many' instead of a made-up-looking percentage")
     user_context: Optional[UserContext] = Field(
         default=None, description="Missing until the user answers the availability questions; "
                                   "generate_roadmap() raises AvailabilityNeeded without it")
@@ -217,6 +221,14 @@ class Deferred(BaseModel):
     reason: str
 
 
+class ExperienceAdvice(BaseModel):
+    """Years of work experience can't be studied for, so they're not a timeline step.
+    The roadmap says plainly what to do instead (usually: get an entry-level job)."""
+    gap_id: str
+    years: Optional[float] = None
+    message: str
+
+
 class RoadmapDraft(BaseModel):
     """The plan. guardrails.py enforces the rules on it."""
     summary: str
@@ -224,6 +236,8 @@ class RoadmapDraft(BaseModel):
     deferred: list[Deferred]
     optional: list[Step] = Field(default=[], description="Steps that don't fit the user's time or budget, kept "
                                  "so the UI can offer them behind a button. Their gaps are also in deferred.")
+    experience: Optional[ExperienceAdvice] = Field(
+        default=None, description="Shown above the timeline when the real need is work experience")
 
 
 class Roadmap(RoadmapDraft):
