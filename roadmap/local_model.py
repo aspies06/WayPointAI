@@ -1,7 +1,7 @@
-"""Runs the team's local Hugging Face model. Free, offline after first download.
+"""Runs the local Hugging Face model for optional roadmap tips.
 
-Loads the model the same way resume_advisor.py does. torch and transformers
-are imported lazily so the planner and tests work without them installed.
+torch and transformers are imported lazily so the planner and tests work
+without them installed.
 """
 import os
 import threading
