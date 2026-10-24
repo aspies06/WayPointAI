@@ -1,5 +1,5 @@
 {
- "_note": "Curated resources for internship, entry (junior) and mid-level roles: Software Engineer, AI/ML Engineer, Data Scientist, Security Engineer, Computer Engineer, IT Support Specialist, Hardware Engineer, QA Engineer, Product Manager. Only these IDs may be cited. 'level' is who a resource suits best; 'roles' (optional) marks role-specific resources, which are preferred for those roles. Costs and hours are approximate as of Oct 2026. All links were checked on 2026-10-23.",
+ "_note": "Curated resources for internship, entry (junior) and mid-level roles: Software Engineer, AI/ML Engineer, Data Scientist, Security Engineer, Computer Engineer, IT Support Specialist, Hardware Engineer, QA Engineer, Product Manager. Only these IDs may be cited. 'level' is who a resource suits best; 'roles' (optional) marks role-specific resources, which are preferred for those roles. 'credential' is what finishing it earns: 'certification' (an exam employers recognize), 'certificate' (a certificate of completion), or null (knowledge only). Costs and hours are approximate as of Oct 2026. All links were checked on 2026-10-23.",
  "resources": [
   {
    "id": "R-SECPLUS",
@@ -19,7 +19,8 @@
    "roles": [
     "Security Engineer",
     "IT Support Specialist"
-   ]
+   ],
+   "credential": "certification"
   },
   {
    "id": "R-MESSER",
@@ -39,7 +40,8 @@
     "network plus",
     "a+",
     "comptia a+"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-NETPLUS",
@@ -60,7 +62,8 @@
     "IT Support Specialist",
     "Security Engineer",
     "Computer Engineer"
-   ]
+   ],
+   "credential": "certification"
   },
   {
    "id": "R-CYSA",
@@ -79,7 +82,8 @@
    ],
    "roles": [
     "Security Engineer"
-   ]
+   ],
+   "credential": "certification"
   },
   {
    "id": "R-BTL1",
@@ -98,7 +102,8 @@
    ],
    "roles": [
     "Security Engineer"
-   ]
+   ],
+   "credential": "certification"
   },
   {
    "id": "R-THM-SOC1",
@@ -120,7 +125,8 @@
    ],
    "roles": [
     "Security Engineer"
-   ]
+   ],
+   "credential": "certificate"
   },
   {
    "id": "R-THM-SOC2",
@@ -138,7 +144,8 @@
    ],
    "roles": [
     "Security Engineer"
-   ]
+   ],
+   "credential": "certificate"
   },
   {
    "id": "R-SPLUNK-EDU",
@@ -156,7 +163,8 @@
    ],
    "roles": [
     "Security Engineer"
-   ]
+   ],
+   "credential": "certificate"
   },
   {
    "id": "R-BOTSV3",
@@ -177,7 +185,8 @@
    ],
    "roles": [
     "Security Engineer"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-SC200-LEARN",
@@ -198,7 +207,8 @@
    ],
    "roles": [
     "Security Engineer"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-AZURE-FREE",
@@ -215,7 +225,8 @@
     "azure",
     "entra id",
     "azure ad"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-KUSTO-DETECTIVE",
@@ -232,7 +243,8 @@
    ],
    "roles": [
     "Security Engineer"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-CS-TRIAL",
@@ -251,7 +263,8 @@
    ],
    "roles": [
     "Security Engineer"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-LETSDEFEND",
@@ -273,7 +286,8 @@
    ],
    "roles": [
     "Security Engineer"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-CYBERDEFENDERS",
@@ -293,7 +307,8 @@
    ],
    "roles": [
     "Security Engineer"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-MITRE-ATTACK",
@@ -311,7 +326,8 @@
    ],
    "roles": [
     "Security Engineer"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-ATTACK-NAVIGATOR",
@@ -328,7 +344,8 @@
    ],
    "roles": [
     "Security Engineer"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-ATOMIC-RED",
@@ -348,7 +365,8 @@
    ],
    "roles": [
     "Security Engineer"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-HHS-HIPAA",
@@ -370,7 +388,8 @@
     "IT Support Specialist",
     "Product Manager",
     "Data Scientist"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-MTA-EXERCISES",
@@ -392,7 +411,8 @@
    "roles": [
     "Security Engineer",
     "IT Support Specialist"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-WIRESHARK-DOCS",
@@ -407,7 +427,8 @@
     "wireshark",
     "pcap",
     "packet analysis"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-ATBS",
@@ -422,7 +443,8 @@
     "python",
     "scripting",
     "python scripting"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-PS-LEARN",
@@ -440,7 +462,8 @@
    "roles": [
     "IT Support Specialist",
     "Security Engineer"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-SECURITY-ONION",
@@ -459,7 +482,8 @@
    ],
    "roles": [
     "Security Engineer"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-BSIDES",
@@ -477,7 +501,8 @@
    ],
    "roles": [
     "Security Engineer"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-APLUS",
@@ -494,7 +519,8 @@
    ],
    "roles": [
     "IT Support Specialist"
-   ]
+   ],
+   "credential": "certification"
   },
   {
    "id": "R-GOOGLE-IT",
@@ -515,7 +541,8 @@
    ],
    "roles": [
     "IT Support Specialist"
-   ]
+   ],
+   "credential": "certificate"
   },
   {
    "id": "R-MS900",
@@ -536,7 +563,8 @@
    ],
    "roles": [
     "IT Support Specialist"
-   ]
+   ],
+   "credential": "certification"
   },
   {
    "id": "R-AZ900",
@@ -552,7 +580,8 @@
     "az-900",
     "cloud fundamentals",
     "cloud"
-   ]
+   ],
+   "credential": "certification"
   },
   {
    "id": "R-MD102",
@@ -574,7 +603,8 @@
    ],
    "roles": [
     "IT Support Specialist"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-NETACAD",
@@ -601,7 +631,8 @@
     "IT Support Specialist",
     "Security Engineer",
     "Computer Engineer"
-   ]
+   ],
+   "credential": "certificate"
   },
   {
    "id": "R-CCNA",
@@ -619,7 +650,8 @@
    "roles": [
     "IT Support Specialist",
     "Security Engineer"
-   ]
+   ],
+   "credential": "certification"
   },
   {
    "id": "R-ITIL",
@@ -639,7 +671,8 @@
    ],
    "roles": [
     "IT Support Specialist"
-   ]
+   ],
+   "credential": "certification"
   },
   {
    "id": "R-SERVICENOW-PDI",
@@ -658,7 +691,8 @@
    ],
    "roles": [
     "IT Support Specialist"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-AD-DOCS",
@@ -680,7 +714,8 @@
    "roles": [
     "IT Support Specialist",
     "Security Engineer"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-EVAL-CENTER",
@@ -701,7 +736,8 @@
    "roles": [
     "IT Support Specialist",
     "Security Engineer"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-LINUX-JOURNEY",
@@ -717,7 +753,8 @@
     "bash",
     "command line",
     "shell"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-BANDIT",
@@ -734,7 +771,8 @@
     "command line",
     "shell",
     "ssh"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-LINUX-PLUS",
@@ -753,7 +791,8 @@
     "IT Support Specialist",
     "Security Engineer",
     "Computer Engineer"
-   ]
+   ],
+   "credential": "certification"
   },
   {
    "id": "R-JAMF-TRAINING",
@@ -771,7 +810,8 @@
    ],
    "roles": [
     "IT Support Specialist"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-ODIN",
@@ -793,7 +833,8 @@
     "full-stack",
     "frontend",
     "front-end"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-FULLSTACKOPEN",
@@ -817,7 +858,8 @@
     "full-stack",
     "backend",
     "back-end"
-   ]
+   ],
+   "credential": "certificate"
   },
   {
    "id": "R-FCC",
@@ -836,7 +878,8 @@
     "sql",
     "web development",
     "responsive design"
-   ]
+   ],
+   "credential": "certificate"
   },
   {
    "id": "R-CS50",
@@ -855,7 +898,8 @@
     "algorithms",
     "cs degree",
     "computer science degree"
-   ]
+   ],
+   "credential": "certificate"
   },
   {
    "id": "R-NEETCODE",
@@ -873,7 +917,8 @@
     "leetcode",
     "coding interview",
     "technical interview"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-PROGIT",
@@ -889,7 +934,8 @@
     "version control",
     "branching",
     "pull requests"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-GH-SKILLS",
@@ -906,7 +952,8 @@
     "pull requests",
     "github actions",
     "code review"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-GHA-DOCS",
@@ -924,7 +971,8 @@
     "github actions",
     "devops",
     "pipelines"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-DOCKER-START",
@@ -940,7 +988,8 @@
     "containers",
     "containerization",
     "docker compose"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-K8S-BASICS",
@@ -955,7 +1004,8 @@
     "kubernetes",
     "k8s",
     "container orchestration"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-AWS-CCP",
@@ -971,7 +1021,8 @@
     "amazon web services",
     "cloud practitioner",
     "cloud"
-   ]
+   ],
+   "credential": "certification"
   },
   {
    "id": "R-AWS-SKILLBUILDER",
@@ -988,7 +1039,8 @@
     "cloud practitioner",
     "cloud",
     "solutions architect"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-AWS-FREE",
@@ -1005,7 +1057,8 @@
     "cloud",
     "deployment",
     "deploy"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-SQLBOLT",
@@ -1024,7 +1077,8 @@
     "postgres",
     "mysql",
     "relational databases"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-REACT-DOCS",
@@ -1040,7 +1094,8 @@
     "react.js",
     "frontend",
     "front-end"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-TS-HANDBOOK",
@@ -1053,7 +1108,8 @@
    "level": "entry",
    "matches": [
     "typescript"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-MOOC-JAVA",
@@ -1068,7 +1124,8 @@
     "java",
     "object-oriented programming",
     "oop"
-   ]
+   ],
+   "credential": "certificate"
   },
   {
    "id": "R-MISSING-SEMESTER",
@@ -1087,7 +1144,8 @@
     "debugging",
     "vim",
     "developer tools"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-PYTEST-DOCS",
@@ -1104,7 +1162,8 @@
     "test automation",
     "tdd",
     "automated tests"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-SYSDESIGN-PRIMER",
@@ -1120,7 +1179,8 @@
     "scalability",
     "distributed systems",
     "architecture"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-GOOD-FIRST-ISSUE",
@@ -1138,7 +1198,8 @@
     "code review",
     "team experience",
     "professional experience"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-SCRUM-GUIDE",
@@ -1154,7 +1215,8 @@
     "scrum",
     "sprint",
     "kanban"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-MEETUP",
@@ -1170,7 +1232,8 @@
     "referral",
     "referrals",
     "mentorship"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-MLH",
@@ -1186,7 +1249,8 @@
     "hackathons",
     "student projects",
     "team project"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-AZ104",
@@ -1206,7 +1270,8 @@
    "roles": [
     "IT Support Specialist",
     "Security Engineer"
-   ]
+   ],
+   "credential": "certification"
   },
   {
    "id": "R-AZ104-LEARN",
@@ -1227,7 +1292,8 @@
    "roles": [
     "IT Support Specialist",
     "Security Engineer"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-AWS-SAA",
@@ -1243,7 +1309,8 @@
     "aws solutions architect",
     "saa-c03",
     "aws associate"
-   ]
+   ],
+   "credential": "certification"
   },
   {
    "id": "R-TERRAFORM",
@@ -1258,7 +1325,8 @@
     "terraform",
     "infrastructure as code",
     "iac"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-SRE-BOOK",
@@ -1276,7 +1344,8 @@
     "monitoring",
     "on-call",
     "incident management"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-DDIA",
@@ -1293,7 +1362,8 @@
     "database internals",
     "scalability",
     "system design"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-KAGGLE-LEARN",
@@ -1313,7 +1383,8 @@
     "feature engineering",
     "intro to machine learning",
     "machine learning basics"
-   ]
+   ],
+   "credential": "certificate"
   },
   {
    "id": "R-ML-SPEC",
@@ -1334,7 +1405,8 @@
     "supervised learning",
     "classification",
     "neural networks"
-   ]
+   ],
+   "credential": "certificate"
   },
   {
    "id": "R-SKLEARN-DOCS",
@@ -1354,7 +1426,8 @@
     "sklearn",
     "model evaluation",
     "cross-validation"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-FASTAI",
@@ -1373,7 +1446,8 @@
     "neural networks",
     "fastai",
     "computer vision"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-PYTORCH-TUT",
@@ -1392,7 +1466,8 @@
     "torch",
     "deep learning",
     "tensors"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-HF-COURSE",
@@ -1416,8 +1491,10 @@
     "fine tuning",
     "large language models",
     "rag",
-    "generative ai"
-   ]
+    "generative ai",
+    "natural language processing"
+   ],
+   "credential": null
   },
   {
    "id": "R-MLOPS-ZOOMCAMP",
@@ -1439,7 +1516,8 @@
     "mlflow",
     "experiment tracking",
     "model monitoring"
-   ]
+   ],
+   "credential": "certificate"
   },
   {
    "id": "R-MML-BOOK",
@@ -1460,7 +1538,8 @@
     "math for machine learning",
     "math for ml",
     "probability"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-KHAN-STATS",
@@ -1481,7 +1560,8 @@
     "probability",
     "intro statistics",
     "hypothesis testing"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-ISLP",
@@ -1503,7 +1583,8 @@
     "regression",
     "linear regression",
     "logistic regression"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-PANDAS-DOCS",
@@ -1524,7 +1605,8 @@
     "data wrangling",
     "data cleaning",
     "python for data analysis"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-SELECT-STAR",
@@ -1543,7 +1625,8 @@
     "sql for data analysis",
     "analytical sql",
     "sql"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-GOOGLE-DA",
@@ -1564,7 +1647,8 @@
     "spreadsheets",
     "excel",
     "google sheets"
-   ]
+   ],
+   "credential": "certificate"
   },
   {
    "id": "R-TABLEAU-PUBLIC",
@@ -1584,7 +1668,8 @@
     "data visualization",
     "dashboards",
     "dashboard"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-POWERBI-LEARN",
@@ -1605,7 +1690,8 @@
     "data visualization",
     "dashboards",
     "dashboard"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-EXPERIMENT-BOOK",
@@ -1627,7 +1713,8 @@
     "experimentation",
     "experiment design",
     "causal inference"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-OWASP-TOP10",
@@ -1649,7 +1736,8 @@
     "secure coding",
     "application security",
     "appsec"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-PORTSWIGGER",
@@ -1673,7 +1761,8 @@
     "xss",
     "appsec",
     "application security"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-HTB-ACADEMY",
@@ -1694,7 +1783,8 @@
     "offensive security",
     "ctf",
     "red team"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-OWASP-THREAT",
@@ -1713,7 +1803,8 @@
     "threat modeling",
     "threat model",
     "stride"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-SEMGREP",
@@ -1735,7 +1826,8 @@
     "code scanning",
     "devsecops",
     "dependency scanning"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-FLAWS",
@@ -1754,7 +1846,8 @@
     "aws security",
     "iam",
     "cloud misconfiguration"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-AWS-SECURITY",
@@ -1772,7 +1865,8 @@
     "aws security specialty",
     "aws security certification",
     "cloud security certification"
-   ]
+   ],
+   "credential": "certification"
   },
   {
    "id": "R-NAND2TETRIS",
@@ -1793,8 +1887,11 @@
     "logic design",
     "cpu design",
     "nand2tetris",
-    "logic gates"
-   ]
+    "logic gates",
+    "assembly",
+    "assembly language"
+   ],
+   "credential": null
   },
   {
    "id": "R-VALVANO",
@@ -1817,7 +1914,8 @@
     "arm cortex-m",
     "firmware",
     "embedded"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-ARDUINO-DOCS",
@@ -1838,7 +1936,8 @@
     "microcontroller",
     "sensors",
     "electronics basics"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-FREERTOS",
@@ -1857,7 +1956,8 @@
     "freertos",
     "real-time operating systems",
     "real-time systems"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-OSTEP",
@@ -1878,7 +1978,8 @@
     "concurrency",
     "memory management",
     "virtual memory"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-BEEJ-C",
@@ -1898,8 +1999,10 @@
     "c programming",
     "c language",
     "pointers",
-    "systems programming"
-   ]
+    "systems programming",
+    "c"
+   ],
+   "credential": null
   },
   {
    "id": "R-ALL-ABOUT-CIRCUITS",
@@ -1921,7 +2024,8 @@
     "electrical fundamentals",
     "ohm's law",
     "electronics basics"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-AOE",
@@ -1940,7 +2044,8 @@
     "analog design",
     "circuit design",
     "power electronics"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-KICAD",
@@ -1961,7 +2066,8 @@
     "pcb layout",
     "schematic capture",
     "schematics"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-LTSPICE",
@@ -1979,7 +2085,8 @@
     "spice",
     "ltspice",
     "circuit simulation"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-HDLBITS",
@@ -2000,7 +2107,8 @@
     "rtl",
     "digital design",
     "systemverilog"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-NANDLAND",
@@ -2020,7 +2128,8 @@
     "vhdl",
     "verilog",
     "fpga design"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-ISTQB-FL",
@@ -2039,7 +2148,8 @@
     "ctfl",
     "testing certification",
     "qa certification"
-   ]
+   ],
+   "credential": "certification"
   },
   {
    "id": "R-TAU",
@@ -2060,7 +2170,8 @@
     "appium",
     "test frameworks",
     "mobile testing"
-   ]
+   ],
+   "credential": "certificate"
   },
   {
    "id": "R-PLAYWRIGHT-DOCS",
@@ -2081,7 +2192,8 @@
     "e2e testing",
     "ui automation",
     "browser automation"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-SELENIUM-DOCS",
@@ -2100,7 +2212,8 @@
     "webdriver",
     "ui automation",
     "browser automation"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-POSTMAN-ACADEMY",
@@ -2120,7 +2233,8 @@
     "api testing",
     "api tests",
     "contract testing"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-K6-DOCS",
@@ -2141,7 +2255,8 @@
     "k6",
     "jmeter",
     "stress testing"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-MINISTRY-TESTING",
@@ -2160,7 +2275,8 @@
     "manual testing",
     "testing community",
     "test cases"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-INSPIRED",
@@ -2180,7 +2296,8 @@
     "product sense",
     "product strategy",
     "product thinking"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-MOM-TEST",
@@ -2199,7 +2316,8 @@
     "customer interviews",
     "user research",
     "customer discovery"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-AMPLITUDE-ACADEMY",
@@ -2222,7 +2340,8 @@
     "funnels",
     "retention",
     "success metrics"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-FIGMA-HELP",
@@ -2243,7 +2362,8 @@
     "prototyping",
     "mockups",
     "ux"
-   ]
+   ],
+   "credential": null
   },
   {
    "id": "R-PSPO",
@@ -2261,7 +2381,8 @@
     "pspo",
     "product owner certification",
     "scrum product owner"
-   ]
+   ],
+   "credential": "certification"
   },
   {
    "id": "R-CRACKING-PM",
@@ -2280,7 +2401,228 @@
     "product interview",
     "product case",
     "product sense"
-   ]
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-LEARNCPP",
+   "name": "LearnCpp.com (free C++ course)",
+   "provider": "LearnCpp",
+   "url": "https://www.learncpp.com/",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 40,
+   "level": "entry",
+   "roles": [
+    "Computer Engineer",
+    "Software Engineer",
+    "Hardware Engineer"
+   ],
+   "matches": [
+    "c++",
+    "cpp",
+    "modern c++"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-TF-TUTORIALS",
+   "name": "TensorFlow tutorials",
+   "provider": "Google",
+   "url": "https://www.tensorflow.org/tutorials",
+   "type": "course",
+   "cost_usd": 0,
+   "hours": 15,
+   "level": "entry",
+   "roles": [
+    "AI/ML Engineer",
+    "Data Scientist"
+   ],
+   "matches": [
+    "tensorflow",
+    "keras"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-R4DS",
+   "name": "R for Data Science, 2nd edition (free book)",
+   "provider": "Wickham, Çetinkaya-Rundel, Grolemund",
+   "url": "https://r4ds.hadley.nz/",
+   "type": "reference",
+   "cost_usd": 0,
+   "hours": 30,
+   "level": "entry",
+   "roles": [
+    "Data Scientist"
+   ],
+   "matches": [
+    "r",
+    "r programming",
+    "tidyverse",
+    "ggplot2"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-SPARK-QS",
+   "name": "Apache Spark Quick Start",
+   "provider": "Apache Software Foundation",
+   "url": "https://spark.apache.org/docs/latest/quick-start.html",
+   "type": "reference",
+   "cost_usd": 0,
+   "hours": 6,
+   "level": "mid",
+   "roles": [
+    "Data Scientist",
+    "AI/ML Engineer"
+   ],
+   "matches": [
+    "spark",
+    "pyspark",
+    "apache spark",
+    "big data"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-JIRA-GUIDES",
+   "name": "Jira guides",
+   "provider": "Atlassian",
+   "url": "https://www.atlassian.com/software/jira/guides",
+   "type": "reference",
+   "cost_usd": 0,
+   "hours": 4,
+   "level": "entry",
+   "roles": [
+    "QA Engineer",
+    "Product Manager",
+    "Software Engineer"
+   ],
+   "matches": [
+    "jira",
+    "jira software",
+    "issue tracking",
+    "bug tracking"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-GA-CERT",
+   "name": "Google Analytics Certification (free, on Skillshop)",
+   "provider": "Google",
+   "url": "https://skillshop.withgoogle.com/",
+   "type": "cert",
+   "cost_usd": 0,
+   "hours": 10,
+   "level": "entry",
+   "roles": [
+    "Product Manager",
+    "Data Scientist"
+   ],
+   "matches": [
+    "google analytics",
+    "ga4",
+    "web analytics"
+   ],
+   "credential": "certification"
+  },
+  {
+   "id": "R-ISC2-CC",
+   "name": "ISC2 Certified in Cybersecurity (CC), the entry step toward CISSP",
+   "provider": "ISC2",
+   "url": "https://www.isc2.org/certifications/cc",
+   "type": "cert",
+   "cost_usd": 199,
+   "hours": 0,
+   "level": "entry",
+   "roles": [
+    "Security Engineer",
+    "IT Support Specialist"
+   ],
+   "matches": [
+    "isc2 cc",
+    "certified in cybersecurity",
+    "cissp"
+   ],
+   "credential": "certification"
+  },
+  {
+   "id": "R-CEH",
+   "name": "Certified Ethical Hacker (CEH)",
+   "provider": "EC-Council",
+   "url": "https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/",
+   "type": "cert",
+   "cost_usd": 1199,
+   "hours": 0,
+   "level": "mid",
+   "roles": [
+    "Security Engineer"
+   ],
+   "matches": [
+    "ceh",
+    "certified ethical hacker"
+   ],
+   "credential": "certification"
+  },
+  {
+   "id": "R-CISSP",
+   "name": "CISSP (needs 5 years of security work experience)",
+   "provider": "ISC2",
+   "url": "https://www.isc2.org/certifications/cissp",
+   "type": "cert",
+   "cost_usd": 749,
+   "hours": 0,
+   "level": "senior",
+   "roles": [
+    "Security Engineer"
+   ],
+   "matches": [
+    "cissp"
+   ],
+   "credential": "certification"
+  },
+  {
+   "id": "R-NMAP-BOOK",
+   "name": "Nmap Network Scanning (free online book)",
+   "provider": "Nmap Project",
+   "url": "https://nmap.org/book/",
+   "type": "reference",
+   "cost_usd": 0,
+   "hours": 10,
+   "level": "entry",
+   "roles": [
+    "Security Engineer",
+    "IT Support Specialist"
+   ],
+   "matches": [
+    "nmap",
+    "port scanning",
+    "network scanning",
+    "vulnerability assessment"
+   ],
+   "credential": null
+  },
+  {
+   "id": "R-GREENBONE",
+   "name": "Greenbone OpenVAS Community Edition docs",
+   "provider": "Greenbone",
+   "url": "https://greenbone.github.io/docs/latest/",
+   "type": "tool",
+   "cost_usd": 0,
+   "hours": 6,
+   "level": "entry",
+   "roles": [
+    "Security Engineer",
+    "IT Support Specialist"
+   ],
+   "matches": [
+    "openvas",
+    "greenbone",
+    "vulnerability scanning",
+    "vulnerability assessment"
+   ],
+   "credential": null
   }
  ]
 }

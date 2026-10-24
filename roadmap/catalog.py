@@ -25,10 +25,17 @@ def projects() -> dict[str, dict]:
     return {p["id"]: p for p in data["projects"]}
 
 
+def _forms(gap_item: str) -> tuple[str, str]:
+    """The gap text as written, and with slashes as spaces: "VHDL/Verilog" must match "verilog",
+    while aliases that contain a slash ("ci/cd", "tcp/ip") still match the first form."""
+    item = _norm(gap_item)
+    return item, _norm(gap_item.replace("/", " "))
+
+
 def _specificity(entry: dict, gap_item: str) -> int:
     """Length of the longest alias found in the gap text; 0 means no match."""
-    item = _norm(gap_item)
-    return max((len(a) for a in entry["matches"] if _norm(a) in item), default=0)
+    forms = _forms(gap_item)
+    return max((len(a) for a in entry["matches"] if any(_norm(a) in f for f in forms)), default=0)
 
 
 def _fits_role(entry: dict, role: Optional[str]) -> bool:
@@ -47,8 +54,8 @@ def resources_for(gap_item: str, level: Optional[str] = None, role: Optional[str
 
 
 def _hits(entry: dict, gap_item: str) -> int:
-    item = _norm(gap_item)
-    return sum(_norm(a) in item for a in entry["matches"])
+    forms = _forms(gap_item)
+    return sum(any(_norm(a) in f for f in forms) for a in entry["matches"])
 
 
 def _suits(project: dict, level: Optional[str]) -> bool:

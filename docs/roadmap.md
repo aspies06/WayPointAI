@@ -16,8 +16,21 @@ Senior targets and other titles still get a plan, along with a warning.
 ```bash
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 .venv/bin/python -m pytest -q                       # offline tests, no model needed
-ROADMAP_AI=0 .venv/bin/python -m roadmap tests/personas/swe_intern.json
+ROADMAP_AI=0 .venv/bin/python -m roadmap tests/personas/swe_intern.json --ask   # answer the questions, read the response
 .venv/bin/pip install torch transformers            # optional: personal tips
+```
+
+## How a response is made
+
+1. **Ask first.** Before planning, the user says how many hours a week they can sustain, when they can start, when they want to be ready, and their budget (`roadmap/intake.py`). Nothing is guessed: without these, `generate_roadmap()` raises `AvailabilityNeeded`.
+2. **Plan by priority.** Gaps that most hires have come first, labeled *Must do*, *Should do* and *Nice to have*. Each one becomes a concrete step, labeled by what it earns: a **certification**, a **certificate of completion**, a **portfolio project**, or a **knowledge benefit** when no certificate exists.
+3. **Schedule it.** Must-do steps get the user's time first, then should-do, then nice-to-have. If the must-do steps don't all fit, the biggest ones are **shortened** (part 1 on the timeline, part 2 kept as optional), so they stay at the front instead of being dropped. Lower priorities never take time from higher ones. Each step gets start and end dates at the user's pace.
+4. **Link the sources.** Every step lists its courses, books and tools with links from the checked catalog.
+
+`roadmap/render.py` turns the result into a readable Markdown response. `roadmap/ui.py` is the Streamlit version: a form for the time questions (dates entered as MM-DD-YYYY), then the timeline, with everything else behind a **Show optional items** button. Try it with:
+
+```bash
+.venv/bin/streamlit run scripts/demo_app.py
 ```
 
 ## How it stays reliable
@@ -38,7 +51,9 @@ Guardrails (`roadmap/guardrails.py`) run on every roadmap. They fail it if:
 - `depends_on` points to an unknown step or forms a loop.
 - The total hours exceed the hours available before the target date (10% slack).
 
-Going over budget is only a warning.
+**Budget.** The user chooses what to spend, any amount including $0, or no limit if they leave it blank. The plan stays within it. A certification exam over budget turns into free exam prep on the timeline, with the exam kept as an optional item. Each step can also show **Worth considering** notes, even when they go over budget: a certification for the skill, a free alternative to something paid, or a shorter course.
+
+Everything that isn't on the timeline (over budget, out of time, or a shortened step's part 2) is kept as an `optional` item, which the UI shows behind a **Show optional items** button.
 
 Text in the gap list is treated as data. The model's tips may not contain links, percentages, or leaked instructions, and `tests/personas/injection.json` tests this.
 
@@ -62,14 +77,24 @@ Text in the gap list is treated as data. The model's tips may not contain links,
 
 - The plan is pure computation (no model call), so it handles any number of users.
 - Model calls run on `ROADMAP_MODEL_WORKERS` threads (default 1). When every worker is busy, a request gets the basic roadmap immediately instead of waiting in a queue.
-- Cache files are keyed by gap list and date, and they contain users' backgrounds. Set `ROADMAP_CACHE_DIR` to private storage in production.
+- See **Privacy** below for how cached roadmaps are handled.
 - All options are listed in `.env.example`.
+
+## Privacy
+
+User information stays private:
+- **Nothing leaves the machine.** Planning is local code, and the tip model runs locally. The model is downloaded once; user data is never sent anywhere.
+- **No disk storage by default.** Personalized roadmaps are cached in memory only (at most 256, each for 24 hours), keyed by a full SHA-256 hash, so two users can never share an entry. A disk cache is used only if `ROADMAP_CACHE_DIR` is set; its folder and files are readable by the app's own account only, and files are deleted after 24 hours. `generate.clear_cache()` forgets everything right away.
+- **No personal text in logs.** Logs record IDs, error types and rejection reasons, never gap text, backgrounds or tips.
+- **No usage statistics.** `.streamlit/config.toml` turns off Streamlit's usage statistics. WayPointAI's own app should set the same option.
+- The roadmap returned to the UI never includes the user's background text, though personal tips may reflect it.
 
 ## Adding roles or resources
 
 Coverage is data, not code. To support a new gap, add a resource to `data/catalog.json` or a template to `data/projects.json`:
 - Put plain names in `matches`. The longest alias found in the gap text wins.
 - Set `level` and `roles` on resources, and `levels` and `roles` on templates.
+- Set `credential` on resources: `certification` (a real exam), `certificate` (only if the provider issues a certificate of completion), or `null`. When unsure, use `null`: the app must never promise a certificate that doesn't exist. The tests check this.
 - Run `pytest`. It checks that every reference and level is valid.
 
 Until the catalog covers a gap, that gap is deferred with a reason rather than dropped.
@@ -78,6 +103,9 @@ Until the catalog covers a gap, that gap is deferred with a reason rather than d
 
 ```
 roadmap/schemas.py      input/output contracts (Pydantic), roles, level aliases, role inference
+roadmap/intake.py       the availability and workload questions to ask first, and answer parsing
+roadmap/render.py       the readable response: priorities, timeline, source links; optional items kept separate
+roadmap/ui.py           Streamlit form and roadmap view with the optional-items button
 roadmap/catalog.py      loads the catalog and matches gaps by alias, level and role
 roadmap/planner.py      rule-based plan: steps, phases, hours and budget
 roadmap/personalize.py  prompt for the local model and per-line tip checks
@@ -89,6 +117,8 @@ data/projects.json      64 project templates, tagged by level and role
 tests/personas/         19 gap lists covering every role across internship, junior and mid
 scripts/run_eval.py     live scoreboard for the model's tips (--level, --role)
 scripts/save_demo.py    pre-generate demo roadmaps into demo/
+scripts/demo_app.py     try the UI with test personas: streamlit run scripts/demo_app.py
+scripts/explain.py      print each decision the planner makes for one gap list
 ```
 
 ## Next steps

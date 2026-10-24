@@ -281,7 +281,9 @@
     "gpo",
     "windows server",
     "domain",
-    "home lab"
+    "home lab",
+    "windows administration",
+    "windows server administration"
    ],
    "deliverable": "Lab with a domain controller, 2 OUs, 10 users, 3 security groups and 2 Group Policies (password policy, drive mapping), documented in a GitHub README with screenshots",
    "done_when": "A Windows 10/11 VM joins the domain and both GPOs apply (gpresult screenshot in the README)",
@@ -393,7 +395,11 @@
     "dhcp",
     "tcp/ip",
     "ccna",
-    "network+"
+    "network+",
+    "vpn",
+    "firewalls",
+    "firewall",
+    "network security"
    ],
    "deliverable": "Network diagram plus config notes for 3 VLANs (trusted, IoT, guest) with a subnet plan, DHCP scopes and firewall rules, in a GitHub repo",
    "done_when": "A device on the guest VLAN can reach the internet but not the trusted VLAN, proven with ping/traceroute output in the repo",
@@ -902,7 +908,8 @@
     "hugging face",
     "nlp",
     "computer vision",
-    "neural networks"
+    "neural networks",
+    "natural language processing"
    ],
    "deliverable": "A pretrained model fine-tuned on a public dataset, published on the Hugging Face Hub with a model card covering data, metrics and limitations",
    "done_when": "The fine-tuned model beats the base model on a held-out set and the model card shows both scores",
@@ -1320,7 +1327,8 @@
     "pointers",
     "memory management",
     "systems programming",
-    "operating systems"
+    "operating systems",
+    "c"
    ],
    "deliverable": "A C program such as a shell, an allocator or a key-value store, with a Makefile, tests and a clean Valgrind run",
    "done_when": "Tests pass, and Valgrind reports no leaks or invalid reads",
@@ -1545,7 +1553,9 @@
     "bug reports",
     "bug reporting",
     "defect tracking",
-    "qa fundamentals"
+    "qa fundamentals",
+    "test case design",
+    "bug tracking"
    ],
    "deliverable": "Test plan for one feature of an open-source app, 20 test cases, and 3 bug reports filed with steps, expected and actual results",
    "done_when": "At least one bug report is confirmed by the maintainers, and the test plan lists scope, risks and exit criteria",
@@ -1654,7 +1664,9 @@
     "retention",
     "success metrics",
     "north star metric",
-    "data-driven"
+    "data-driven",
+    "okrs",
+    "okr"
    ],
    "deliverable": "Metrics plan for a real product: north-star metric, input metrics, a funnel, guardrail metrics, and a mock dashboard",
    "done_when": "Each metric has a definition precise enough to write as SQL, and the dashboard mock shows the funnel",
@@ -1746,6 +1758,58 @@
    ],
    "roles": [
     "Product Manager"
+   ]
+  },
+  {
+   "id": "P-VULN-SCAN",
+   "title": "Scan a lab network and write a remediation report",
+   "matches": [
+    "vulnerability assessment",
+    "vulnerability scanning",
+    "vulnerability management",
+    "nmap",
+    "openvas",
+    "nessus"
+   ],
+   "deliverable": "Report from scanning your own lab network: hosts and services found, the top 5 vulnerabilities ranked by risk, and a fix for each",
+   "done_when": "You fix at least two findings, rescan, and the report shows the before and after results",
+   "est_hours": 10,
+   "resource_ids": [
+    "R-NMAP-BOOK",
+    "R-GREENBONE"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
+   ],
+   "roles": [
+    "Security Engineer",
+    "IT Support Specialist"
+   ]
+  },
+  {
+   "id": "P-REAL-EXPERIENCE",
+   "title": "Get real-world experience on a real team",
+   "matches": [
+    "years of experience",
+    "more years of experience",
+    "work experience",
+    "industry experience",
+    "relevant experience",
+    "internship experience"
+   ],
+   "deliverable": "An internship, part-time job, freelance project, research role or sustained open-source contribution, listed on your resume with dates, your role and one measurable result",
+   "done_when": "You've been at it for at least 8 weeks and can describe the team, your responsibilities and the result in an interview",
+   "est_hours": 80,
+   "resource_ids": [
+    "R-GOOD-FIRST-ISSUE",
+    "R-MEETUP"
+   ],
+   "levels": [
+    "internship",
+    "entry",
+    "mid"
    ]
   }
  ]
