@@ -11,7 +11,12 @@ async function call(path, options) {
   }
   const body = await response.json().catch(() => ({}));
   if (!response.ok) {
-    throw new Error(body.detail || `The API returned an error (${response.status}).`);
+    const message = response.status === 404 && path === "/api/resume/questions"
+      ? `The API at ${API_BASE} hasn't loaded the resume builder. Restart the API with .venv/bin/python api.py, then click Try again. If you use a custom API address, check that it points to the updated WayPointAI server.`
+      : body.detail || `The API returned an error (${response.status}).`;
+    const error = new Error(message);
+    error.status = response.status;
+    throw error;
   }
   return body;
 }
@@ -33,3 +38,43 @@ export function getRoadmaps(form) {
   if (form.resume) data.append("resume", form.resume);
   return call("/api/roadmaps", { method: "POST", body: data });
 }
+
+// The browser remembers only a private access key. Story content lives in the API's database.
+const STORY_KEY = `waypoint-story-library:${API_BASE.replace(/\/$/, "")}`;
+
+export function readStoryKey() {
+  try {
+    return { key: localStorage.getItem(STORY_KEY) || "", warning: "" };
+  } catch {
+    return { key: "", warning: "This browser cannot remember your story bank. Copy its access key to return later." };
+  }
+}
+
+export function rememberStoryKey(key) {
+  try {
+    localStorage.setItem(STORY_KEY, key);
+    return "";
+  } catch {
+    return "Your stories are saved, but this browser cannot remember the access key. Copy it below before leaving.";
+  }
+}
+
+function resumeCall(path, key, method = "GET", body) {
+  const headers = {};
+  if (key) headers.Authorization = `Bearer ${key}`;
+  if (body !== undefined) headers["Content-Type"] = "application/json";
+  return call(`/api/resume${path}`, {
+    method,
+    headers,
+    ...(body !== undefined ? { body: JSON.stringify(body) } : {}),
+  });
+}
+
+export const getStoryQuestions = () => resumeCall("/questions");
+export const createStoryLibrary = () => resumeCall("/library", "", "POST");
+export const getStories = (key) => resumeCall("/stories", key);
+export const previewStory = (key, story) => resumeCall("/stories/preview", key, "POST", story);
+export const saveStory = (key, story, id) =>
+  resumeCall(id ? `/stories/${encodeURIComponent(id)}` : "/stories", key, id ? "PUT" : "POST", story);
+export const deleteStory = (key, id) => resumeCall(`/stories/${encodeURIComponent(id)}`, key, "DELETE");
+export const generateResume = (key, input) => resumeCall("/generate", key, "POST", input);
