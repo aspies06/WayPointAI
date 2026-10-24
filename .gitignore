@@ -7,3 +7,5 @@ eval_results/
 # web front end (npm install / npm run build)
 web/node_modules/
 web/dist/
+# resume story bank (local SQLite)
+.local/

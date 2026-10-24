@@ -5,12 +5,15 @@
 Then start the site: cd web && npm run dev (port 5173). The API only listens on
 this computer, and only the site's own addresses may call it: Vite's dev server
 (5173), its preview (4173) and Live Server on the built site (5500). Set
-WAYPOINT_ALLOWED_ORIGINS (comma-separated) to allow others. Resumes are read in
-memory and never stored. Set ROADMAP_AI=0 to skip the model's personal tips.
+WAYPOINT_ALLOWED_ORIGINS (comma-separated) to allow others. Uploaded resumes are
+read in memory and never stored. Experience stories are saved separately in the
+local story bank (see resume_api.py). Set ROADMAP_AI=0 to skip the model's
+personal tips and resume assistance.
 
 Gap analysis on its own (no roadmap), for the other components and the docs page:
     GET  /api/roles     the built-in role profiles
     POST /api/analyze   a parsed resume + a role name or a full role profile -> gap analysis
+Resume builder and story bank: /api/resume/... (resume_api.py)
 """
 import os
 from typing import Annotated, Optional
@@ -32,6 +35,7 @@ from career_pipeline import (
 from gap_analyzer import analyze_gap
 from roadmap import generate_roadmap, intake
 from roadmap.schemas import ROLES
+from resume_api import router as resume_router
 from role_profiles import ROLE_PROFILES
 
 ALLOWED_ORIGINS = os.getenv(
@@ -41,7 +45,16 @@ ALLOWED_ORIGINS = os.getenv(
 
 app = FastAPI(title="WayPointAI API", version="1.0")
 app.add_middleware(CORSMiddleware, allow_origins=ALLOWED_ORIGINS,
-                   allow_methods=["GET", "POST"], allow_headers=["*"])
+                   allow_methods=["GET", "POST", "PUT", "DELETE"], allow_headers=["*"])
+app.include_router(resume_router)
+
+
+@app.middleware("http")
+async def private_story_responses(request: Request, call_next):
+    response = await call_next(request)
+    if request.url.path.startswith("/api/resume/"):
+        response.headers["Cache-Control"] = "no-store"
+    return response
 
 
 @app.get("/api/health")

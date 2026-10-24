@@ -3,10 +3,10 @@ role_profiles.py
 ----------------
 Stub role profiles for the 9 tech roles supported by WayPointAI.
 
-These are stand-ins until Component 1 (data engineering) delivers real
-profiles built from O*NET and Kaggle job postings.  Frequencies are
-reasonable approximations based on common job posting patterns — replace
-them wholesale once the real data arrives.
+These are stand-ins until real profiles are built from properly licensed
+data (O*NET; no scraped job-board data).  Frequencies are reasonable
+approximations, not measurements — replace them wholesale once the real
+data arrives.
 
 Usage
 -----

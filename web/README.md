@@ -39,6 +39,8 @@ src/components/
   App.jsx                     loads options, submits the form, holds results
   Brand.jsx                   title with the logo behind it
   PlannerForm.jsx             the questions (time first, never guessed)
+  ResumeBuilder.jsx           five-question story bank, review, editing, and resume drafts
+  RoleInsights.jsx            what people in a role do and what employers ask for, with sources
   Results.jsx                 one tab per role
   RoadmapView.jsx             summary, timeline, steps by priority, optional items button
   StepCard.jsx                one step: why, deliverable, done when, sources, suggestions
@@ -50,3 +52,6 @@ src/components/
 - Roles, levels, workloads and questions come from `GET /api/options`, so they stay in sync with Python.
 - `node_modules/` and `dist/` are not committed; `package-lock.json` is, so everyone gets the same versions.
 - Image credits and licenses: `public/assets/CREDITS.md`.
+- Resume builder uses `/api/resume` and keeps a story-bank access key in browser
+  storage, scoped to the API URL. Stories are saved by the API in SQLite; see
+  [the resume builder notes](../docs/resume_builder.md).
