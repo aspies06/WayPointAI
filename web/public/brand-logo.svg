@@ -10,7 +10,7 @@
     <g transform="rotate(7 238 70)">
       <path d="M238 18h44l14 14v90h-58V18Z" fill="#fff" stroke="#11120f" stroke-width="3" stroke-linejoin="round"/>
       <path d="M282 18v14h14" fill="none" stroke="#11120f" stroke-width="3"/>
-      <text x="267" y="49" fill="#d62828" font-family="Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="1.2" text-anchor="middle">HIRED</text>
+      <text x="267" y="49" fill="#d62828" font-family="Helvetica,Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="1.2" text-anchor="middle">HIRED</text>
       <path d="M247 59h39m-39 45h39m-39 8h31" fill="none" stroke="#11120f" stroke-width="2" opacity=".24"/>
     </g>
   </g>

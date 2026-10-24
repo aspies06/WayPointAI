@@ -27,15 +27,19 @@ for the roadmap input format.
    To skip the optional model-generated tips and use the rule-based roadmap, set
    `ROADMAP_AI=0` before starting it.
 
-2. Open the folder in VS Code and click **Go Live** (Live Server extension).
-   `.vscode/settings.json` points Live Server at `web/` on port 5500, so the app
-   opens at http://127.0.0.1:5500 and reloads whenever you save a file.
+2. Start the site (React + Vite; needs [Node.js](https://nodejs.org) LTS). In a second terminal:
 
-There's no build step and nothing to install for the front end. See
-[web/README.md](web/README.md) for how it's organized.
+   ```bash
+   cd web
+   npm install              # first time only
+   npm run dev              # http://127.0.0.1:5173, updates instantly as you edit
+   ```
 
-The older Gradio interface (`python app.py`) still works while the team
-switches over.
+   For an optimized build, run `npm run build` (output in `web/dist/`). Preview it with
+   `npm run preview`, or open the repo in VS Code and click **Go Live**:
+   `.vscode/settings.json` points Live Server at `web/dist/`.
+
+See [web/README.md](web/README.md) for how the front end is organized.
 
 ## Roadmap module
 

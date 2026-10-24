@@ -22,6 +22,7 @@
   --error-soft: #fdecea;
   --radius: 10px;
   --shadow: 0 1px 2px rgb(16 24 40 / 6%), 0 1px 3px rgb(16 24 40 / 8%);
+  --photo-veil: rgb(246 247 249 / 0.35);  /* tint over the background photo, for readable text */
   color-scheme: light;
 }
 
@@ -48,6 +49,7 @@
     --warn-soft: #33270f;
     --error-soft: #3a1e1e;
     --shadow: none;
+    --photo-veil: rgb(15 20 26 / 0.62);
     color-scheme: dark;
   }
 }
@@ -58,7 +60,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font: 16px/1.55 Helvetica, "Helvetica Neue", Arial, sans-serif;
 }
 
 .wrap { max-width: 960px; margin: 0 auto; padding: 0 16px; }
@@ -70,14 +72,34 @@ ul.plain { list-style: none; margin: 0; padding: 0; }
 ul.plain li + li { margin-top: 0.35rem; }
 
 /* header and footer */
-.site-header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 28px 0 22px; margin-bottom: 24px; }
-.site-header h1 { font-size: 1.75rem; letter-spacing: -0.01em; }
+/* Cards are slightly see-through over the photo, with a blur behind them so text stays easy to read. */
+:root { --glass: color-mix(in srgb, var(--surface) 86%, transparent); }
+.card, .roadmap { -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+
+/* Background photo behind everything (white tulips, CC0; see assets/CREDITS.md). A fixed layer
+   rather than background-attachment: fixed, which stutters on phones. The veil tints it per mode. */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: -1;
+  background: linear-gradient(var(--photo-veil), var(--photo-veil)),
+              url("/assets/flowers.jpg") 70% center / cover no-repeat, var(--bg);
+}
+
+.site-header {
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--border); padding: 28px 0 22px; margin-bottom: 24px;
+}
+/* About 41pt on desktop (was 21pt); scales down on phones so the logo fits the screen. */
+.site-header h1 { font-size: clamp(1.75rem, 8vw, 3.4rem); letter-spacing: -0.01em; }
 /* The logo runs behind the title: the feathers sit left of the name, the head and "Hired" page
    right of it, and only the shaft passes behind the letters. Sizes come from the title's own width:
    in the logo's 425-unit drawing, the name spans units 60-316 (feathers end at 50, head starts at 326).
    The shaft is faint under the name so the title reads cleanly; the ends are at full strength. */
-.brand { margin: 22px 0 26px; padding-left: 1.3em; }
-.brand-name { position: relative; display: inline-block; isolation: isolate; }
+/* Centered on the whole logo, feathers to page, not just the word: the arrow hangs 109 units past
+   the name on the right but the feathers only 60 on the left, so shift left by half the difference
+   (24.5 of the name's 256 units). Margins (in em) leave room for the logo's height above and below. */
+.brand { display: flex; justify-content: center; margin: 1em 0 1.15em; }
+.brand-name { position: relative; display: inline-block; isolation: isolate; transform: translateX(calc(-100% * 24.5 / 256)); }
 .brand-logo {
   position: absolute; z-index: -1; top: 50%;
   left: calc(-100% * 60 / 256); width: calc(100% * 425 / 256);
@@ -88,12 +110,16 @@ ul.plain li + li { margin-top: 0.35rem; }
 }
 @media (prefers-color-scheme: dark) { .brand-logo { --behind: 0.45; } }
 .brand-text { text-shadow: 0 0 2px var(--surface); }
-.tagline { margin: 0; color: var(--muted); max-width: 680px; }
-.site-footer { padding: 32px 16px 48px; font-size: 0.875rem; }
+.tagline { margin: 0 auto; color: var(--muted); max-width: 680px; text-align: center; }
+.site-footer {
+  margin: 32px auto 48px; padding: 10px 16px; font-size: 0.875rem; color: var(--text);
+  width: fit-content; max-width: calc(100% - 32px); border-radius: 999px;
+  background: var(--glass); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+}
 
 /* cards and form */
 .card {
-  background: var(--surface);
+  background: var(--glass);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -169,7 +195,7 @@ button.secondary { background: var(--surface); color: var(--accent); border: 1px
 }
 .tab-on { color: var(--text); border-bottom-color: var(--accent); font-weight: 600; }
 
-.roadmap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 24px; }
+.roadmap { background: var(--glass); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 24px; }
 .roadmap-head h2 { display: inline; margin-right: 10px; font-size: 1.4rem; }
 .roadmap-head p { color: var(--muted); }
 .tag { font-size: 0.75rem; font-weight: 600; padding: 3px 9px; border-radius: 999px; background: var(--surface-2); color: var(--muted); vertical-align: middle; }
