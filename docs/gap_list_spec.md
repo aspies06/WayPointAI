@@ -66,7 +66,7 @@ lists what to ask. It never guesses.
 | `item` | string, ≤120 chars | Short name of the missing thing: "Security+", "React", "Active Directory". Matched against the resource catalog, so plain names work best. |
 | `category` | `cert` \| `skill` \| `tool` \| `experience` \| `education` | |
 | `peer_share` | integer 0–100 | Percent of people in the role who have it. `0` means no one does, so the gap is left out of the roadmap entirely. |
-| `peer_share_measured` | boolean, top level, default `false` | Set `true` **only** when `peer_share` comes from real hiring data. Otherwise the roadmap doesn't show the number; it says **Most** (65% or more), **Some** (40–64%) or **Not many** (under 40%), because an estimate shown as "72%" looks more precise than it is. Today's `role_profiles.py` values are estimates, so leave this `false` until Component 1's real data arrives. |
+| `peer_share_measured` | boolean, top level, default `false` | Set `true` **only** when `peer_share` comes from real hiring data. Otherwise the roadmap doesn't show the number; it says **Most** (65% or more), **Some** (40–64%) or **Not many** (under 40%), because an estimate shown as "72%" looks more precise than it is. Today's `skills/role_profiles.py` values are estimates, so leave this `false` until Component 1's real data arrives. |
 | `severity` | `high` \| `medium` \| `low` | Suggested rule: high if peer_share ≥ 60 or the job post requires it, medium if 30–59, low otherwise. |
 | `user_has` | string or null, ≤200 chars | What the user has instead, if anything. |
 | `user_context` | object, or omitted | Omitted means "not asked yet": `generate_roadmap()` raises `AvailabilityNeeded`. |

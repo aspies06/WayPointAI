@@ -16,7 +16,7 @@ import sqlite3
 from uuid import uuid4
 
 
-DEFAULT_DB = Path(__file__).resolve().parent / ".local" / "story-bank.sqlite3"
+DEFAULT_DB = Path(__file__).resolve().parent.parent / ".local" / "story-bank.sqlite3"
 
 
 @contextmanager

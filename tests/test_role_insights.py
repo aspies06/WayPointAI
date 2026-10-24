@@ -6,7 +6,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 import api
-import role_insights
+from skills import role_insights as role_insights
 from roadmap.schemas import ROLES
 
 ROOT = Path(__file__).resolve().parent.parent

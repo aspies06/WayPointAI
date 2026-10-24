@@ -541,7 +541,7 @@ def test_invalid_input_raises():
         generate.generate_roadmap({"gaps": "nope"}, TODAY)
 
 
-# ---------- compatibility with WayPointAI's gap analyzer (gap_analyzer.py, role_profiles.py) ----------
+# ---------- compatibility with WayPointAI's gap analyzer (skills/gap_analyzer.py, skills/role_profiles.py) ----------
 
 def test_slash_separated_skills_match_each_part():
     assert catalog.resources_for("VHDL/Verilog", "entry", "Hardware Engineer")
@@ -559,8 +559,8 @@ def test_long_free_text_is_trimmed_not_rejected():
 
 
 def test_works_with_the_gap_analyzer_for_every_role():
-    gap_analyzer = pytest.importorskip("gap_analyzer")  # runs once this lives in the WayPointAI repo
-    profiles = pytest.importorskip("role_profiles").ROLE_PROFILES
+    gap_analyzer = pytest.importorskip("skills.gap_analyzer")  # runs once this lives in the WayPointAI repo
+    profiles = pytest.importorskip("skills.role_profiles").ROLE_PROFILES
     resume = {"skills": ["Python", "SQL", "Git"], "experience_years": 0.5}
     ctx = {"hours_per_week": 10, "target_date": "2027-06-01", "budget_usd": 200}
     for role, profile in profiles.items():
@@ -575,7 +575,7 @@ def test_works_with_the_gap_analyzer_for_every_role():
 
 @pytest.mark.parametrize("path", PERSONAS, ids=lambda p: p.stem)
 def test_estimated_shares_are_said_in_words(path):
-    gl = GapList.model_validate_json(path.read_text())  # personas use estimates, like role_profiles.py
+    gl = GapList.model_validate_json(path.read_text())  # personas use estimates, like skills/role_profiles.py
     plan = build_plan(gl, TODAY)
     for s in [*plan.steps, *plan.optional]:
         assert "%" not in s.why, s.why
@@ -648,8 +648,8 @@ def test_experience_note_is_on_top_not_in_not_covered():
 
 
 def test_gap_analyzer_years_have_no_decimal():
-    gap_analyzer = pytest.importorskip("gap_analyzer")
-    profiles = pytest.importorskip("role_profiles").ROLE_PROFILES
+    gap_analyzer = pytest.importorskip("skills.gap_analyzer")
+    profiles = pytest.importorskip("skills.role_profiles").ROLE_PROFILES
     import re
     for years in (0, 0.5, 1):
         resume = {"skills": ["Python"], "experience_years": years}
@@ -714,8 +714,8 @@ def test_output_says_it_can_make_mistakes_and_credits_onet():
 
 
 def test_over_budget_wording_offers_a_free_alternative_without_pushing():
-    gap_analyzer = pytest.importorskip("gap_analyzer")
-    profile = pytest.importorskip("role_profiles").ROLE_PROFILES["IT Support Specialist"]
+    gap_analyzer = pytest.importorskip("skills.gap_analyzer")
+    profile = pytest.importorskip("skills.role_profiles").ROLE_PROFILES["IT Support Specialist"]
     resume = {"skills": ["Python"], "experience_years": 0}
     gl = gap_analyzer.build_gap_list(gap_analyzer.analyze_gap(resume, profile),
                                      {"title": "IT Support Specialist", "level": "entry", "role": "IT Support Specialist"},

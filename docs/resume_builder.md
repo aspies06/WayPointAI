@@ -15,17 +15,17 @@
 
 ## Implementation
 
-- `resume_api.py` exposes the interview questions, story preview, role insights and
+- `resume/api.py` exposes the interview questions, story preview, role insights and
   drafting under `/api/resume`. It stores nothing; drafting takes the stories in the request.
-- `web/src/storyVault.js` keeps the story bank (answers, narrative, optional organization
+- `web/src/lib/storyVault.js` keeps the story bank (answers, narrative, optional organization
   and dates, timestamps) encrypted in the browser's IndexedDB.
-- `resume_store.py` is the earlier server-side SQLite store. Nothing uses it now; it's kept
+- `resume/store.py` is the earlier server-side SQLite store. Nothing uses it now; it's kept
   until the team decides whether to remove it.
-- `resume_generation.py` ranks saved experiences and assembles grounded drafts,
+- `resume/generation.py` ranks saved experiences and assembles grounded drafts,
   optionally asking a local Hugging Face model to rewrite concise bullets with
-  source references. `resume_wording.py` supplies conservative grammar editing
+  source references. `resume/wording.py` supplies conservative grammar editing
   when generation is unavailable.
-- `web/src/components/ResumeBuilder.jsx` provides the interview and draft UI beside
+- `web/src/components/resume/ResumeBuilder.jsx` provides the interview and draft UI beside
   the existing roadmap planner.
 
 The narrative is a deterministic assembly of the reviewed facts, so saving does
@@ -78,7 +78,7 @@ The encrypted backup covers moving between devices. Accounts become worth it onl
 app is hosted for many users and needs sync; then add real authentication and encrypt
 stories on the device before upload.
 
-The page's privacy notice (`web/src/components/PrivacyNotice.jsx`) lists exactly what is and
+The page's privacy notice (`web/src/components/layout/PrivacyNotice.jsx`) lists exactly what is and
 isn't stored. Keep it in step with the code.
 
 ## Role insights from O*NET

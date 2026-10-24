@@ -1,4 +1,4 @@
-import { BENEFIT_LABELS, formatCost, formatDate } from "../format.js";
+import { BENEFIT_LABELS, formatCost, formatDate } from "../../lib/format.js";
 
 /** One roadmap step: what to do, why, how you'll know you're done, and where to learn it.
  *  Every link comes from the checked catalog via the API, never from user text. */

@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { getOptions, getRoadmaps } from "../api.js";
-import { PlannerForm } from "./PlannerForm.jsx";
-import { Results } from "./Results.jsx";
+import { getOptions, getRoadmaps } from "../../lib/api.js";
+import { PlannerForm } from "../roadmap/PlannerForm.jsx";
+import { Results } from "../roadmap/Results.jsx";
 import { Brand } from "./Brand.jsx";
-import { ResumeBuilder } from "./ResumeBuilder.jsx";
+import { ResumeBuilder } from "../resume/ResumeBuilder.jsx";
 import { PrivacyNotice } from "./PrivacyNotice.jsx";
 import { ThemeSwitch } from "./ThemeSwitch.jsx";
-import { applyTheme, onSystemThemeChange, saveTheme, savedTheme } from "../theme.js";
+import { applyTheme, onSystemThemeChange, saveTheme, savedTheme } from "../../lib/theme.js";
 
 export function App() {
   const [view, setView] = useState("roadmap");

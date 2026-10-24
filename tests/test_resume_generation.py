@@ -3,7 +3,7 @@ import json
 
 import pytest
 
-import resume_generation as generation
+from resume import generation as generation
 
 
 @pytest.fixture(autouse=True)

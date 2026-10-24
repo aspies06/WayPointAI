@@ -14,11 +14,9 @@ from functools import partial
 from typing import Any
 
 from roadmap.local_model import generate_with_timeout, hf_generate, ModelBusy
-from resume_wording import basic_bullets, follow_up_questions, heading, terminology
-from role_profiles import ROLE_PROFILES
-import role_insights
-
-
+from resume.wording import basic_bullets, follow_up_questions, heading, terminology
+from skills.role_profiles import ROLE_PROFILES
+from skills import role_insights as role_insights
 FIELDS = ("context", "problem", "actions", "tools", "outcome")
 log = logging.getLogger("resume")
 

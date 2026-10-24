@@ -1,6 +1,6 @@
 """
-gap_analyzer.py
----------------
+skills/gap_analyzer.py
+----------------------
 Pure matching and gap-analysis logic for WayPointAI (Component 3, Person A).
 
 Inputs

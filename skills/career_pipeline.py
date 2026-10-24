@@ -11,8 +11,8 @@ from pathlib import Path
 from pypdf import PdfReader
 from pypdf.errors import PdfReadError
 
-from gap_analyzer import SKILL_SYNONYMS, analyze_gap, build_gap_list, normalize_skill
-from role_profiles import ROLE_PROFILES
+from skills.gap_analyzer import SKILL_SYNONYMS, analyze_gap, build_gap_list, normalize_skill
+from skills.role_profiles import ROLE_PROFILES
 
 MAX_UPLOAD_BYTES = 10 * 1024 * 1024
 MAX_RESUME_CHARACTERS = 18_000

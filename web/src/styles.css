@@ -1,5 +1,5 @@
 /* WayPointAI: one stylesheet, colors as tokens. data-theme on <html> picks light or dark: it follows
-   the system setting unless the visitor chooses one (see src/theme.js and the script in index.html). */
+   the system setting unless the visitor chooses one (see src/lib/theme.js and the script in index.html). */
 :root {
   --bg: #f6f7f9;
   --surface: #ffffff;
