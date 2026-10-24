@@ -4,6 +4,7 @@ import { PlannerForm } from "./PlannerForm.jsx";
 import { Results } from "./Results.jsx";
 import { Brand } from "./Brand.jsx";
 import { ResumeBuilder } from "./ResumeBuilder.jsx";
+import { PrivacyNotice } from "./PrivacyNotice.jsx";
 
 export function App() {
   const [view, setView] = useState("roadmap");
@@ -83,9 +84,15 @@ export function App() {
           <ResumeBuilder roles={options?.roles || []} />
         </div>
       </main>
+      <div className="wrap">
+        <PrivacyNotice />
+      </div>
       <footer className="site-footer wrap muted">
-        Uploaded resumes for roadmaps aren't stored. Stories you choose to save are stored on the
-        computer running WayPointAI, and you can edit or delete them in your story bank.
+        <p className="slogan">Stored locally, never in the cloud.</p>
+        <p>
+          Uploaded resumes aren't stored. Stories you save stay encrypted in this browser on your device.{" "}
+          <a href="#privacy">What's stored</a>
+        </p>
       </footer>
     </>
   );

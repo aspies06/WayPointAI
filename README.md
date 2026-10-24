@@ -66,12 +66,13 @@ results prompt a short follow-up without inventing a weekly or monthly timeframe
 Matching recognizes aliases such as PowerBi / Power BI; it is keyword overlap,
 not an ATS score. See [docs/resume_builder.md](docs/resume_builder.md).
 
-Stories persist in `.local/story-bank.sqlite3` (ignored by Git); override this
-with `WAYPOINT_STORY_DB`. Each browser retains a random access key and can only
-access its own bank. This is a local MVP, with no account sign-in, account
-recovery, or cross-device sync. Clearing browser storage loses the access key but
-doesn't erase the stories; **Delete my story bank** (under Story bank access) does.
-Keep the API on localhost as configured.
+**Stored locally, never in the cloud.** Stories are kept only in the user's browser,
+encrypted with AES-256-GCM under a key derived from a passphrase they choose
+(PBKDF2-SHA256, 600,000 iterations). The API stores nothing: the browser sends the
+stories a request needs, and they're used in memory. There's no account, so a
+forgotten passphrase can't be recovered; **Download encrypted backup** saves a file
+that restores the bank in another browser or computer with the same passphrase. The
+page's privacy notice lists exactly what is and isn't stored.
 
 Pick a **target role** to see what people in that job do (tasks rated by people who
 hold it) and the technologies in demand for it. The role helps rank your stories and

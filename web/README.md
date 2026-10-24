@@ -52,6 +52,8 @@ src/components/
 - Roles, levels, workloads and questions come from `GET /api/options`, so they stay in sync with Python.
 - `node_modules/` and `dist/` are not committed; `package-lock.json` is, so everyone gets the same versions.
 - Image credits and licenses: `public/assets/CREDITS.md`.
-- Resume builder uses `/api/resume` and keeps a story-bank access key in browser
-  storage, scoped to the API URL. Stories are saved by the API in SQLite; see
+- The resume builder's story bank lives only in this browser, encrypted
+  (`src/storyVault.js`); `/api/resume` keeps nothing. See
   [the resume builder notes](../docs/resume_builder.md).
+- `?api=` only accepts this computer's addresses (127.0.0.1, localhost, [::1]), so a shared
+  link can't point the page at another server and send it someone's stories.

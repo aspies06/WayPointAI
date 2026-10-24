@@ -322,3 +322,17 @@ button:disabled { opacity: 0.6; cursor: default; }
   .story-interview, .resume-preview { padding: 16px; }
   .workspace-tabs .tab { padding: 10px; }
 }
+
+/* story bank gate, privacy notice, slogan */
+.bank-gate { margin-top: 12px; max-width: 640px; }
+.bank-gate h3 { margin: 0 0 6px; }
+.check { display: flex; gap: 10px; align-items: flex-start; margin: 4px 0 16px; font-size: 0.9rem; }
+.check input { width: auto; margin-top: 3px; flex: none; }
+.check span { flex: 1; min-width: 0; }
+.privacy-notice { margin-top: 24px; }
+.privacy-notice > summary { color: var(--accent); cursor: pointer; font-weight: 600; }
+.privacy-notice h3 { font-size: 1rem; margin: 18px 0 6px; }
+.privacy-notice ul { margin: 0; padding-left: 20px; }
+.privacy-notice li { margin: 4px 0; font-size: 0.9rem; }
+.site-footer .slogan { font-weight: 600; color: var(--text); margin: 0 0 4px; }
+.site-footer p { margin: 0 0 4px; }

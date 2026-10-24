@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
+import { generateResume, getRoleInsights, getStoryQuestions, previewStory } from "../api.js";
 import {
-  createStoryLibrary, deleteStory, deleteStoryLibrary, forgetStoryKey, generateResume, getRoleInsights,
-  getStories, getStoryQuestions, previewStory, readStoryKey, rememberStoryKey, saveStory,
-} from "../api.js";
+  MIN_PASSPHRASE, bankExists, createBank, deleteBank, exportBank, importBank, newStoryId, openBank, saveStories,
+} from "../storyVault.js";
 import { RoleInsights } from "./RoleInsights.jsx";
 
 const emptyStory = () => ({
@@ -11,17 +11,21 @@ const emptyStory = () => ({
 });
 const LIMITS = { context: 600, problem: 2000, actions: 3000, tools: 1000, outcome: 2000 };
 const FIELD_LABELS = { context: "Context", problem: "Problem", actions: "Your contribution", tools: "Tools", outcome: "Outcome" };
+const newestFirst = (stories) => [...stories].sort((a, b) => (b.created_at || "").localeCompare(a.created_at || ""));
 
 export function ResumeBuilder({ roles = [] }) {
-  const [access] = useState(readStoryKey);
-  const [libraryKey, setLibraryKey] = useState(access.key);
-  const [storageWarning, setStorageWarning] = useState(access.warning);
-  const [restoreKey, setRestoreKey] = useState("");
+  // vault: "checking" | "none" (no bank in this browser) | "locked" | "open"
+  const [vault, setVault] = useState("checking");
+  const [session, setSession] = useState(null); // the decryption key, in memory only
+  const [passphrase, setPassphrase] = useState("");
+  const [passphraseAgain, setPassphraseAgain] = useState("");
+  const [consent, setConsent] = useState(false);
+  const [backupFile, setBackupFile] = useState(null);
+  const [backupPassphrase, setBackupPassphrase] = useState("");
   const [questions, setQuestions] = useState([]);
   const [questionError, setQuestionError] = useState("");
   const [stories, setStories] = useState([]);
-  const [bankLoaded, setBankLoaded] = useState(false);
-  const [busy, setBusy] = useState(access.key ? "loading" : "");
+  const [busy, setBusy] = useState("");
   const [error, setError] = useState("");
   const [status, setStatus] = useState("");
   const [editor, setEditor] = useState(null);
@@ -38,6 +42,7 @@ export function ResumeBuilder({ roles = [] }) {
   const [copyStatus, setCopyStatus] = useState("");
   const editorRef = useRef(null);
   const resultRef = useRef(null);
+  const bankOpen = vault === "open";
 
   useEffect(() => {
     let active = true;
@@ -45,16 +50,12 @@ export function ResumeBuilder({ roles = [] }) {
       (data) => { if (active) setQuestions(data.questions); },
       (err) => { if (active) setQuestionError(err.message); },
     );
-    if (access.key) {
-      getStories(access.key).then(
-        (data) => {
-          if (active) { setStories(data.stories); setBankLoaded(true); }
-        },
-        (err) => { if (active) setError(bankError(err)); },
-      ).finally(() => { if (active) setBusy(""); });
-    }
+    bankExists().then(
+      (exists) => { if (active) setVault(exists ? "locked" : "none"); },
+      (err) => { if (active) { setVault("none"); setError(err.message); } },
+    );
     return () => { active = false; };
-  }, [access]);
+  }, []);
 
   useEffect(() => {
     if (editor !== null) editorRef.current?.querySelector("textarea")?.focus();
@@ -73,16 +74,64 @@ export function ResumeBuilder({ roles = [] }) {
     return () => { active = false; };
   }, [role]);
 
-  function bankError(err) {
-    return err.status === 401
-      ? "This access key wasn't recognized. Restore your story bank with a saved key below, or explicitly create a new bank."
-      : err.message;
-  }
-
   async function reloadQuestions() {
     setQuestionError("");
     try { setQuestions((await getStoryQuestions()).questions); }
     catch (err) { setQuestionError(err.message); }
+  }
+
+  function opened(newSession, saved, message) {
+    setSession(newSession);
+    setStories(newestFirst(saved));
+    setVault("open");
+    setPassphrase("");
+    setPassphraseAgain("");
+    setBackupPassphrase("");
+    setBackupFile(null);
+    setEditor(null);
+    setGenerated(null);
+    setStatus(message);
+  }
+
+  async function run(label, action) {
+    setBusy(label);
+    setError("");
+    setStatus("");
+    try { await action(); }
+    catch (err) { setError(err.message); }
+    finally { setBusy(""); }
+  }
+
+  function startBank(event) {
+    event.preventDefault();
+    if (!consent) { setError("Check the box to agree before starting your story bank."); return; }
+    if (passphrase.length < MIN_PASSPHRASE) { setError(`Use a passphrase of at least ${MIN_PASSPHRASE} characters.`); return; }
+    if (passphrase !== passphraseAgain) { setError("The two passphrases don't match."); return; }
+    run("starting", async () => opened(await createBank(passphrase), [], "Your story bank is ready. Add your first story."));
+  }
+
+  function unlockBank(event) {
+    event.preventDefault();
+    run("unlocking", async () => {
+      const { session: unlocked, stories: saved } = await openBank(passphrase);
+      opened(unlocked, saved, "Your story bank is open.");
+    });
+  }
+
+  function lockBank() {
+    setSession(null);
+    setStories([]);
+    setVault("locked");
+    setEditor(null);
+    setGenerated(null);
+    setConfirmDeleteBank(false);
+    setStatus("Your story bank is locked.");
+  }
+
+  async function keep(next) {
+    await saveStories(session, next);
+    setStories(next);
+    setGenerated(null);
   }
 
   function openEditor(story) {
@@ -96,72 +145,34 @@ export function ResumeBuilder({ roles = [] }) {
     requestAnimationFrame(() => editorRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }));
   }
 
-  async function startStory() {
-    if (!bankLoaded) {
-      setBusy("starting");
-      setError("");
-      try {
-        const data = await createStoryLibrary();
-        setLibraryKey(data.library_key);
-        setStorageWarning(rememberStoryKey(data.library_key));
-        setStories([]);
-        setBankLoaded(true);
-        setGenerated(null);
-      } catch (err) {
-        setError(err.message);
-        return;
-      } finally { setBusy(""); }
-    }
-    openEditor();
-  }
-
-  async function restoreBank(event) {
-    event.preventDefault();
-    if (!restoreKey.trim()) return;
-    setBusy("restoring");
-    setError("");
-    try {
-      const key = restoreKey.trim();
-      const data = await getStories(key);
-      setLibraryKey(key);
-      setStorageWarning(rememberStoryKey(key));
-      setStories(data.stories);
-      setBankLoaded(true);
-      setEditor(null);
-      setGenerated(null);
-      setRestoreKey("");
-      setStatus("Your story bank is open.");
-    } catch (err) { setError(bankError(err)); }
-    finally { setBusy(""); }
-  }
-
-  async function retryBank() {
-    setBusy("loading");
-    setError("");
-    try {
-      const data = await getStories(libraryKey);
-      setStories(data.stories);
-      setBankLoaded(true);
-      setStatus("Your saved stories are ready.");
-    } catch (err) { setError(bankError(err)); }
-    finally { setBusy(""); }
-  }
-
-  async function eraseBank() {
-    setBusy("erasing");
-    setError("");
-    try {
-      await deleteStoryLibrary(libraryKey);
-      forgetStoryKey();
-      setLibraryKey("");
+  function eraseBank() {
+    run("erasing", async () => {
+      await deleteBank();
+      setSession(null);
       setStories([]);
-      setBankLoaded(false);
+      setVault("none");
       setEditor(null);
       setGenerated(null);
       setConfirmDeleteBank(false);
-      setStatus("Your story bank and all its stories were deleted.");
-    } catch (err) { setError(bankError(err)); }
-    finally { setBusy(""); }
+      setConsent(false);
+      setStatus("Your story bank and all its stories were deleted from this browser.");
+    });
+  }
+
+  function exportBackup() {
+    run("exporting", async () => {
+      downloadText(await exportBank(), "waypoint-story-bank-backup.json", "application/json");
+      setStatus("Backup downloaded. It's encrypted: opening it needs your passphrase.");
+    });
+  }
+
+  function restoreBackup(event) {
+    event.preventDefault();
+    if (!backupFile) return;
+    run("importing", async () => {
+      const { session: unlocked, stories: saved } = await importBank(await backupFile.text(), backupPassphrase);
+      opened(unlocked, saved, `Backup restored: ${saved.length === 1 ? "1 story" : `${saved.length} stories`}.`);
+    });
   }
 
   function answer(event) {
@@ -180,66 +191,53 @@ export function ResumeBuilder({ roles = [] }) {
     setError("");
     if (step < questions.length - 1) { setStep(step + 1); return; }
     setBusy("previewing");
-    try { setPreview(await previewStory(libraryKey, draft)); }
-    catch (err) { setError(bankError(err)); }
+    try { setPreview(await previewStory(draft)); }
+    catch (err) { setError(err.message); }
     finally { setBusy(""); }
   }
 
-  async function confirmStory() {
-    setBusy("saving");
-    setError("");
-    try {
-      const saved = await saveStory(libraryKey, draft, editor === "new" ? undefined : editor);
-      setStories((previous) => editor === "new" ? [saved, ...previous] : previous.map((story) => story.id === saved.id ? saved : story));
+  function confirmStory() {
+    run("saving", async () => {
+      const now = new Date().toISOString();
+      const old = stories.find((story) => story.id === editor);
+      const saved = { ...draft, narrative: preview.narrative, id: old?.id || newStoryId(),
+                      created_at: old?.created_at || now, updated_at: now };
+      await keep(old ? stories.map((story) => story.id === old.id ? saved : story) : [saved, ...stories]);
       setEditor(null);
       setPreview(null);
-      setGenerated(null);
-      setStatus("Story saved. You can reuse it for any job description.");
-    } catch (err) { setError(bankError(err)); }
-    finally { setBusy(""); }
+      setStatus("Story saved in this browser. You can reuse it for any job description.");
+    });
   }
 
-  async function removeStory(id) {
-    setBusy("deleting");
-    setError("");
-    try {
-      await deleteStory(libraryKey, id);
-      setStories((previous) => previous.filter((story) => story.id !== id));
+  function removeStory(id) {
+    run("deleting", async () => {
+      await keep(stories.filter((story) => story.id !== id));
       setDeleteId("");
-      setGenerated(null);
       setStatus("Story deleted.");
-    } catch (err) { setError(bankError(err)); }
-    finally { setBusy(""); }
+    });
   }
 
   async function buildResume(event) {
     event.preventDefault();
-    setBusy("generating");
-    setError("");
     setCopyStatus("");
     setGenerated(null);
-    try {
-      setGenerated(await generateResume(libraryKey, {
-        job_description: jobDescription, profile, max_stories: 5, role,
-      }));
+    await run("generating", async () => {
+      setGenerated(await generateResume({ stories, job_description: jobDescription, profile, max_stories: 5, role }));
       requestAnimationFrame(() => resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }));
-    } catch (err) { setError(bankError(err)); }
-    finally { setBusy(""); }
+    });
   }
 
-  async function copyText(text, key = false) {
+  async function copyText(text) {
     try {
       await navigator.clipboard.writeText(text);
-      if (key) setStatus("Access key copied. Keep it private; it opens your story bank.");
-      else setCopyStatus("Resume copied.");
+      setCopyStatus("Resume copied.");
     } catch {
-      if (key) setStatus("Copy wasn't available. Use Download access key to keep a copy.");
-      else setCopyStatus("Copy wasn't available. Download the text file instead.");
+      setCopyStatus("Copy wasn't available. Download the text file instead.");
     }
   }
 
-  function downloadText(text, filename) {
-    const url = URL.createObjectURL(new Blob([text], { type: "text/plain;charset=utf-8" }));
+  function downloadText(text, filename, type = "text/plain") {
+    const url = URL.createObjectURL(new Blob([text], { type: `${type};charset=utf-8` }));
     const link = document.createElement("a");
     link.href = url;
     link.download = filename;
@@ -273,10 +271,8 @@ export function ResumeBuilder({ roles = [] }) {
         </ol>
       </section>
 
-      {error && <p className="alert alert-error" role="alert">{error}</p>}
-      {storageWarning && <p className="alert alert-warn" role="status">{storageWarning}</p>}
+      {error && bankOpen && <p className="alert alert-error" role="alert">{error}</p>}
       <p className="status-message" role="status">{status}</p>
-      {busy === "loading" && <p className="muted" role="status">Opening your saved stories…</p>}
       {questionError && (
         <div className="alert alert-error" role="alert">
           {questionError} <button type="button" className="text-button" onClick={reloadQuestions}>Try again</button>
@@ -302,17 +298,71 @@ export function ResumeBuilder({ roles = [] }) {
       <section className="card">
         <div className="section-heading">
           <div>
-            <h2>Your story bank {bankLoaded && <span className="tag">{stories.length} saved</span>}</h2>
-            <p className="hint">Saved stories stay available when you return using this browser or your private access key.</p>
+            <h2>Your story bank {bankOpen && <span className="tag">{stories.length} saved</span>}</h2>
+            <p className="hint">Stored locally, encrypted, in this browser on this device. Never in the cloud.</p>
           </div>
-          {editor === null && (
-            <button type="button" className="primary" disabled={disabled || !questions.length}
-              onClick={!bankLoaded && libraryKey ? retryBank : startStory}>
-              {busy === "starting" ? "Opening your bank…" : bankLoaded ? "Add a story" : libraryKey ? "Retry opening story bank" : "Start my story bank"}
-            </button>
+          {bankOpen && editor === null && (
+            <div className="actions compact">
+              <button type="button" className="primary" disabled={disabled || !questions.length} onClick={() => openEditor()}>
+                Add a story
+              </button>
+              <button type="button" className="text-button" disabled={disabled} onClick={lockBank}>Lock</button>
+            </div>
           )}
         </div>
-        {!stories.length && editor === null && (
+
+        {vault === "none" && (
+          <form className="bank-gate" onSubmit={startBank}>
+            <h3>Start your story bank</h3>
+            <p className="muted">
+              Your stories are encrypted with a passphrase you choose and saved only in this browser on this device.
+              WayPointAI has no account and no copy, so <strong>a forgotten passphrase can't be recovered</strong>. Download
+              a backup once you've saved a few stories.
+            </p>
+            <fieldset className="resume-fieldset" disabled={disabled}>
+              <div className="grid two">
+                <label className="field">
+                  <span className="label">Passphrase</span>
+                  <input type="password" autoComplete="new-password" minLength={MIN_PASSPHRASE} maxLength="200"
+                    value={passphrase} onChange={(e) => setPassphrase(e.target.value)} aria-describedby="passphrase-hint" />
+                  <span className="hint" id="passphrase-hint">At least {MIN_PASSPHRASE} characters. A few unrelated words work well.</span>
+                </label>
+                <label className="field">
+                  <span className="label">Type it again</span>
+                  <input type="password" autoComplete="new-password" maxLength="200"
+                    value={passphraseAgain} onChange={(e) => setPassphraseAgain(e.target.value)} />
+                </label>
+              </div>
+              <label className="check">
+                <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
+                <span>
+                  I agree to save my stories in this browser. They're sent to the WayPointAI API on this computer only
+                  when I preview a story or build a resume, and it doesn't keep them. I've read the privacy notice at the bottom of this page.
+                </span>
+              </label>
+              {error && <p className="alert alert-error" role="alert">{error}</p>}
+              <button type="submit" className="primary">{busy === "starting" ? "Starting…" : "Start my story bank"}</button>
+            </fieldset>
+          </form>
+        )}
+
+        {vault === "locked" && (
+          <form className="bank-gate" onSubmit={unlockBank}>
+            <h3>Unlock your story bank</h3>
+            <p className="muted">Your saved stories are encrypted in this browser. Enter your passphrase to open them.</p>
+            <fieldset className="resume-fieldset" disabled={disabled}>
+              <label className="field">
+                <span className="label">Passphrase</span>
+                <input type="password" autoComplete="current-password" maxLength="200"
+                  value={passphrase} onChange={(e) => setPassphrase(e.target.value)} />
+              </label>
+              {error && <p className="alert alert-error" role="alert">{error}</p>}
+              <button type="submit" className="primary" disabled={!passphrase}>{busy === "unlocking" ? "Unlocking…" : "Unlock"}</button>
+            </fieldset>
+          </form>
+        )}
+
+        {bankOpen && !stories.length && editor === null && (
           <div className="story-empty">
             <h3>Start with one thing you worked on.</h3>
             <p className="muted">
@@ -440,7 +490,7 @@ export function ResumeBuilder({ roles = [] }) {
         {!stories.length && <p className="alert alert-info">Save your first story to start. You can add more experiences whenever you're ready.</p>}
         {editor !== null && <p className="alert alert-info">Save or cancel your current story before generating a resume.</p>}
         <form onSubmit={buildResume}>
-          <fieldset className="resume-fieldset" disabled={disabled || !stories.length || editor !== null || !bankLoaded}>
+          <fieldset className="resume-fieldset" disabled={disabled || !stories.length || editor !== null || !bankOpen}>
             <details className="story-details">
               <summary>Your resume details <span className="muted">(optional)</span></summary>
               <div className="grid two">
@@ -538,45 +588,46 @@ export function ResumeBuilder({ roles = [] }) {
       )}
 
       <details className="card story-access">
-        <summary>Story bank access</summary>
+        <summary>Backup, restore and delete</summary>
         <p className="hint">
-          This local app uses a private access key to reopen your stories. Your browser remembers it. Keep a copy if you
-          switch browsers or clear browser data; anyone with the key can open your story bank.
+          Your story bank lives only in this browser, so clearing browser data or switching computers loses it. A backup
+          is an encrypted file you keep yourself; restore it here or on another computer with the same passphrase.
         </p>
-        {libraryKey && (
+        {bankOpen && (
           <div className="actions compact">
-            <button type="button" className="secondary" disabled={disabled} onClick={() => copyText(libraryKey, true)}>Copy access key</button>
-            <button type="button" className="text-button" disabled={disabled} onClick={() => downloadText(libraryKey, "waypoint-story-access-key.txt")}>
-              Download access key
+            <button type="button" className="secondary" disabled={disabled || editor !== null} onClick={exportBackup}>
+              Download encrypted backup
             </button>
           </div>
         )}
-        <form onSubmit={restoreBank}>
+        <form onSubmit={restoreBackup}>
           <fieldset className="resume-fieldset" disabled={disabled || editor !== null}>
             <label className="field">
-              <span className="label">Open an existing story bank</span>
-              <input type="password" autoComplete="off" value={restoreKey} onChange={(event) => setRestoreKey(event.target.value)}
-                placeholder="Paste your saved access key" maxLength="200" />
+              <span className="label">Restore from a backup file</span>
+              <input type="file" accept="application/json,.json" onChange={(e) => setBackupFile(e.target.files?.[0] || null)} />
             </label>
-            <button type="submit" className="secondary" disabled={!restoreKey.trim()}>{busy === "restoring" ? "Opening…" : "Use access key"}</button>
+            <label className="field">
+              <span className="label">That backup's passphrase</span>
+              <input type="password" autoComplete="off" maxLength="200" value={backupPassphrase}
+                onChange={(e) => setBackupPassphrase(e.target.value)} />
+            </label>
+            {vault !== "none" && (
+              <p className="hint">Restoring replaces the story bank in this browser with the one in the backup.</p>
+            )}
+            {error && !bankOpen && backupFile && <p className="alert alert-error" role="alert">{error}</p>}
+            <button type="submit" className="secondary" disabled={!backupFile || !backupPassphrase}>
+              {busy === "importing" ? "Restoring…" : "Restore backup"}
+            </button>
           </fieldset>
         </form>
-        {libraryKey && !bankLoaded && (
-          <div className="new-bank-option">
-            <p className="hint">
-              Want to start over? Creating a new bank replaces the key remembered in this browser. Save your current key first
-              if you want to return to it.
-            </p>
-            <button type="button" className="text-button" disabled={disabled || !questions.length} onClick={startStory}>
-              Create a new empty story bank
-            </button>
-          </div>
-        )}
-        {libraryKey && bankLoaded && (
+        {vault !== "none" && vault !== "checking" && (
           <div className="delete-bank">
             {confirmDeleteBank ? (
               <div className="alert alert-warn">
-                <p>Delete your story bank? This permanently erases {stories.length === 1 ? "your 1 saved story" : `all ${stories.length} saved stories`} from this computer.</p>
+                <p>
+                  Delete your story bank? This erases {bankOpen ? (stories.length === 1 ? "your 1 saved story" : `all ${stories.length} saved stories`) : "every saved story"} from
+                  this browser. Backups you downloaded aren't affected.
+                </p>
                 <div className="actions compact">
                   <button type="button" className="secondary" disabled={disabled} onClick={eraseBank}>
                     {busy === "erasing" ? "Deleting…" : "Delete everything"}
@@ -586,7 +637,7 @@ export function ResumeBuilder({ roles = [] }) {
               </div>
             ) : (
               <button type="button" className="text-button danger" disabled={disabled || editor !== null} onClick={() => setConfirmDeleteBank(true)}>
-                Delete my story bank
+                {vault === "locked" ? "Forgot your passphrase? Delete this story bank" : "Delete my story bank"}
               </button>
             )}
           </div>

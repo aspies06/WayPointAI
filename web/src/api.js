@@ -39,54 +39,18 @@ export function getRoadmaps(form) {
   return call("/api/roadmaps", { method: "POST", body: data });
 }
 
-// The browser remembers only a private access key. Story content lives in the API's database.
-const STORY_KEY = `waypoint-story-library:${API_BASE.replace(/\/$/, "")}`;
-
-export function readStoryKey() {
-  try {
-    return { key: localStorage.getItem(STORY_KEY) || "", warning: "" };
-  } catch {
-    return { key: "", warning: "This browser cannot remember your story bank. Copy its access key to return later." };
-  }
-}
-
-export function rememberStoryKey(key) {
-  try {
-    localStorage.setItem(STORY_KEY, key);
-    return "";
-  } catch {
-    return "Your stories are saved, but this browser cannot remember the access key. Copy it below before leaving.";
-  }
-}
-
-function resumeCall(path, key, method = "GET", body) {
-  const headers = {};
-  if (key) headers.Authorization = `Bearer ${key}`;
-  if (body !== undefined) headers["Content-Type"] = "application/json";
+function resumeCall(path, method = "GET", body) {
   return call(`/api/resume${path}`, {
     method,
-    headers,
-    ...(body !== undefined ? { body: JSON.stringify(body) } : {}),
+    ...(body !== undefined ? { headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) } : {}),
   });
 }
 
+// Stories are stored only in this browser (storyVault.js). These calls send what a request
+// needs to the WayPointAI API on this computer, which uses it in memory and keeps nothing.
 export const getStoryQuestions = () => resumeCall("/questions");
-export const createStoryLibrary = () => resumeCall("/library", "", "POST");
-export const getStories = (key) => resumeCall("/stories", key);
-export const previewStory = (key, story) => resumeCall("/stories/preview", key, "POST", story);
-export const saveStory = (key, story, id) =>
-  resumeCall(id ? `/stories/${encodeURIComponent(id)}` : "/stories", key, id ? "PUT" : "POST", story);
-export const deleteStory = (key, id) => resumeCall(`/stories/${encodeURIComponent(id)}`, key, "DELETE");
-export const generateResume = (key, input) => resumeCall("/generate", key, "POST", input);
-export const deleteStoryLibrary = (key) => resumeCall("/library", key, "DELETE");
-
-export function forgetStoryKey() {
-  try {
-    localStorage.removeItem(STORY_KEY);
-  } catch {
-    /* nothing remembered */
-  }
-}
+export const previewStory = (story) => resumeCall("/stories/preview", "POST", story);
+export const generateResume = (input) => resumeCall("/generate", "POST", input);
 
 /** What people in the role do and the technologies in demand for it (O*NET). Public data. */
 export function getRoleInsights(role) {

@@ -1,19 +1,16 @@
-"""Story-bank interview, persistence, and resume drafting endpoints."""
-from contextlib import contextmanager
-import re
-import sqlite3
-from typing import Annotated
+"""Story interview and resume drafting endpoints. Nothing here is stored.
 
-from fastapi import APIRouter, Depends, HTTPException
-from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
-from pydantic import BaseModel, ConfigDict, Field
+Stories live only in the user's browser, encrypted (see web/src/storyVault.js). The browser sends
+the stories a request needs; they're used in memory to build a preview or a draft, then dropped.
+"""
+from fastapi import APIRouter, HTTPException
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
-import resume_store
 import role_insights
 
 
-router = APIRouter(prefix="/api/resume", tags=["Resume story bank"])
-_bearer = HTTPBearer(auto_error=False)
+router = APIRouter(prefix="/api/resume", tags=["Resume builder"])
+MAX_STORIES = 50
 
 QUESTIONS = [
     {"id": "context", "prompt": "What was your role or project?",
@@ -48,6 +45,14 @@ class StoryInput(InputModel):
     dates: str = Field(default="", max_length=100)
 
 
+class SavedStory(StoryInput):
+    """A story from the browser's story bank, sent along for one request."""
+    id: str = Field(pattern=r"^[A-Za-z0-9_-]{1,64}$")
+    narrative: str = Field(default="", max_length=10000)
+    created_at: str = Field(default="", max_length=40)
+    updated_at: str = Field(default="", max_length=40)
+
+
 class ResumeProfile(InputModel):
     name: str = Field(default="", max_length=200)
     contact: str = Field(default="", max_length=500)
@@ -56,41 +61,24 @@ class ResumeProfile(InputModel):
 
 
 class GenerateInput(InputModel):
+    stories: list[SavedStory] = Field(min_length=1, max_length=MAX_STORIES)
     job_description: str = Field(default="", max_length=15000)
     profile: ResumeProfile = Field(default_factory=ResumeProfile)
     max_stories: int = Field(default=5, ge=1, le=10, strict=True)
     role: str = Field(default="", max_length=60, description="Optional target role, one of the app's roles")
+
+    @field_validator("stories")
+    @classmethod
+    def _unique_ids(cls, stories: list[SavedStory]) -> list[SavedStory]:
+        if len({story.id for story in stories}) != len(stories):
+            raise ValueError("Each story needs a different id.")
+        return stories
 
 
 def _known_role(role: str) -> str:
     if role and role not in role_insights.roles():
         raise HTTPException(status_code=400, detail="Choose a role from the list.")
     return role
-
-
-@contextmanager
-def _storage_errors():
-    try:
-        yield
-    except (sqlite3.Error, OSError) as error:
-        raise HTTPException(status_code=503, detail="Your story bank is temporarily unavailable. Please try again.") from error
-
-
-def library_owner(credentials: Annotated[HTTPAuthorizationCredentials | None, Depends(_bearer)]) -> str:
-    key = credentials.credentials if credentials else ""
-    if not re.fullmatch(r"[A-Za-z0-9_-]{43}", key):
-        raise HTTPException(status_code=401, detail="Open your story bank to continue.",
-                            headers={"WWW-Authenticate": "Bearer"})
-    digest = resume_store.key_digest(key)
-    with _storage_errors():
-        exists = resume_store.library_exists(digest)
-    if not exists:
-        raise HTTPException(status_code=401, detail="This story bank key is no longer valid.",
-                            headers={"WWW-Authenticate": "Bearer"})
-    return digest
-
-
-Owner = Annotated[str, Depends(library_owner)]
 
 
 def _draft(data: StoryInput) -> dict:
@@ -115,66 +103,17 @@ def insights(role: str) -> dict:
     return data
 
 
-@router.post("/library", status_code=201)
-def new_library() -> dict:
-    with _storage_errors():
-        key = resume_store.create_library()
-    return {"library_key": key}
-
-
-@router.delete("/library")
-def delete_library(owner: Owner) -> dict:
-    """Erase this story bank and all its stories."""
-    with _storage_errors():
-        resume_store.delete_library(owner)
-    return {"deleted": True}
-
-
-@router.get("/stories")
-def stories(owner: Owner) -> dict:
-    with _storage_errors():
-        saved = resume_store.list_stories(owner)
-    return {"stories": saved}
-
-
 @router.post("/stories/preview")
-def preview(data: StoryInput, owner: Owner) -> dict:
+def preview(data: StoryInput) -> dict:
+    """The narrative a story would be saved with. The browser saves it; the server doesn't."""
     return _draft(data)
 
 
-@router.post("/stories", status_code=201)
-def save_story(data: StoryInput, owner: Owner) -> dict:
-    draft = _draft(data)
-    with _storage_errors():
-        return resume_store.create_story(owner, draft)
-
-
-@router.put("/stories/{story_id}")
-def edit_story(story_id: str, data: StoryInput, owner: Owner) -> dict:
-    draft = _draft(data)
-    with _storage_errors():
-        saved = resume_store.update_story(owner, story_id, draft)
-    if saved is None:
-        raise HTTPException(status_code=404, detail="That story was not found in your story bank.")
-    return saved
-
-
-@router.delete("/stories/{story_id}")
-def remove_story(story_id: str, owner: Owner) -> dict:
-    with _storage_errors():
-        deleted = resume_store.delete_story(owner, story_id)
-    if not deleted:
-        raise HTTPException(status_code=404, detail="That story was not found in your story bank.")
-    return {"deleted": True}
-
-
 @router.post("/generate")
-def generate(data: GenerateInput, owner: Owner) -> dict:
+def generate(data: GenerateInput) -> dict:
+    """A resume draft from the stories sent with this request, used in memory only."""
     from resume_generation import generate_resume
 
-    with _storage_errors():
-        saved = resume_store.list_stories(owner)
-    if not saved:
-        raise HTTPException(status_code=400, detail="Save at least one experience story before drafting your resume.")
-    return generate_resume(saved, data.job_description, data.profile.model_dump(), data.max_stories,
+    stories = [story.model_dump() for story in data.stories]
+    return generate_resume(stories, data.job_description, data.profile.model_dump(), data.max_stories,
                            role=_known_role(data.role) or None)

@@ -2,7 +2,7 @@
 
 ## User flow
 
-1. Open Resume builder and create a story bank for this browser.
+1. Open Resume builder, agree to keep stories in this browser, and choose a passphrase.
 2. Answer five questions about one experience: context, problem, personal
    contribution, tools, and outcome. Only the first three are required. A
    qualitative result or unfinished project is valid; metrics are never required.
@@ -15,15 +15,17 @@
 
 ## Implementation
 
-- `resume_api.py` exposes the interview, bank creation, story CRUD, preview, and
-  drafting under `/api/resume`.
-- `resume_store.py` persists the original answers, narrative, optional organization
-  and dates, and timestamps in SQLite. It opens a separate connection per operation.
+- `resume_api.py` exposes the interview questions, story preview, role insights and
+  drafting under `/api/resume`. It stores nothing; drafting takes the stories in the request.
+- `web/src/storyVault.js` keeps the story bank (answers, narrative, optional organization
+  and dates, timestamps) encrypted in the browser's IndexedDB.
+- `resume_store.py` is the earlier server-side SQLite store. Nothing uses it now; it's kept
+  until the team decides whether to remove it.
 - `resume_generation.py` ranks saved experiences and assembles grounded drafts,
   optionally asking a local Hugging Face model to rewrite concise bullets with
   source references. `resume_wording.py` supplies conservative grammar editing
   when generation is unavailable.
-- `web/src/components/ResumeBuilder.js` provides the interview and draft UI beside
+- `web/src/components/ResumeBuilder.jsx` provides the interview and draft UI beside
   the existing roadmap planner.
 
 The narrative is a deterministic assembly of the reviewed facts, so saving does
@@ -44,25 +46,40 @@ for time savings without assuming it.
 Resume text is generated on request rather than stored. Saved experience is the
 reusable source of truth; a new job description creates a new draft from those facts.
 
-## Local data and access
+## Local data and privacy
 
-The default database is `.local/story-bank.sqlite3`, created lazily with
-owner-only file permissions. Set `WAYPOINT_STORY_DB` to choose a different path.
-Use a persistent filesystem location when restarting the API; an ephemeral
-container filesystem will not retain stories after replacement.
+**Stored locally, never in the cloud.** The story bank exists only in the user's browser:
 
-`POST /api/resume/library` returns a random bearer key. The browser stores that
-key scoped to the API URL; SQLite stores only its SHA-256 digest. Story reads,
-updates, deletes, and generation require the key and scope queries to its bank.
-Responses under `/api/resume/` have `Cache-Control: no-store`. Uploaded roadmap
-resumes continue to be read in memory without being added to the story bank.
+- Before the first story, the user agrees to keep stories in this browser and chooses a
+  passphrase (10+ characters).
+- Stories are encrypted with AES-256-GCM. The key is derived from the passphrase with
+  PBKDF2-SHA256 (600,000 iterations, random 16-byte salt), is non-extractable, and is held in
+  memory only while the bank is open. A fresh 12-byte IV is used on every save. The passphrase
+  is never stored.
+- The encrypted record lives in IndexedDB (`waypoint-story-bank`). The page asks the browser
+  to keep it persistent so it isn't evicted to free space.
+- **Lock** forgets the key. A wrong passphrase, or a backup that was altered, fails to decrypt.
+- **Download encrypted backup** exports the same encrypted record; **Restore backup** checks the
+  passphrase before replacing the browser's bank. Backups are for moving to another browser
+  or computer, and for surviving cleared browser data.
+- **Delete my story bank** erases it from this browser. A forgotten passphrase can't be
+  recovered, so deleting and starting over (or restoring a backup) is the only way back.
 
-Anyone holding the browser's key can access that bank. There is no login, key
-recovery, encryption at rest, or cross-device account synchronization. Clearing
-browser storage loses access but does not delete server records; use **Delete my
-story bank** (`DELETE /api/resume/library`) to erase a bank and all its stories. Before deploying
-as a shared hosted service, add real account authentication/recovery and associate
-story ownership with authenticated accounts; the current API binds to localhost.
+Hashing isn't encryption: a hash can't be reversed to read the story again, so the bank is
+encrypted instead.
+
+The API keeps no story database. Previews and drafts receive the stories they need in the
+request body, use them in memory, and return. Responses under `/api/resume/` have
+`Cache-Control: no-store`. Uploaded roadmap resumes are also read in memory only.
+
+Why not user accounts? Accounts would mean storing stories on a server, which adds a
+breach target and a password database, and isn't needed for one person on one device.
+The encrypted backup covers moving between devices. Accounts become worth it only if the
+app is hosted for many users and needs sync; then add real authentication and encrypt
+stories on the device before upload.
+
+The page's privacy notice (`web/src/components/PrivacyNotice.jsx`) lists exactly what is and
+isn't stored. Keep it in step with the code.
 
 ## Role insights from O*NET
 
@@ -112,6 +129,7 @@ Run the automated suite with:
 ROADMAP_AI=0 RESUME_AI=0 .venv/bin/python -m pytest -q
 ```
 
-Tests use temporary SQLite databases and fake model outputs. They cover persistence,
-ownership isolation, interview validation, missing outcomes, source-backed drafting,
-and the existing roadmap behavior without downloading model weights.
+Tests use fake model outputs. They cover that the API stores nothing, interview
+validation, missing outcomes, source-backed drafting, and the existing roadmap behavior
+without downloading model weights. The browser vault was checked by hand: encrypt, reopen,
+wrong passphrase, altered backup, restore, delete.

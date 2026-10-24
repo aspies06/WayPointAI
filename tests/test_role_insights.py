@@ -41,11 +41,9 @@ def client(tmp_path, monkeypatch):
         yield client
 
 
-def bank(client, *stories):
-    headers = {"Authorization": "Bearer " + client.post("/api/resume/library").json()["library_key"]}
-    for story in stories:
-        assert client.post("/api/resume/stories", headers=headers, json=story).status_code == 201
-    return headers
+def bank(*stories):
+    """Stories as the browser's story bank sends them, newest first."""
+    return [{**story, "id": f"s{i}"} for i, story in enumerate(reversed(stories))]
 
 
 # ---------- the data file ----------
@@ -107,9 +105,9 @@ def test_insights_endpoint_is_public_and_cited(client):
 
 
 def test_role_ranks_relevant_stories_first_and_reports_coverage(client):
-    headers = bank(client, IT_STORY, OTHER_STORY)  # newest first, so the café story starts on top
-    res = client.post("/api/resume/generate", headers=headers,
-                      json={"role": "IT Support Specialist", "max_stories": 1})
+    stories = bank(IT_STORY, OTHER_STORY)  # newest first, so the café story starts on top
+    res = client.post("/api/resume/generate",
+                      json={"stories": stories, "role": "IT Support Specialist", "max_stories": 1})
     assert res.status_code == 200, res.text
     body = res.json()
     assert body["sections"][0]["context"].lower().startswith("student help desk")
@@ -120,24 +118,16 @@ def test_role_ranks_relevant_stories_first_and_reports_coverage(client):
 
 
 def test_role_never_adds_claims(client):
-    headers = bank(client, OTHER_STORY)
-    body = client.post("/api/resume/generate", headers=headers, json={"role": "IT Support Specialist"}).json()
+    body = client.post("/api/resume/generate", json={"stories": bank(OTHER_STORY), "role": "IT Support Specialist"}).json()
     for tech in ("Active Directory", "ServiceNow", "Windows"):
         assert tech not in body["text"]
 
 
 def test_unknown_role_is_rejected(client):
-    headers = bank(client, IT_STORY)
-    assert client.post("/api/resume/generate", headers=headers, json={"role": "Astronaut"}).status_code == 400
+    assert client.post("/api/resume/generate", json={"stories": bank(IT_STORY), "role": "Astronaut"}).status_code == 400
 
 
 def test_level_is_no_longer_a_field(client):
-    headers = bank(client, IT_STORY)
-    res = client.post("/api/resume/generate", headers=headers, json={"role": "IT Support Specialist", "level": "entry"})
+    res = client.post("/api/resume/generate",
+                      json={"stories": bank(IT_STORY), "role": "IT Support Specialist", "level": "entry"})
     assert res.status_code in (400, 422)  # extra fields are rejected
-
-
-def test_delete_story_bank_erases_everything(client):
-    headers = bank(client, IT_STORY, OTHER_STORY)
-    assert client.delete("/api/resume/library", headers=headers).json() == {"deleted": True}
-    assert client.get("/api/resume/stories", headers=headers).status_code == 401
