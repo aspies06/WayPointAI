@@ -3,6 +3,7 @@ import { getOptions, getRoadmaps } from "../api.js";
 import { PlannerForm } from "./PlannerForm.jsx";
 import { Results } from "./Results.jsx";
 import { Brand } from "./Brand.jsx";
+import { ResumeBuilder } from "./ResumeBuilder.jsx";
 
 export function App() {
   const [options, setOptions] = useState(null);
@@ -10,6 +11,7 @@ export function App() {
   const [result, setResult] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [view, setView] = useState("roadmap");
 
   useEffect(() => {
     getOptions().then(setOptions, (error) => setLoadError(error.message));
@@ -43,21 +45,40 @@ export function App() {
         </div>
       </header>
       <main className="wrap">
-        {loadError && (
-          <p className="alert alert-error" role="alert">
-            {loadError}
-          </p>
-        )}
-        {!options && !loadError && <p className="muted">Loading…</p>}
-        {options && (
-          <PlannerForm
-            options={options}
-            onSubmit={handleSubmit}
-            submitting={submitting}
-            error={submitError}
-          />
-        )}
-        {result && <Results result={result} />}
+        <nav className="tabs workspace-tabs" aria-label="Career tools">
+          {[["roadmap", "Career roadmap"], ["resume", "Resume builder"]].map(([id, label]) => (
+            <button
+              key={id}
+              type="button"
+              className={"tab" + (view === id ? " tab-on" : "")}
+              aria-pressed={view === id}
+              onClick={() => setView(id)}
+            >
+              {label}
+            </button>
+          ))}
+        </nav>
+        {/* Both stay mounted, so switching tabs keeps what you typed in either one. */}
+        <div hidden={view !== "roadmap"}>
+          {loadError && (
+            <p className="alert alert-error" role="alert">
+              {loadError}
+            </p>
+          )}
+          {!options && !loadError && <p className="muted">Loading…</p>}
+          {options && (
+            <PlannerForm
+              options={options}
+              onSubmit={handleSubmit}
+              submitting={submitting}
+              error={submitError}
+            />
+          )}
+          {result && <Results result={result} />}
+        </div>
+        <div hidden={view !== "resume"}>
+          <ResumeBuilder />
+        </div>
       </main>
       <footer className="site-footer wrap muted">
         Your resume is read on this computer and isn't stored.
