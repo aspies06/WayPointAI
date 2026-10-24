@@ -2,8 +2,9 @@
 
     .venv/bin/python api.py           # http://127.0.0.1:8000  (interactive docs at /docs)
 
-Then open web/index.html with VS Code's Live Server (port 5500). The API only
-listens on this computer, and only the Live Server origins may call it; set
+Then start the site: cd web && npm run dev (port 5173). The API only listens on
+this computer, and only the site's own addresses may call it: Vite's dev server
+(5173), its preview (4173) and Live Server on the built site (5500). Set
 WAYPOINT_ALLOWED_ORIGINS (comma-separated) to allow others. Resumes are read in
 memory and never stored. Set ROADMAP_AI=0 to skip the model's personal tips.
 
@@ -34,7 +35,9 @@ from roadmap.schemas import ROLES
 from role_profiles import ROLE_PROFILES
 
 ALLOWED_ORIGINS = os.getenv(
-    "WAYPOINT_ALLOWED_ORIGINS", "http://127.0.0.1:5500,http://localhost:5500").split(",")
+    "WAYPOINT_ALLOWED_ORIGINS",
+    ",".join(f"http://{host}:{port}" for port in (5173, 4173, 5500) for host in ("127.0.0.1", "localhost")),
+).split(",")
 
 app = FastAPI(title="WayPointAI API", version="1.0")
 app.add_middleware(CORSMiddleware, allow_origins=ALLOWED_ORIGINS,

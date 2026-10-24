@@ -80,8 +80,13 @@ def test_bad_answers_get_a_clear_message(client, fields, message):
     assert res.status_code == 400 and message in res.json()["detail"], res.text
 
 
-def test_only_live_server_may_call_it(client):
-    ok = client.get("/api/health", headers={"Origin": LIVE_SERVER})
-    other = client.get("/api/health", headers={"Origin": "https://evil.example"})
-    assert ok.headers.get("access-control-allow-origin") == LIVE_SERVER
-    assert "access-control-allow-origin" not in other.headers
+@pytest.mark.parametrize("origin", ["http://127.0.0.1:5173", "http://localhost:5173",
+                                    "http://127.0.0.1:4173", LIVE_SERVER])
+def test_the_site_may_call_it(client, origin):
+    res = client.get("/api/health", headers={"Origin": origin})
+    assert res.headers.get("access-control-allow-origin") == origin
+
+
+def test_other_sites_may_not(client):
+    res = client.get("/api/health", headers={"Origin": "https://evil.example"})
+    assert "access-control-allow-origin" not in res.headers

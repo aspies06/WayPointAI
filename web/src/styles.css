@@ -81,7 +81,7 @@ ul.plain li + li { margin-top: 0.35rem; }
 body::before {
   content: ""; position: fixed; inset: 0; z-index: -1;
   background: linear-gradient(var(--photo-veil), var(--photo-veil)),
-              url("./assets/flowers.jpg") 70% center / cover no-repeat, var(--bg);
+              url("/assets/flowers.jpg") 70% center / cover no-repeat, var(--bg);
 }
 
 .site-header {
