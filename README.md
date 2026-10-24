@@ -34,9 +34,6 @@ for the roadmap input format.
 There's no build step and nothing to install for the front end. See
 [web/README.md](web/README.md) for how it's organized.
 
-The older Gradio interface (`python app.py`) still works while the team
-switches over.
-
 ## Roadmap module
 
 `roadmap/` turns a gap list (what a user is missing compared with people in their target role) into a scheduled, concrete roadmap for internship, junior and mid-level candidates in all nine roles. See [docs/roadmap.md](docs/roadmap.md) for setup and design, and [docs/gap_list_spec.md](docs/gap_list_spec.md) for the input and output format.

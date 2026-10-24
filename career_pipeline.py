@@ -1,9 +1,8 @@
-"""Resume in, gap list out: the steps every WayPointAI front end shares.
+"""Resume in, gap list out: the steps behind the API (api.py).
 
 Reads a resume (PDF or UTF-8 text), finds which role-profile skills it
 mentions, and turns the gaps into a gap list for roadmap.generate_roadmap().
-No UI framework imports here, so the API (api.py) and the Gradio app (app.py)
-both use it.
+No UI framework imports here, so any front end can use it.
 """
 import re
 from io import BytesIO
