@@ -5,7 +5,8 @@ torchvision
 transformers
 pydantic>=2.14,<3
 pytest>=9
-# API for the React front end (web/)
-fastapi
-uvicorn
+# API for the React front end (web/) and the gap analysis endpoints
+fastapi>=0.111,<1
+uvicorn[standard]>=0.29
 python-multipart
+httpx>=0.27  # FastAPI's TestClient needs it
