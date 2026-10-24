@@ -22,6 +22,7 @@
   --error-soft: #fdecea;
   --radius: 10px;
   --shadow: 0 1px 2px rgb(16 24 40 / 6%), 0 1px 3px rgb(16 24 40 / 8%);
+  --photo-veil: rgb(246 247 249 / 0.35);  /* tint over the background photo, for readable text */
   color-scheme: light;
 }
 
@@ -48,6 +49,7 @@
     --warn-soft: #33270f;
     --error-soft: #3a1e1e;
     --shadow: none;
+    --photo-veil: rgb(15 20 26 / 0.62);
     color-scheme: dark;
   }
 }
@@ -70,7 +72,23 @@ ul.plain { list-style: none; margin: 0; padding: 0; }
 ul.plain li + li { margin-top: 0.35rem; }
 
 /* header and footer */
-.site-header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 28px 0 22px; margin-bottom: 24px; }
+/* Cards are slightly see-through over the photo, with a blur behind them so text stays easy to read. */
+:root { --glass: color-mix(in srgb, var(--surface) 86%, transparent); }
+.card, .roadmap { -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+
+/* Background photo behind everything (white tulips, CC0; see assets/CREDITS.md). A fixed layer
+   rather than background-attachment: fixed, which stutters on phones. The veil tints it per mode. */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: -1;
+  background: linear-gradient(var(--photo-veil), var(--photo-veil)),
+              url("./assets/flowers.jpg") 70% center / cover no-repeat, var(--bg);
+}
+
+.site-header {
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--border); padding: 28px 0 22px; margin-bottom: 24px;
+}
 .site-header h1 { font-size: 1.75rem; letter-spacing: -0.01em; }
 /* The logo runs behind the title: the feathers sit left of the name, the head and "Hired" page
    right of it, and only the shaft passes behind the letters. Sizes come from the title's own width:
@@ -89,11 +107,15 @@ ul.plain li + li { margin-top: 0.35rem; }
 @media (prefers-color-scheme: dark) { .brand-logo { --behind: 0.45; } }
 .brand-text { text-shadow: 0 0 2px var(--surface); }
 .tagline { margin: 0; color: var(--muted); max-width: 680px; }
-.site-footer { padding: 32px 16px 48px; font-size: 0.875rem; }
+.site-footer {
+  margin: 32px auto 48px; padding: 10px 16px; font-size: 0.875rem; color: var(--text);
+  width: fit-content; max-width: calc(100% - 32px); border-radius: 999px;
+  background: var(--glass); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+}
 
 /* cards and form */
 .card {
-  background: var(--surface);
+  background: var(--glass);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -169,7 +191,7 @@ button.secondary { background: var(--surface); color: var(--accent); border: 1px
 }
 .tab-on { color: var(--text); border-bottom-color: var(--accent); font-weight: 600; }
 
-.roadmap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 24px; }
+.roadmap { background: var(--glass); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 24px; }
 .roadmap-head h2 { display: inline; margin-right: 10px; font-size: 1.4rem; }
 .roadmap-head p { color: var(--muted); }
 .tag { font-size: 0.75rem; font-weight: 600; padding: 3px 9px; border-radius: 999px; background: var(--surface-2); color: var(--muted); vertical-align: middle; }
