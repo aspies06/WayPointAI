@@ -21,11 +21,10 @@ export function saveTheme(choice) {
   }
 }
 
-/** Sets data-theme on <html> and returns the theme in effect. */
+/** Sets data-theme on <html> to the theme in effect. */
 export function applyTheme(choice) {
   const theme = choice === "system" ? (darkQuery.matches ? "dark" : "light") : choice;
   document.documentElement.dataset.theme = theme;
-  return theme;
 }
 
 /** Calls back when the device setting changes (only matters while the choice is "system"). */

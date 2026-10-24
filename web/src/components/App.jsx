@@ -11,12 +11,11 @@ import { applyTheme, onSystemThemeChange, saveTheme, savedTheme } from "../theme
 export function App() {
   const [view, setView] = useState("roadmap");
   const [themeChoice, setThemeChoice] = useState(savedTheme);
-  const [theme, setTheme] = useState(() => applyTheme(savedTheme()));
 
   useEffect(() => {
-    setTheme(applyTheme(themeChoice));
+    applyTheme(themeChoice);
     if (themeChoice !== "system") return undefined;
-    return onSystemThemeChange(() => setTheme(applyTheme("system")));
+    return onSystemThemeChange(() => applyTheme("system"));
   }, [themeChoice]);
 
   function chooseTheme(choice) {
@@ -53,7 +52,7 @@ export function App() {
       <header className="site-header">
         <div className="wrap">
           <ThemeSwitch choice={themeChoice} onChange={chooseTheme} />
-          <Brand theme={theme} />
+          <Brand />
           <p className="tagline">
             Plan your next career step, capture the experience you already have, and build a
             resume that tells your story.
