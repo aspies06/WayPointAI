@@ -1,6 +1,6 @@
 """
-role_profiles.py
-----------------
+skills/role_profiles.py
+-----------------------
 Role profiles for the 9 tech roles supported by WayPointAI, built from O*NET 31.0
 (U.S. Department of Labor, Employment and Training Administration; CC BY 4.0).
 
@@ -13,7 +13,7 @@ scripts/build_role_insights.py). Nothing here is hand-estimated:
   who hold the job, e.g. Programming.
 - avg_years_experience: the median related work experience workers report (lower bound of
   the median O*NET category). O*NET covers workers at all career stages, so this is only
-  applied to mid-level and senior targets (see career_pipeline.py).
+  applied to mid-level and senior targets (see skills/career_pipeline.py).
 - common_education: education levels at least 20% of workers report the job requires.
 
 O*NET measures importance and demand, not the share of hires who have a skill, so each skill
@@ -23,7 +23,7 @@ in-demand technologies that are also Hot 0.7, other in-demand technologies 0.5, 
 
 Usage
 -----
-    from role_profiles import ROLE_PROFILES
+    from skills.role_profiles import ROLE_PROFILES
 
     profile = ROLE_PROFILES["Software Engineer"]
     # pass to gap_analyzer.analyze_gap(resume, profile)
@@ -31,7 +31,7 @@ Usage
 
 from __future__ import annotations
 
-from role_insights import _data, match_terms
+from skills.role_insights import _data, match_terms
 
 MIN_IMPORTANCE = 3.75
 MIN_EDUCATION_SHARE = 0.2

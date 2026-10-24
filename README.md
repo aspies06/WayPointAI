@@ -2,6 +2,24 @@
 This AI application turns career-skill gaps into a concrete, scheduled roadmap
 for the role and experience level a user is targeting.
 
+## Project layout
+
+```
+api.py              the API the website talks to (run this)
+skills/             what a role needs and what a resume is missing
+  role_profiles.py    role profiles built from O*NET
+  role_insights.py    O*NET tasks and in-demand technologies per role
+  career_pipeline.py  reads a resume and matches its skills
+  gap_analyzer.py     turns matches into a ranked gap list
+roadmap/            turns a gap list into a dated, prioritized plan (python -m roadmap)
+resume/             resume builder: story interview, drafting, wording
+data/               the resource catalog, project templates, O*NET role data
+web/                the React website (see web/README.md)
+docs/               specs and notes
+scripts/            data builds, demos and evaluations
+tests/              pytest suite (ROADMAP_AI=0 RESUME_AI=0 .venv/bin/python -m pytest -q)
+```
+
 ## Run the web interface
 
 The interface is a React app in `web/` that talks to a small Python API
@@ -10,8 +28,8 @@ neither) and one or more target tech roles, asks how much time and money the
 user has, and shows one roadmap per role: the most important work first, a
 dated timeline, source links, and optional items behind a button.
 
-Under the hood, `career_pipeline.py` matches resume text against the role
-profiles in `role_profiles.py`, `gap_analyzer.py` calculates the skill gaps,
+Under the hood, `skills/career_pipeline.py` matches resume text against the role
+profiles in `skills/role_profiles.py`, `skills/gap_analyzer.py` calculates the skill gaps,
 and `roadmap/` builds the roadmap from the curated catalog. Resume matching is
 deterministic and based on explicit mentions of profile skills; it is not a
 general-purpose resume parser. See [docs/gap_list_spec.md](docs/gap_list_spec.md)

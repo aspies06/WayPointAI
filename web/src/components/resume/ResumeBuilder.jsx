@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { generateResume, getRoleInsights, getStoryQuestions, previewStory } from "../api.js";
+import { generateResume, getRoleInsights, getStoryQuestions, previewStory } from "../../lib/api.js";
 import {
   MIN_PASSPHRASE, bankExists, createBank, deleteBank, exportBank, importBank, newStoryId, openBank, saveStories,
-} from "../storyVault.js";
+} from "../../lib/storyVault.js";
 import { RoleInsights } from "./RoleInsights.jsx";
 
 const emptyStory = () => ({

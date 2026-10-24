@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { maskDate } from "../format.js";
+import { maskDate } from "../../lib/format.js";
 
 const EMPTY = {
   resume: null,

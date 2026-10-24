@@ -1,14 +1,12 @@
 """Story interview and resume drafting endpoints. Nothing here is stored.
 
-Stories live only in the user's browser, encrypted (see web/src/storyVault.js). The browser sends
+Stories live only in the user's browser, encrypted (see web/src/lib/storyVault.js). The browser sends
 the stories a request needs; they're used in memory to build a preview or a draft, then dropped.
 """
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
-import role_insights
-
-
+from skills import role_insights as role_insights
 router = APIRouter(prefix="/api/resume", tags=["Resume builder"])
 MAX_STORIES = 50
 
@@ -82,7 +80,7 @@ def _known_role(role: str) -> str:
 
 
 def _draft(data: StoryInput) -> dict:
-    from resume_generation import preview_story
+    from resume.generation import preview_story
 
     facts = data.model_dump()
     draft = preview_story(facts["answers"], facts["organization"], facts["dates"])
@@ -112,7 +110,7 @@ def preview(data: StoryInput) -> dict:
 @router.post("/generate")
 def generate(data: GenerateInput) -> dict:
     """A resume draft from the stories sent with this request, used in memory only."""
-    from resume_generation import generate_resume
+    from resume.generation import generate_resume
 
     stories = [story.model_dump() for story in data.stories]
     return generate_resume(stories, data.job_description, data.profile.model_dump(), data.max_stories,

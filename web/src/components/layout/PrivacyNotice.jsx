@@ -1,5 +1,5 @@
 /** Full disclosure of what WayPointAI keeps, where, and for how long. Keep it in step with the code:
- *  storyVault.js (the story bank), api.py and resume_api.py (nothing stored on the server). */
+ *  lib/storyVault.js (the story bank), api.py and resume/api.py (nothing stored on the server). */
 export function PrivacyNotice() {
   return (
     <details className="card privacy-notice" id="privacy">

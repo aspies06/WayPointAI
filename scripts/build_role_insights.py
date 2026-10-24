@@ -8,7 +8,7 @@ each role: its most important tasks and transferable skills (importance 1-5, rat
 people who hold the job), the technologies O*NET flags as In Demand (often listed in
 employer job postings for the occupation) or Hot, and how much related work experience
 and education workers report the job requires (share of respondents per category).
-role_profiles.py turns this into the profiles the gap analyzer and roadmap use.
+skills/role_profiles.py turns this into the profiles the gap analyzer and roadmap use.
 
 No scraped job-board data is used. The raw O*NET download stays outside the repo
 (~/waypoint-data/onet); only this summary is committed.

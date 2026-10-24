@@ -1,9 +1,7 @@
 """Exercise story persistence under the API's concurrent worker pattern."""
 from concurrent.futures import ThreadPoolExecutor
 
-import resume_store
-
-
+from resume import store as resume_store
 def test_parallel_story_saves_do_not_lose_data_or_share_libraries(tmp_path, monkeypatch):
     monkeypatch.setenv("WAYPOINT_STORY_DB", str(tmp_path / "stories.sqlite3"))
     owners = [resume_store.key_digest(resume_store.create_library()) for _ in range(2)]

@@ -5,7 +5,7 @@ pytest.importorskip("fastapi")
 from fastapi.testclient import TestClient  # noqa: E402
 
 import api  # noqa: E402
-from role_profiles import ROLE_PROFILES  # noqa: E402
+from skills.role_profiles import ROLE_PROFILES  # noqa: E402
 
 # ---------- sample resumes and requests (paste any into /docs to try it) ----------
 

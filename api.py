@@ -8,13 +8,13 @@ this computer, and only the site's own addresses may call it: Vite's dev server
 WAYPOINT_ALLOWED_ORIGINS (comma-separated) to allow others. Uploaded resumes are
 read in memory and never stored. Experience stories are stored only in the
 user's browser, encrypted; the browser sends them with each resume request and
-they're used in memory (see resume_api.py). Set ROADMAP_AI=0 to skip the model's
+they're used in memory (see resume/api.py). Set ROADMAP_AI=0 to skip the model's
 personal tips and resume assistance.
 
 Gap analysis on its own (no roadmap), for the other components and the docs page:
     GET  /api/roles     the built-in role profiles
     POST /api/analyze   a parsed resume + a role name or a full role profile -> gap analysis
-Resume builder: /api/resume/... (resume_api.py)
+Resume builder: /api/resume/... (resume/api.py)
 """
 import os
 from typing import Annotated, Optional
@@ -25,7 +25,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
-from career_pipeline import (
+from skills.career_pipeline import (
     LEVELS,
     MAX_UPLOAD_BYTES,
     ResumeError,
@@ -33,11 +33,11 @@ from career_pipeline import (
     extract_resume_text,
     gap_list_for_role,
 )
-from gap_analyzer import analyze_gap
+from skills.gap_analyzer import analyze_gap
 from roadmap import generate_roadmap, intake
 from roadmap.schemas import ROLES
-from resume_api import router as resume_router
-from role_profiles import ROLE_PROFILES
+from resume.api import router as resume_router
+from skills.role_profiles import ROLE_PROFILES
 
 ALLOWED_ORIGINS = os.getenv(
     "WAYPOINT_ALLOWED_ORIGINS",

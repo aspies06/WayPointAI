@@ -11,7 +11,7 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Optional
 
-DATA = Path(__file__).resolve().parent / "data" / "role_insights.json"
+DATA = Path(__file__).resolve().parent.parent / "data" / "role_insights.json"
 QUALIFIERS = {"CI"}
 VENDORS = ("The MathWorks", "Microsoft", "Apple", "Atlassian", "Amazon", "Google", "IBM", "Oracle", "Adobe", "Apache")
 

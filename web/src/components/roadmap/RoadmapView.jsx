@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { PRIORITY_LABELS, formatCost, formatDate } from "../format.js";
+import { PRIORITY_LABELS, formatCost, formatDate } from "../../lib/format.js";
 import { StepCard } from "./StepCard.jsx";
 
 const OPTIONAL_SECTIONS = [
