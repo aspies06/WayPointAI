@@ -63,6 +63,13 @@ Severity = Literal["high", "medium", "low"]
 StepType = Literal["cert", "project", "course", "experience", "networking"]
 Phase = Literal["first_30_days", "days_30_90", "days_90_plus"]
 Source = Literal["ai", "cache", "demo", "basic"]
+SEV_RANK = {"high": 0, "medium": 1, "low": 2}
+Priority = Literal["must_do", "should_do", "nice_to_have"]
+PRIORITY_FROM_SEVERITY = {"high": "must_do", "medium": "should_do", "low": "nice_to_have"}
+PRIORITY_LABELS = {"must_do": "Must do", "should_do": "Should do", "nice_to_have": "Nice to have"}
+Benefit = Literal["certification", "certificate", "portfolio", "knowledge"]
+BENEFIT_LABELS = {"certification": "Certification", "certificate": "Certificate of completion",
+                  "portfolio": "Portfolio project", "knowledge": "Knowledge benefit (no certificate)"}
 
 PHASE_LABELS = {
     "first_30_days": "First 30 days",
@@ -102,6 +109,14 @@ class TargetRole(BaseModel):
         return v
 
 
+def _trim(value, limit: int):
+    """Free text from other components can run long (a big resume, a pasted summary). Trimming it
+    beats failing the user's whole roadmap; the cut is marked with an ellipsis."""
+    if isinstance(value, str) and len(value) > limit:
+        return value[:limit - 1].rstrip() + "…"
+    return value
+
+
 class Gap(BaseModel):
     model_config = ConfigDict(extra="forbid")
     gap_id: str = Field(max_length=40)
@@ -112,13 +127,31 @@ class Gap(BaseModel):
     user_has: Optional[str] = Field(default=None, max_length=200,
                                     description="What the user has instead, if anything")
 
+    @field_validator("item", "user_has", mode="before")
+    @classmethod
+    def _trim_text(cls, v, info):
+        return _trim(v, {"item": 120, "user_has": 200}[info.field_name])
+
 
 class UserContext(BaseModel):
+    """The user's own answers about their time (see intake.py). Ask before planning; never guess."""
     model_config = ConfigDict(extra="forbid")
-    hours_per_week: int = Field(ge=1, le=80)
+    hours_per_week: int = Field(ge=1, le=80, description="The workload the user said they can sustain")
+    start_date: Optional[date] = Field(default=None, description="When they can start; today if omitted")
     target_date: date
-    budget_usd: int = Field(ge=0)
+    budget_usd: Optional[int] = Field(default=None, ge=0, description="What the user wants to spend; None means no limit")
     background: str = Field(default="", max_length=600)
+
+    @field_validator("background", mode="before")
+    @classmethod
+    def _trim_background(cls, v):
+        return _trim(v, 600)
+
+    @model_validator(mode="after")
+    def _dates_in_order(self):
+        if self.start_date and self.target_date <= self.start_date:
+            raise ValueError("target_date must be after start_date")
+        return self
 
 
 class GapList(BaseModel):
@@ -126,14 +159,35 @@ class GapList(BaseModel):
     schema_version: str = SCHEMA_VERSION
     target_role: TargetRole
     gaps: list[Gap] = Field(max_length=40)
-    user_context: UserContext
+    user_context: Optional[UserContext] = Field(
+        default=None, description="Missing until the user answers the availability questions; "
+                                  "generate_roadmap() raises AvailabilityNeeded without it")
 
 
 # ---------- output: roadmap ----------
 
+class ResourceLink(BaseModel):
+    """A catalog resource resolved for display. Links only ever come from data/catalog.json."""
+    id: str
+    name: str
+    provider: str
+    url: str
+    cost_usd: int
+    type: str
+
+
+class Suggestion(BaseModel):
+    """Something worth considering instead of, or on top of, the plan, even if it's over budget."""
+    kind: Literal["credential", "cheaper", "faster"]
+    resource_id: str
+    reason: str
+    resource: Optional[ResourceLink] = None  # filled in from the catalog for display
+
+
 class Step(BaseModel):
     step_id: str
     title: str
+    priority: Priority = "should_do"
     phase: Phase
     type: StepType
     gap_ids: list[str]
@@ -143,8 +197,19 @@ class Step(BaseModel):
     resource_ids: list[str]
     project_id: Optional[str] = None
     est_hours: int
+    cost_usd: int = Field(default=0, description="New spending this step needs; resources bought earlier count as $0")
     depends_on: list[str]
     tip: Optional[str] = Field(default=None, description="Personal advice from the local model, if it passed checks")
+    start_date: Optional[date] = Field(default=None, description="Scheduled start at the user's hours/week; "
+                                       "None for optional items")
+    end_date: Optional[date] = None
+    resources: list[ResourceLink] = Field(default=[], description="resource_ids resolved to names and links")
+    optional_because: Optional[Literal["time", "budget"]] = Field(
+        default=None, description="Set on optional items: why it isn't on the timeline")
+    benefit: Benefit = Field(default="knowledge", description="What finishing it earns you")
+    shortened_from: Optional[int] = Field(default=None, description="Full hours, if this step was cut to fit the time")
+    scope_note: Optional[str] = Field(default=None, description="Plain-language note when a step was split or reshaped")
+    suggestions: list[Suggestion] = Field(default=[], description="Worth considering, even outside the budget")
 
 
 class Deferred(BaseModel):
@@ -157,6 +222,8 @@ class RoadmapDraft(BaseModel):
     summary: str
     steps: list[Step]
     deferred: list[Deferred]
+    optional: list[Step] = Field(default=[], description="Steps that don't fit the user's time or budget, kept "
+                                 "so the UI can offer them behind a button. Their gaps are also in deferred.")
 
 
 class Roadmap(RoadmapDraft):
@@ -166,4 +233,8 @@ class Roadmap(RoadmapDraft):
     label: str = Field(description="Small UI label: 'Personalized roadmap' or 'Basic roadmap'")
     total_hours: int
     available_hours: int
+    hours_per_week: int
+    start_date: date
+    finish_date: date = Field(description="When the last planned step ends at the user's pace")
+    target_date: date
     warnings: list[str] = []

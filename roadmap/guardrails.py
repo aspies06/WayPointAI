@@ -21,9 +21,12 @@ MIN_TEXT = 15         # deliverable / done_when shorter than this can't be concr
 HOURS_SLACK = 1.10     # allow 10% over the available hours
 
 
+def start_date(gap_list: GapList, today: Optional[date] = None) -> date:
+    return gap_list.user_context.start_date or today or date.today()
+
+
 def available_hours(gap_list: GapList, today: Optional[date] = None) -> int:
-    today = today or date.today()
-    days = (gap_list.user_context.target_date - today).days
+    days = (gap_list.user_context.target_date - start_date(gap_list, today)).days
     weeks = max(days, 7) / 7
     return int(gap_list.user_context.hours_per_week * weeks)
 
@@ -57,20 +60,23 @@ def check(draft: RoadmapDraft, gap_list: GapList,
     resources = catalog.resources()
     projects = catalog.projects()
     step_ids = [s.step_id for s in draft.steps]
+    all_ids = step_ids + [s.step_id for s in draft.optional]
 
-    if len(set(step_ids)) != len(step_ids):
+    if len(set(all_ids)) != len(all_ids):
         errors.append("Duplicate step_id values.")
 
     covered: set[str] = set()
-    for s in draft.steps:
+    # Optional items are shown to users too, so they get the same checks; only plan steps cover gaps.
+    for s, in_plan in [*((s, True) for s in draft.steps), *((s, False) for s in draft.optional)]:
         if not s.gap_ids:
             errors.append(f"{s.step_id}: cites no gap_id.")
         for gid in s.gap_ids:
             if gid in gaps:
-                covered.add(gid)
+                if in_plan:
+                    covered.add(gid)
             else:
                 errors.append(f"{s.step_id}: unknown gap_id '{gid}'.")
-        for rid in s.resource_ids:
+        for rid in [*s.resource_ids, *(x.resource_id for x in s.suggestions)]:
             if rid not in resources:
                 errors.append(f"{s.step_id}: resource_id '{rid}' is not in the catalog.")
         if s.project_id and s.project_id not in projects:
@@ -84,7 +90,8 @@ def check(draft: RoadmapDraft, gap_list: GapList,
             errors.append(f"{s.step_id}: done_when is missing or too vague.")
         if s.est_hours <= 0:
             errors.append(f"{s.step_id}: est_hours must be positive.")
-        text = " ".join([s.title, s.why, s.deliverable, s.done_when, s.tip or ""]).lower()
+        text = " ".join([s.title, s.why, s.deliverable, s.done_when, s.tip or "", s.scope_note or "",
+                         *(x.reason for x in s.suggestions)]).lower()
         if URL_RE.search(text):
             errors.append(f"{s.step_id}: contains a URL; links must come from the catalog.")
         for phrase in BANNED_PHRASES:
@@ -113,7 +120,8 @@ def check(draft: RoadmapDraft, gap_list: GapList,
 
     cost = sum(resources[r]["cost_usd"] for r in {r for s in draft.steps for r in s.resource_ids}
                if r in resources)
-    if cost > gap_list.user_context.budget_usd:
-        warnings.append(f"Cited resources cost about ${cost}, over the ${gap_list.user_context.budget_usd} budget.")
+    budget = gap_list.user_context.budget_usd
+    if budget is not None and cost > budget:
+        warnings.append(f"Cited resources cost about ${cost}, over the ${budget} budget.")
 
     return errors, warnings

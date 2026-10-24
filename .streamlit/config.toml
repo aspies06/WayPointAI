@@ -1,0 +1,3 @@
+# Privacy: do not send usage statistics to Streamlit.
+[browser]
+gatherUsageStats = false
