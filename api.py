@@ -6,6 +6,10 @@ Then open web/index.html with VS Code's Live Server (port 5500). The API only
 listens on this computer, and only the Live Server origins may call it; set
 WAYPOINT_ALLOWED_ORIGINS (comma-separated) to allow others. Resumes are read in
 memory and never stored. Set ROADMAP_AI=0 to skip the model's personal tips.
+
+Gap analysis on its own (no roadmap), for the other components and the docs page:
+    GET  /api/roles     the built-in role profiles
+    POST /api/analyze   a parsed resume + a role name or a full role profile -> gap analysis
 """
 import os
 from typing import Annotated, Optional
@@ -14,6 +18,7 @@ from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from pydantic import BaseModel, Field
 
 from career_pipeline import (
     LEVELS,
@@ -23,8 +28,10 @@ from career_pipeline import (
     extract_resume_text,
     gap_list_for_role,
 )
+from gap_analyzer import analyze_gap
 from roadmap import generate_roadmap, intake
 from roadmap.schemas import ROLES
+from role_profiles import ROLE_PROFILES
 
 ALLOWED_ORIGINS = os.getenv(
     "WAYPOINT_ALLOWED_ORIGINS", "http://127.0.0.1:5500,http://localhost:5500").split(",")
@@ -112,6 +119,80 @@ def roadmaps(
             "roadmap": generate_roadmap(gap_list).model_dump(mode="json"),
         })
     return {"starting_from_scratch": not resume_text, "results": results}
+
+
+# ---------- gap analysis on its own (Component 3) ----------
+# Contracts: Component 1 sends role profiles, Component 2 sends parsed resumes,
+# Components 4 and 5 read the result.
+
+class SkillFrequency(BaseModel):
+    """A skill and how often it appears in job postings (0-1)."""
+    skill: str
+    frequency: float = Field(ge=0.0, le=1.0)
+
+
+class RoleProfileInput(BaseModel):
+    """A role profile, shaped like the entries in role_profiles.ROLE_PROFILES."""
+    role: str
+    required_skills: list[SkillFrequency]
+    preferred_skills: list[SkillFrequency] = Field(default_factory=list)
+    avg_years_experience: float = Field(ge=0.0)
+    common_education: list[str] = Field(default_factory=list)
+
+
+class EducationEntry(BaseModel):
+    degree: str
+    field: str
+
+
+class ResumeInput(BaseModel):
+    """A parsed resume (Component 2)."""
+    skills: list[str]
+    education: list[EducationEntry] = Field(default_factory=list)
+    experience_years: float = Field(ge=0.0, default=0.0)
+    projects: list[str] = Field(default_factory=list)
+
+
+class AnalyzeRequest(BaseModel):
+    """Send a full role_profile, or the name of a built-in role. role_profile wins if both are sent."""
+    resume: ResumeInput
+    role_profile: Optional[RoleProfileInput] = None
+    role: Optional[str] = Field(default=None, description="A built-in role, e.g. 'Data Scientist'.")
+
+
+class MissingSkill(BaseModel):
+    skill: str
+    priority: int = Field(ge=1)
+    frequency: float = Field(ge=0.0, le=1.0)
+
+
+class GapAnalysisResult(BaseModel):
+    match_score: int = Field(ge=0, le=100)
+    skills_present: list[str]
+    skills_missing: list[MissingSkill]
+    experience_gap: float = Field(ge=0.0)
+    weak_areas: list[str]
+
+
+@app.get("/api/roles")
+def roles_list() -> dict:
+    """Every built-in role profile, so other components never hard-code them."""
+    return {"roles": [RoleProfileInput(**profile).model_dump() for profile in ROLE_PROFILES.values()]}
+
+
+@app.post("/api/analyze", response_model=GapAnalysisResult)
+def analyze(body: AnalyzeRequest) -> GapAnalysisResult:
+    """Gap analysis between a parsed resume and a role profile (400 if neither role nor profile is sent)."""
+    if body.role_profile is not None:
+        role_profile = body.role_profile.model_dump()
+    elif body.role is not None:
+        if body.role not in ROLE_PROFILES:
+            raise HTTPException(status_code=404,
+                                detail=f"Role '{body.role}' not found. Available roles: {sorted(ROLE_PROFILES)}")
+        role_profile = ROLE_PROFILES[body.role]
+    else:
+        raise _bad_request("Send either 'role_profile' or 'role'.")
+    return GapAnalysisResult(**analyze_gap(body.resume.model_dump(), role_profile))
 
 
 if __name__ == "__main__":
