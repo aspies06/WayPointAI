@@ -12,6 +12,7 @@ from pathlib import Path
 from typing import Optional
 
 DATA = Path(__file__).resolve().parent / "data" / "role_insights.json"
+QUALIFIERS = {"CI"}
 VENDORS = ("The MathWorks", "Microsoft", "Apple", "Atlassian", "Amazon", "Google", "IBM", "Oracle", "Adobe", "Apache")
 
 
@@ -36,7 +37,7 @@ def match_terms(name: str) -> list[str]:
         # The vendor stays in the long form, so "Web Services" alone never matches.
         terms += [words[-1], " ".join(words[:-1])]
     else:
-        if len(words) > 1 and re.fullmatch(r"[A-Z]{1,2}", words[-1]):  # "Jenkins CI" -> "Jenkins"
+        if len(words) > 1 and words[-1] in QUALIFIERS:  # "Jenkins CI" -> "Jenkins"; "Power BI" stays
             base = " ".join(words[:-1])
         for vendor in VENDORS:
             if base.startswith(vendor + " "):

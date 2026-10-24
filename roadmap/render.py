@@ -11,8 +11,15 @@ def _d(d: date) -> str:
     return f"{d:%b} {d.day}, {d.year}"
 
 
+DISCLAIMER = ("*{kind} guidance. It can make mistakes, so check dates, prices and requirements "
+              "with each provider before you rely on them.*")
+CREDIT = ("*Prices are approximate and can change. Skill data includes information from the O*NET 31.0 "
+          "Database by the U.S. Department of Labor, Employment and Training Administration (USDOL/ETA), "
+          "used under the CC BY 4.0 license. O*NET® is a trademark of USDOL/ETA.*")
+
+
 def _cost(c: int) -> str:
-    return "free" if c == 0 else f"${c}"
+    return "free" if c == 0 else f"about ${c}"
 
 
 def _step(s: Step, gaps: dict[str, str]) -> list[str]:
@@ -108,7 +115,8 @@ def to_markdown(roadmap: Roadmap, gap_names: dict[str, str] | None = None,
                 include_optional: bool = True) -> str:
     """The whole response as one page (CLI, email). A UI should use timeline_markdown()
     and put optional_markdown() behind a button instead; see roadmap/ui.py."""
-    parts = [timeline_markdown(roadmap, gap_names)]
+    kind = "Automatically generated" if roadmap.source == "basic" else "AI-generated"
+    parts = [DISCLAIMER.format(kind=kind), "", timeline_markdown(roadmap, gap_names)]
     if include_optional and (extra := optional_markdown(roadmap, gap_names)):
         parts += ["---", "## Optional", "", extra]
-    return "\n".join(parts)
+    return "\n".join(parts + ["", CREDIT])

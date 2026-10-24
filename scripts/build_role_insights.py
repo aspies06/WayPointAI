@@ -4,9 +4,11 @@
     python scripts/build_role_insights.py --data /path/to/waypoint-data
 
 Source: O*NET 31.0 (U.S. Department of Labor, CC BY 4.0). For the closest occupation to
-each role: its most important tasks, as rated by people who hold the job, and the
-technologies O*NET flags as In Demand (often listed in employer job postings for the
-occupation) or Hot. Task text and technology names are quoted with attribution.
+each role: its most important tasks and transferable skills (importance 1-5, rated by
+people who hold the job), the technologies O*NET flags as In Demand (often listed in
+employer job postings for the occupation) or Hot, and how much related work experience
+and education workers report the job requires (share of respondents per category).
+role_profiles.py turns this into the profiles the gap analyzer and roadmap use.
 
 No scraped job-board data is used. The raw O*NET download stays outside the repo
 (~/waypoint-data/onet); only this summary is committed.
@@ -35,7 +37,7 @@ ONET_MATCH = {
     "Product Manager": ("15-1299.09", "approximate"),    # Information Technology Project Managers
 }
 
-TOP_TASKS, TOP_TECH = 8, 20
+TOP_TASKS, TOP_SKILLS = 8, 10
 
 
 def tsv(path: Path):
@@ -61,9 +63,29 @@ def onet_insights(onet_dir: Path) -> dict:
     tech = defaultdict(list)
     for r in tsv(onet_dir / "Software Skills.txt"):
         code = r["O*NET-SOC Code"]
-        if code in wanted and (r["In Demand"] == "Y" or r["Hot Technology"] == "Y"):
+        # Only In Demand: occupation-specific. "Hot" alone reflects demand across all jobs.
+        if code in wanted and r["In Demand"] == "Y":
             tech[code].append({"name": r["Workplace Example"], "category": r["Element Name"],
                                "in_demand": r["In Demand"] == "Y", "hot": r["Hot Technology"] == "Y"})
+    skills = defaultdict(list)
+    for r in tsv(onet_dir / "Transferable Skills.txt"):
+        if r["O*NET-SOC Code"] in wanted and r["Scale ID"] == "IM":
+            skills[r["O*NET-SOC Code"]].append({"name": r["Element Name"], "importance": float(r["Data Value"])})
+    experience_names = {r["Category"]: r["Category Description"] for r in tsv(onet_dir / "Training and Experience Categories.txt")
+                        if r["Element ID"] == "3.A.1" and r["Scale ID"] == "RW"}
+    experience = defaultdict(list)
+    for r in tsv(onet_dir / "Training and Experience.txt"):
+        if r["O*NET-SOC Code"] in wanted and r["Element ID"] == "3.A.1" and r["Scale ID"] == "RW":
+            experience[r["O*NET-SOC Code"]].append({"category": int(r["Category"]),
+                                                    "description": experience_names[r["Category"]],
+                                                    "share": round(float(r["Data Value"]) / 100, 4)})
+    education_names = {r["Category"]: r["Category Description"] for r in tsv(onet_dir / "Education Categories.txt")
+                       if r["Scale ID"] == "RL"}
+    education = defaultdict(list)
+    for r in tsv(onet_dir / "Education.txt"):
+        if r["O*NET-SOC Code"] in wanted and r["Scale ID"] == "RL" and float(r["Data Value"]) > 0:
+            education[r["O*NET-SOC Code"]].append({"level": education_names[r["Category"]],
+                                                   "share": round(float(r["Data Value"]) / 100, 4)})
     out = {}
     for role, (code, match) in ONET_MATCH.items():
         ranked = sorted(tasks[code], key=lambda t: (t["type"] != "Core", -(t["importance"] or 0)))
@@ -72,7 +94,10 @@ def onet_insights(onet_dir: Path) -> dict:
             "code": code, "title": titles.get(code, ""), "match": match,
             "tasks": [{"task": t["task"], "importance": t["importance"], "source": t["source"]}
                       for t in ranked[:TOP_TASKS]],
-            "technologies": ranked_tech[:TOP_TECH],
+            "technologies": ranked_tech,  # all of them: O*NET doesn't rank them, so any cut would be arbitrary
+            "skills": sorted(skills[code], key=lambda x: -x["importance"])[:TOP_SKILLS],
+            "experience": sorted(experience[code], key=lambda x: x["category"]),
+            "education": sorted(education[code], key=lambda x: -x["share"]),
         }
     return out
 

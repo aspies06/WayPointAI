@@ -1,6 +1,6 @@
 {
  "schema_version": "1.0",
- "generated_at": "2026-10-24T10:56:07+00:00",
+ "generated_at": "2026-10-24T11:21:46+00:00",
  "sources": {
   "onet": {
    "name": "O*NET 31.0 Database (August 2026)",
@@ -179,6 +179,191 @@
       "category": "Web platform development software",
       "in_demand": true,
       "hot": true
+     },
+     {
+      "name": "NoSQL",
+      "category": "Data base management system software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Oracle Java",
+      "category": "Object or component oriented development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "PostgreSQL",
+      "category": "Object oriented data base management software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Python",
+      "category": "Object or component oriented development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "React",
+      "category": "Web platform development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Spring Boot",
+      "category": "Application server software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Spring Framework",
+      "category": "Web platform development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Structured query language SQL",
+      "category": "Data base user interface and query software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "TypeScript",
+      "category": "Object or component oriented development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "RESTful API",
+      "category": "Web platform development software",
+      "in_demand": true,
+      "hot": false
+     }
+    ],
+    "skills": [
+     {
+      "name": "Programming",
+      "importance": 4.0
+     },
+     {
+      "name": "Judgment and Decision Making",
+      "importance": 3.62
+     },
+     {
+      "name": "Systems Analysis",
+      "importance": 3.5
+     },
+     {
+      "name": "Complex Problem Solving",
+      "importance": 3.38
+     },
+     {
+      "name": "Technology Design",
+      "importance": 3.38
+     },
+     {
+      "name": "Systems Evaluation",
+      "importance": 3.38
+     },
+     {
+      "name": "Operations Analysis",
+      "importance": 3.25
+     },
+     {
+      "name": "Time Management",
+      "importance": 3.12
+     },
+     {
+      "name": "Coordination",
+      "importance": 3.0
+     },
+     {
+      "name": "Social Perceptiveness",
+      "importance": 2.88
+     }
+    ],
+    "experience": [
+     {
+      "category": 1,
+      "description": "None",
+      "share": 0.0442
+     },
+     {
+      "category": 2,
+      "description": "Up to and including 1 month",
+      "share": 0.0
+     },
+     {
+      "category": 3,
+      "description": "Over 1 month, up to and including 3 months",
+      "share": 0.0
+     },
+     {
+      "category": 4,
+      "description": "Over 3 months, up to and including 6 months",
+      "share": 0.0
+     },
+     {
+      "category": 5,
+      "description": "Over 6 months, up to and including 1 year",
+      "share": 0.0
+     },
+     {
+      "category": 6,
+      "description": "Over 1 year, up to and including 2 years",
+      "share": 0.1113
+     },
+     {
+      "category": 7,
+      "description": "Over 2 years, up to and including 4 years",
+      "share": 0.0713
+     },
+     {
+      "category": 8,
+      "description": "Over 4 years, up to and including 6 years",
+      "share": 0.1504
+     },
+     {
+      "category": 9,
+      "description": "Over 6 years, up to and including 8 years",
+      "share": 0.4391
+     },
+     {
+      "category": 10,
+      "description": "Over 8 years, up to and including 10 years",
+      "share": 0.0782
+     },
+     {
+      "category": 11,
+      "description": "Over 10 years",
+      "share": 0.1055
+     }
+    ],
+    "education": [
+     {
+      "level": "Bachelor's Degree",
+      "share": 0.848
+     },
+     {
+      "level": "Associate's Degree or other 2-year degree",
+      "share": 0.0507
+     },
+     {
+      "level": "Master's Degree",
+      "share": 0.0452
+     },
+     {
+      "level": "High School Diploma or the equivalent (such as a GED)",
+      "share": 0.0313
+     },
+     {
+      "level": "Post-Secondary Certificate",
+      "share": 0.0167
+     },
+     {
+      "level": "Post-Baccalaureate Certificate",
+      "share": 0.0081
      }
     ]
    }
@@ -350,6 +535,215 @@
       "category": "Object or component oriented development software",
       "in_demand": true,
       "hot": true
+     },
+     {
+      "name": "Prometheus",
+      "category": "Data base user interface and query software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Python",
+      "category": "Object or component oriented development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "PyTorch",
+      "category": "Data base user interface and query software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "R",
+      "category": "Object or component oriented development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Scala",
+      "category": "Object or component oriented development software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Snowflake",
+      "category": "Data mining software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Structured query language SQL",
+      "category": "Data base user interface and query software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "TensorFlow",
+      "category": "Analytical or scientific software",
+      "in_demand": true,
+      "hot": true
+     },
+     {
+      "name": "Amazon Web Services AWS SageMaker",
+      "category": "Cloud-based management software",
+      "in_demand": true,
+      "hot": false
+     },
+     {
+      "name": "Hugging Face",
+      "category": "Development environment software",
+      "in_demand": true,
+      "hot": false
+     },
+     {
+      "name": "LangChain",
+      "category": "Object or component oriented development software",
+      "in_demand": true,
+      "hot": false
+     },
+     {
+      "name": "pandas",
+      "category": "Data base user interface and query software",
+      "in_demand": true,
+      "hot": false
+     },
+     {
+      "name": "Scikit-learn",
+      "category": "Development environment software",
+      "in_demand": true,
+      "hot": false
+     },
+     {
+      "name": "Vector database software",
+      "category": "Data base management system software",
+      "in_demand": true,
+      "hot": false
+     }
+    ],
+    "skills": [
+     {
+      "name": "Complex Problem Solving",
+      "importance": 4.0
+     },
+     {
+      "name": "Judgment and Decision Making",
+      "importance": 4.0
+     },
+     {
+      "name": "Systems Analysis",
+      "importance": 3.75
+     },
+     {
+      "name": "Programming",
+      "importance": 3.62
+     },
+     {
+      "name": "Systems Evaluation",
+      "importance": 3.62
+     },
+     {
+      "name": "Time Management",
+      "importance": 3.38
+     },
+     {
+      "name": "Operations Analysis",
+      "importance": 3.12
+     },
+     {
+      "name": "Technology Design",
+      "importance": 3.12
+     },
+     {
+      "name": "Social Perceptiveness",
+      "importance": 3.0
+     },
+     {
+      "name": "Coordination",
+      "importance": 3.0
+     }
+    ],
+    "experience": [
+     {
+      "category": 1,
+      "description": "None",
+      "share": 0.139
+     },
+     {
+      "category": 2,
+      "description": "Up to and including 1 month",
+      "share": 0.0
+     },
+     {
+      "category": 3,
+      "description": "Over 1 month, up to and including 3 months",
+      "share": 0.0
+     },
+     {
+      "category": 4,
+      "description": "Over 3 months, up to and including 6 months",
+      "share": 0.0
+     },
+     {
+      "category": 5,
+      "description": "Over 6 months, up to and including 1 year",
+      "share": 0.0
+     },
+     {
+      "category": 6,
+      "description": "Over 1 year, up to and including 2 years",
+      "share": 0.0283
+     },
+     {
+      "category": 7,
+      "description": "Over 2 years, up to and including 4 years",
+      "share": 0.4376
+     },
+     {
+      "category": 8,
+      "description": "Over 4 years, up to and including 6 years",
+      "share": 0.2107
+     },
+     {
+      "category": 9,
+      "description": "Over 6 years, up to and including 8 years",
+      "share": 0.0454
+     },
+     {
+      "category": 10,
+      "description": "Over 8 years, up to and including 10 years",
+      "share": 0.0
+     },
+     {
+      "category": 11,
+      "description": "Over 10 years",
+      "share": 0.139
+     }
+    ],
+    "education": [
+     {
+      "level": "Bachelor's Degree",
+      "share": 0.3622
+     },
+     {
+      "level": "Doctoral Degree",
+      "share": 0.2842
+     },
+     {
+      "level": "Master's Degree",
+      "share": 0.1993
+     },
+     {
+      "level": "Some College Courses",
+      "share": 0.0835
+     },
+     {
+      "level": "Post-Doctoral Training",
+      "share": 0.045
+     },
+     {
+      "level": "First Professional Degree - awarded for completion of a program that: requires at least 2 years of college work before entrance into the program, includes a total of at least 6 academic years of work to complete, and provides all remaining academic requirements to begin practice in a profession.",
+      "share": 0.0258
      }
     ]
    }
@@ -521,8 +915,114 @@
       "category": "Data base user interface and query software",
       "in_demand": true,
       "hot": false
+     },
+     {
+      "name": "Scikit-learn",
+      "category": "Development environment software",
+      "in_demand": true,
+      "hot": false
      }
-    ]
+    ],
+    "skills": [
+     {
+      "name": "Complex Problem Solving",
+      "importance": 3.75
+     },
+     {
+      "name": "Programming",
+      "importance": 3.75
+     },
+     {
+      "name": "Judgment and Decision Making",
+      "importance": 3.38
+     },
+     {
+      "name": "Time Management",
+      "importance": 3.0
+     },
+     {
+      "name": "Social Perceptiveness",
+      "importance": 2.88
+     },
+     {
+      "name": "Coordination",
+      "importance": 2.88
+     },
+     {
+      "name": "Persuasion",
+      "importance": 2.75
+     },
+     {
+      "name": "Instructing",
+      "importance": 2.75
+     },
+     {
+      "name": "Systems Analysis",
+      "importance": 2.75
+     },
+     {
+      "name": "Systems Evaluation",
+      "importance": 2.75
+     }
+    ],
+    "experience": [
+     {
+      "category": 1,
+      "description": "None",
+      "share": 0.28
+     },
+     {
+      "category": 2,
+      "description": "Up to and including 1 month",
+      "share": 0.0
+     },
+     {
+      "category": 3,
+      "description": "Over 1 month, up to and including 3 months",
+      "share": 0.0
+     },
+     {
+      "category": 4,
+      "description": "Over 3 months, up to and including 6 months",
+      "share": 0.12
+     },
+     {
+      "category": 5,
+      "description": "Over 6 months, up to and including 1 year",
+      "share": 0.16
+     },
+     {
+      "category": 6,
+      "description": "Over 1 year, up to and including 2 years",
+      "share": 0.16
+     },
+     {
+      "category": 7,
+      "description": "Over 2 years, up to and including 4 years",
+      "share": 0.16
+     },
+     {
+      "category": 8,
+      "description": "Over 4 years, up to and including 6 years",
+      "share": 0.12
+     },
+     {
+      "category": 9,
+      "description": "Over 6 years, up to and including 8 years",
+      "share": 0.0
+     },
+     {
+      "category": 10,
+      "description": "Over 8 years, up to and including 10 years",
+      "share": 0.0
+     },
+     {
+      "category": 11,
+      "description": "Over 10 years",
+      "share": 0.0
+     }
+    ],
+    "education": []
    }
   },
   "Security Engineer": {
@@ -650,48 +1150,135 @@
       "category": "Authentication server software",
       "in_demand": true,
       "hot": false
+     }
+    ],
+    "skills": [
+     {
+      "name": "Quality Control Analysis",
+      "importance": 3.38
      },
      {
-      "name": "Amazon Web Services AWS CloudFormation",
-      "category": "Cloud-based management software",
-      "in_demand": false,
-      "hot": true
+      "name": "Systems Analysis",
+      "importance": 3.38
      },
      {
-      "name": "Ansible software",
-      "category": "Expert system software",
-      "in_demand": false,
-      "hot": true
+      "name": "Systems Evaluation",
+      "importance": 3.38
      },
      {
-      "name": "Apple iOS",
-      "category": "Operating system software",
-      "in_demand": false,
-      "hot": true
+      "name": "Complex Problem Solving",
+      "importance": 3.25
      },
      {
-      "name": "Apple macOS",
-      "category": "Operating system software",
-      "in_demand": false,
-      "hot": true
+      "name": "Judgment and Decision Making",
+      "importance": 3.25
      },
      {
-      "name": "Atlassian Confluence",
-      "category": "Project management software",
-      "in_demand": false,
-      "hot": true
+      "name": "Instructing",
+      "importance": 3.12
      },
      {
-      "name": "Atlassian JIRA",
-      "category": "Content workflow software",
-      "in_demand": false,
-      "hot": true
+      "name": "Programming",
+      "importance": 3.12
      },
      {
-      "name": "Border Gateway Protocol BGP",
-      "category": "Switch or router software",
-      "in_demand": false,
-      "hot": true
+      "name": "Operations Monitoring",
+      "importance": 3.12
+     },
+     {
+      "name": "Social Perceptiveness",
+      "importance": 3.0
+     },
+     {
+      "name": "Coordination",
+      "importance": 3.0
+     }
+    ],
+    "experience": [
+     {
+      "category": 1,
+      "description": "None",
+      "share": 0.1053
+     },
+     {
+      "category": 2,
+      "description": "Up to and including 1 month",
+      "share": 0.0
+     },
+     {
+      "category": 3,
+      "description": "Over 1 month, up to and including 3 months",
+      "share": 0.0
+     },
+     {
+      "category": 4,
+      "description": "Over 3 months, up to and including 6 months",
+      "share": 0.0
+     },
+     {
+      "category": 5,
+      "description": "Over 6 months, up to and including 1 year",
+      "share": 0.0526
+     },
+     {
+      "category": 6,
+      "description": "Over 1 year, up to and including 2 years",
+      "share": 0.1053
+     },
+     {
+      "category": 7,
+      "description": "Over 2 years, up to and including 4 years",
+      "share": 0.1579
+     },
+     {
+      "category": 8,
+      "description": "Over 4 years, up to and including 6 years",
+      "share": 0.4211
+     },
+     {
+      "category": 9,
+      "description": "Over 6 years, up to and including 8 years",
+      "share": 0.0
+     },
+     {
+      "category": 10,
+      "description": "Over 8 years, up to and including 10 years",
+      "share": 0.1053
+     },
+     {
+      "category": 11,
+      "description": "Over 10 years",
+      "share": 0.0526
+     }
+    ],
+    "education": [
+     {
+      "level": "Bachelor's Degree",
+      "share": 0.4737
+     },
+     {
+      "level": "Post-Secondary Certificate",
+      "share": 0.1579
+     },
+     {
+      "level": "Some College Courses",
+      "share": 0.1053
+     },
+     {
+      "level": "Associate's Degree or other 2-year degree",
+      "share": 0.1053
+     },
+     {
+      "level": "Less than a High School Diploma",
+      "share": 0.0526
+     },
+     {
+      "level": "High School Diploma or the equivalent (such as a GED)",
+      "share": 0.0526
+     },
+     {
+      "level": "Post-Master's Certificate",
+      "share": 0.0526
      }
     ]
    }
@@ -821,48 +1408,127 @@
       "category": "Analytical or scientific software",
       "in_demand": true,
       "hot": false
+     }
+    ],
+    "skills": [
+     {
+      "name": "Complex Problem Solving",
+      "importance": 3.88
      },
      {
-      "name": "Apache Subversion SVN",
-      "category": "File versioning software",
-      "in_demand": false,
-      "hot": true
+      "name": "Judgment and Decision Making",
+      "importance": 3.62
      },
      {
-      "name": "Autodesk AutoCAD",
-      "category": "Computer aided design CAD software",
-      "in_demand": false,
-      "hot": true
+      "name": "Operations Analysis",
+      "importance": 3.38
      },
      {
-      "name": "Git",
-      "category": "File versioning software",
-      "in_demand": false,
-      "hot": true
+      "name": "Systems Analysis",
+      "importance": 3.38
      },
      {
-      "name": "Microsoft Access",
-      "category": "Data base user interface and query software",
-      "in_demand": false,
-      "hot": true
+      "name": "Systems Evaluation",
+      "importance": 3.38
      },
      {
-      "name": "Microsoft Excel",
-      "category": "Spreadsheet software",
-      "in_demand": false,
-      "hot": true
+      "name": "Coordination",
+      "importance": 3.12
      },
      {
-      "name": "Microsoft Office software",
-      "category": "Office suite software",
-      "in_demand": false,
-      "hot": true
+      "name": "Time Management",
+      "importance": 3.12
      },
      {
-      "name": "Microsoft PowerPoint",
-      "category": "Presentation software",
-      "in_demand": false,
-      "hot": true
+      "name": "Instructing",
+      "importance": 3.0
+     },
+     {
+      "name": "Operations Monitoring",
+      "importance": 3.0
+     },
+     {
+      "name": "Quality Control Analysis",
+      "importance": 2.88
+     }
+    ],
+    "experience": [
+     {
+      "category": 1,
+      "description": "None",
+      "share": 0.1034
+     },
+     {
+      "category": 2,
+      "description": "Up to and including 1 month",
+      "share": 0.0
+     },
+     {
+      "category": 3,
+      "description": "Over 1 month, up to and including 3 months",
+      "share": 0.069
+     },
+     {
+      "category": 4,
+      "description": "Over 3 months, up to and including 6 months",
+      "share": 0.0
+     },
+     {
+      "category": 5,
+      "description": "Over 6 months, up to and including 1 year",
+      "share": 0.0345
+     },
+     {
+      "category": 6,
+      "description": "Over 1 year, up to and including 2 years",
+      "share": 0.2759
+     },
+     {
+      "category": 7,
+      "description": "Over 2 years, up to and including 4 years",
+      "share": 0.2414
+     },
+     {
+      "category": 8,
+      "description": "Over 4 years, up to and including 6 years",
+      "share": 0.0345
+     },
+     {
+      "category": 9,
+      "description": "Over 6 years, up to and including 8 years",
+      "share": 0.1034
+     },
+     {
+      "category": 10,
+      "description": "Over 8 years, up to and including 10 years",
+      "share": 0.0345
+     },
+     {
+      "category": 11,
+      "description": "Over 10 years",
+      "share": 0.1034
+     }
+    ],
+    "education": [
+     {
+      "level": "Bachelor's Degree",
+      "share": 0.4828
+     },
+     {
+      "level": "Master's Degree",
+      "share": 0.3448
+     },
+     {
+      "level": "Some College Courses",
+      "share": 0.069
+     },
+     {
+      "level": "Doctoral Degree",
+      "share": 0.069
+     },
+     {
+      "level": "First Professional Degree - awarded for completion of a program that: requires at least 2 years of college work before entrance into the program, includes a total of at least 6 academic years of work to complete, and provides all remaining academic requirements to begin practice in a profession.",
+      "share": 0.0345
      }
     ]
    }
@@ -986,54 +1652,135 @@
       "category": "Network security and virtual private network VPN equipment software",
       "in_demand": true,
       "hot": false
+     }
+    ],
+    "skills": [
+     {
+      "name": "Complex Problem Solving",
+      "importance": 3.62
      },
      {
-      "name": "Adobe Acrobat",
-      "category": "Document management software",
-      "in_demand": false,
-      "hot": true
+      "name": "Judgment and Decision Making",
+      "importance": 3.25
      },
      {
-      "name": "Adobe Creative Cloud software",
-      "category": "Graphics or photo imaging software",
-      "in_demand": false,
-      "hot": true
+      "name": "Social Perceptiveness",
+      "importance": 3.12
      },
      {
-      "name": "Adobe Illustrator",
-      "category": "Graphics or photo imaging software",
-      "in_demand": false,
-      "hot": true
+      "name": "Service Orientation",
+      "importance": 3.12
      },
      {
-      "name": "Adobe InDesign",
-      "category": "Desktop publishing software",
-      "in_demand": false,
-      "hot": true
+      "name": "Instructing",
+      "importance": 3.0
      },
      {
-      "name": "Adobe Photoshop",
-      "category": "Graphics or photo imaging software",
-      "in_demand": false,
-      "hot": true
+      "name": "Operations Monitoring",
+      "importance": 3.0
      },
      {
-      "name": "AJAX",
-      "category": "Web platform development software",
-      "in_demand": false,
-      "hot": true
+      "name": "Troubleshooting",
+      "importance": 3.0
      },
      {
-      "name": "Amazon Redshift",
-      "category": "Data base user interface and query software",
-      "in_demand": false,
-      "hot": true
+      "name": "Systems Analysis",
+      "importance": 3.0
      },
      {
-      "name": "Amazon Web Services AWS software",
-      "category": "Data base user interface and query software",
-      "in_demand": false,
-      "hot": true
+      "name": "Time Management",
+      "importance": 3.0
+     },
+     {
+      "name": "Coordination",
+      "importance": 2.88
+     }
+    ],
+    "experience": [
+     {
+      "category": 1,
+      "description": "None",
+      "share": 0.0032
+     },
+     {
+      "category": 2,
+      "description": "Up to and including 1 month",
+      "share": 0.0
+     },
+     {
+      "category": 3,
+      "description": "Over 1 month, up to and including 3 months",
+      "share": 0.0
+     },
+     {
+      "category": 4,
+      "description": "Over 3 months, up to and including 6 months",
+      "share": 0.0
+     },
+     {
+      "category": 5,
+      "description": "Over 6 months, up to and including 1 year",
+      "share": 0.3212
+     },
+     {
+      "category": 6,
+      "description": "Over 1 year, up to and including 2 years",
+      "share": 0.02
+     },
+     {
+      "category": 7,
+      "description": "Over 2 years, up to and including 4 years",
+      "share": 0.5113
+     },
+     {
+      "category": 8,
+      "description": "Over 4 years, up to and including 6 years",
+      "share": 0.1352
+     },
+     {
+      "category": 9,
+      "description": "Over 6 years, up to and including 8 years",
+      "share": 0.0091
+     },
+     {
+      "category": 10,
+      "description": "Over 8 years, up to and including 10 years",
+      "share": 0.0
+     },
+     {
+      "category": 11,
+      "description": "Over 10 years",
+      "share": 0.0
+     }
+    ],
+    "education": [
+     {
+      "level": "Bachelor's Degree",
+      "share": 0.4732
+     },
+     {
+      "level": "Post-Secondary Certificate",
+      "share": 0.3233
+     },
+     {
+      "level": "Associate's Degree or other 2-year degree",
+      "share": 0.1374
+     },
+     {
+      "level": "First Professional Degree - awarded for completion of a program that: requires at least 2 years of college work before entrance into the program, includes a total of at least 6 academic years of work to complete, and provides all remaining academic requirements to begin practice in a profession.",
+      "share": 0.0405
+     },
+     {
+      "level": "Some College Courses",
+      "share": 0.0192
+     },
+     {
+      "level": "High School Diploma or the equivalent (such as a GED)",
+      "share": 0.0032
+     },
+     {
+      "level": "Master's Degree",
+      "share": 0.0032
      }
     ]
    }
@@ -1109,96 +1856,119 @@
       "category": "Analytical or scientific software",
       "in_demand": true,
       "hot": true
+     }
+    ],
+    "skills": [
+     {
+      "name": "Complex Problem Solving",
+      "importance": 4.0
      },
      {
-      "name": "Apache Subversion SVN",
-      "category": "File versioning software",
-      "in_demand": false,
-      "hot": true
+      "name": "Judgment and Decision Making",
+      "importance": 3.75
      },
      {
-      "name": "Autodesk AutoCAD",
-      "category": "Computer aided design CAD software",
-      "in_demand": false,
-      "hot": true
+      "name": "Systems Analysis",
+      "importance": 3.75
      },
      {
-      "name": "C",
-      "category": "Development environment software",
-      "in_demand": false,
-      "hot": true
+      "name": "Systems Evaluation",
+      "importance": 3.38
      },
      {
-      "name": "C++",
-      "category": "Object or component oriented development software",
-      "in_demand": false,
-      "hot": true
+      "name": "Operations Analysis",
+      "importance": 3.25
      },
      {
-      "name": "Dassault Systemes SolidWorks",
-      "category": "Computer aided design CAD software",
-      "in_demand": false,
-      "hot": true
+      "name": "Quality Control Analysis",
+      "importance": 3.12
      },
      {
-      "name": "ESRI ArcGIS software",
-      "category": "Geographic information system",
-      "in_demand": false,
-      "hot": true
+      "name": "Coordination",
+      "importance": 3.0
      },
      {
-      "name": "Extensible markup language XML",
-      "category": "Enterprise application integration software",
-      "in_demand": false,
-      "hot": true
+      "name": "Instructing",
+      "importance": 3.0
      },
      {
-      "name": "Linux",
-      "category": "Operating system software",
-      "in_demand": false,
-      "hot": true
+      "name": "Technology Design",
+      "importance": 3.0
      },
      {
-      "name": "Microsoft PowerPoint",
-      "category": "Presentation software",
-      "in_demand": false,
-      "hot": true
+      "name": "Operations Monitoring",
+      "importance": 3.0
+     }
+    ],
+    "experience": [
+     {
+      "category": 1,
+      "description": "None",
+      "share": 0.1105
      },
      {
-      "name": "Microsoft Word",
-      "category": "Word processing software",
-      "in_demand": false,
-      "hot": true
+      "category": 2,
+      "description": "Up to and including 1 month",
+      "share": 0.0
      },
      {
-      "name": "Oracle Database",
-      "category": "Data base user interface and query software",
-      "in_demand": false,
-      "hot": true
+      "category": 3,
+      "description": "Over 1 month, up to and including 3 months",
+      "share": 0.0
      },
      {
-      "name": "Oracle Java",
-      "category": "Object or component oriented development software",
-      "in_demand": false,
-      "hot": true
+      "category": 4,
+      "description": "Over 3 months, up to and including 6 months",
+      "share": 0.0834
      },
      {
-      "name": "Structured query language SQL",
-      "category": "Data base user interface and query software",
-      "in_demand": false,
-      "hot": true
+      "category": 5,
+      "description": "Over 6 months, up to and including 1 year",
+      "share": 0.0
      },
      {
-      "name": "Trimble SketchUp Pro",
-      "category": "Graphics or photo imaging software",
-      "in_demand": false,
-      "hot": true
+      "category": 6,
+      "description": "Over 1 year, up to and including 2 years",
+      "share": 0.1322
      },
      {
-      "name": "UNIX",
-      "category": "Operating system software",
-      "in_demand": false,
-      "hot": true
+      "category": 7,
+      "description": "Over 2 years, up to and including 4 years",
+      "share": 0.1164
+     },
+     {
+      "category": 8,
+      "description": "Over 4 years, up to and including 6 years",
+      "share": 0.3382
+     },
+     {
+      "category": 9,
+      "description": "Over 6 years, up to and including 8 years",
+      "share": 0.0
+     },
+     {
+      "category": 10,
+      "description": "Over 8 years, up to and including 10 years",
+      "share": 0.0
+     },
+     {
+      "category": 11,
+      "description": "Over 10 years",
+      "share": 0.2194
+     }
+    ],
+    "education": [
+     {
+      "level": "Bachelor's Degree",
+      "share": 0.833
+     },
+     {
+      "level": "Associate's Degree or other 2-year degree",
+      "share": 0.1381
+     },
+     {
+      "level": "Master's Degree",
+      "share": 0.0289
      }
     ]
    }
@@ -1370,6 +2140,155 @@
       "category": "Program testing software",
       "in_demand": true,
       "hot": false
+     },
+     {
+      "name": "Postman",
+      "category": "Operating system software",
+      "in_demand": true,
+      "hot": false
+     },
+     {
+      "name": "REST Assured",
+      "category": "Program testing software",
+      "in_demand": true,
+      "hot": false
+     },
+     {
+      "name": "RESTful API",
+      "category": "Web platform development software",
+      "in_demand": true,
+      "hot": false
+     },
+     {
+      "name": "TestNG",
+      "category": "Program testing software",
+      "in_demand": true,
+      "hot": false
+     }
+    ],
+    "skills": [
+     {
+      "name": "Programming",
+      "importance": 3.62
+     },
+     {
+      "name": "Complex Problem Solving",
+      "importance": 3.38
+     },
+     {
+      "name": "Quality Control Analysis",
+      "importance": 3.38
+     },
+     {
+      "name": "Systems Evaluation",
+      "importance": 3.25
+     },
+     {
+      "name": "Operations Analysis",
+      "importance": 3.12
+     },
+     {
+      "name": "Judgment and Decision Making",
+      "importance": 3.12
+     },
+     {
+      "name": "Systems Analysis",
+      "importance": 3.12
+     },
+     {
+      "name": "Coordination",
+      "importance": 3.0
+     },
+     {
+      "name": "Operations Monitoring",
+      "importance": 3.0
+     },
+     {
+      "name": "Time Management",
+      "importance": 3.0
+     }
+    ],
+    "experience": [
+     {
+      "category": 1,
+      "description": "None",
+      "share": 0.0882
+     },
+     {
+      "category": 2,
+      "description": "Up to and including 1 month",
+      "share": 0.0
+     },
+     {
+      "category": 3,
+      "description": "Over 1 month, up to and including 3 months",
+      "share": 0.0
+     },
+     {
+      "category": 4,
+      "description": "Over 3 months, up to and including 6 months",
+      "share": 0.0294
+     },
+     {
+      "category": 5,
+      "description": "Over 6 months, up to and including 1 year",
+      "share": 0.2941
+     },
+     {
+      "category": 6,
+      "description": "Over 1 year, up to and including 2 years",
+      "share": 0.2647
+     },
+     {
+      "category": 7,
+      "description": "Over 2 years, up to and including 4 years",
+      "share": 0.2353
+     },
+     {
+      "category": 8,
+      "description": "Over 4 years, up to and including 6 years",
+      "share": 0.0588
+     },
+     {
+      "category": 9,
+      "description": "Over 6 years, up to and including 8 years",
+      "share": 0.0294
+     },
+     {
+      "category": 10,
+      "description": "Over 8 years, up to and including 10 years",
+      "share": 0.0
+     },
+     {
+      "category": 11,
+      "description": "Over 10 years",
+      "share": 0.0
+     }
+    ],
+    "education": [
+     {
+      "level": "Bachelor's Degree",
+      "share": 0.5
+     },
+     {
+      "level": "Associate's Degree or other 2-year degree",
+      "share": 0.2647
+     },
+     {
+      "level": "Post-Secondary Certificate",
+      "share": 0.0882
+     },
+     {
+      "level": "Some College Courses",
+      "share": 0.0882
+     },
+     {
+      "level": "High School Diploma or the equivalent (such as a GED)",
+      "share": 0.0294
+     },
+     {
+      "level": "Master's Degree",
+      "share": 0.0294
      }
     ]
    }
@@ -1481,66 +2400,127 @@
       "category": "Data base user interface and query software",
       "in_demand": true,
       "hot": true
+     }
+    ],
+    "skills": [
+     {
+      "name": "Coordination",
+      "importance": 4.0
      },
      {
-      "name": "Adobe Acrobat",
-      "category": "Document management software",
-      "in_demand": false,
-      "hot": true
+      "name": "Time Management",
+      "importance": 4.0
      },
      {
-      "name": "Adobe Creative Cloud software",
-      "category": "Graphics or photo imaging software",
-      "in_demand": false,
-      "hot": true
+      "name": "Management of Personnel Resources",
+      "importance": 3.88
      },
      {
-      "name": "Adobe Illustrator",
-      "category": "Graphics or photo imaging software",
-      "in_demand": false,
-      "hot": true
+      "name": "Systems Analysis",
+      "importance": 3.75
      },
      {
-      "name": "Adobe InDesign",
-      "category": "Desktop publishing software",
-      "in_demand": false,
-      "hot": true
+      "name": "Judgment and Decision Making",
+      "importance": 3.62
      },
      {
-      "name": "Adobe Photoshop",
-      "category": "Graphics or photo imaging software",
-      "in_demand": false,
-      "hot": true
+      "name": "Systems Evaluation",
+      "importance": 3.5
      },
      {
-      "name": "AJAX",
-      "category": "Web platform development software",
-      "in_demand": false,
-      "hot": true
+      "name": "Social Perceptiveness",
+      "importance": 3.38
      },
      {
-      "name": "Amazon DynamoDB",
-      "category": "Data base management system software",
-      "in_demand": false,
-      "hot": true
+      "name": "Negotiation",
+      "importance": 3.38
      },
      {
-      "name": "Amazon Elastic Compute Cloud EC2",
-      "category": "Data base user interface and query software",
-      "in_demand": false,
-      "hot": true
+      "name": "Complex Problem Solving",
+      "importance": 3.38
      },
      {
-      "name": "Amazon Redshift",
-      "category": "Data base user interface and query software",
-      "in_demand": false,
-      "hot": true
+      "name": "Service Orientation",
+      "importance": 3.25
+     }
+    ],
+    "experience": [
+     {
+      "category": 1,
+      "description": "None",
+      "share": 0.0
      },
      {
-      "name": "Ansible software",
-      "category": "Expert system software",
-      "in_demand": false,
-      "hot": true
+      "category": 2,
+      "description": "Up to and including 1 month",
+      "share": 0.0
+     },
+     {
+      "category": 3,
+      "description": "Over 1 month, up to and including 3 months",
+      "share": 0.0
+     },
+     {
+      "category": 4,
+      "description": "Over 3 months, up to and including 6 months",
+      "share": 0.0
+     },
+     {
+      "category": 5,
+      "description": "Over 6 months, up to and including 1 year",
+      "share": 0.0476
+     },
+     {
+      "category": 6,
+      "description": "Over 1 year, up to and including 2 years",
+      "share": 0.1429
+     },
+     {
+      "category": 7,
+      "description": "Over 2 years, up to and including 4 years",
+      "share": 0.381
+     },
+     {
+      "category": 8,
+      "description": "Over 4 years, up to and including 6 years",
+      "share": 0.2857
+     },
+     {
+      "category": 9,
+      "description": "Over 6 years, up to and including 8 years",
+      "share": 0.0476
+     },
+     {
+      "category": 10,
+      "description": "Over 8 years, up to and including 10 years",
+      "share": 0.0952
+     },
+     {
+      "category": 11,
+      "description": "Over 10 years",
+      "share": 0.0
+     }
+    ],
+    "education": [
+     {
+      "level": "Bachelor's Degree",
+      "share": 0.381
+     },
+     {
+      "level": "Associate's Degree or other 2-year degree",
+      "share": 0.2381
+     },
+     {
+      "level": "Post-Baccalaureate Certificate",
+      "share": 0.1905
+     },
+     {
+      "level": "Post-Secondary Certificate",
+      "share": 0.0952
+     },
+     {
+      "level": "Master's Degree",
+      "share": 0.0952
      }
     ]
    }

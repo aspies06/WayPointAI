@@ -309,6 +309,8 @@ button:disabled { opacity: 0.6; cursor: default; }
 .insight-skills .mark { font-size: 0.75rem; font-weight: 600; }
 .insight-skills .found .mark { color: var(--good); }
 .insight-skills .missing .mark { color: var(--muted); }
+.disclaimer { font-size: 0.85rem; color: var(--muted); border-left: 3px solid var(--warn-soft); padding: 4px 10px; margin: 0 0 14px; }
+.credit { font-size: 0.75rem; color: var(--muted); margin: 24px 0 0; }
 .insight-sources { grid-column: 1 / -1; font-size: 0.75rem; color: var(--muted); margin: 0; }
 @media (max-width: 720px) { .role-insights { grid-template-columns: 1fr; } }
 .story-access form { margin-top: 20px; max-width: 600px; }

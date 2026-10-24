@@ -484,7 +484,10 @@ export function ResumeBuilder({ roles = [] }) {
             <h2>Your resume draft</h2>
             <span className={"tag " + (generated.mode === "ai" ? "tag-ai" : "")}>{generated.mode === "ai" ? "AI rewritten" : "Edited draft"}</span>
           </div>
-          <p className="muted">Review the wording and details before submitting an application.</p>
+          <p className="disclaimer" role="note">
+            {generated.mode === "ai" ? "AI-generated" : "Automatically edited"} draft. It can make mistakes, so
+            review the wording and details against your stories before submitting an application.
+          </p>
           {generated.notice && <p className="alert alert-info">{generated.notice}</p>}
           {generated.follow_up_questions?.length > 0 && (
             <aside className="alert alert-info">

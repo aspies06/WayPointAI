@@ -81,6 +81,7 @@ def test_only_in_demand_technologies_are_shown():
     ("Amazon Web Services AWS software", "AWS"),
     ("Microsoft Azure software", "Azure"),
     ("Jenkins CI", "Jenkins"),
+    ("Microsoft Power BI", "Power BI"),
 ])
 def test_everyday_names_match(name, short):
     assert short in role_insights.match_terms(name)

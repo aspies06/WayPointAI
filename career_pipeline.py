@@ -66,7 +66,7 @@ def resume_skills_for_role(resume_text: str, role_profile: dict) -> list[str]:
     for entry in all_skills:
         skill = entry["skill"]
         canonical = normalize_skill(skill)
-        variants = {skill}
+        variants = {skill, *entry.get("aliases", [])}
         variants.update(
             alias
             for alias, normalized in SKILL_SYNONYMS.items()
@@ -74,11 +74,9 @@ def resume_skills_for_role(resume_text: str, role_profile: dict) -> list[str]:
         )
         for variant in variants:
             pattern = re.escape(variant).replace(r"\ ", r"\s+")
-            if re.search(
-                rf"(?<![a-z0-9]){pattern}(?![a-z0-9])",
-                resume_text,
-                flags=re.IGNORECASE,
-            ):
+            # Short names ("C", "R", "Go") only count when written that way, not "go" or "r".
+            flags = 0 if len(variant) <= 2 else re.IGNORECASE
+            if re.search(rf"(?<![A-Za-z0-9+#]){pattern}(?![A-Za-z0-9+#])", resume_text, flags=flags):
                 found.append(skill)
                 break
     return list(dict.fromkeys(found))
@@ -88,6 +86,10 @@ def gap_list_for_role(resume_text: str, role: str, level: str, experience_years:
                       user_context: dict) -> dict:
     """The gap list for one role. `level` is a roadmap level value ("internship", "entry", ...)."""
     role_profile = ROLE_PROFILES[role]
+    if level in ("internship", "entry"):
+        # O*NET's experience figures describe workers at every career stage, so they'd overstate
+        # what an internship or entry-level job asks for. Don't turn them into a gap.
+        role_profile = {**role_profile, "avg_years_experience": 0.0}
     resume = {
         "skills": resume_skills_for_role(resume_text, role_profile),
         "experience_years": experience_years or 0.0,
