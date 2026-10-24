@@ -1,0 +1,6 @@
+{
+  "liveServer.settings.root": "/web",
+  "liveServer.settings.port": 5500,
+  "liveServer.settings.host": "127.0.0.1",
+  "liveServer.settings.ignoreFiles": [".vscode/**", "**/*.py", "tests/**", "data/**"]
+}

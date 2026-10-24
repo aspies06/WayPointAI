@@ -1,83 +1,18 @@
-import re
-from io import BytesIO
 from datetime import date, timedelta
 from pathlib import Path
 
 import gradio as gr
-from pypdf import PdfReader
-from pypdf.errors import PdfReadError
 
-from gap_analyzer import (
-    SKILL_SYNONYMS,
-    analyze_gap,
-    build_gap_list,
-    normalize_skill,
+from career_pipeline import (
+    LEVELS,
+    ResumeError,
+    combine_skills_text,
+    extract_resume_text,
+    gap_list_for_role,
 )
 from roadmap import generate_roadmap
 from roadmap import catalog
 from roadmap.schemas import PHASE_LABELS, ROLES
-from role_profiles import ROLE_PROFILES
-
-
-MAX_UPLOAD_BYTES = 10 * 1024 * 1024
-MAX_RESUME_CHARACTERS = 18_000
-LEVELS = {
-    "Internship": "internship",
-    "Entry / junior": "entry",
-    "Mid-level": "mid",
-    "Senior": "senior",
-}
-
-
-def extract_resume_text(filename: str, content: bytes) -> str:
-    extension = Path(filename).suffix.lower()
-    if extension == ".txt":
-        try:
-            text = content.decode("utf-8-sig")
-        except UnicodeDecodeError as error:
-            raise gr.Error("Text resumes must use UTF-8 encoding.") from error
-    elif extension == ".pdf":
-        try:
-            reader = PdfReader(BytesIO(content))
-            if reader.is_encrypted:
-                raise gr.Error("The uploaded PDF is password-protected.")
-            text = "\n".join(page.extract_text() or "" for page in reader.pages)
-        except PdfReadError as error:
-            raise gr.Error("The uploaded file is not a readable PDF.") from error
-    else:
-        raise gr.Error("Upload a PDF or UTF-8 text file.")
-
-    text = text.strip()
-    if not text:
-        raise gr.Error(
-            "No selectable text was found. Scanned PDFs need OCR before upload."
-        )
-    return text[:MAX_RESUME_CHARACTERS]
-
-
-def resume_skills_for_role(resume_text: str, role_profile: dict) -> list[str]:
-    """Find profile skills explicitly mentioned in the resume text."""
-    found: list[str] = []
-    all_skills = role_profile["required_skills"] + role_profile["preferred_skills"]
-    for entry in all_skills:
-        skill = entry["skill"]
-        canonical = normalize_skill(skill)
-        variants = {skill}
-        variants.update(
-            alias
-            for alias, normalized in SKILL_SYNONYMS.items()
-            if normalized == canonical
-        )
-        for variant in variants:
-            pattern = re.escape(variant).replace(r"\ ", r"\s+")
-            if re.search(
-                rf"(?<![a-z0-9]){pattern}(?![a-z0-9])",
-                resume_text,
-                flags=re.IGNORECASE,
-            ):
-                found.append(skill)
-                break
-    return list(dict.fromkeys(found))
 
 
 def render_roadmap(gap_list: dict) -> str:
@@ -155,14 +90,11 @@ def generate_career_roadmaps(
     resume_text = ""
     if uploaded_file:
         file_path = Path(uploaded_file)
-        content = file_path.read_bytes()
-        if len(content) > MAX_UPLOAD_BYTES:
-            raise gr.Error("The uploaded file must be 10 MB or smaller.")
-        resume_text = extract_resume_text(file_path.name, content)
-
-    # Typed skills work with or without a resume; they're matched the same way.
-    typed_skills = (skills_text or "").strip()
-    resume_text = f"{resume_text}\n{typed_skills}".strip()[:MAX_RESUME_CHARACTERS]
+        try:
+            resume_text = extract_resume_text(file_path.name, file_path.read_bytes())
+        except ResumeError as error:
+            raise gr.Error(str(error)) from error
+    resume_text = combine_skills_text(resume_text, skills_text)
 
     sections = []
     if not resume_text:
@@ -171,28 +103,14 @@ def generate_career_roadmaps(
             "assume you're starting from scratch."
         )
     for role in roles:
-        role_profile = ROLE_PROFILES[role]
-        resume = {
-            "skills": resume_skills_for_role(resume_text, role_profile),
-            "experience_years": experience_years or 0.0,
-        }
-        gap_result = analyze_gap(resume, role_profile)
-        target_role = {
-            "title": role,
-            "level": LEVELS[level_label],
-            "role": role,
-        }
         user_context = {
             "hours_per_week": hours_per_week,
             "target_date": (date.today() + timedelta(days=timeline_days)).isoformat(),
             "budget_usd": budget_usd,
             "background": (background or "")[:600],  # Gradio sends None for an empty box
         }
-        gap_list = build_gap_list(
-            gap_result,
-            target_role,
-            user_context,
-            resume=resume,
+        gap_list = gap_list_for_role(
+            resume_text, role, LEVELS[level_label], experience_years, user_context
         )
         sections.append(render_roadmap(gap_list))
 
