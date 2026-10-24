@@ -16,6 +16,8 @@ Usage
     # pass to gap_analyzer.analyze_gap(resume, profile)
 """
 
+from __future__ import annotations
+
 ROLE_PROFILES: dict[str, dict] = {
     "Software Engineer": {
         "role": "Software Engineer",
