@@ -10,6 +10,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+from typing import Optional
 import secrets
 import sqlite3
 from uuid import uuid4
@@ -107,7 +108,7 @@ def create_story(library_hash: str, data: dict) -> dict:
     return _story(row)
 
 
-def update_story(library_hash: str, story_id: str, data: dict) -> dict | None:
+def update_story(library_hash: str, story_id: str, data: dict) -> Optional[dict]:
     with _database() as db:
         result = db.execute("""UPDATE stories SET answers = ?, organization = ?, dates = ?,
                                narrative = ?, updated_at = ? WHERE id = ? AND library_hash = ?""",
@@ -118,14 +119,6 @@ def update_story(library_hash: str, story_id: str, data: dict) -> dict | None:
         row = db.execute("SELECT * FROM stories WHERE id = ? AND library_hash = ?",
                          (story_id, library_hash)).fetchone()
     return _story(row)
-
-
-def delete_library(library_hash: str) -> bool:
-    """Erase a story bank and every story in it."""
-    with _database() as db:
-        db.execute("DELETE FROM stories WHERE library_hash = ?", (library_hash,))
-        result = db.execute("DELETE FROM libraries WHERE key_hash = ?", (library_hash,))
-        return result.rowcount > 0
 
 
 def delete_story(library_hash: str, story_id: str) -> bool:

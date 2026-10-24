@@ -61,39 +61,35 @@ export function App() {
       </header>
       <main className="wrap">
         <nav className="tabs workspace-tabs" aria-label="Career tools">
-          <button
-            type="button"
-            className={"tab" + (view === "roadmap" ? " tab-on" : "")}
-            aria-pressed={view === "roadmap"}
-            onClick={() => setView("roadmap")}
-          >
-            Career roadmap
-          </button>
-          <button
-            type="button"
-            className={"tab" + (view === "resume" ? " tab-on" : "")}
-            aria-pressed={view === "resume"}
-            onClick={() => setView("resume")}
-          >
-            Resume builder
-          </button>
+          {[["roadmap", "Career roadmap"], ["resume", "Resume builder"]].map(([id, label]) => (
+            <button
+              key={id}
+              type="button"
+              className={"tab" + (view === id ? " tab-on" : "")}
+              aria-pressed={view === id}
+              onClick={() => setView(id)}
+            >
+              {label}
+            </button>
+          ))}
         </nav>
+        {/* Both stay mounted, so switching tabs keeps what you typed in either one. */}
         <div hidden={view !== "roadmap"}>
-        {loadError && (
-          <p className="alert alert-error" role="alert">
-            {loadError}
-          </p>
-        )}
-        {!options && !loadError && <p className="muted">Loading…</p>}
-        {options && (
-          <PlannerForm
-            options={options}
-            onSubmit={handleSubmit}
-            submitting={submitting}
-            error={submitError}
-          />
-        )}
-        {result && <Results result={result} />}
+          {loadError && (
+            <p className="alert alert-error" role="alert">
+              {loadError}
+            </p>
+          )}
+          {!options && !loadError && <p className="muted">Loading…</p>}
+          {options && (
+            <PlannerForm
+              options={options}
+              onSubmit={handleSubmit}
+              submitting={submitting}
+              error={submitError}
+            />
+          )}
+          {result && <Results result={result} />}
         </div>
         <div hidden={view !== "resume"}>
           <ResumeBuilder roles={options?.roles || []} />

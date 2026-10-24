@@ -30,6 +30,7 @@ TextModel = Callable[[list[dict], int], str]
 _pool = ThreadPoolExecutor(max_workers=WORKERS)
 _slots = threading.BoundedSemaphore(WORKERS)
 _load_lock = threading.Lock()
+_devices: dict[str, str] = {}  # model id -> where it runs, filled as each model loads
 
 
 log = logging.getLogger("roadmap")
@@ -79,7 +80,9 @@ def choose_device(torch, weight_bytes: int, requested: str = DEVICE) -> tuple[st
     return kind, f"{kind} has {free / 1e9:.1f} GB free; the model needs about {need / 1e9:.1f} GB"
 
 
-@lru_cache(maxsize=2)  # the roadmap tip model and the resume writer can both stay loaded
+# Two models stay loaded: the roadmap tips model and the resume writer (RESUME_MODEL_ID).
+# With room for only one, switching between roadmaps and resumes reloaded a model every time.
+@lru_cache(maxsize=2)
 def _load_once(model_id: str):
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -97,18 +100,19 @@ def _load_once(model_id: str):
         except RuntimeError as error:  # out of memory, driver problem, ...
             model.to("cpu", dtype=torch.float32)
             device, reason = "cpu", f"moving to the GPU failed ({type(error).__name__})"
-    log.info("tip model on %s: %s", device, reason)
+    log.info("%s on %s: %s", model_id, device, reason)
     model.eval()
+    _devices[model_id] = device
     return tokenizer, model, device
 
 
-def loaded_device() -> Optional[str]:
-    """Where the model runs, once loaded (None before the first use)."""
-    return _load_once(MODEL_ID)[2] if _load_once.cache_info().currsize else None
+def loaded_device(model_id: str = MODEL_ID) -> Optional[str]:
+    """Where a model runs, once loaded (None before its first use). Never loads one itself."""
+    return _devices.get(model_id)
 
 
 def hf_generate(messages: list[dict], max_new_tokens: int = MAX_NEW_TOKENS,
-                *, model_id: str = MODEL_ID, enable_thinking: bool | None = None) -> str:
+                *, model_id: str = MODEL_ID, enable_thinking: Optional[bool] = None) -> str:
     import torch
 
     tokenizer, model, device = _load(model_id)

@@ -4,6 +4,7 @@ __pycache__/
 .env
 cache/
 eval_results/
+.local/
 # web front end (npm install / npm run build)
 web/node_modules/
 web/dist/
