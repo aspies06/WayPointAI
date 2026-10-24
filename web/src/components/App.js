@@ -3,6 +3,7 @@ import { html } from "../html.js";
 import { getOptions, getRoadmaps } from "../api.js";
 import { PlannerForm } from "./PlannerForm.js";
 import { Results } from "./Results.js";
+import { Brand } from "./Brand.js";
 
 export function App() {
   const [options, setOptions] = useState(null);
@@ -33,10 +34,7 @@ export function App() {
   return html`
     <header className="site-header">
       <div className="wrap">
-        <h1 className="brand">
-          <img src="./logo.svg" alt="" width="40" height="40" />
-          WayPointAI
-        </h1>
+        <${Brand} />
         <p className="tagline">
           Tell us where you are, where you want to go, and how much time you have. You'll get a
           roadmap with your most important work first, dates you can keep, and links to every

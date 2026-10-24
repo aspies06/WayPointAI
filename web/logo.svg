@@ -1,7 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="WayPointAI">
-  <!-- A path from a starting point (the waypoint dot) curving up to a goal (the arrow). -->
-  <rect width="64" height="64" rx="15" fill="#1f6feb"/>
-  <circle cx="17" cy="47" r="5.5" fill="#ffffff"/>
-  <path d="M17 47 C 21 31, 31 33, 43 21" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
-  <path d="M33 17 H47 V31" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- The logo arrow on its own, no background: a path from a starting dot (the waypoint) up to an arrowhead. -->
+  <g fill="none" stroke="#1f6feb" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 50 C 18 33, 32 32, 47 18"/>
+    <path d="M32 15 H50 V33"/>
+  </g>
+  <circle cx="12" cy="50" r="6" fill="#1f6feb"/>
 </svg>
